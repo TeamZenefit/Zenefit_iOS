@@ -10,12 +10,34 @@
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
 		B5F624642AC2F6A0002A1896 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* ViewController.swift */; };
-		B5F624672AC2F6A0002A1896 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5F624652AC2F6A0002A1896 /* Main.storyboard */; };
 		B5F624692AC2F6A1002A1896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F624682AC2F6A1002A1896 /* Assets.xcassets */; };
 		B5F6246C2AC2F6A1002A1896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */; };
 		B5F624772AC2F6A1002A1896 /* ZeneFitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624762AC2F6A1002A1896 /* ZeneFitTests.swift */; };
 		B5F624812AC2F6A1002A1896 /* ZeneFitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624802AC2F6A1002A1896 /* ZeneFitUITests.swift */; };
 		B5F624832AC2F6A1002A1896 /* ZeneFitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624822AC2F6A1002A1896 /* ZeneFitUITestsLaunchTests.swift */; };
+		B5F624942AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624912AC2F896002A1896 /* Pretendard-SemiBold.otf */; };
+		B5F624952AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624912AC2F896002A1896 /* Pretendard-SemiBold.otf */; };
+		B5F624962AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624912AC2F896002A1896 /* Pretendard-SemiBold.otf */; };
+		B5F624972AC2F896002A1896 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624922AC2F896002A1896 /* Pretendard-Bold.otf */; };
+		B5F624982AC2F896002A1896 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624922AC2F896002A1896 /* Pretendard-Bold.otf */; };
+		B5F624992AC2F896002A1896 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624922AC2F896002A1896 /* Pretendard-Bold.otf */; };
+		B5F6249A2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624932AC2F896002A1896 /* Pretendard-Regular.otf */; };
+		B5F6249B2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624932AC2F896002A1896 /* Pretendard-Regular.otf */; };
+		B5F6249C2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5F624932AC2F896002A1896 /* Pretendard-Regular.otf */; };
+		B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624A02AC3144A002A1896 /* UIFont+.swift */; };
+		B5F624A22AC3144A002A1896 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624A02AC3144A002A1896 /* UIFont+.swift */; };
+		B5F624A32AC3144A002A1896 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624A02AC3144A002A1896 /* UIFont+.swift */; };
+		B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624A42AC32919002A1896 /* UIColor+.swift */; };
+		B5F624A62AC32919002A1896 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624A42AC32919002A1896 /* UIColor+.swift */; };
+		B5F624A72AC32919002A1896 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624A42AC32919002A1896 /* UIColor+.swift */; };
+		B5F624AA2AC33AB3002A1896 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624A92AC33AB3002A1896 /* SnapKit */; };
+		B5F624AD2AC33AFD002A1896 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624AC2AC33AFD002A1896 /* Then */; };
+		B5F624B02AC33B8A002A1896 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624AF2AC33B8A002A1896 /* KakaoSDKAuth */; };
+		B5F624B22AC33B8A002A1896 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624B12AC33B8A002A1896 /* KakaoSDKCommon */; };
+		B5F624B42AC33B8A002A1896 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624B32AC33B8A002A1896 /* KakaoSDKUser */; };
+		B5F624B72AC33CF8002A1896 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624B62AC33CF8002A1896 /* FirebaseAnalytics */; };
+		B5F624B92AC33CF8002A1896 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624B82AC33CF8002A1896 /* FirebaseCrashlytics */; };
+		B5F624BB2AC33CF8002A1896 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624BA2AC33CF8002A1896 /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +62,6 @@
 		B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B5F624632AC2F6A0002A1896 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B5F624662AC2F6A0002A1896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5F624682AC2F6A1002A1896 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5F6246B2AC2F6A1002A1896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5F6246D2AC2F6A1002A1896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +70,11 @@
 		B5F6247C2AC2F6A1002A1896 /* ZeneFitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZeneFitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F624802AC2F6A1002A1896 /* ZeneFitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeneFitUITests.swift; sourceTree = "<group>"; };
 		B5F624822AC2F6A1002A1896 /* ZeneFitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeneFitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B5F624912AC2F896002A1896 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		B5F624922AC2F896002A1896 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		B5F624932AC2F896002A1896 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		B5F624A02AC3144A002A1896 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		B5F624A42AC32919002A1896 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +82,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624BB2AC33CF8002A1896 /* FirebaseMessaging in Frameworks */,
+				B5F624B22AC33B8A002A1896 /* KakaoSDKCommon in Frameworks */,
+				B5F624AA2AC33AB3002A1896 /* SnapKit in Frameworks */,
+				B5F624B72AC33CF8002A1896 /* FirebaseAnalytics in Frameworks */,
+				B5F624B92AC33CF8002A1896 /* FirebaseCrashlytics in Frameworks */,
+				B5F624AD2AC33AFD002A1896 /* Then in Frameworks */,
+				B5F624B42AC33B8A002A1896 /* KakaoSDKUser in Frameworks */,
+				B5F624B02AC33B8A002A1896 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,11 +133,9 @@
 		B5F6245E2AC2F6A0002A1896 /* ZeneFit */ = {
 			isa = PBXGroup;
 			children = (
-				B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */,
-				B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */,
+				B5F6249E2AC31432002A1896 /* Common */,
+				B5F6248F2AC2F85D002A1896 /* App */,
 				B5F624632AC2F6A0002A1896 /* ViewController.swift */,
-				B5F624652AC2F6A0002A1896 /* Main.storyboard */,
-				B5F624682AC2F6A1002A1896 /* Assets.xcassets */,
 				B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */,
 				B5F6246D2AC2F6A1002A1896 /* Info.plist */,
 			);
@@ -127,6 +159,52 @@
 			path = ZeneFitUITests;
 			sourceTree = "<group>";
 		};
+		B5F6248F2AC2F85D002A1896 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624902AC2F868002A1896 /* Resource */,
+				B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */,
+				B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B5F624902AC2F868002A1896 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624682AC2F6A1002A1896 /* Assets.xcassets */,
+				B5F6249D2AC2F8A1002A1896 /* Fonts */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B5F6249D2AC2F8A1002A1896 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624922AC2F896002A1896 /* Pretendard-Bold.otf */,
+				B5F624932AC2F896002A1896 /* Pretendard-Regular.otf */,
+				B5F624912AC2F896002A1896 /* Pretendard-SemiBold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B5F6249E2AC31432002A1896 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B5F6249F2AC31438002A1896 /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B5F6249F2AC31438002A1896 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624A02AC3144A002A1896 /* UIFont+.swift */,
+				B5F624A42AC32919002A1896 /* UIColor+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +221,16 @@
 			dependencies = (
 			);
 			name = ZeneFit;
+			packageProductDependencies = (
+				B5F624A92AC33AB3002A1896 /* SnapKit */,
+				B5F624AC2AC33AFD002A1896 /* Then */,
+				B5F624AF2AC33B8A002A1896 /* KakaoSDKAuth */,
+				B5F624B12AC33B8A002A1896 /* KakaoSDKCommon */,
+				B5F624B32AC33B8A002A1896 /* KakaoSDKUser */,
+				B5F624B62AC33CF8002A1896 /* FirebaseAnalytics */,
+				B5F624B82AC33CF8002A1896 /* FirebaseCrashlytics */,
+				B5F624BA2AC33CF8002A1896 /* FirebaseMessaging */,
+			);
 			productName = ZeneFit;
 			productReference = B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +303,12 @@
 				Base,
 			);
 			mainGroup = B5F624532AC2F6A0002A1896;
+			packageReferences = (
+				B5F624A82AC33AB3002A1896 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B5F624AB2AC33AFD002A1896 /* XCRemoteSwiftPackageReference "Then" */,
+				B5F624AE2AC33B8A002A1896 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = B5F6245D2AC2F6A0002A1896 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,8 +326,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F6246C2AC2F6A1002A1896 /* LaunchScreen.storyboard in Resources */,
+				B5F6249A2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
+				B5F624972AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
 				B5F624692AC2F6A1002A1896 /* Assets.xcassets in Resources */,
-				B5F624672AC2F6A0002A1896 /* Main.storyboard in Resources */,
+				B5F624942AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +337,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624952AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
+				B5F6249B2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
+				B5F624982AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +347,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624962AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
+				B5F6249C2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
+				B5F624992AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +360,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* ViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
+				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +372,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624A22AC3144A002A1896 /* UIFont+.swift in Sources */,
 				B5F624772AC2F6A1002A1896 /* ZeneFitTests.swift in Sources */,
+				B5F624A62AC32919002A1896 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +383,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F624832AC2F6A1002A1896 /* ZeneFitUITestsLaunchTests.swift in Sources */,
+				B5F624A72AC32919002A1896 /* UIColor+.swift in Sources */,
+				B5F624A32AC3144A002A1896 /* UIFont+.swift in Sources */,
 				B5F624812AC2F6A1002A1896 /* ZeneFitUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,14 +405,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B5F624652AC2F6A0002A1896 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5F624662AC2F6A0002A1896 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -442,9 +542,9 @@
 				INFOPLIST_FILE = ZeneFit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,9 +552,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -470,9 +573,9 @@
 				INFOPLIST_FILE = ZeneFit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,9 +583,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -602,6 +708,84 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5F624A82AC33AB3002A1896 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		B5F624AB2AC33AFD002A1896 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		B5F624AE2AC33B8A002A1896 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5F624A92AC33AB3002A1896 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624A82AC33AB3002A1896 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		B5F624AC2AC33AFD002A1896 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624AB2AC33AFD002A1896 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		B5F624AF2AC33B8A002A1896 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624AE2AC33B8A002A1896 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		B5F624B12AC33B8A002A1896 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624AE2AC33B8A002A1896 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		B5F624B32AC33B8A002A1896 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624AE2AC33B8A002A1896 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
+		B5F624B62AC33CF8002A1896 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		B5F624B82AC33CF8002A1896 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		B5F624BA2AC33CF8002A1896 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B5F624542AC2F6A0002A1896 /* Project object */;
 }
