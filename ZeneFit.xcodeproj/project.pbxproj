@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
-		B5F624642AC2F6A0002A1896 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* ViewController.swift */; };
+		B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* SplashViewController.swift */; };
 		B5F624692AC2F6A1002A1896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5F624682AC2F6A1002A1896 /* Assets.xcassets */; };
 		B5F6246C2AC2F6A1002A1896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */; };
 		B5F624772AC2F6A1002A1896 /* ZeneFitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624762AC2F6A1002A1896 /* ZeneFitTests.swift */; };
@@ -38,6 +38,9 @@
 		B5F624B72AC33CF8002A1896 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624B62AC33CF8002A1896 /* FirebaseAnalytics */; };
 		B5F624B92AC33CF8002A1896 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624B82AC33CF8002A1896 /* FirebaseCrashlytics */; };
 		B5F624BB2AC33CF8002A1896 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = B5F624BA2AC33CF8002A1896 /* FirebaseMessaging */; };
+		B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624BF2AC53B4D002A1896 /* SignInViewController.swift */; };
+		B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624C22AC53B79002A1896 /* BaseViewController.swift */; };
+		B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624C52AC54338002A1896 /* UIViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +64,7 @@
 		B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeneFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B5F624632AC2F6A0002A1896 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5F624632AC2F6A0002A1896 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		B5F624682AC2F6A1002A1896 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5F6246B2AC2F6A1002A1896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5F6246D2AC2F6A1002A1896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +78,9 @@
 		B5F624932AC2F896002A1896 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		B5F624A02AC3144A002A1896 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		B5F624A42AC32919002A1896 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		B5F624BF2AC53B4D002A1896 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		B5F624C22AC53B79002A1896 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B5F624C52AC54338002A1896 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,11 +139,9 @@
 		B5F6245E2AC2F6A0002A1896 /* ZeneFit */ = {
 			isa = PBXGroup;
 			children = (
+				B5F624BC2AC53AFF002A1896 /* Presenters */,
 				B5F6249E2AC31432002A1896 /* Common */,
 				B5F6248F2AC2F85D002A1896 /* App */,
-				B5F624632AC2F6A0002A1896 /* ViewController.swift */,
-				B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */,
-				B5F6246D2AC2F6A1002A1896 /* Info.plist */,
 			);
 			path = ZeneFit;
 			sourceTree = "<group>";
@@ -162,7 +166,9 @@
 		B5F6248F2AC2F85D002A1896 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */,
 				B5F624902AC2F868002A1896 /* Resource */,
+				B5F6246D2AC2F6A1002A1896 /* Info.plist */,
 				B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */,
 				B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */,
 			);
@@ -191,6 +197,7 @@
 		B5F6249E2AC31432002A1896 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B5F624C12AC53B66002A1896 /* UI */,
 				B5F6249F2AC31438002A1896 /* Extension */,
 			);
 			path = Common;
@@ -201,8 +208,50 @@
 			children = (
 				B5F624A02AC3144A002A1896 /* UIFont+.swift */,
 				B5F624A42AC32919002A1896 /* UIColor+.swift */,
+				B5F624C52AC54338002A1896 /* UIViewController+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B5F624BC2AC53AFF002A1896 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624BD2AC53B2F002A1896 /* Auth */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		B5F624BD2AC53B2F002A1896 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624C42AC53FE8002A1896 /* Splash */,
+				B5F624BE2AC53B3C002A1896 /* SignIn */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		B5F624BE2AC53B3C002A1896 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624BF2AC53B4D002A1896 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		B5F624C12AC53B66002A1896 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624C22AC53B79002A1896 /* BaseViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B5F624C42AC53FE8002A1896 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				B5F624632AC2F6A0002A1896 /* SplashViewController.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,9 +410,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
-				B5F624642AC2F6A0002A1896 /* ViewController.swift in Sources */,
+				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
+				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
+				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
+				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
