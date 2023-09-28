@@ -10,10 +10,8 @@ import UIKit
 final class AuthCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     weak var parentCoordinator: MainCoordinator?
-    
-    var window: UIWindow
-    
     var navigationController: UINavigationController
+    var window: UIWindow
     
     init(navigationController: UINavigationController,
          window: UIWindow) {
@@ -22,10 +20,16 @@ final class AuthCoordinator: Coordinator {
     }
     
     func start() {
-        let signInVC = SignInViewController()
+        let viewModel = SignInViewModel()
+        let signInVC = SignInViewController(viewModel: viewModel)
         signInVC.coordinator = self
         
         window.rootViewController = signInVC
         UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+    }
+    
+    func didFinishAuth() {
+        parentCoordinator?.pushToTabbarVC()
+        parentCoordinator?.childDidFinish(self)
     }
 }

@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import AuthenticationServices
+import KakaoSDKUser
+import Combine
 
 final class SignInViewController: BaseViewController {
-    weak var coordinator: Coordinator?
+    private var cancellable = Set<AnyCancellable>()
+    private let viewModel: SignInViewModel
+    weak var coordinator: AuthCoordinator?
     
     private let logoImageView = UIImageView().then {
         $0.image = UIImage(named: "Logo")?.withRenderingMode(.alwaysOriginal)
@@ -43,6 +48,69 @@ final class SignInViewController: BaseViewController {
     private lazy var oauthStackView = UIStackView(arrangedSubviews: [kakaoLoginButton, appleLoginButton]).then {
         $0.distribution = .fillEqually
         $0.spacing = 16
+    }
+    
+    init(viewModel: SignInViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func signInWithKakao() {
+        UserApi.shared.logout() { _ in }
+        
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.loginWithKakaoTalk { [weak self] token, error in
+                guard let token else { return }
+                self?.viewModel.requestLogin(type: .kakao, token: token.accessToken)
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount{ [weak self] token, error in
+                guard let token else { return }
+                self?.viewModel.requestLogin(type: .kakao, token: token.accessToken)
+            }
+        }
+    }
+    
+    private func signInWithApple() {
+        let appleProvider = ASAuthorizationAppleIDProvider()
+        let request = appleProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()      
+    }
+    
+    override func setupBinding() {
+        kakaoLoginButton.tapPublisher.sink { [weak self] in
+            self?.signInWithKakao()
+        }
+        .store(in: &cancellable)
+        
+        appleLoginButton.tapPublisher.sink { [weak self] in
+            self?.signInWithApple()
+        }
+        .store(in: &cancellable)
+        
+        viewModel.loginResult
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isSuccess in
+                guard isSuccess else { return }
+                self?.coordinator?.didFinishAuth()
+            }
+            .store(in: &cancellable)
+        
+        viewModel.errorPublisher
+            .receive(on: RunLoop.main)
+            .sink { error in
+                // TODO: 에러 처리
+                print(error)
+            }
+            .store(in: &cancellable)
     }
     
     override func configureUI() {
@@ -92,5 +160,21 @@ final class SignInViewController: BaseViewController {
             $0.height.equalTo(1)
             $0.centerY.equalTo(oauthGuideLabel)
         }
+    }
+}
+
+extension SignInViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let token = credential.identityToken,
+              let tokenString = String(data: token, encoding: .utf8)
+        else { return }
+        
+        self.viewModel.requestLogin(type: .apple, token: tokenString)
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // TODO: 에러 처리
+//        viewModel?.errorPublisher.send()
     }
 }
