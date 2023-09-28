@@ -8,6 +8,8 @@
 import UIKit
 
 final class SignInViewController: BaseViewController {
+    weak var coordinator: Coordinator?
+    
     private let logoImageView = UIImageView().then {
         $0.image = UIImage(named: "Logo")?.withRenderingMode(.alwaysOriginal)
     }

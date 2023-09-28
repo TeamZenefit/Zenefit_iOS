@@ -10,10 +10,12 @@ import SnapKit
 import Then
 
 final class SplashViewController: BaseViewController {
+    weak var coordinator: MainCoordinator?
+    
     private let splashImageView = UIImageView().then {
         $0.image = UIImage(named: "LogoType")?.withRenderingMode(.alwaysOriginal)
     }
-                                              
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .primaryNormal
@@ -25,7 +27,7 @@ final class SplashViewController: BaseViewController {
         }
         
         // TODO: - 추후 자동 로그인 적용 필요
-        changeRootViewController(SignInViewController())
+        coordinator?.pushToLoginVC()
     }
 }
 
