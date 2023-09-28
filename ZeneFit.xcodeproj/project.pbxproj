@@ -50,6 +50,9 @@
 		B5F624D82AC5FAB1002A1896 /* OAuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624D72AC5FAB1002A1896 /* OAuthType.swift */; };
 		B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624D92AC5FF9C002A1896 /* UIControl+.swift */; };
 		B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624DB2AC60090002A1896 /* UIButton+.swift */; };
+		B5F624DF2AC60F99002A1896 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */; };
+		B5F624E02AC60F99002A1896 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */; };
+		B5F624E12AC60F99002A1896 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,12 +98,12 @@
 		B5F624CD2AC5B68F002A1896 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B5F624CF2AC5B70A002A1896 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		B5F624D12AC5B9F7002A1896 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		B5F624D32AC5F35A002A1896 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		B5F624D42AC5F95B002A1896 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		B5F624D72AC5FAB1002A1896 /* OAuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthType.swift; sourceTree = "<group>"; };
 		B5F624D92AC5FF9C002A1896 /* UIControl+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+.swift"; sourceTree = "<group>"; };
 		B5F624DB2AC60090002A1896 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		B5F624DD2AC60335002A1896 /* ZeneFit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZeneFit.entitlements; sourceTree = "<group>"; };
+		B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +195,7 @@
 				B5F6246D2AC2F6A1002A1896 /* Info.plist */,
 				B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */,
 				B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */,
-				B5F624D32AC5F35A002A1896 /* AppInfo.xcconfig */,
+				B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624DF2AC60F99002A1896 /* AppInfo.xcconfig in Resources */,
 				B5F6246C2AC2F6A1002A1896 /* LaunchScreen.storyboard in Resources */,
 				B5F6249A2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
 				B5F624972AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
@@ -425,6 +429,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624E02AC60F99002A1896 /* AppInfo.xcconfig in Resources */,
 				B5F624952AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
 				B5F6249B2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
 				B5F624982AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
@@ -435,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F624E12AC60F99002A1896 /* AppInfo.xcconfig in Resources */,
 				B5F624962AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
 				B5F6249C2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
 				B5F624992AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
@@ -518,7 +524,7 @@
 /* Begin XCBuildConfiguration section */
 		B5F624842AC2F6A1002A1896 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5F624D32AC5F35A002A1896 /* AppInfo.xcconfig */;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -579,7 +585,7 @@
 		};
 		B5F624852AC2F6A1002A1896 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5F624D32AC5F35A002A1896 /* AppInfo.xcconfig */;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -634,6 +640,7 @@
 		};
 		B5F624872AC2F6A1002A1896 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -668,6 +675,7 @@
 		};
 		B5F624882AC2F6A1002A1896 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -702,6 +710,7 @@
 		};
 		B5F6248A2AC2F6A1002A1896 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -722,6 +731,7 @@
 		};
 		B5F6248B2AC2F6A1002A1896 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -742,6 +752,7 @@
 		};
 		B5F6248D2AC2F6A1002A1896 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -760,6 +771,7 @@
 		};
 		B5F6248E2AC2F6A1002A1896 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
