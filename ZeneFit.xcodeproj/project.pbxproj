@@ -41,6 +41,8 @@
 		B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624BF2AC53B4D002A1896 /* SignInViewController.swift */; };
 		B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624C22AC53B79002A1896 /* BaseViewController.swift */; };
 		B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624C52AC54338002A1896 /* UIViewController+.swift */; };
+		B5F624C82AC54876002A1896 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624C72AC54876002A1896 /* UIView+.swift */; };
+		B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624C92AC54C53002A1896 /* PaddingLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		B5F624BF2AC53B4D002A1896 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B5F624C22AC53B79002A1896 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B5F624C52AC54338002A1896 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		B5F624C72AC54876002A1896 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		B5F624C92AC54C53002A1896 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,7 @@
 				B5F624A02AC3144A002A1896 /* UIFont+.swift */,
 				B5F624A42AC32919002A1896 /* UIColor+.swift */,
 				B5F624C52AC54338002A1896 /* UIViewController+.swift */,
+				B5F624C72AC54876002A1896 /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				B5F624C22AC53B79002A1896 /* BaseViewController.swift */,
+				B5F624C92AC54C53002A1896 /* PaddingLabel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -415,6 +421,8 @@
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
+				B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */,
+				B5F624C82AC54876002A1896 /* UIView+.swift in Sources */,
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
 			);
@@ -591,7 +599,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BY6YWX5BM8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ZeneFit/Info.plist;
+				INFOPLIST_FILE = ZeneFit/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -622,7 +630,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BY6YWX5BM8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ZeneFit/Info.plist;
+				INFOPLIST_FILE = ZeneFit/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
