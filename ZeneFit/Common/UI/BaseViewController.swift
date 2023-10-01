@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class BaseViewController: UIViewController {
+    private var keyboardCancellable: AnyCancellable?
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -16,14 +18,26 @@ class BaseViewController: UIViewController {
         setupAttributes()
         addSubView()
         
+        configureNavigation()
         configureTabBar()
         layout()
         configureUI()
         setupBinding()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        keyboardCancellable?.cancel()
+        keyboardCancellable = nil
+    }
+    
     func configureUI() {
         self.view.backgroundColor = .backgroundPrimary
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
     }
     
     func addSubView() { }
@@ -58,6 +72,36 @@ class BaseViewController: UIViewController {
     
     @objc func dldClickBackButton() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func responseToKeyboardHegiht(_ view: UIView) {
+        keyboardCancellable = NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
+            .sink { notification in
+                guard let keyboardInfo = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)
+                else { return }
+                let visibleHeight = UIScreen.main.bounds.height - keyboardInfo.cgRectValue.origin.y
+                
+                let radius: CGFloat
+                let height: CGFloat
+                let inset: CGFloat
+                if visibleHeight > 0  {
+                    height = -visibleHeight + self.view.safeAreaInsets.bottom
+                    radius = 0
+                    inset = 0
+                } else {
+                    height = -20
+                    radius = 8
+                    inset = 16
+                }
+                
+                view.layer.cornerRadius = radius
+                view.snp.updateConstraints {
+                    $0.horizontalEdges.equalToSuperview().inset(inset)
+                    $0.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(height)
+                }
+                
+                self.view.layoutIfNeeded()
+            }
     }
     
     func setupBinding() { }
