@@ -64,6 +64,10 @@
 		B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624FE2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift */; };
 		B5F625012AC94A8B002A1896 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625002AC94A8B002A1896 /* SignUpViewModel.swift */; };
 		B5F625052AC954A1002A1896 /* SignUpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625042AC954A1002A1896 /* SignUpInfo.swift */; };
+		B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625072ACAAB2D002A1896 /* EndPointProtocol.swift */; };
+		B5F6250B2ACAAC4F002A1896 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6250A2ACAAC4F002A1896 /* NetworkService.swift */; };
+		B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6250D2ACAACD9002A1896 /* CommonError.swift */; };
+		B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6250F2ACAE111002A1896 /* EndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +130,10 @@
 		B5F624FE2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectionBottomSheet.swift; sourceTree = "<group>"; };
 		B5F625002AC94A8B002A1896 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B5F625042AC954A1002A1896 /* SignUpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfo.swift; sourceTree = "<group>"; };
+		B5F625072ACAAB2D002A1896 /* EndPointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointProtocol.swift; sourceTree = "<group>"; };
+		B5F6250A2ACAAC4F002A1896 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B5F6250D2ACAACD9002A1896 /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
+		B5F6250F2ACAE111002A1896 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +253,8 @@
 		B5F6249E2AC31432002A1896 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B5F6250C2ACAACD0002A1896 /* Error */,
+				B5F625092ACAAC3C002A1896 /* Network */,
 				B5F624EC2AC87882002A1896 /* Coordinator */,
 				B5F624D62AC5FA9D002A1896 /* Enum */,
 				B5F624C12AC53B66002A1896 /* UI */,
@@ -375,6 +385,32 @@
 				B5F625042AC954A1002A1896 /* SignUpInfo.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		B5F625062ACAAB1E002A1896 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				B5F625072ACAAB2D002A1896 /* EndPointProtocol.swift */,
+				B5F6250F2ACAE111002A1896 /* EndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		B5F625092ACAAC3C002A1896 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B5F625062ACAAB1E002A1896 /* EndPoint */,
+				B5F6250A2ACAAC4F002A1896 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B5F6250C2ACAACD0002A1896 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				B5F6250D2ACAACD9002A1896 /* CommonError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,7 +581,11 @@
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
+				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,
+				B5F6250B2ACAAC4F002A1896 /* NetworkService.swift in Sources */,
+				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
+				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B5F624FD2AC939BF002A1896 /* DetailInfoInputViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* SignUpViewModel.swift in Sources */,

@@ -71,7 +71,9 @@ final class BasicInfoInputViewController: BaseViewController {
         
         completeButton.tapPublisher
             .sink { [weak self] in
+                self?.view.endEditing(false)
                 self?.coordinator?.pushToIncomeInputVC()
+                
             }
             .store(in: &cancellable)
         
