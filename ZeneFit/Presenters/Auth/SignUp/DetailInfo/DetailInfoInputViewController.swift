@@ -11,7 +11,7 @@ import Combine
 final class DetailInfoInputViewController: BaseViewController {
     private var cancellable = Set<AnyCancellable>()
     weak var coordinator: AuthCoordinator?
-    private let viewModel: SignUpViewModel
+    private let viewModel: DetailInfoViewModel
     
     private let basicInfoLabel = SignUpOrderLabel(number: 3, title: "상세 정보")
     
@@ -61,10 +61,9 @@ final class DetailInfoInputViewController: BaseViewController {
     private let completeButton = BottomButton().then {
         $0.setTitle("완료", for: .normal)
         $0.layer.cornerRadius = 8
-        //        $0.isEnabled = false
     }
     
-    init(viewModel: SignUpViewModel) {
+    init(viewModel: DetailInfoViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -82,8 +81,8 @@ final class DetailInfoInputViewController: BaseViewController {
         viewModel.$signUpInfo
             .receive(on: RunLoop.main)
             .sink { [weak self] info in
-                self?.incomeInputView.textField.text = String(info.income ?? 0)
-                self?.ageInputView.textField.text = String(info.age ?? 0)
+                self?.incomeInputView.textField.text = info.income?.formatCurreny
+                self?.ageInputView.textField.text = info.age
                 self?.firstAddressInputView.textField.text = info.area
                 self?.secondAddressInputView.textField.text = info.city
                 self?.educationInputView.textField.text = info.education
@@ -91,9 +90,35 @@ final class DetailInfoInputViewController: BaseViewController {
                 guard let jobs = info.job,
                       let job = jobs.first else { return }
                 
-                let jobContent = jobs.count > 1 ? job + "외 \(jobs.count-1)개" : job
+                let jobContent = jobs.count > 1 ? job + " 외 \(jobs.count-1)개" : job
                 self?.jobInputView.textField.text = jobContent
             }
+            .store(in: &cancellable)
+        
+        viewModel.$focusInputNumber
+            .receive(on: RunLoop.main)
+            .sink { [weak self] num in
+                guard let self else { return }
+                educationInputView.isFocusedInput = false
+                jobInputView.isFocusedInput = false
+                switch num {
+                case 1:
+                    showEducationSelectionBottomSheet()
+                    educationInputView.isFocusedInput = true
+                case 2:
+                    showJobSelectionBottomSheet()
+                    jobInputView.isFocusedInput = true
+                default:
+                    educationInputView.isFocusedInput = false
+                    jobInputView.isFocusedInput = false
+                    
+                }
+            }
+            .store(in: &cancellable)
+        
+        viewModel.$completionEnable
+            .receive(on: RunLoop.main)
+            .assign(to: \.completeButton.isEnabled, on: self)
             .store(in: &cancellable)
     }
     
@@ -105,18 +130,41 @@ final class DetailInfoInputViewController: BaseViewController {
     }
     
     @objc func didTapEducation() {
-        coordinator?.showSelectionBottomSheet(title: "학력 선택",
-                                              list: ["고졸 미만","고교 재학","고졸 예정","고교 졸업","대학 재학","대졸 예정","대학 졸업","석박사"],
-                                              selectedItem: viewModel.signUpInfo.education) { [weak self] selectedItem in
-            self?.viewModel.signUpInfo.education = selectedItem
-        }
+        viewModel.focusInputNumber = 1
     }
     
     @objc func didTapJob() {
-        coordinator?.showMultiSelectionBottomSheet(title: "직업 선택",
+        viewModel.focusInputNumber = 2
+    }
+    
+    private func showEducationSelectionBottomSheet() {
+        coordinator?.showSelectionBottomSheet(title: "학력",
+                                              list: ["고졸 미만","고교 재학","고졸 예정","고교 졸업","대학 재학","대졸 예정","대학 졸업","석박사"],
+                                              selectedItem: viewModel.signUpInfo.education) { [weak self] selectedItem in
+            guard let self else { return }
+            if let selectedItem = selectedItem {
+                viewModel.signUpInfo.education = selectedItem
+            }
+            
+            guard selectedItem != nil || viewModel.signUpInfo.education != nil else { return }
+            
+            viewModel.cacluateFocus()
+        }
+    }
+    
+    private func showJobSelectionBottomSheet() {
+        coordinator?.showMultiSelectionBottomSheet(title: "직업",
                                                    list: ["재직자","자영업자","미취업자","프리랜서","일용 근로자","(예비) 창업자","단기근로자","영농종사자"],
-                                                   selectedItems: viewModel.signUpInfo.job) { [weak self] selectedItemms in
-            self?.viewModel.signUpInfo.job = selectedItemms
+                                                   selectedItems: viewModel.signUpInfo.job) { [weak self] selectedItems in
+            guard let self else { return }
+            if let selectedItems = selectedItems {
+                viewModel.signUpInfo.job = selectedItems
+            }
+            
+            let isEmptyJob = viewModel.signUpInfo.job?.isEmpty ?? true
+            guard selectedItems != nil || isEmptyJob else { return }
+            
+            viewModel.cacluateFocus()
         }
     }
     

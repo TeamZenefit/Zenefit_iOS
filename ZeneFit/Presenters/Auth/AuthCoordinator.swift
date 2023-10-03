@@ -12,7 +12,9 @@ final class AuthCoordinator: Coordinator {
     weak var parentCoordinator: MainCoordinator?
     var navigationController: UINavigationController
     
-    var signUpViewModel = SignUpViewModel()
+    var basicInfoViewModel = BasicInfoViewModel()
+    var incomeViewModel = IncomeViewModel()
+    var detailInfoViewModel = DetailInfoViewModel()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,8 +25,8 @@ final class AuthCoordinator: Coordinator {
         let signInVC = SignInViewController(viewModel: viewModel)
         signInVC.coordinator = self
         
-        signUpViewModel = SignUpViewModel()
-        let tempVC = BasicInfoInputViewController(viewModel: signUpViewModel)
+        basicInfoViewModel = BasicInfoViewModel()
+        let tempVC = BasicInfoInputViewController(viewModel: basicInfoViewModel)
         tempVC.coordinator = self
         
         navigationController.viewControllers = [tempVC]
@@ -38,18 +40,23 @@ final class AuthCoordinator: Coordinator {
 
 extension AuthCoordinator {
     func pushToIncomeInputVC() {
-        let incomeInputVC = IncomeInputViewController(viewModel: signUpViewModel)
+        incomeViewModel = IncomeViewModel()
+        incomeViewModel.signUpInfo = basicInfoViewModel.signUpInfo
+        
+        let incomeInputVC = IncomeInputViewController(viewModel: incomeViewModel)
         incomeInputVC.coordinator = self
         navigationController.pushViewController(incomeInputVC, animated: false)
     }
     
     func pushToDetailInfoInputVC() {
-        let detailInputVC = DetailInfoInputViewController(viewModel: signUpViewModel)
+        detailInfoViewModel = DetailInfoViewModel()
+        detailInfoViewModel.signUpInfo = incomeViewModel.signUpInfo
+        let detailInputVC = DetailInfoInputViewController(viewModel: detailInfoViewModel)
         detailInputVC.coordinator = self
         navigationController.pushViewController(detailInputVC, animated: false)
     }
     
-    func showSelectionBottomSheet(title: String, list: [String], selectedItem: String?, completion: ((String)->Void)? = nil) {
+    func showSelectionBottomSheet(title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)? = nil) {
         SelectionBottomSheet.showBottomSheet(view: navigationController.view,
                                              title: title,
                                              list: list,

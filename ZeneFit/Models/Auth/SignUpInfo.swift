@@ -10,8 +10,8 @@ import Foundation
 struct SignUpInfo {
     var area: String?
     var city: String?
-    var income: Int?
+    var income: String?
     var job: [String]?
     var education: String?
-    var age: Int?
+    var age: String?
 }

@@ -114,6 +114,7 @@ final class SignInViewController: BaseViewController {
     }
     
     override func configureUI() {
+        navigationController?.navigationBar.isHidden = true
         view.setGradient()
     }
     

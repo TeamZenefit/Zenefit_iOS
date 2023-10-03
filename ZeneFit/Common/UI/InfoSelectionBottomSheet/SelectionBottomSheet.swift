@@ -10,7 +10,7 @@ import Combine
 
 final class SelectionBottomSheet: UIView {
     private var cancellable = Set<AnyCancellable>()
-    var completion: ((String)->Void)?
+    var completion: ((String?)->Void)?
     
     @Published var list: [String] = []
     var selectedItem: String?
@@ -50,7 +50,7 @@ final class SelectionBottomSheet: UIView {
         $0.backgroundColor = .white
     }
     
-    init(title: String, list: [String], selectedItem: String?, completion: ((String)->Void)? = nil) {
+    init(title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)? = nil) {
         titleLabel.text = title
         self.list = list
         self.selectedItem = selectedItem
@@ -80,12 +80,13 @@ final class SelectionBottomSheet: UIView {
         closeButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
+                self?.completion?(nil)
                 self?.removeFromSuperview()
             }
             .store(in: &cancellable)
     }
     
-    static func showBottomSheet(view: UIView, title: String, list: [String], selectedItem: String?, completion: ((String)->Void)?) {
+    static func showBottomSheet(view: UIView, title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)?) {
         let bottomSheet = SelectionBottomSheet(title: title,
                                                list: list,
                                                selectedItem: selectedItem,

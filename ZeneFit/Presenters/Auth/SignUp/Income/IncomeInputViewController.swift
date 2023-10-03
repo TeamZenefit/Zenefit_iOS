@@ -11,7 +11,7 @@ import Combine
 final class IncomeInputViewController: BaseViewController {
     private var cancellable = Set<AnyCancellable>()
     weak var coordinator: AuthCoordinator?
-    private let viewModel: SignUpViewModel
+    private let viewModel: IncomeViewModel
     
     private let basicInfoLabel = SignUpOrderLabel(number: 2, title: "소득 정보")
     
@@ -49,10 +49,9 @@ final class IncomeInputViewController: BaseViewController {
     private let completeButton = BottomButton().then {
         $0.setTitle("완료", for: .normal)
         $0.layer.cornerRadius = 8
-//        $0.isEnabled = false
     }
     
-    init(viewModel: SignUpViewModel) {
+    init(viewModel: IncomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,15 +66,42 @@ final class IncomeInputViewController: BaseViewController {
     }
     
     override func setupBinding() {
-        incomeInputView.textField.controlPublisher(for: .editingChanged)
-            .sink { [weak self] _ in
-                guard let self,
-                      let text = self.incomeInputView.textField.text,
-                      let income = Int(text) else { return }
-                viewModel.signUpInfo.income = income
+        incomeInputView.textField.controlPublisher(for: .editingDidBegin)
+            .compactMap { [weak self] _ in self?.incomeInputView.textField.text }
+            .filter { !$0.isEmpty }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] text in
+                if text.contains("억") {
+                    self?.incomeInputView.textField.text = self?.viewModel.signUpInfo.income
+                }
+                self?.viewModel.focusInputNumber = 1
             }
             .store(in: &cancellable)
         
+        incomeInputView.textField.controlPublisher(for: .editingDidEnd)
+            .compactMap { [weak self] _ in self?.incomeInputView.textField.text }
+            .filter { !$0.isEmpty }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] text in
+                if text.count >= 5 {
+                    self?.incomeInputView.textField.text = text.formatCurreny
+                }
+                self?.viewModel.cacluateFocus()
+            }
+            .store(in: &cancellable)
+        
+        incomeInputView.textField.textPublisher
+            .filter { $0.isNumeric }
+            .map { $0.trimmingPrefix("0") }
+            .sink { [weak self] text in
+                guard let self else { return }
+                incomeInputView.textField.text = String(text.prefix(6))
+                
+                guard text.count < 7 else { return }
+                viewModel.signUpInfo.income = text
+            }
+            .store(in: &cancellable)
+
         completeButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
@@ -84,13 +110,31 @@ final class IncomeInputViewController: BaseViewController {
             }
             .store(in: &cancellable)
         
+        viewModel.$focusInputNumber
+            .receive(on: RunLoop.main)
+            .sink { [weak self] num in
+                guard let self else { return }
+                if num == 1 {
+                    incomeInputView.textField.becomeFirstResponder()
+                    incomeInputView.isFocusedInput = true
+                } else {
+                    incomeInputView.isFocusedInput = false
+                }
+            }
+            .store(in: &cancellable)
+        
         viewModel.$signUpInfo
             .receive(on: RunLoop.main)
             .sink { [weak self] info in
-                self?.ageInputView.textField.text = String(info.age ?? 0)
+                self?.ageInputView.textField.text = info.age
                 self?.firstAddressInputView.textField.text = info.area
                 self?.secondAddressInputView.textField.text = info.city
             }
+            .store(in: &cancellable)
+        
+        viewModel.$completionEnable
+            .receive(on: RunLoop.main)
+            .assign(to: \.completeButton.isEnabled, on: self)
             .store(in: &cancellable)
     }
     

@@ -11,7 +11,7 @@ import Combine
 final class BasicInfoInputViewController: BaseViewController {
     private var cancellable = Set<AnyCancellable>()
     weak var coordinator: AuthCoordinator?
-    private let viewModel: SignUpViewModel
+    private let viewModel: BasicInfoViewModel
     
     private let basicInfoLabel = SignUpOrderLabel(number: 1, title: "기본 정보")
     
@@ -45,7 +45,7 @@ final class BasicInfoInputViewController: BaseViewController {
 //        $0.isEnabled = false
     }
     
-    init(viewModel: SignUpViewModel) {
+    init(viewModel: BasicInfoViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -60,12 +60,35 @@ final class BasicInfoInputViewController: BaseViewController {
     }
     
     override func setupBinding() {
-        ageInputView.textField.controlPublisher(for: .editingChanged)
+        ageInputView.textField.controlPublisher(for: .editingDidBegin)
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                guard let self,
-                      let text = self.ageInputView.textField.text,
-                      let age = Int(text) else { return }
-                viewModel.signUpInfo.age = age
+                self?.viewModel.focusInputNumber = 1
+            }
+            .store(in: &cancellable)
+        
+        ageInputView.textField.controlPublisher(for: .editingDidEnd)
+            .compactMap { [weak self] _ in self?.ageInputView.textField.text }
+            .filter { !$0.isEmpty }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.viewModel.cacluateFocus()
+            }
+            .store(in: &cancellable)
+        
+        ageInputView.textField.textPublisher
+            .map { $0.filter { $0.isNumber } }
+            .map { $0.prefix(1) == "0" ? "" : $0 }
+            .map { String($0.prefix(2)) }
+            .sink { [weak self] text in
+                guard let self else { return }
+                
+                ageInputView.textField.text = text
+                viewModel.signUpInfo.age = text
+                
+                if text.count >= 2 {
+                    view.endEditing(false)
+                }
             }
             .store(in: &cancellable)
         
@@ -73,7 +96,6 @@ final class BasicInfoInputViewController: BaseViewController {
             .sink { [weak self] in
                 self?.view.endEditing(false)
                 self?.coordinator?.pushToIncomeInputVC()
-                
             }
             .store(in: &cancellable)
         
@@ -83,6 +105,42 @@ final class BasicInfoInputViewController: BaseViewController {
                 self?.firstAddressInputView.textField.text = info.area
                 self?.secondAddressInputView.textField.text = info.city
             }
+            .store(in: &cancellable)
+        
+        viewModel.$focusInputNumber
+            .receive(on: RunLoop.main)
+            .sink { [weak self] num in
+                guard let self else { return }
+                ageInputView.isFocusedInput = false
+                firstAddressInputView.isFocusedInput = false
+                secondAddressInputView.isFocusedInput = false
+                
+                switch num {
+                case 1:
+                    ageInputView.textField.becomeFirstResponder()
+                    ageInputView.isFocusedInput = true
+                    firstAddressInputView.isEnabled = false
+                    secondAddressInputView.isEnabled = false
+                case 2:
+                    showAreaSelectionBottomSheet()
+                    firstAddressInputView.isEnabled = true
+                    secondAddressInputView.isEnabled = false
+                    firstAddressInputView.isFocusedInput = true
+                case 3:
+                    showCitySelectionBottomSheet()
+                    firstAddressInputView.isEnabled = true
+                    secondAddressInputView.isEnabled = true
+                    secondAddressInputView.isFocusedInput = true
+                default:
+                    firstAddressInputView.isEnabled = true
+                    secondAddressInputView.isEnabled = true
+                }
+            }
+            .store(in: &cancellable)
+        
+        viewModel.$completionEnable
+            .receive(on: RunLoop.main)
+            .assign(to: \.completeButton.isEnabled, on: self)
             .store(in: &cancellable)
     }
     
@@ -94,18 +152,43 @@ final class BasicInfoInputViewController: BaseViewController {
     }
     
     @objc func didTapFirstAddress() {
-        coordinator?.showSelectionBottomSheet(title: "지역 선택",
-                                              list: ["비밀","입니당~"],
-                                              selectedItem: viewModel.signUpInfo.area) { [weak self] selectedItem in
-            self?.viewModel.signUpInfo.area = selectedItem
-        }
+        viewModel.focusInputNumber = 2
     }
     
     @objc func didTapSecondAddress() {
-        coordinator?.showSelectionBottomSheet(title: "소속 지역 선택-",
+        viewModel.focusInputNumber = 3
+    }
+    
+    private func showAreaSelectionBottomSheet() {
+        coordinator?.showSelectionBottomSheet(title: "시/도",
+                                              list: ["비밀","입니당~"],
+                                              selectedItem: viewModel.signUpInfo.area) { [weak self] selectedItem in
+            guard let self else { return }
+            if let selectedItem = selectedItem {
+                viewModel.signUpInfo.area = selectedItem
+                viewModel.signUpInfo.city = nil
+            }
+
+            guard selectedItem != nil || viewModel.signUpInfo.area != nil else { return }
+
+            viewModel.cacluateFocus()
+        }
+    }
+    
+    private func showCitySelectionBottomSheet() {
+        guard let area = viewModel.signUpInfo.area else { return }
+        
+        coordinator?.showSelectionBottomSheet(title: "시/군/구-\(area)",
                                               list: ["이래요","비밀","비밀","비밀","비밀","비밀"],
                                               selectedItem: viewModel.signUpInfo.city) { [weak self] selectedItem in
-            self?.viewModel.signUpInfo.city = selectedItem
+            guard let self else { return }
+            if let selectedItem = selectedItem {
+                viewModel.signUpInfo.city = selectedItem
+            }
+            
+            guard selectedItem != nil || viewModel.signUpInfo.city != nil else { return }
+
+            viewModel.cacluateFocus()
         }
     }
     

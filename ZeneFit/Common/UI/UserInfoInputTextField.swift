@@ -12,6 +12,9 @@ final class UserInfoInputTextField: UIStackView {
     private var cancellable = Set<AnyCancellable>()
     
     @Published var isEnabled: Bool = true
+    @Published var isFocusedInput: Bool = false
+    
+    private var placeHolder = ""
     
     private let titleLabel = UILabel().then {
         $0.textColor = .textAlternative
@@ -40,17 +43,12 @@ final class UserInfoInputTextField: UIStackView {
         $0.font = .pretendard(.caption)
     }
     
-    private var placeHolderAttribute: [NSAttributedString.Key: Any] {
-        [.font : UIFont.pretendard(.label1),
-         .foregroundColor : UIColor.textAlternative]
-    }
-    
     init(title: String, placeHolder: String?, guideText: String?) {
+        self.placeHolder = placeHolder ?? ""
         super.init(frame: .zero)
         titleLabel.text = title
         guideLabel.text = guideText
-        textField.attributedPlaceholder = .init(string: placeHolder ?? "",
-                                                attributes: placeHolderAttribute)
+        configurePlaceHolder()
         
         addSubViews()
         layout()
@@ -62,37 +60,57 @@ final class UserInfoInputTextField: UIStackView {
     }
     
     private func setUpBind() {
-        textField.controlPublisher(for: .editingDidBegin)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.titleLabel.textColor = .primaryNormal
-                self?.lineView.backgroundColor = .primaryNormal
-                self?.rightLabel.textColor = .textStrong
-                self?.guideLabel.isHidden = false
-                self?.textField.textColor = .textNormal
-            }.store(in: &cancellable)
-        
-        textField.controlPublisher(for: .editingDidEnd)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.titleLabel.textColor = .textAlternative
-                self?.lineView.backgroundColor = .textAlternative
-                self?.rightLabel.textColor = .textAlternative
-                self?.guideLabel.isHidden = true
-                self?.textField.textColor = .textAlternative
-            }.store(in: &cancellable)
-        
         $isEnabled
             .dropFirst()
             .receive(on: RunLoop.main)
             .sink { [weak self] isEnabled in
-                guard !isEnabled else { return }
-                self?.titleLabel.textColor = .textDisable
-                self?.lineView.backgroundColor = .lineDisable
-                self?.textField.textColor = .textDisable
-                self?.textField.isEnabled = false
+                guard let self else { return }
+                isEnabled ? configureEnabledMode() : configureDisableMode()
             }
             .store(in: &cancellable)
+        
+        $isFocusedInput
+            .receive(on: RunLoop.main)
+            .dropFirst()
+            .sink { [weak self] isFocused in
+                guard let self else { return }
+                isFocused ? configureFocusedMode() : configureEnabledMode()
+            }
+            .store(in: &cancellable)
+    }
+    
+    private func configureFocusedMode() {
+        titleLabel.textColor = .primaryNormal
+        lineView.backgroundColor = .primaryNormal
+        rightLabel.textColor = .textStrong
+        guideLabel.isHidden = false
+        textField.textColor = .textNormal
+    }
+    
+    private func configureEnabledMode() {
+        configurePlaceHolder()
+        titleLabel.textColor = .textAlternative
+        lineView.backgroundColor = .textAlternative
+        rightLabel.textColor = .textAlternative
+        guideLabel.isHidden = true
+        textField.textColor = .textAlternative
+        isUserInteractionEnabled = true
+    }
+    
+    private func configureDisableMode() {
+        configurePlaceHolder()
+        titleLabel.textColor = .textDisable
+        lineView.backgroundColor = .lineDisable
+        textField.textColor = .textDisable
+        guideLabel.isHidden = true
+        isUserInteractionEnabled = false
+    }
+    
+    private func configurePlaceHolder() {
+        let color: UIColor = isEnabled ? .textAlternative : .textDisable
+        textField.attributedPlaceholder = .init(string: placeHolder,
+                                                attributes: [.font : UIFont.pretendard(.label1),
+                                                             .foregroundColor : color])
     }
     
     private func addSubViews() {
