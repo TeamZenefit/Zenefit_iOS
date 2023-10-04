@@ -12,4 +12,5 @@ struct Endpoint: EndpointProtocol {
     var method: HTTPMethod
     var path: String
     var parameters: HTTPRequestParameterType?
+    var sampleData: Data?
 }

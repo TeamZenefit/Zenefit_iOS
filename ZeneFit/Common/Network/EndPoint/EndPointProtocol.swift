@@ -24,6 +24,7 @@ protocol EndpointProtocol {
     var headers: HTTPHeaders { get }
     var path: String { get }
     var parameters: HTTPRequestParameterType? { get }
+    var sampleData: Data? { get set }
     
     func toURLRequest() -> URLRequest?
 }

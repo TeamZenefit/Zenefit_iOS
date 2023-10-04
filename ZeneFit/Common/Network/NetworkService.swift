@@ -10,17 +10,15 @@ import Combine
 
 final class NetworkService {
     // MARK: - Properties
-    private let session: URLSession = .shared
+    private let session: URLSessionable
+    
+    init(session: URLSessionable = URLSession.shared) {
+        self.session = session
+    }
     
     // MARK: - Methods
-    
-    func request(_ endpoint: EndpointProtocol) -> AnyPublisher<Data, Error> {
-        guard let urlRequest = endpoint.toURLRequest() else {
-            return Fail(error: CommonError.invalidURL)
-                .eraseToAnyPublisher()
-        }
-        
-        return session.dataTaskPublisher(for: urlRequest)
+    func request<T>(_ endpoint: EndpointProtocol) -> AnyPublisher<T, Error> where T: Decodable {
+        return session.dataTaskPublisher(endpoint)
             .tryMap { data, response -> Data in
                 guard let res = response as? HTTPURLResponse else {
                     throw CommonError.otherError
@@ -32,6 +30,51 @@ final class NetworkService {
                 
                 return data
             }
+            .decode(type: T.self, decoder: JSONDecoder())
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+    }
+}
+
+protocol URLSessionable {
+    typealias APIResponse = URLSession.DataTaskPublisher.Output
+
+    func dataTaskPublisher(_ endPoint: EndpointProtocol) -> AnyPublisher<APIResponse, URLError>
+}
+
+extension URLSession: URLSessionable {
+    func dataTaskPublisher(_ endPoint: EndpointProtocol) -> AnyPublisher<APIResponse, URLError> {
+        guard let urlRequest = endPoint.toURLRequest()
+        else {
+            return Fail(error: URLError(.unsupportedURL))
+                .eraseToAnyPublisher()
+        }
+        
+        return dataTaskPublisher(for: urlRequest).eraseToAnyPublisher()
+    }
+}
+
+
+class MockURLSession: URLSessionable {
+    func dataTaskPublisher(_ endPoint: EndpointProtocol) -> AnyPublisher<APIResponse, URLError> {
+        guard let urlRequest = endPoint.toURLRequest(),
+              let url = urlRequest.url else {
+            return Fail(error: URLError(.unsupportedURL))
+                .eraseToAnyPublisher()
+        }
+        
+        guard let data = endPoint.sampleData else {
+            return Fail(error: URLError(.unknown))
+                .eraseToAnyPublisher()
+        }
+
+        let response = HTTPURLResponse(url: url,
+                                       statusCode: 200,
+                                       httpVersion: "2",
+                                       headerFields: nil)
+        
+        return Just((data: data, response: response!))
+            .setFailureType(to: URLError.self)
             .eraseToAnyPublisher()
     }
 }

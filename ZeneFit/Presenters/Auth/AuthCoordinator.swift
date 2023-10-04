@@ -15,6 +15,7 @@ final class AuthCoordinator: Coordinator {
     var basicInfoViewModel = BasicInfoViewModel()
     var incomeViewModel = IncomeViewModel()
     var detailInfoViewModel = DetailInfoViewModel()
+    var agreementViewModel = AgreementViewModel()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -54,6 +55,14 @@ extension AuthCoordinator {
         let detailInputVC = DetailInfoInputViewController(viewModel: detailInfoViewModel)
         detailInputVC.coordinator = self
         navigationController.pushViewController(detailInputVC, animated: false)
+    }
+    
+    func showAgreementVC() {
+        agreementViewModel = AgreementViewModel()
+        agreementViewModel.signUpInfo = detailInfoViewModel.signUpInfo
+        let agreementVC = AgreementViewController(viewModel: agreementViewModel)
+        agreementVC.coordinator = self
+        navigationController.pushViewController(agreementVC, animated: false)
     }
     
     func showSelectionBottomSheet(title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)? = nil) {

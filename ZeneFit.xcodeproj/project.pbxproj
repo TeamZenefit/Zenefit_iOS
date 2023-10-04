@@ -73,6 +73,9 @@
 		B5F6251B2ACC1F49002A1896 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6251A2ACC1F49002A1896 /* IncomeViewModel.swift */; };
 		B5F6251F2ACC20C4002A1896 /* DetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6251E2ACC20C4002A1896 /* DetailInfoViewModel.swift */; };
 		B5F625212ACC5A8C002A1896 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625202ACC5A8C002A1896 /* String+.swift */; };
+		B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625712ACD786D002A1896 /* AgreementViewController.swift */; };
+		B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625732ACD7888002A1896 /* AgreementViewModel.swift */; };
+		B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625752ACD8497002A1896 /* AgreementView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +147,9 @@
 		B5F6251A2ACC1F49002A1896 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		B5F6251E2ACC20C4002A1896 /* DetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewModel.swift; sourceTree = "<group>"; };
 		B5F625202ACC5A8C002A1896 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		B5F625712ACD786D002A1896 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
+		B5F625732ACD7888002A1896 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
+		B5F625752ACD8497002A1896 /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				B5F624EF2AC87DF1002A1896 /* Views */,
+				B5F625702ACD7859002A1896 /* Agreement */,
 				B5F625192ACC1E65002A1896 /* BasicInfo */,
 				B5F6251C2ACC208D002A1896 /* Income */,
 				B5F6251D2ACC20A8002A1896 /* DetailInfo */,
@@ -474,6 +481,16 @@
 				B5F6251E2ACC20C4002A1896 /* DetailInfoViewModel.swift */,
 			);
 			path = DetailInfo;
+			sourceTree = "<group>";
+		};
+		B5F625702ACD7859002A1896 /* Agreement */ = {
+			isa = PBXGroup;
+			children = (
+				B5F625712ACD786D002A1896 /* AgreementViewController.swift */,
+				B5F625732ACD7888002A1896 /* AgreementViewModel.swift */,
+				B5F625752ACD8497002A1896 /* AgreementView.swift */,
+			);
+			path = Agreement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -643,6 +660,7 @@
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
+				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
@@ -652,6 +670,7 @@
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B5F625162ACAE3E9002A1896 /* TestUseCase.swift in Sources */,
+				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
 				B5F624FD2AC939BF002A1896 /* DetailInfoInputViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* BasicInfoViewModel.swift in Sources */,
@@ -669,6 +688,7 @@
 				B5F624FB2AC931C9002A1896 /* IncomeInputViewController.swift in Sources */,
 				B5F6251B2ACC1F49002A1896 /* IncomeViewModel.swift in Sources */,
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
+				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,
 			);

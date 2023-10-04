@@ -14,4 +14,5 @@ struct SignUpInfo {
     var job: [String]?
     var education: String?
     var age: String?
+    var marketingAgree: Bool = false
 }

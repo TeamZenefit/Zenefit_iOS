@@ -92,7 +92,7 @@ final class IncomeInputViewController: BaseViewController {
         
         incomeInputView.textField.textPublisher
             .filter { $0.isNumeric }
-            .map { $0.trimmingPrefix("0") }
+            .map { $0.count > 1 ? $0.trimmingPrefix("0") : $0 }
             .sink { [weak self] text in
                 guard let self else { return }
                 incomeInputView.textField.text = String(text.prefix(6))

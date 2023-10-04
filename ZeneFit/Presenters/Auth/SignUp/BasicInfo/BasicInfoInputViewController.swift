@@ -42,7 +42,6 @@ final class BasicInfoInputViewController: BaseViewController {
     private let completeButton = BottomButton().then {
         $0.setTitle("완료", for: .normal)
         $0.layer.cornerRadius = 8
-//        $0.isEnabled = false
     }
     
     init(viewModel: BasicInfoViewModel) {

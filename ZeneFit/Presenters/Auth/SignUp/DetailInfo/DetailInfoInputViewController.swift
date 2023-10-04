@@ -120,6 +120,12 @@ final class DetailInfoInputViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .assign(to: \.completeButton.isEnabled, on: self)
             .store(in: &cancellable)
+        
+        completeButton.tapPublisher
+            .sink { [weak self] _ in
+                self?.coordinator?.showAgreementVC()
+            }
+            .store(in: &cancellable)
     }
     
     override func setupAttributes() {
