@@ -32,8 +32,9 @@ final class MainCoordinator {
 extension MainCoordinator {
     func pushToLoginVC() {
         let navigationController = UINavigationController()
-        let coordinator = AuthCoordinator(navigationController: navigationController,
-                                          window: window)
+        window.rootViewController = navigationController
+        
+        let coordinator = AuthCoordinator(navigationController: navigationController)
         coordinator.parentCoordinator = self
         coordinator.start()
         
