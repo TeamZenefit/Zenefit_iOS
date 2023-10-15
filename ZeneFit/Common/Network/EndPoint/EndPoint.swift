@@ -10,7 +10,13 @@ import Foundation
 struct Endpoint: EndpointProtocol {
     var baseURL: URL?
     var method: HTTPMethod
-    var path: String
+    var path: String?
     var parameters: HTTPRequestParameterType?
-    var sampleData: Data?
+    
+    init(baseURL: String, method: HTTPMethod = .GET, path: String?, parameters: HTTPRequestParameterType? = nil) {
+        self.baseURL = URL(string: baseURL)
+        self.method = method
+        self.path = path
+        self.parameters = parameters
+    }
 }

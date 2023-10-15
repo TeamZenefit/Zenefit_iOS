@@ -22,9 +22,8 @@ protocol EndpointProtocol {
     var baseURL: URL? { get }
     var method: HTTPMethod { get }
     var headers: HTTPHeaders { get }
-    var path: String { get }
+    var path: String? { get }
     var parameters: HTTPRequestParameterType? { get }
-    var sampleData: Data? { get set }
     
     func toURLRequest() -> URLRequest?
 }
@@ -51,8 +50,8 @@ extension EndpointProtocol {
 }
 
 extension URL {
-    func appendingPath(_ path: String) -> URL {
-        return self.appendingPathComponent(path)
+    func appendingPath(_ path: String?) -> URL {
+        return self.appendingPathComponent(path ?? "")
     }
     
     func appendingQueries(at parameter: HTTPRequestParameterType?) -> URL? {
