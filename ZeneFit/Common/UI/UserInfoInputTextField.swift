@@ -144,7 +144,7 @@ final class UserInfoInputTextField: UIStackView {
         guideLabel.snp.makeConstraints {
             $0.leading.equalToSuperview()
             $0.top.equalTo(lineView.snp.bottom).offset(4)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-8)
         }
     }
 }

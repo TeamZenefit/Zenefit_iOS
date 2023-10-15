@@ -12,9 +12,7 @@ final class AuthCoordinator: Coordinator {
     weak var parentCoordinator: MainCoordinator?
     var navigationController: UINavigationController
     
-    var basicInfoViewModel = BasicInfoViewModel()
-    var incomeViewModel = IncomeViewModel()
-    var detailInfoViewModel = DetailInfoViewModel()
+    var registInfoInputViewModel = RegistInfoInputViewModel()
     var agreementViewModel = AgreementViewModel()
     
     init(navigationController: UINavigationController) {
@@ -26,8 +24,8 @@ final class AuthCoordinator: Coordinator {
         let signInVC = SignInViewController(viewModel: viewModel)
         signInVC.coordinator = self
         
-        basicInfoViewModel = BasicInfoViewModel()
-        let tempVC = BasicInfoInputViewController(viewModel: basicInfoViewModel)
+        registInfoInputViewModel = RegistInfoInputViewModel()
+        let tempVC = RegistInfoInputViewController(viewModel: registInfoInputViewModel)
         tempVC.coordinator = self
         
         navigationController.viewControllers = [tempVC]
@@ -40,29 +38,18 @@ final class AuthCoordinator: Coordinator {
 }
 
 extension AuthCoordinator {
-    func pushToIncomeInputVC() {
-        incomeViewModel = IncomeViewModel()
-        incomeViewModel.signUpInfo = basicInfoViewModel.signUpInfo
-        
-        let incomeInputVC = IncomeInputViewController(viewModel: incomeViewModel)
-        incomeInputVC.coordinator = self
-        navigationController.pushViewController(incomeInputVC, animated: false)
-    }
-    
-    func pushToDetailInfoInputVC() {
-        detailInfoViewModel = DetailInfoViewModel()
-        detailInfoViewModel.signUpInfo = incomeViewModel.signUpInfo
-        let detailInputVC = DetailInfoInputViewController(viewModel: detailInfoViewModel)
-        detailInputVC.coordinator = self
-        navigationController.pushViewController(detailInputVC, animated: false)
-    }
-    
     func showAgreementVC() {
         agreementViewModel = AgreementViewModel()
-        agreementViewModel.signUpInfo = detailInfoViewModel.signUpInfo
+        agreementViewModel.signUpInfo = registInfoInputViewModel.signUpInfo
         let agreementVC = AgreementViewController(viewModel: agreementViewModel)
         agreementVC.coordinator = self
         navigationController.pushViewController(agreementVC, animated: false)
+    }
+    
+    func showRegistCompleteVC() {
+        let completeVC = RegistCompleteViewController(userName: nil)
+        completeVC.coordinator = self
+        navigationController.pushViewController(completeVC, animated: false)
     }
     
     func showSelectionBottomSheet(title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)? = nil) {

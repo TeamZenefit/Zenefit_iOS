@@ -94,6 +94,11 @@ final class AgreementViewController: BaseViewController {
         viewModel.$completionEnable
             .assign(to: \.completeButton.isEnabled, on: self)
             .store(in: &cancellable)
+        
+        completeButton.tapPublisher
+            .sink { [weak self] _ in
+                self?.coordinator?.showRegistCompleteVC()
+            }.store(in: &cancellable)
     }
     
     override func addSubView() {
