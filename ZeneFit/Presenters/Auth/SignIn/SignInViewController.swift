@@ -59,9 +59,19 @@ final class SignInViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     private func signInWithKakao() {
         UserApi.shared.logout() { _ in }
-        
+
         if (UserApi.isKakaoTalkLoginAvailable()) {
             UserApi.shared.loginWithKakaoTalk { [weak self] token, error in
                 guard let token else { return }
@@ -106,15 +116,20 @@ final class SignInViewController: BaseViewController {
         
         viewModel.errorPublisher
             .receive(on: RunLoop.main)
-            .sink { error in
-                // TODO: 에러 처리
-                print(error)
+            .sink { [weak self] error in
+                switch error {
+                case let CommonError.tempUser(userId):
+                    self?.coordinator?.showRegistVC(userId: userId)
+                case CommonError.serverError:
+                    self?.notiAlert("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                default:
+                    self?.notiAlert("알 수 없는 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                }
             }
             .store(in: &cancellable)
     }
     
     override func configureUI() {
-        navigationController?.navigationBar.isHidden = true
         view.setGradient()
     }
     

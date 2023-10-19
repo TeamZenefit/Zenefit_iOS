@@ -24,11 +24,7 @@ final class AuthCoordinator: Coordinator {
         let signInVC = SignInViewController(viewModel: viewModel)
         signInVC.coordinator = self
         
-        registInfoInputViewModel = RegistInfoInputViewModel()
-        let tempVC = RegistInfoInputViewController(viewModel: registInfoInputViewModel)
-        tempVC.coordinator = self
-        
-        navigationController.viewControllers = [tempVC]
+        navigationController.viewControllers = [signInVC]
     }
     
     func didFinishAuth() {
@@ -42,12 +38,20 @@ extension AuthCoordinator {
         agreementViewModel = AgreementViewModel()
         agreementViewModel.signUpInfo = registInfoInputViewModel.signUpInfo
         let agreementVC = AgreementViewController(viewModel: agreementViewModel)
-        agreementVC.coordinator = self
+        agreementViewModel.coordinator = self
         navigationController.pushViewController(agreementVC, animated: false)
     }
     
-    func showRegistCompleteVC() {
-        let completeVC = RegistCompleteViewController(userName: nil)
+    func showRegistVC(userId: String? = nil) {
+        registInfoInputViewModel = RegistInfoInputViewModel()
+        registInfoInputViewModel.signUpInfo.userId = userId
+        let registVC = RegistInfoInputViewController(viewModel: registInfoInputViewModel)
+        registVC.coordinator = self
+        navigationController.pushViewController(registVC, animated: false)
+    }
+    
+    func showRegistCompleteVC(userName: String) {
+        let completeVC = RegistCompleteViewController(userName: userName)
         completeVC.coordinator = self
         navigationController.pushViewController(completeVC, animated: false)
     }

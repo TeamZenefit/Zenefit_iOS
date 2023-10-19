@@ -7,16 +7,26 @@
 
 import Foundation
 
-struct Endpoint: EndpointProtocol {
-    var baseURL: URL?
+struct Endpoint: Endpointable {
+    var baseURL: URL
     var method: HTTPMethod
-    var path: String?
-    var parameters: HTTPRequestParameterType?
+    var paths: String?
+    var queries: [String : String]?
+    var body: [String : Any]?
+    var headers: HTTPHeaders
     
-    init(baseURL: String, method: HTTPMethod = .GET, path: String?, parameters: HTTPRequestParameterType? = nil) {
-        self.baseURL = URL(string: baseURL)
+    init(baseURL: String? = nil,
+         method: HTTPMethod = .GET,
+         paths: String?,
+         queries: [String : String]? = nil,
+         body: [String : Any]? = nil) {
+        let defaultUrl = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String ?? ""
+        self.baseURL = URL(string: baseURL ?? defaultUrl)!
         self.method = method
-        self.path = path
-        self.parameters = parameters
+        self.paths = paths
+        self.queries = queries
+        self.body = body
+        self.headers = ["Content-Type": "application/json",
+                        "Accept" : "*/*"]
     }
 }

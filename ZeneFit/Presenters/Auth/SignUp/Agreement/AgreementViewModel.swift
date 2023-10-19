@@ -10,16 +10,22 @@ import Combine
 
 final class AgreementViewModel {
     private var cancellable = Set<AnyCancellable>()
+    weak var coordinator: AuthCoordinator?
     
     @Published var signUpInfo = SignUpInfo()
     @Published var completionEnable = false
+    var signUpResult = PassthroughSubject<Bool,Never>()
+    var error = PassthroughSubject<Error,Never>()
     
     @Published var totalAgree = false
     @Published var useAgree = false
     @Published var privacyAgree = false
     @Published var marketingAgree = false
     
-    init() {
+    private let signUpUseCase: SignUpUseCase
+    
+    init(signUpUseCase: SignUpUseCase = .init()) {
+        self.signUpUseCase = signUpUseCase
         bind()
     }
     
@@ -37,5 +43,23 @@ final class AgreementViewModel {
         $marketingAgree
             .assign(to: \.signUpInfo.marketingAgree, on: self)
             .store(in: &cancellable)
+    }
+    
+    func didTapCompletion() {
+        signUpUseCase.execute(signUpInfo: signUpInfo)
+            .sink { [weak self] finish in
+                switch finish {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            } receiveValue: { [weak self] res in
+                // TODO: 토큰 저장
+                print("accessToken: \(res.accessToken)")
+                print("refreshToken: \(res.refreshToken)")
+                self?.coordinator?.showRegistCompleteVC(userName: res.nickname)
+            }.store(in: &cancellable)
+
     }
 }
