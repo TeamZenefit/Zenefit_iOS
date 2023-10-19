@@ -24,6 +24,7 @@
 		B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */; };
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
+		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
 		B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* SplashViewController.swift */; };
@@ -183,6 +184,7 @@
 			files = (
 				B5F624BB2AC33CF8002A1896 /* FirebaseMessaging in Frameworks */,
 				B5F624B22AC33B8A002A1896 /* KakaoSDKCommon in Frameworks */,
+				B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */,
 				B5F624AA2AC33AB3002A1896 /* SnapKit in Frameworks */,
 				B5F624B72AC33CF8002A1896 /* FirebaseAnalytics in Frameworks */,
 				B5F624B92AC33CF8002A1896 /* FirebaseCrashlytics in Frameworks */,
@@ -602,6 +604,7 @@
 				B5F624B62AC33CF8002A1896 /* FirebaseAnalytics */,
 				B5F624B82AC33CF8002A1896 /* FirebaseCrashlytics */,
 				B5F624BA2AC33CF8002A1896 /* FirebaseMessaging */,
+				B57242AD2AE187CC007D6BC2 /* Lottie */,
 			);
 			productName = ZeneFit;
 			productReference = B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */;
@@ -680,6 +683,7 @@
 				B5F624AB2AC33AFD002A1896 /* XCRemoteSwiftPackageReference "Then" */,
 				B5F624AE2AC33B8A002A1896 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = B5F6245D2AC2F6A0002A1896 /* Products */;
 			projectDirPath = "";
@@ -1146,6 +1150,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		B5F624A82AC33AB3002A1896 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1181,6 +1193,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B57242AD2AE187CC007D6BC2 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		B5F624A92AC33AB3002A1896 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B5F624A82AC33AB3002A1896 /* XCRemoteSwiftPackageReference "SnapKit" */;
