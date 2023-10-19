@@ -37,6 +37,11 @@ final class RegistCompleteViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func configureNavigation() {
+        super.configureNavigation()
+        navigationItem.leftBarButtonItem = nil
+    }
+    
     override func addSubView() {
         [subTitleLabel, titleLabel, userNameLabel].forEach {
             view.addSubview($0)

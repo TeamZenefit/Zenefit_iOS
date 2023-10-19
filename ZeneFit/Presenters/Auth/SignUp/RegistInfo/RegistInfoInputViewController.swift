@@ -135,7 +135,7 @@ final class RegistInfoInputViewController: BaseViewController {
                     secondAddressInputView.isEnabled = false
                     firstAddressInputView.isFocusedInput = true
                 case 3:
-                    showCitySelectionBottomSheet()
+                    viewModel.fetchCities()
                     firstAddressInputView.isEnabled = true
                     secondAddressInputView.isEnabled = true
                     secondAddressInputView.isFocusedInput = true
@@ -187,7 +187,12 @@ final class RegistInfoInputViewController: BaseViewController {
             }
             .store(in: &cancellable)
         
-        
+        viewModel.$cities
+            .receive(on: RunLoop.main)
+            .sink { [weak self] cities in
+                self?.showCitySelectionBottomSheet(cities: cities)
+            }
+            .store(in: &cancellable)
     }
     
     override func setupAttributes() {
@@ -219,7 +224,7 @@ final class RegistInfoInputViewController: BaseViewController {
     
     private func showAreaSelectionBottomSheet() {
         coordinator?.showSelectionBottomSheet(title: "시/도",
-                                              list: ["비밀","입니당~"],
+                                              list: viewModel.areas,
                                               selectedItem: viewModel.signUpInfo.area) { [weak self] selectedItem in
             guard let self else { return }
             if let selectedItem = selectedItem {
@@ -233,11 +238,11 @@ final class RegistInfoInputViewController: BaseViewController {
         }
     }
     
-    private func showCitySelectionBottomSheet() {
+    private func showCitySelectionBottomSheet(cities: [String]) {
         guard let area = viewModel.signUpInfo.area else { return }
         
         coordinator?.showSelectionBottomSheet(title: "시/군/구-\(area)",
-                                              list: ["이래요","비밀","비밀","비밀","비밀","비밀"],
+                                              list: cities,
                                               selectedItem: viewModel.signUpInfo.city) { [weak self] selectedItem in
             guard let self else { return }
             if let selectedItem = selectedItem {

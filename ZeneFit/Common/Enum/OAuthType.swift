@@ -9,5 +9,5 @@ import Foundation
 
 enum OAuthType: String {
     case kakao = "KAKAO"
-    case apple = "Apple"
+    case apple = "APPLE"
 }

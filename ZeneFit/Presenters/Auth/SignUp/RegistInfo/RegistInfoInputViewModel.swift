@@ -15,9 +15,23 @@ final class RegistInfoInputViewModel {
     @Published var focusInputNumber = 1
     
     @Published var completionEnable = false
+    @Published var cities: [String] = []
+    @Published var areas: [String] = []
     
-    init() {
+    private let fetchCityUseCase: FetchCityUseCase
+    private let fetchAreaUseCase: FetchAreaUseCase
+    
+    init(fetchCityUseCase: FetchCityUseCase = .init(),
+         fetchAreaUseCase: FetchAreaUseCase = .init()) {
+        self.fetchCityUseCase = fetchCityUseCase
+        self.fetchAreaUseCase = fetchAreaUseCase
+        
         bind()
+        
+        fetchAreaUseCase.execute()
+            .replaceError(with: [])
+            .assign(to: \.areas, on: self)
+            .store(in: &cancellable)
     }
     
     private func bind() {
@@ -40,6 +54,14 @@ final class RegistInfoInputViewModel {
             }
             .eraseToAnyPublisher()
             .assign(to: \.completionEnable, on: self)
+            .store(in: &cancellable)
+    }
+    
+    func fetchCities() {
+        guard let area = signUpInfo.area else { return }
+        fetchCityUseCase.execute(area: area)
+            .replaceError(with: [String]())
+            .assign(to: \.cities, on: self)
             .store(in: &cancellable)
     }
     

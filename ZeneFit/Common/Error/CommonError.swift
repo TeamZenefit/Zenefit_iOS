@@ -11,4 +11,5 @@ enum CommonError: Error {
     case invalidURL
     case otherError
     case serverError
+    case tempUser(String)
 }

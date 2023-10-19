@@ -11,7 +11,6 @@ import Combine
 final class AgreementViewController: BaseViewController {
     private var cancellable = Set<AnyCancellable>()
     private let viewModel: AgreementViewModel
-    weak var coordinator: AuthCoordinator?
     
     private let basicInfoLabel = SignUpOrderLabel(number: 4, title: "약관 동의")
     
@@ -97,7 +96,18 @@ final class AgreementViewController: BaseViewController {
         
         completeButton.tapPublisher
             .sink { [weak self] _ in
-                self?.coordinator?.showRegistCompleteVC()
+                self?.view.endEditing(false)
+                self?.viewModel.didTapCompletion()
+            }.store(in: &cancellable)
+        
+        viewModel.error
+            .sink { [weak self] error in
+                switch error {
+                case CommonError.serverError:
+                    self?.notiAlert("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                default:
+                    self?.notiAlert("알 수 없는 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                }
             }.store(in: &cancellable)
     }
     
