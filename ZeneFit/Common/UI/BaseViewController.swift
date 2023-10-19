@@ -45,6 +45,7 @@ class BaseViewController: UIViewController {
     func layout() { }
     
     func configureNavigation() {
+        self.navigationItem.hidesBackButton = true
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = .backgroundPrimary
         navigationBarAppearance.shadowColor = .clear
