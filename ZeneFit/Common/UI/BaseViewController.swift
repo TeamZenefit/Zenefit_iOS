@@ -32,7 +32,7 @@ class BaseViewController: UIViewController {
     }
     
     func configureUI() {
-        self.view.backgroundColor = .backgroundPrimary
+        self.view.backgroundColor = .white
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -47,7 +47,7 @@ class BaseViewController: UIViewController {
     func configureNavigation() {
         self.navigationItem.hidesBackButton = true
         let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = .backgroundPrimary
+        navigationBarAppearance.backgroundColor = .white
         navigationBarAppearance.shadowColor = .clear
         navigationItem.standardAppearance = navigationBarAppearance
         navigationItem.scrollEdgeAppearance = navigationBarAppearance
@@ -62,7 +62,7 @@ class BaseViewController: UIViewController {
     
     func configureTabBar() {
         let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.backgroundColor = .backgroundPrimary
+        tabBarAppearance.backgroundColor = .white
         tabBarController?.tabBar.standardAppearance = tabBarAppearance
         tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
     }
