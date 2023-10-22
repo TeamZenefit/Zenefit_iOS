@@ -10,6 +10,7 @@ import Combine
 
 class BaseViewController: UIViewController {
     private var keyboardCancellable: AnyCancellable?
+    var cancellable = Set<AnyCancellable>()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {

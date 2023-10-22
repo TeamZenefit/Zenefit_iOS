@@ -55,9 +55,8 @@ final class AgreementViewModel {
                     self?.error.send(error)
                 }
             } receiveValue: { [weak self] res in
-                // TODO: 토큰 저장
-                print("accessToken: \(res.accessToken)")
-                print("refreshToken: \(res.refreshToken)")
+                KeychainManager.create(key: "accessToken", value: res.accessToken)
+                KeychainManager.create(key: "refreshToken", value: res.refreshToken)
                 self?.coordinator?.showRegistCompleteVC(userName: res.nickname)
             }.store(in: &cancellable)
 

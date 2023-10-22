@@ -11,7 +11,6 @@ import KakaoSDKUser
 import Combine
 
 final class SignInViewController: BaseViewController {
-    private var cancellable = Set<AnyCancellable>()
     private let viewModel: SignInViewModel
     weak var coordinator: AuthCoordinator?
     

@@ -29,6 +29,13 @@ final class SignInViewModel {
                     self?.errorPublisher.send(error)
                 }
             }, receiveValue: { [weak self] result in
+                guard let accessToken = result.accessToken,
+                      let refreshToken = result.refreshToken else {
+                    self?.loginResult.send(false)
+                    return
+                }
+                KeychainManager.create(key: "accessToken", value: accessToken)
+                KeychainManager.create(key: "refreshToken", value: refreshToken)
                 self?.loginResult.send(true)
             }).store(in: &cancellable)
             
