@@ -42,6 +42,6 @@ extension MainCoordinator {
     }
     
     func pushToTabbarVC() {
-        // TODO: Tabbar 화면 이동
+        window.rootViewController = MainTabbarController()
     }
 }
