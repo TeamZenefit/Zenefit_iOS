@@ -20,6 +20,11 @@
 		B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */; };
 		B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */; };
 		B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67922ADD9A6B00971467 /* Publisher+.swift */; };
+		B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */; };
+		B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9C92AE5444000AA5F40 /* HomeViewController.swift */; };
+		B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9CC2AE5446D00AA5F40 /* WelfareViewController.swift */; };
+		B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */; };
+		B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9D22AE544C800AA5F40 /* SettingViewController.swift */; };
 		B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */; };
 		B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */; };
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
@@ -122,6 +127,11 @@
 		B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAreaUseCase.swift; sourceTree = "<group>"; };
 		B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCityUseCase.swift; sourceTree = "<group>"; };
 		B54A67922ADD9A6B00971467 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
+		B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		B552F9C92AE5444000AA5F40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B552F9CC2AE5446D00AA5F40 /* WelfareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareViewController.swift; sourceTree = "<group>"; };
+		B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		B552F9D22AE544C800AA5F40 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
@@ -280,6 +290,38 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		B552F9C82AE5443000AA5F40 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B552F9C92AE5444000AA5F40 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B552F9CB2AE5444F00AA5F40 /* Welfare */ = {
+			isa = PBXGroup;
+			children = (
+				B552F9CC2AE5446D00AA5F40 /* WelfareViewController.swift */,
+			);
+			path = Welfare;
+			sourceTree = "<group>";
+		};
+		B552F9D02AE5449500AA5F40 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		B552F9D12AE544B900AA5F40 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B552F9D22AE544C800AA5F40 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		B5F624532AC2F6A0002A1896 = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +439,10 @@
 		B5F624BC2AC53AFF002A1896 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				B552F9D12AE544B900AA5F40 /* Setting */,
+				B552F9D02AE5449500AA5F40 /* Schedule */,
+				B552F9CB2AE5444F00AA5F40 /* Welfare */,
+				B552F9C82AE5443000AA5F40 /* Home */,
 				B5F624C42AC53FE8002A1896 /* Splash */,
 				B5F624BD2AC53B2F002A1896 /* Auth */,
 			);
@@ -432,6 +478,7 @@
 				B5F624F32AC88DA9002A1896 /* BottomButton.swift */,
 				B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */,
 				B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */,
+				B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -758,6 +805,7 @@
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
+				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
 				B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */,
@@ -773,6 +821,7 @@
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
 				B54A67482ADBCE3700971467 /* Collections+.swift in Sources */,
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
+				B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */,
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
 				B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */,
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,
@@ -780,6 +829,7 @@
 				B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */,
 				B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */,
 				B5F624CE2AC5B68F002A1896 /* Coordinator.swift in Sources */,
+				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
 				B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */,
 				B5F625052AC954A1002A1896 /* SignUpInfo.swift in Sources */,
 				B54A67512ADC11E900971467 /* AuthRepository.swift in Sources */,
@@ -789,7 +839,9 @@
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
+				B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */,
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,
+				B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
