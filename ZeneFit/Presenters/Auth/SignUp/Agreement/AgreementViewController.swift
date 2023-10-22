@@ -12,8 +12,6 @@ final class AgreementViewController: BaseViewController {
     private var cancellable = Set<AnyCancellable>()
     private let viewModel: AgreementViewModel
     
-    private let basicInfoLabel = SignUpOrderLabel(number: 4, title: "약관 동의")
-    
     private let titleLabel = UILabel().then {
         $0.font = .pretendard(.label1)
         $0.textColor = .textStrong
@@ -112,20 +110,15 @@ final class AgreementViewController: BaseViewController {
     }
     
     override func addSubView() {
-        [basicInfoLabel, titleLabel, completeButton, totalAgreementView, useAgreementView, privacyAgreementView, marketingAgreementView, dividerView].forEach {
+        [titleLabel, completeButton, totalAgreementView, useAgreementView, privacyAgreementView, marketingAgreementView, dividerView].forEach {
             view.addSubview($0)
         }
     }
     
     override func layout() {
-        basicInfoLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-        }
-        
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
-            $0.top.equalTo(basicInfoLabel.snp.bottom).offset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
         }
         
         totalAgreementView.snp.makeConstraints {

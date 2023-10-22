@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Lottie
 
 final class RegistCompleteViewController: BaseViewController {
     weak var coordinator: AuthCoordinator?
+    
+    private let clapAnimationView = LottieAnimationView(asset: "clap").then {
+        $0.backgroundColor = .clear
+        $0.loopMode = .loop
+    }
     
     private let subTitleLabel = UILabel().then {
         $0.text = "회원가입 완료!"
@@ -37,13 +43,18 @@ final class RegistCompleteViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        clapAnimationView.play()
+    }
+    
     override func configureNavigation() {
         super.configureNavigation()
         navigationItem.leftBarButtonItem = nil
     }
     
     override func addSubView() {
-        [subTitleLabel, titleLabel, userNameLabel].forEach {
+        [clapAnimationView, subTitleLabel, titleLabel, userNameLabel].forEach {
             view.addSubview($0)
         }
     }
@@ -56,8 +67,14 @@ final class RegistCompleteViewController: BaseViewController {
     }
     
     override func layout() {
+        clapAnimationView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-40)
+            $0.height.width.equalTo(295)
+        }
+        
         subTitleLabel.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalTo(clapAnimationView.snp.bottom).offset(-30)
             $0.centerX.equalToSuperview()
         }
         
