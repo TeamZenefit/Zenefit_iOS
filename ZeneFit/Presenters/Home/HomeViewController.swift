@@ -12,5 +12,6 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         print(KeychainManager.read("accessToken"))
 //        KeychainManager.delete(key: "accessToken")
+        self.present(ManualViewController(), animated: true)
     }
 }

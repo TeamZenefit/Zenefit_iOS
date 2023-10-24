@@ -40,6 +40,7 @@
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
+		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
 		B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* SplashViewController.swift */; };
@@ -156,6 +157,7 @@
 		B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
 		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
+		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeneFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		B552F9C82AE5443000AA5F40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B5733D462AE7E73D00905E41 /* Manual */,
 				B552F9C92AE5444000AA5F40 /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -410,6 +413,14 @@
 				B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */,
 			);
 			path = Policy;
+			sourceTree = "<group>";
+		};
+		B5733D462AE7E73D00905E41 /* Manual */ = {
+			isa = PBXGroup;
+			children = (
+				B5733D472AE7E75400905E41 /* ManualViewController.swift */,
+			);
+			path = Manual;
 			sourceTree = "<group>";
 		};
 		B5F624532AC2F6A0002A1896 = {
@@ -894,6 +905,7 @@
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
+				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
