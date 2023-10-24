@@ -91,13 +91,14 @@ final class AuthService {
     }
 
     func signUp(signUpInfo: SignUpInfo)-> AnyPublisher<SignUpResponse, Error> {
+        let income = signUpInfo.income?.appending("0000")
         let endpoint = Endpoint(method: .PATCH,
                                 paths: "/user/signup",
                                 body: ["userId" : signUpInfo.userId ?? "",
                                        "age" : Int(signUpInfo.age ?? "") ?? 0,
                                        "areaCode" : signUpInfo.area ?? "",
                                        "cityCode" : signUpInfo.city ?? "",
-                                       "lastYearInComde" : Int(signUpInfo.income ?? "") ?? 0,
+                                       "lastYearIncome" : Double(income ?? "") ?? 0.0,
                                        "educationType" : signUpInfo.education ?? "",
                                        "jobs" : signUpInfo.job ?? [],
                                        "marketingStatus" : signUpInfo.marketingAgree])

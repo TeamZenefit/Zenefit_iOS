@@ -42,6 +42,41 @@ extension MainCoordinator {
     }
     
     func pushToTabbarVC() {
-        window.rootViewController = MainTabbarController()
+        window.rootViewController = setTabbarController()
     }
 }
+
+private extension MainCoordinator {
+    func setTabbarController() -> MainTabbarController {
+        let tabbarVC = MainTabbarController()
+        let homeVC = HomeViewController()
+        homeVC.tabBarItem = .init(title: "홈",
+                                  image: .init(named: "HomeOff")?.withRenderingMode(.alwaysOriginal),
+                                  selectedImage: .init(named: "HomeOn")?.withRenderingMode(.alwaysOriginal))
+        
+        let welfareVC = UINavigationController()
+        let welfareCoordinator = WelfareCoordinator(tabbarController: tabbarVC,
+                                                    navigationController: welfareVC)
+        welfareCoordinator.parentCoordinator = self
+        welfareCoordinator.start()
+        childCoordinators.append(welfareCoordinator)
+        welfareVC.tabBarItem = .init(title: "정책",
+                                     image: .init(named: "WelfareOff")?.withRenderingMode(.alwaysOriginal),
+                                     selectedImage: .init(named: "WelfareOn")?.withRenderingMode(.alwaysOriginal))
+        
+        let scheduleVC = ScheduleViewController()
+        scheduleVC.tabBarItem = .init(title: "일정",
+                                      image: .init(named: "CalendarOff")?.withRenderingMode(.alwaysOriginal),
+                                      selectedImage: .init(named: "CalendarOn")?.withRenderingMode(.alwaysOriginal))
+        
+        let settingVC = SettingViewController()
+        settingVC.tabBarItem = .init(title: "설정",
+                                     image: .init(named: "SettingOff")?.withRenderingMode(.alwaysOriginal),
+                                     selectedImage: .init(named: "SettingOn")?.withRenderingMode(.alwaysOriginal))
+        
+        tabbarVC.viewControllers = [homeVC, welfareVC, scheduleVC, settingVC]
+        
+        return tabbarVC
+    }
+}
+

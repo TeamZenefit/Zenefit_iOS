@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class AgreementViewController: BaseViewController {
-    private var cancellable = Set<AnyCancellable>()
     private let viewModel: AgreementViewModel
     
     private let titleLabel = UILabel().then {

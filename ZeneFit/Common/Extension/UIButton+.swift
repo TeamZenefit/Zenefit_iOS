@@ -12,6 +12,7 @@ extension UIButton {
     var tapPublisher: AnyPublisher<Void, Never> {
         controlPublisher(for: .touchUpInside)
             .map { _ in }
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class RegistInfoInputViewController: BaseViewController {
-    private var cancellable = Set<AnyCancellable>()
     weak var coordinator: AuthCoordinator?
     private let viewModel: RegistInfoInputViewModel
     

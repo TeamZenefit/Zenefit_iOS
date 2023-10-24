@@ -29,4 +29,24 @@ struct Endpoint: Endpointable {
         self.headers = ["Content-Type": "application/json",
                         "Accept" : "*/*"]
     }
+    
+    func setHeaders(_ newHeaders: HTTPHeaders) -> Self {
+        var newEndpoint = self
+        
+        newHeaders.forEach {
+            newEndpoint.headers[$0.key] = $0.value
+        }
+        
+        return newEndpoint
+    }
+    
+    func setAccessToken() -> Self {
+        var newEndpoint = self
+        guard let accessToken = KeychainManager.read("accessToken")
+        else { return self }
+        
+        newEndpoint.headers["Authorization"] = "Bearer \(accessToken)"
+        
+        return newEndpoint
+    }
 }

@@ -26,8 +26,12 @@ final class SplashViewController: BaseViewController {
             $0.center.equalToSuperview()
         }
         
-        // TODO: - 추후 자동 로그인 적용 필요
-        coordinator?.pushToLoginVC()
+        if let token = KeychainManager.read("accessToken") {
+            // TODO: 일단 이걸로 체크..
+            coordinator?.pushToTabbarVC()
+        } else {
+            coordinator?.pushToLoginVC()
+        }
     }
 }
 
