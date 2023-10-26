@@ -400,13 +400,6 @@
 			path = Policy;
 			sourceTree = "<group>";
 		};
-		B552F9E82AE5635800AA5F40 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		B552F9ED2AE56E4600AA5F40 /* Policy */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,7 +566,6 @@
 		B5F624C12AC53B66002A1896 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B552F9E82AE5635800AA5F40 /* New Group */,
 				B5F624F72AC8A169002A1896 /* InfoSelectionBottomSheet */,
 				B5F624C22AC53B79002A1896 /* BaseViewController.swift */,
 				B5F624C92AC54C53002A1896 /* PaddingLabel.swift */,

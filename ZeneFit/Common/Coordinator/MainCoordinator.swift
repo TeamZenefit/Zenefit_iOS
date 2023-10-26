@@ -49,7 +49,7 @@ extension MainCoordinator {
 private extension MainCoordinator {
     func setTabbarController() -> MainTabbarController {
         let tabbarVC = MainTabbarController()
-        let homeVC = HomeViewController()
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         homeVC.tabBarItem = .init(title: "홈",
                                   image: .init(named: "HomeOff")?.withRenderingMode(.alwaysOriginal),
                                   selectedImage: .init(named: "HomeOn")?.withRenderingMode(.alwaysOriginal))
@@ -77,6 +77,12 @@ private extension MainCoordinator {
         tabbarVC.viewControllers = [homeVC, welfareVC, scheduleVC, settingVC]
         
         return tabbarVC
+    }
+}
+
+private extension MainCoordinator {
+    func wrapNavigation(vc: UIViewController) -> UINavigationController {
+        return UINavigationController(rootViewController: vc)
     }
 }
 
