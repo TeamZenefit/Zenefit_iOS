@@ -8,14 +8,12 @@
 import UIKit
 
 class WelfareCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
-    weak var parentCoordinator: MainCoordinator?
-    var navigationController: UINavigationController
-    var tabbarController: MainTabbarController
+    weak var delegate: CoordinatorDelegate?
     
-    init(tabbarController: MainTabbarController,
-         navigationController: UINavigationController) {
-        self.tabbarController = tabbarController
+    var childCoordinators: [Coordinator] = []
+    var navigationController: UINavigationController
+    
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
@@ -23,11 +21,6 @@ class WelfareCoordinator: Coordinator {
         let welfareVC = WelfareViewController()
         welfareVC.coordinator = self
         navigationController.viewControllers = [welfareVC]
-    }
-    
-    func didFinish() {
-        parentCoordinator?.pushToLoginVC()
-        parentCoordinator?.childDidFinish(self)
     }
     
     func findWelfare() {

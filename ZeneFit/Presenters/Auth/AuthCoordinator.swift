@@ -8,8 +8,9 @@
 import UIKit
 
 final class AuthCoordinator: Coordinator {
+    weak var delegate: CoordinatorDelegate?
+    
     var childCoordinators: [Coordinator] = []
-    weak var parentCoordinator: MainCoordinator?
     var navigationController: UINavigationController
     
     var registInfoInputViewModel = RegistInfoInputViewModel()
@@ -25,11 +26,6 @@ final class AuthCoordinator: Coordinator {
         signInVC.coordinator = self
         
         navigationController.viewControllers = [signInVC]
-    }
-    
-    func didFinishAuth() {
-        parentCoordinator?.pushToTabbarVC()
-        parentCoordinator?.childDidFinish(self)
     }
 }
 

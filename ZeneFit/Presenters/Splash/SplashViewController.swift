@@ -25,12 +25,15 @@ final class SplashViewController: BaseViewController {
         splashImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
-        
-        if let token = KeychainManager.read("accessToken") {
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let _ = KeychainManager.read("accessToken") {
             // TODO: 일단 이걸로 체크..
-            coordinator?.pushToTabbarVC()
+            coordinator?.pushToTabbar()
         } else {
-            coordinator?.pushToLoginVC()
+            coordinator?.pushToAuth()
         }
     }
 }

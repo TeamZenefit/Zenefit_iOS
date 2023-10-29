@@ -8,6 +8,8 @@
 import UIKit
 
 final class HomeViewController: BaseViewController {
+    private let viewModel: HomeViewModel
+    
     private let notiItem = UIButton(type: .system).then {
         $0.setImage(UIImage(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
@@ -23,10 +25,18 @@ final class HomeViewController: BaseViewController {
     
     private let imageView = UIImageView(image: .init(named: "m-smart"))
     
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(KeychainManager.read("accessToken"))
-//        KeychainManager.delete(key: "accessToken")
     }
     
     override func setupBinding() {
@@ -50,7 +60,7 @@ final class HomeViewController: BaseViewController {
         
         manualItem.tapPublisher
             .sink { [weak self] in
-                self?.present(ManualViewController(), animated: false)
+                self?.viewModel.coordinator?.presentToMenual()
             }.store(in: &cancellable)
 
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)

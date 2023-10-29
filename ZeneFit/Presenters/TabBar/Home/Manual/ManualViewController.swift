@@ -73,7 +73,10 @@ final class ManualViewController: BaseViewController {
     }
     
     override func setupBinding() {
-
+        closeButton.tapPublisher
+            .sink { [weak self] in
+                self?.dismiss(animated: true)
+            }.store(in: &cancellable)
     }
     
     override func layout() {

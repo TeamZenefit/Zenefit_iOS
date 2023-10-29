@@ -9,13 +9,18 @@ import UIKit
 import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
     var mainCoordinator: MainCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        window.makeKeyAndVisible()
-        mainCoordinator = MainCoordinator(window: window)
+        window = UIWindow(windowScene: windowScene)
+        
+        let navigationController = UINavigationController()
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        navigationController.setNavigationBarHidden(true, animated: false)
+        mainCoordinator = MainCoordinator(navigationController: navigationController)
         mainCoordinator?.start()
     }
 
