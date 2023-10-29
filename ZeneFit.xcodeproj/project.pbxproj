@@ -44,6 +44,9 @@
 		B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452462AEE86F2000A45FA /* HomeViewModel.swift */; };
 		B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452492AEE8842000A45FA /* ProgressView.swift */; };
 		B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524B2AEE8A61000A45FA /* UIImage+.swift */; };
+		B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */; };
+		B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524F2AEE9AA8000A45FA /* BigBoxView.swift */; };
+		B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */; };
 		B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */; };
 		B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */; };
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
@@ -171,6 +174,9 @@
 		B56452462AEE86F2000A45FA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B56452492AEE8842000A45FA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		B564524B2AEE8A61000A45FA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBoxView.swift; sourceTree = "<group>"; };
+		B564524F2AEE9AA8000A45FA /* BigBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoxView.swift; sourceTree = "<group>"; };
+		B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePolicyInfoView.swift; sourceTree = "<group>"; };
 		B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
@@ -497,6 +503,9 @@
 			isa = PBXGroup;
 			children = (
 				B56452492AEE8842000A45FA /* ProgressView.swift */,
+				B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */,
+				B564524F2AEE9AA8000A45FA /* BigBoxView.swift */,
+				B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -998,6 +1007,7 @@
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
 				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
+				B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */,
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
@@ -1010,6 +1020,7 @@
 				B5F625162ACAE3E9002A1896 /* SignInUseCase.swift in Sources */,
 				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
+				B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */,
 				B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* RegistInfoInputViewModel.swift in Sources */,
@@ -1042,6 +1053,7 @@
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,
+				B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
 				B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */,

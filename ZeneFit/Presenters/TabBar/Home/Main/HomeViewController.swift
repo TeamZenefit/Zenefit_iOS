@@ -14,6 +14,8 @@ final class HomeViewController: BaseViewController {
         $0.setImage(UIImage(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
+    private let scollView = UIScrollView()
+    
     private let topBGView = UIImageView(image: .init(named: "img_bg"))
     
     private let progressView = ProgressView()
@@ -27,6 +29,18 @@ final class HomeViewController: BaseViewController {
     
     private let imageView = UIImageView(image: .init(named: "m-smart"))
     
+    private let bookmarkInfoView = SmallBoxView(title: "관심 등록")
+    
+    private let benefitInfoView = SmallBoxView(title: "수혜 정책")
+    
+    private lazy var smallBoxStackView = UIStackView(arrangedSubviews: [bookmarkInfoView, benefitInfoView]).then {
+        $0.distribution = .fillEqually
+        $0.spacing = 8
+    }
+    
+    private let policyInfoView = BigBoxView(title: "정책 추천")
+    private let deadLineInfoView = BigBoxView(title: "신청 마감일")
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -39,7 +53,12 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(KeychainManager.read("accessToken"))
+        
         progressView.configureView(content: "상위 100% 앞서 가기", value: 0.5)
+        bookmarkInfoView.configureInfo(count: 1)
+        benefitInfoView.configureInfo(count: 2)
+        policyInfoView.setItems(items: ["정책 이름","정책 이름","정책 이름"])
+        deadLineInfoView.setItems(items: ["정책 이름","정책 이름","정책 이름"], temp: true)
     }
     
     override func setupBinding() {
@@ -75,15 +94,22 @@ final class HomeViewController: BaseViewController {
     }
     
     override func addSubView() {
-        [topBGView, nameLabel, imageView, progressView].forEach {
-            view.addSubview($0)
+        view.addSubview(scollView)
+        
+        [topBGView, nameLabel, imageView, progressView, smallBoxStackView, policyInfoView, deadLineInfoView].forEach {
+            scollView.addSubview($0)
         }
     }
     
     override func layout() {
+        scollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         topBGView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.width.equalTo(view.frame.width)
+            $0.top.equalToSuperview()
             $0.height.equalTo(view.snp.height).multipliedBy(0.1)
         }
         
@@ -101,6 +127,22 @@ final class HomeViewController: BaseViewController {
         progressView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.top.equalTo(nameLabel.snp.bottom).offset(8)
+        }
+        
+        smallBoxStackView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(progressView.snp.bottom).offset(16)
+        }
+        
+        policyInfoView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(smallBoxStackView.snp.bottom).offset(24)
+        }
+        
+        deadLineInfoView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(policyInfoView.snp.bottom).offset(24)
+            $0.bottom.equalToSuperview().offset(-16)
         }
     }
 }

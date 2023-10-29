@@ -43,7 +43,6 @@ final class ProgressView: UIStackView {
         progressView.snp.makeConstraints {
             $0.horizontalEdges.top.equalToSuperview().inset(24)
             $0.height.equalTo(8)
-            $0.width.equalTo(UIScreen.main.bounds.width-48)
         }
         
         contentLabel.snp.makeConstraints {
