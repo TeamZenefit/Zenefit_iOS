@@ -16,6 +16,8 @@ final class HomeViewController: BaseViewController {
     
     private let topBGView = UIImageView(image: .init(named: "img_bg"))
     
+    private let progressView = ProgressView()
+    
     private let nameLabel = UILabel().then {
         $0.numberOfLines = 2
         $0.textColor = .textNormal
@@ -37,6 +39,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(KeychainManager.read("accessToken"))
+        progressView.configureView(content: "상위 100% 앞서 가기", value: 0.5)
     }
     
     override func setupBinding() {
@@ -72,7 +75,7 @@ final class HomeViewController: BaseViewController {
     }
     
     override func addSubView() {
-        [topBGView, nameLabel, imageView].forEach {
+        [topBGView, nameLabel, imageView, progressView].forEach {
             view.addSubview($0)
         }
     }
@@ -92,7 +95,12 @@ final class HomeViewController: BaseViewController {
         imageView.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-40)
             $0.height.width.equalTo(120)
-            $0.bottom.equalTo(nameLabel)
+            $0.bottom.equalTo(progressView.snp.top)
+        }
+        
+        progressView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(8)
         }
     }
 }

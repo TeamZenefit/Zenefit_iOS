@@ -42,6 +42,8 @@
 		B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452402AEE744B000A45FA /* SettingCoordinator.swift */; };
 		B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452432AEE74B8000A45FA /* SettingViewModel.swift */; };
 		B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452462AEE86F2000A45FA /* HomeViewModel.swift */; };
+		B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452492AEE8842000A45FA /* ProgressView.swift */; };
+		B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524B2AEE8A61000A45FA /* UIImage+.swift */; };
 		B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */; };
 		B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */; };
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
@@ -167,6 +169,8 @@
 		B56452402AEE744B000A45FA /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		B56452432AEE74B8000A45FA /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		B56452462AEE86F2000A45FA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B56452492AEE8842000A45FA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		B564524B2AEE8A61000A45FA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				B564523A2AEE4C99000A45FA /* Cooridnator */,
+				B56452482AEE8814000A45FA /* View */,
 				B56452452AEE86E6000A45FA /* Main */,
 				B5733D462AE7E73D00905E41 /* Manual */,
 			);
@@ -488,6 +493,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		B56452482AEE8814000A45FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B56452492AEE8842000A45FA /* ProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B5733D462AE7E73D00905E41 /* Manual */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +621,7 @@
 				B54A67472ADBCE3700971467 /* Collections+.swift */,
 				B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */,
 				B54A67922ADD9A6B00971467 /* Publisher+.swift */,
+				B564524B2AEE8A61000A45FA /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -968,6 +982,7 @@
 				B5F625212ACC5A8C002A1896 /* String+.swift in Sources */,
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
+				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
@@ -1033,6 +1048,7 @@
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,
 				B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */,
 				B552F9D92AE551F100AA5F40 /* FindWelfareViewController.swift in Sources */,
+				B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */,
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
 			);
