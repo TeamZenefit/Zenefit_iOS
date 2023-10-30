@@ -93,6 +93,18 @@ final class HomeViewController: BaseViewController {
                                                    UIBarButtonItem(customView: manualItem)]
     }
     
+    override func setGesture() {
+        bookmarkInfoView.gesture(for: .tap)
+            .sink { [weak self] _ in
+                self?.viewModel.coordinator?.pushToBookmark()
+            }.store(in: &cancellable)
+        
+        benefitInfoView.gesture(for: .tap)
+            .sink { [weak self] _ in
+                self?.viewModel.coordinator?.pushToBookmark()
+            }.store(in: &cancellable)
+    }
+    
     override func addSubView() {
         view.addSubview(scollView)
         

@@ -20,7 +20,7 @@ extension UIView {
         layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    func publisher<G>(for gestureRecognizer: G) -> UIGestureRecognizer.Publisher<G> where G: UIGestureRecognizer {
+    func gesture<G>(for gestureRecognizer: G) -> UIGestureRecognizer.Publisher<G> where G: UIGestureRecognizer {
         UIGestureRecognizer.Publisher(gestureRecognizer: gestureRecognizer, view: self)
     }
 }

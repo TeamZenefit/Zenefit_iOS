@@ -33,4 +33,10 @@ extension HomeCoordinator {
     func presentToMenual() {
         navigationController.present(ManualViewController(), animated: false)
     }
+    
+    func pushToBookmark() {
+        let bookmarkVM = BookmarkViewModel(coordinator: self)
+        let bookmarkVC = BookmarkViewController(viewModel: bookmarkVM)
+        navigationController.pushViewController(bookmarkVC, animated: true)
+    }
 }

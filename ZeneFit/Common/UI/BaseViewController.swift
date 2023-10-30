@@ -12,6 +12,17 @@ class BaseViewController: UIViewController {
     private var keyboardCancellable: AnyCancellable?
     var cancellable = Set<AnyCancellable>()
     
+    private let titleLabel = UILabel().then {
+        $0.font = .pretendard(.label1)
+        $0.textColor = .textStrong
+    }
+    
+    var setTitle: String = "" {
+        didSet {
+            self.titleLabel.text = setTitle
+        }
+    }
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +35,8 @@ class BaseViewController: UIViewController {
         layout()
         configureUI()
         setupBinding()
+        setGesture()
+        setDelegate()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,11 +66,12 @@ class BaseViewController: UIViewController {
         navigationItem.standardAppearance = navigationBarAppearance
         navigationItem.scrollEdgeAppearance = navigationBarAppearance
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal),
-                                                                style: .plain,
-                                                                target: self,
-                                                                action: #selector(dldClickBackButton))
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        backButton.addTarget(self, action: #selector(didClickBackButton), for: .touchUpInside)
         
+        self.navigationItem.leftBarButtonItems = [.init(customView: backButton),
+                                                  .init(customView: titleLabel)]
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
@@ -72,7 +86,7 @@ class BaseViewController: UIViewController {
         
     }
     
-    @objc func dldClickBackButton() {
+    @objc func didClickBackButton() {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -107,6 +121,10 @@ class BaseViewController: UIViewController {
     }
     
     func setupBinding() { }
+    
+    func setGesture() { }
+    
+    func setDelegate() { }
 }
 
 extension BaseViewController: UIGestureRecognizerDelegate {
