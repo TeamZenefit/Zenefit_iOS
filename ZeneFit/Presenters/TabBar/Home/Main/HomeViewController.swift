@@ -101,7 +101,7 @@ final class HomeViewController: BaseViewController {
         
         benefitInfoView.gesture(for: .tap)
             .sink { [weak self] _ in
-                self?.viewModel.coordinator?.pushToBookmark()
+                self?.viewModel.coordinator?.pushToBenefit()
             }.store(in: &cancellable)
     }
     

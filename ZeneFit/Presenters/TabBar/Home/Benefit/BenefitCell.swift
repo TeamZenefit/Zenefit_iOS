@@ -1,14 +1,14 @@
 //
-//  BookmarkCell.swift
+//  BenefitCell.swift
 //  ZeneFit
 //
-//  Created by iOS신상우 on 2023/10/31.
+//  Created by iOS신상우 on 2023/11/02.
 //
 
 import UIKit
 
-final class BookmarkCell: UITableViewCell {
-    static let identifier = "BookmarkCell"	
+final class BenefitCell: UITableViewCell {
+    static let identifier = "BenefitCell"
     
     private let frameView = UIView().then {
         $0.backgroundColor = .white
@@ -32,8 +32,8 @@ final class BookmarkCell: UITableViewCell {
         $0.textColor = .textNormal
     }
     
-    private let dateLabel = PaddingLabel(padding: .init(top: 6, left: 10, bottom: 6, right: 10)).then {
-        $0.text = "00/00 까지"
+    private let infoLabel = PaddingLabel(padding: .init(top: 6, left: 10, bottom: 6, right: 10)).then {
+        $0.text = "n만원"
         $0.layer.masksToBounds = true
         $0.font = .pretendard(.label5)
         $0.layer.cornerRadius = 14
@@ -54,7 +54,7 @@ final class BookmarkCell: UITableViewCell {
     
     private func setLayout() {
         addSubview(frameView)
-        [thumbnailImageView, titleLabel, contentLabel, dateLabel].forEach {
+        [thumbnailImageView, titleLabel, contentLabel, infoLabel].forEach {
             frameView.addSubview($0)
         }
         
@@ -71,10 +71,10 @@ final class BookmarkCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.centerY.equalTo(thumbnailImageView)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(8)
-            $0.trailing.equalTo(dateLabel.snp.leading).offset(-16)
+            $0.trailing.equalTo(infoLabel.snp.leading).offset(-16)
         }
         
-        dateLabel.snp.makeConstraints {
+        infoLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.bottom.equalTo(titleLabel)
         }
@@ -86,3 +86,4 @@ final class BookmarkCell: UITableViewCell {
         }
     }
 }
+

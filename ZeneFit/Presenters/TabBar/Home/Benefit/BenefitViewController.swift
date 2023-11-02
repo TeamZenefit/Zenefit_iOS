@@ -1,21 +1,21 @@
 //
-//  BookmarkViewController.swift
+//  BenefitViewController.swift
 //  ZeneFit
 //
-//  Created by iOS신상우 on 2023/10/30.
+//  Created by iOS신상우 on 2023/11/02.
 //
 
 import UIKit
 
-final class BookmarkViewController: BaseViewController {
-    private let viewModel: BookmarkViewModel
+final class BenefitViewController: BaseViewController {
+    private let viewModel: BenefitViewModel
     
     private let topFrameView = UIView().then {
         $0.backgroundColor = .white
     }
     
     private let subTitleLabel = UILabel().then {
-        $0.text = "관심 등록 중인 정책"
+        $0.text = "수혜중인 정책"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal
     }
@@ -28,11 +28,11 @@ final class BookmarkViewController: BaseViewController {
     
     private let tableView = UITableView().then {
         $0.separatorStyle = .none
-        $0.register(BookmarkCell.self, forCellReuseIdentifier: BookmarkCell.identifier)
+        $0.register(BenefitCell.self, forCellReuseIdentifier: BenefitCell.identifier)
         $0.backgroundColor = .backgroundPrimary
     }
     
-    init(viewModel: BookmarkViewModel) {
+    init(viewModel: BenefitViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,7 +47,7 @@ final class BookmarkViewController: BaseViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        setTitle = "관심 정책"
+        setTitle = "수혜 정책"
     }
     
     override func setDelegate() {
@@ -86,15 +86,9 @@ final class BookmarkViewController: BaseViewController {
     }
 }
 
-extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
+extension BenefitViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return " "
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = BookmarkFooterView()
-        footer.frame = .init(x: 16, y: 0, width: 200, height: 34)
-        return footer
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -102,12 +96,13 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.bookmarkList.count
+        return viewModel.policyList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkCell.identifier, for: indexPath) as! BookmarkCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.identifier, for: indexPath) as! BenefitCell
         
         return cell
     }
 }
+

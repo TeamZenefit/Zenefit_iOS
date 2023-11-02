@@ -39,4 +39,10 @@ extension HomeCoordinator {
         let bookmarkVC = BookmarkViewController(viewModel: bookmarkVM)
         navigationController.pushViewController(bookmarkVC, animated: true)
     }
+    
+    func pushToBenefit() {
+        let benefitVM = BenefitViewModel(coordinator: self)
+        let benefitVC = BenefitViewController(viewModel: benefitVM)
+        navigationController.pushViewController(benefitVC, animated: true)
+    }
 }
