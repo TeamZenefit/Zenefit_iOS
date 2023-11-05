@@ -381,9 +381,9 @@
 		B552F9CB2AE5444F00AA5F40 /* Welfare */ = {
 			isa = PBXGroup;
 			children = (
+				B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */,
 				B552F9DA2AE553D300AA5F40 /* Main */,
 				B552F9D72AE551E100AA5F40 /* Find */,
-				B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */,
 			);
 			path = Welfare;
 			sourceTree = "<group>";
