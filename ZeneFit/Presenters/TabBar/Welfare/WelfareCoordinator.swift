@@ -18,8 +18,8 @@ class WelfareCoordinator: Coordinator {
     }
     
     func start() {
-        let welfareVC = WelfareViewController()
-        welfareVC.coordinator = self
+        let welfareVM = WelfareViewModel(coordinator: self)
+        let welfareVC = WelfareViewController(viewModel: welfareVM)
         navigationController.viewControllers = [welfareVC]
     }
     

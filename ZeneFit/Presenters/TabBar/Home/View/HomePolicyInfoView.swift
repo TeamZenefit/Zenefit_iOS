@@ -37,8 +37,8 @@ final class HomePolicyInfoView: UIStackView {
         $0.font = .pretendard(.label5)
         $0.isHidden = true
         $0.layer.cornerRadius = 14
-        $0.textColor = .primaryNormal
-        $0.backgroundColor = .primaryAssistive
+        $0.textColor = .secondaryNormal
+        $0.backgroundColor = .secondaryAssistive
     }
     
     init(type: String?, title: String, image: String?, date: String?) {
