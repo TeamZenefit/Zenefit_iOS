@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B69C62AEAB1C800D3E092 /* ManualView.swift */; };
 		B54A67482ADBCE3700971467 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67472ADBCE3700971467 /* Collections+.swift */; };
 		B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */; };
 		B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A674C2ADBE44D00971467 /* RegistCompleteViewController.swift */; };
@@ -20,6 +21,10 @@
 		B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */; };
 		B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */; };
 		B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67922ADD9A6B00971467 /* Publisher+.swift */; };
+		B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */; };
+		B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */; };
+		B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */; };
+		B54E928F2AF3BE9600F47A6B /* BenefitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928E2AF3BE9600F47A6B /* BenefitCell.swift */; };
 		B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */; };
 		B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9C92AE5444000AA5F40 /* HomeViewController.swift */; };
 		B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9CC2AE5446D00AA5F40 /* WelfareViewController.swift */; };
@@ -35,11 +40,27 @@
 		B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */; };
 		B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9EB2AE56B6400AA5F40 /* FindWelfareResultViewController.swift */; };
 		B552F9EF2AE56E5100AA5F40 /* RecommendWelFareEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */; };
+		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
+		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
+		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
+		B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452402AEE744B000A45FA /* SettingCoordinator.swift */; };
+		B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452432AEE74B8000A45FA /* SettingViewModel.swift */; };
+		B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452462AEE86F2000A45FA /* HomeViewModel.swift */; };
+		B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452492AEE8842000A45FA /* ProgressView.swift */; };
+		B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524B2AEE8A61000A45FA /* UIImage+.swift */; };
+		B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */; };
+		B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524F2AEE9AA8000A45FA /* BigBoxView.swift */; };
+		B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */; };
+		B56452542AEEB229000A45FA /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452532AEEB229000A45FA /* GestureType.swift */; };
+		B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452D72AEFE55D000A45FA /* BookmarkViewModel.swift */; };
+		B56452DA2AEFE5A0000A45FA /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452D92AEFE5A0000A45FA /* BookmarkViewController.swift */; };
+		B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452DB2AF005A1000A45FA /* BookmarkCell.swift */; };
 		B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */; };
 		B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */; };
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
+		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
 		B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* SplashViewController.swift */; };
@@ -124,6 +145,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B53B69C62AEAB1C800D3E092 /* ManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualView.swift; sourceTree = "<group>"; };
 		B54A67472ADBCE3700971467 /* Collections+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+.swift"; sourceTree = "<group>"; };
 		B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+.swift"; sourceTree = "<group>"; };
 		B54A674C2ADBE44D00971467 /* RegistCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCompleteViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +159,10 @@
 		B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAreaUseCase.swift; sourceTree = "<group>"; };
 		B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCityUseCase.swift; sourceTree = "<group>"; };
 		B54A67922ADD9A6B00971467 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
+		B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkFooterView.swift; sourceTree = "<group>"; };
+		B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
+		B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewController.swift; sourceTree = "<group>"; };
+		B54E928E2AF3BE9600F47A6B /* BenefitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitCell.swift; sourceTree = "<group>"; };
 		B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		B552F9C92AE5444000AA5F40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B552F9CC2AE5446D00AA5F40 /* WelfareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareViewController.swift; sourceTree = "<group>"; };
@@ -152,10 +178,26 @@
 		B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCoordinator.swift; sourceTree = "<group>"; };
 		B552F9EB2AE56B6400AA5F40 /* FindWelfareResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindWelfareResultViewController.swift; sourceTree = "<group>"; };
 		B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendWelFareEntity.swift; sourceTree = "<group>"; };
+		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		B56452402AEE744B000A45FA /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
+		B56452432AEE74B8000A45FA /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		B56452462AEE86F2000A45FA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B56452492AEE8842000A45FA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		B564524B2AEE8A61000A45FA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBoxView.swift; sourceTree = "<group>"; };
+		B564524F2AEE9AA8000A45FA /* BigBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoxView.swift; sourceTree = "<group>"; };
+		B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePolicyInfoView.swift; sourceTree = "<group>"; };
+		B56452532AEEB229000A45FA /* GestureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
+		B56452D72AEFE55D000A45FA /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
+		B56452D92AEFE5A0000A45FA /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		B56452DB2AF005A1000A45FA /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
 		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
+		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeneFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -313,10 +355,25 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		B54E92892AF3BE0B00F47A6B /* Benefit */ = {
+			isa = PBXGroup;
+			children = (
+				B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */,
+				B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */,
+				B54E928E2AF3BE9600F47A6B /* BenefitCell.swift */,
+			);
+			path = Benefit;
+			sourceTree = "<group>";
+		};
 		B552F9C82AE5443000AA5F40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B552F9C92AE5444000AA5F40 /* HomeViewController.swift */,
+				B564523A2AEE4C99000A45FA /* Cooridnator */,
+				B56452482AEE8814000A45FA /* View */,
+				B56452452AEE86E6000A45FA /* Main */,
+				B56452D62AEFE548000A45FA /* Bookmark */,
+				B54E92892AF3BE0B00F47A6B /* Benefit */,
+				B5733D462AE7E73D00905E41 /* Manual */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -342,6 +399,8 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B564523F2AEE742E000A45FA /* Coordinator */,
+				B56452422AEE74AA000A45FA /* Main */,
 				B552F9D22AE544C800AA5F40 /* SettingViewController.swift */,
 			);
 			path = Setting;
@@ -397,19 +456,106 @@
 			path = Policy;
 			sourceTree = "<group>";
 		};
-		B552F9E82AE5635800AA5F40 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		B552F9ED2AE56E4600AA5F40 /* Policy */ = {
 			isa = PBXGroup;
 			children = (
 				B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */,
 			);
 			path = Policy;
+			sourceTree = "<group>";
+		};
+		B56452352AEE45A7000A45FA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				B56452362AEE45B5000A45FA /* Cooridnator */,
+				B56452372AEE45BE000A45FA /* TabBar */,
+				B552F9D12AE544B900AA5F40 /* Setting */,
+				B552F9D02AE5449500AA5F40 /* Schedule */,
+				B552F9CB2AE5444F00AA5F40 /* Welfare */,
+				B552F9C82AE5443000AA5F40 /* Home */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		B56452362AEE45B5000A45FA /* Cooridnator */ = {
+			isa = PBXGroup;
+			children = (
+				B564523D2AEE4EF2000A45FA /* TabBarItem.swift */,
+				B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */,
+			);
+			path = Cooridnator;
+			sourceTree = "<group>";
+		};
+		B56452372AEE45BE000A45FA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		B564523A2AEE4C99000A45FA /* Cooridnator */ = {
+			isa = PBXGroup;
+			children = (
+				B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */,
+			);
+			path = Cooridnator;
+			sourceTree = "<group>";
+		};
+		B564523F2AEE742E000A45FA /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B56452402AEE744B000A45FA /* SettingCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		B56452422AEE74AA000A45FA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B56452432AEE74B8000A45FA /* SettingViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B56452452AEE86E6000A45FA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B552F9C92AE5444000AA5F40 /* HomeViewController.swift */,
+				B56452462AEE86F2000A45FA /* HomeViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B56452482AEE8814000A45FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B56452492AEE8842000A45FA /* ProgressView.swift */,
+				B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */,
+				B564524F2AEE9AA8000A45FA /* BigBoxView.swift */,
+				B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B56452D62AEFE548000A45FA /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				B56452D72AEFE55D000A45FA /* BookmarkViewModel.swift */,
+				B56452D92AEFE5A0000A45FA /* BookmarkViewController.swift */,
+				B56452DB2AF005A1000A45FA /* BookmarkCell.swift */,
+				B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */,
+			);
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
+		B5733D462AE7E73D00905E41 /* Manual */ = {
+			isa = PBXGroup;
+			children = (
+				B5733D472AE7E75400905E41 /* ManualViewController.swift */,
+				B53B69C62AEAB1C800D3E092 /* ManualView.swift */,
+			);
+			path = Manual;
 			sourceTree = "<group>";
 		};
 		B5F624532AC2F6A0002A1896 = {
@@ -523,6 +669,7 @@
 				B54A67472ADBCE3700971467 /* Collections+.swift */,
 				B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */,
 				B54A67922ADD9A6B00971467 /* Publisher+.swift */,
+				B564524B2AEE8A61000A45FA /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -530,10 +677,7 @@
 		B5F624BC2AC53AFF002A1896 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				B552F9D12AE544B900AA5F40 /* Setting */,
-				B552F9D02AE5449500AA5F40 /* Schedule */,
-				B552F9CB2AE5444F00AA5F40 /* Welfare */,
-				B552F9C82AE5443000AA5F40 /* Home */,
+				B56452352AEE45A7000A45FA /* TabBar */,
 				B5F624C42AC53FE8002A1896 /* Splash */,
 				B5F624BD2AC53B2F002A1896 /* Auth */,
 			);
@@ -562,7 +706,6 @@
 		B5F624C12AC53B66002A1896 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B552F9E82AE5635800AA5F40 /* New Group */,
 				B5F624F72AC8A169002A1896 /* InfoSelectionBottomSheet */,
 				B5F624C22AC53B79002A1896 /* BaseViewController.swift */,
 				B5F624C92AC54C53002A1896 /* PaddingLabel.swift */,
@@ -570,7 +713,6 @@
 				B5F624F32AC88DA9002A1896 /* BottomButton.swift */,
 				B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */,
 				B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */,
-				B552F9C62AE5353300AA5F40 /* MainTabbarController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -587,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				B5F624D72AC5FAB1002A1896 /* OAuthType.swift */,
+				B56452532AEEB229000A45FA /* GestureType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -882,52 +1025,68 @@
 			files = (
 				B5F624F92AC8A185002A1896 /* SelectionCell.swift in Sources */,
 				B5F624D82AC5FAB1002A1896 /* OAuthType.swift in Sources */,
+				B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */,
 				B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */,
 				B5F624EB2AC87818002A1896 /* RegistInfoInputViewController.swift in Sources */,
+				B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */,
 				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
+				B56452542AEEB229000A45FA /* GestureType.swift in Sources */,
 				B5F625212ACC5A8C002A1896 /* String+.swift in Sources */,
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
+				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
+				B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
+				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
 				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
+				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
+				B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */,
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
+				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
+				B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */,
 				B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */,
 				B54A67542ADC132700971467 /* BaseResponse.swift in Sources */,
+				B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */,
 				B5F625162ACAE3E9002A1896 /* SignInUseCase.swift in Sources */,
 				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
+				B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */,
 				B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* RegistInfoInputViewModel.swift in Sources */,
 				B54A67572ADC1BE600971467 /* SignInResponse.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
+				B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */,
 				B54A67482ADBCE3700971467 /* Collections+.swift in Sources */,
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
 				B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */,
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
 				B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */,
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,
+				B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */,
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
 				B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */,
 				B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */,
 				B5F624CE2AC5B68F002A1896 /* Coordinator.swift in Sources */,
+				B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */,
 				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
+				B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */,
 				B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */,
 				B552F9D62AE54FE500AA5F40 /* KeyChainManager.swift in Sources */,
 				B5F625052AC954A1002A1896 /* SignUpInfo.swift in Sources */,
@@ -938,15 +1097,20 @@
 				B5F624C82AC54876002A1896 /* UIView+.swift in Sources */,
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
+				B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,
+				B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
 				B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */,
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,
+				B54E928F2AF3BE9600F47A6B /* BenefitCell.swift in Sources */,
 				B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */,
 				B552F9D92AE551F100AA5F40 /* FindWelfareViewController.swift in Sources */,
+				B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */,
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
+				B56452DA2AEFE5A0000A45FA /* BookmarkViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

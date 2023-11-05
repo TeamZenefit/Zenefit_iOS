@@ -55,6 +55,12 @@ final class KeychainManager {
             kSecAttrAccount: key]
         
         let status = SecItemDelete(keyChainQuery)
+        
+        guard status == noErr else {
+            print("존재하지 않습니다.")
+            return
+        }
+        
         assert(status == noErr, "failed to delete the value, status code = \(status)")
     }
     

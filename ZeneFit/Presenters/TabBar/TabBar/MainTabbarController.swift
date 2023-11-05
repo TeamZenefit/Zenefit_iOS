@@ -8,10 +8,11 @@
 import UIKit
 
 final class MainTabbarController: UITabBarController {
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: TabBarCoordinator?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        modalPresentationStyle = .fullScreen
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor.textDisable.cgColor
         tabBar.layer.cornerRadius = 8

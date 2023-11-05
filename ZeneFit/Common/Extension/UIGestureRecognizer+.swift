@@ -49,4 +49,11 @@ extension UIGestureRecognizer {
         
         func request(_ demand: Subscribers.Demand) { }
     }
+    
+    static var tap: UITapGestureRecognizer { .init() }
+    static var longPress: UILongPressGestureRecognizer { .init() }
+    static var pan: UIPanGestureRecognizer { .init() }
+    static var pinch: UIPinchGestureRecognizer { .init() }
+    static var swipe: UISwipeGestureRecognizer { .init() }
+    static var edge: UIScreenEdgePanGestureRecognizer { .init() }
 }

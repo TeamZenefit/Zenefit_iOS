@@ -109,7 +109,7 @@ final class SignInViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] isSuccess in
                 guard isSuccess else { return }
-                self?.coordinator?.didFinishAuth()
+                self?.coordinator?.finish()
             }
             .store(in: &cancellable)
         
