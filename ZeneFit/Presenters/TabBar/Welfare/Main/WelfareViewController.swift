@@ -9,6 +9,11 @@ import UIKit
 
 final class WelfareViewController: BaseViewController {
     weak var coordinator: WelfareCoordinator?
+    
+    private let notiButton = UIButton(type: .system).then {
+        $0.setImage(.init(named: "alarm_off"), for: .normal)
+    }
+    
     private let testButton = UIButton(type: .system).then {
         $0.setTitle("테스트찾기", for: .normal)
         $0.setTitleColor(.textStrong, for: .normal)
@@ -16,7 +21,14 @@ final class WelfareViewController: BaseViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        navigationItem.leftBarButtonItem = nil
+        self.navigationController?.navigationBar.isHidden = false
+        let titleLabel = UILabel().then {
+            $0.text = "정책"
+            $0.textColor = .textStrong
+            $0.font = .pretendard(.label1)
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.rightBarButtonItem = .init(customView: notiButton)
     }
     
     override func setupBinding() {
