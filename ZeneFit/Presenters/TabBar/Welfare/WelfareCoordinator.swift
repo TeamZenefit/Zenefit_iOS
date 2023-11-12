@@ -44,4 +44,10 @@ class WelfareCoordinator: Coordinator {
         
         navigationController.pushViewController(listVC, animated: true)
     }
+    
+    func showWelfareDetail(welfareId: Int) {
+        let detailVM = WelfareDetailViewModel(coordinator: self)
+        let detailVC = WelfareDetailViewController(viewModel: detailVM)
+        navigationController.pushViewController(detailVC, animated: true)
+    }
 }

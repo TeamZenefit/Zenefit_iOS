@@ -78,6 +78,9 @@
 		B5ED7BAC2B00AF8400138FE8 /* HomeInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BAB2B00AF8400138FE8 /* HomeInfoDTO.swift */; };
 		B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BAE2B00B18400138FE8 /* HomeUseCase.swift */; };
 		B5ED7BB22B00B50900138FE8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B5ED7BB12B00B50900138FE8 /* Kingfisher */; };
+		B5ED7BB52B00E3A000138FE8 /* WelfareDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BB42B00E3A000138FE8 /* WelfareDetailViewModel.swift */; };
+		B5ED7BB72B00E3C100138FE8 /* WelfareDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BB62B00E3C100138FE8 /* WelfareDetailViewController.swift */; };
+		B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BB82B0103FA00138FE8 /* WelfareDetailCell.swift */; };
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
 		B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* SplashViewController.swift */; };
@@ -231,6 +234,9 @@
 		B5ED7BA82B00AE6500138FE8 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		B5ED7BAB2B00AF8400138FE8 /* HomeInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoDTO.swift; sourceTree = "<group>"; };
 		B5ED7BAE2B00B18400138FE8 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
+		B5ED7BB42B00E3A000138FE8 /* WelfareDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareDetailViewModel.swift; sourceTree = "<group>"; };
+		B5ED7BB62B00E3C100138FE8 /* WelfareDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareDetailViewController.swift; sourceTree = "<group>"; };
+		B5ED7BB82B0103FA00138FE8 /* WelfareDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareDetailCell.swift; sourceTree = "<group>"; };
 		B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeneFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -453,6 +459,7 @@
 				B552F9DA2AE553D300AA5F40 /* Main */,
 				B54AB1B12AF7E21F00429C52 /* List */,
 				B552F9D72AE551E100AA5F40 /* Find */,
+				B5ED7BB32B00E38200138FE8 /* Detail */,
 			);
 			path = Welfare;
 			sourceTree = "<group>";
@@ -660,6 +667,16 @@
 				B5ED7BAE2B00B18400138FE8 /* HomeUseCase.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		B5ED7BB32B00E38200138FE8 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED7BB42B00E3A000138FE8 /* WelfareDetailViewModel.swift */,
+				B5ED7BB62B00E3C100138FE8 /* WelfareDetailViewController.swift */,
+				B5ED7BB82B0103FA00138FE8 /* WelfareDetailCell.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		B5F624532AC2F6A0002A1896 = {
@@ -1185,6 +1202,7 @@
 				B5F625012AC94A8B002A1896 /* RegistInfoInputViewModel.swift in Sources */,
 				B54A67572ADC1BE600971467 /* SignInResponse.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
+				B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
 				B5ED7BA72B00ADF500138FE8 /* AuthRepositoryProtocol.swift in Sources */,
 				B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */,
@@ -1204,6 +1222,7 @@
 				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
 				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
+				B5ED7BB52B00E3A000138FE8 /* WelfareDetailViewModel.swift in Sources */,
 				B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */,
 				B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */,
 				B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */,
@@ -1224,6 +1243,7 @@
 				B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
+				B5ED7BB72B00E3C100138FE8 /* WelfareDetailViewController.swift in Sources */,
 				B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */,
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,
 				B54E928F2AF3BE9600F47A6B /* BenefitCell.swift in Sources */,

@@ -10,6 +10,7 @@ import Combine
 
 protocol WelfareDelegate: AnyObject {
     func toggleCalendarStatus()
+    func tapApplyWelfare()
 }
 
 final class WelfareCell: UITableViewCell {
@@ -184,6 +185,11 @@ final class WelfareCell: UITableViewCell {
         addScheduleButton.tapPublisher
             .sink { [weak self] in
                 self?.delegate?.toggleCalendarStatus()
+            }.store(in: &cancellable)
+        
+        applyButton.tapPublisher
+            .sink { [weak self] in
+                self?.delegate?.tapApplyWelfare()
             }.store(in: &cancellable)
     }
     

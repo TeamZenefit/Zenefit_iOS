@@ -193,4 +193,8 @@ extension WelfareListViewController: WelfareDelegate {
     func toggleCalendarStatus() {
         self.notiAlert("달력에 추가되었습니다.")
     }
+    
+    func tapApplyWelfare() {
+        viewModel.coordinator?.showWelfareDetail(welfareId: 0) // 임시
+    }
 }
