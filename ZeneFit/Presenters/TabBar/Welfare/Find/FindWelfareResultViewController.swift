@@ -42,11 +42,15 @@ final class FindWelfareResultViewController: BaseViewController {
         self.resultType = resultType
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .fullScreen
-        configureUI(resultType: resultType)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI(resultType: resultType)
     }
     
     override func configureNavigation() {
@@ -110,7 +114,7 @@ final class FindWelfareResultViewController: BaseViewController {
             giftImage = UIImage(named: "SuccessGift")
             completionTitleColor = .primaryNormal
             completionBGColor = .primaryAssistive
-            completionTitle = "모두 확인하기"
+            completionTitle = "모든 정책 볼래요"
             title += "정책을 \(viewModel.findResult.policyCnt)가지 찾았어요!"
             subTitle = "닉네임이 받을 수 있는 금액도\n모두 계산이 끝났어요"
         case .fail:
@@ -126,6 +130,7 @@ final class FindWelfareResultViewController: BaseViewController {
         completeButton.backgroundColor = completionBGColor
         completeButton.setTitleColor(completionTitleColor, for: .normal)
         completeButton.setTitle(completionTitle, for: .normal)
+        completeButton.titleLabel?.font = .pretendard(.label3)
         titleLabel.text = title
         subTitleLabel.text = subTitle
     }

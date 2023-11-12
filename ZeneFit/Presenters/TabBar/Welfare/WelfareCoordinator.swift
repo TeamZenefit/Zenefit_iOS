@@ -18,8 +18,8 @@ class WelfareCoordinator: Coordinator {
     }
     
     func start() {
-        let welfareVC = WelfareViewController()
-        welfareVC.coordinator = self
+        let welfareVM = WelfareViewModel(coordinator: self)
+        let welfareVC = WelfareViewController(viewModel: welfareVM)
         navigationController.viewControllers = [welfareVC]
     }
     
@@ -35,5 +35,13 @@ class WelfareCoordinator: Coordinator {
         let resultVC = FindWelfareResultViewController(viewModel: viewModel,
                                                        resultType: resultType)
         navigationController.pushViewController(resultVC, animated: false)
+    }
+    
+    func showWelfareListVC(type: WelfareType) {
+        let listVM = WelfareListViewModel(coordinator: self,
+                                          type: type)
+        let listVC = WelfareListViewController(viewModel: listVM)
+        
+        navigationController.pushViewController(listVC, animated: true)
     }
 }
