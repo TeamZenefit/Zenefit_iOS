@@ -21,10 +21,12 @@ extension UIViewController {
     
     func notiAlert(_ content: String) {
         let alert = StandardNotificationAlertView(content)
+        
         self.view.addSubview(alert)
+        
         alert.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(38)
-            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
         }
     }
 }

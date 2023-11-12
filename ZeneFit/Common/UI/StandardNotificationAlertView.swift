@@ -11,8 +11,8 @@ final class StandardNotificationAlertView: UIStackView {
     private var delayedExecutionWorkItem: DispatchWorkItem?
     
     private let contentLabel = UILabel().then {
-        $0.font = .pretendard(.body2)
-        $0.textColor = .textNormal
+        $0.font = .pretendard(.label3)
+        $0.textColor = .white
         $0.numberOfLines = 0
         $0.textAlignment = .center
     }
@@ -26,13 +26,18 @@ final class StandardNotificationAlertView: UIStackView {
         }
         
         self.contentLabel.text = content
-        self.backgroundColor = .tertiaryLabel
-        self.layer.cornerRadius = 5
+        self.backgroundColor = .textNormal.withAlphaComponent(0.7)
+        self.layer.cornerRadius = 8
         
         delayedExecutionWorkItem?.cancel()
         
         let workItem = DispatchWorkItem { [weak self] in
-            self?.removeFromSuperview()
+            guard let self else { return }
+            UIView.animate(withDuration: 0.7, animations: {
+                self.frame.origin = .init(x: 16, y: UIScreen.main.bounds.height)
+            }) { _ in
+                self.removeFromSuperview()
+            }
         }
         
         // 5초 후에 클로저를 실행

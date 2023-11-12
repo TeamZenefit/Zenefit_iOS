@@ -16,7 +16,7 @@ final class WelfareListViewModel {
     
     let type: WelfareType
     
-    let categories = ["전체","취업","창업","주거∙금융","생활","사회 참여","사회 참여","사회 참여"]
+    let categories = ["전체","취업","창업","주거∙금융","생활","사회 참여"]
     
     let items = ["1","2","3","4","5","6","7","8"]
     

@@ -140,7 +140,7 @@ extension WelfareListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
         cell.configureCell(title: viewModel.categories[indexPath.row], selectedCategory: viewModel.selectedCategory)
-        
+
         return cell
     }
     
@@ -174,6 +174,7 @@ extension WelfareListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelfareCell.identifier, for: indexPath) as! WelfareCell
         cell.configureCell(item: viewModel.items[indexPath.row])
+        cell.delegate = self
         
         return cell
     }
@@ -185,5 +186,11 @@ extension WelfareListViewController {
         layout.scrollDirection = .horizontal
         
         return layout
+    }
+}
+
+extension WelfareListViewController: WelfareDelegate {
+    func toggleCalendarStatus() {
+        self.notiAlert("달력에 추가되었습니다.")
     }
 }
