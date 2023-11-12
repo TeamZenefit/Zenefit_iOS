@@ -70,6 +70,10 @@
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
 		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
+		B5ED7B9F2B00AC3900138FE8 /* HomePepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomePepository.swift */; };
+		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
+		B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */; };
+		B5ED7BA72B00ADF500138FE8 /* AuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA62B00ADF500138FE8 /* AuthRepositoryProtocol.swift */; };
 		B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */; };
 		B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */; };
 		B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624632AC2F6A0002A1896 /* SplashViewController.swift */; };
@@ -216,6 +220,10 @@
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
 		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		B5ED7B9E2B00AC3900138FE8 /* HomePepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePepository.swift; sourceTree = "<group>"; };
+		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B5ED7BA62B00ADF500138FE8 /* AuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeneFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -358,6 +366,7 @@
 		B54A675F2ADC3BB000971467 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED7BA02B00AC4900138FE8 /* Home */,
 				B552F9E32AE55D9400AA5F40 /* Policy */,
 				B54A674F2ADC11CD00971467 /* Auth */,
 			);
@@ -609,6 +618,24 @@
 			path = Manual;
 			sourceTree = "<group>";
 		};
+		B5ED7BA02B00AC4900138FE8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED7B9E2B00AC3900138FE8 /* HomePepository.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B5ED7BA12B00AC7900138FE8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */,
+				B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */,
+				B5ED7BA62B00ADF500138FE8 /* AuthRepositoryProtocol.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		B5F624532AC2F6A0002A1896 = {
 			isa = PBXGroup;
 			children = (
@@ -635,7 +662,6 @@
 				B5F624DD2AC60335002A1896 /* ZeneFit.entitlements */,
 				B54A674E2ADC11C300971467 /* Data */,
 				B5F625122ACAE3BB002A1896 /* Domain */,
-				B5F625022AC95488002A1896 /* Models */,
 				B5F624BC2AC53AFF002A1896 /* Presenters */,
 				B5F6249E2AC31432002A1896 /* Common */,
 				B5F6248F2AC2F85D002A1896 /* App */,
@@ -823,13 +849,13 @@
 			path = InfoSelectionBottomSheet;
 			sourceTree = "<group>";
 		};
-		B5F625022AC95488002A1896 /* Models */ = {
+		B5F625022AC95488002A1896 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				B552F9ED2AE56E4600AA5F40 /* Policy */,
 				B5F625032AC95492002A1896 /* Auth */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B5F625032AC95492002A1896 /* Auth */ = {
@@ -870,6 +896,8 @@
 		B5F625122ACAE3BB002A1896 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED7BA12B00AC7900138FE8 /* Repository */,
+				B5F625022AC95488002A1896 /* Model */,
 				B5F625132ACAE3C0002A1896 /* UseCase */,
 			);
 			path = Domain;
@@ -1086,6 +1114,7 @@
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
+				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
@@ -1095,6 +1124,7 @@
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
+				B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */,
 				B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
@@ -1126,6 +1156,7 @@
 				B54A67572ADC1BE600971467 /* SignInResponse.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
+				B5ED7BA72B00ADF500138FE8 /* AuthRepositoryProtocol.swift in Sources */,
 				B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */,
 				B54A67482ADBCE3700971467 /* Collections+.swift in Sources */,
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
@@ -1170,6 +1201,7 @@
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
+				B5ED7B9F2B00AC3900138FE8 /* HomePepository.swift in Sources */,
 				B56452DA2AEFE5A0000A45FA /* BookmarkViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

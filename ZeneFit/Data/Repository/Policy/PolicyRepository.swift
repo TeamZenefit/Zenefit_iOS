@@ -8,11 +8,7 @@
 import Foundation
 import Combine
 
-protocol PolicyRepositoryProtocol {
-    func getRecommendWelfareList() -> AnyPublisher<RecommendWelFareEntity, Error>
-}
-
-class PolicyRepository: PolicyRepositoryProtocol {
+final class PolicyRepository: PolicyRepositoryProtocol {
     private let policyService: PolicyService
     
     init(policyService: PolicyService = .init()) {
