@@ -21,14 +21,17 @@ extension URLSession: URLSessionable {
         expect type: T.Type,
         responseHandler: ((_ response: HTTPURLResponse) throws -> Void)? = nil)
     -> AnyPublisher<T, Error> where T: Decodable {
+        #if DEBUG
         logRequestInfo(urlRequest)
+        #endif
         return self.dataTaskPublisher(for: urlRequest)
             .tryMap { [weak self] (data, response) -> Data in
                 guard let res = response as? HTTPURLResponse else {
                     throw CommonError.otherError
                 }
+                #if DEBUG
                 self?.logResponseInfo(res, data: data)
-                
+                #endif
                 try responseHandler?(res)
                 
                 return data

@@ -30,6 +30,35 @@ final class WelfareListViewController: BaseViewController {
     
     private let sortContentView = UIView().then {
         $0.backgroundColor = .backgroundPrimary
+        $0.isHidden = true
+    }
+    
+    private let amountOrder = UIButton(type: .system).then {
+        var configure = UIButton.Configuration.filled()
+        configure.attributedTitle = .init("수혜금액",
+                                          attributes: .init([.font: UIFont.pretendard(.body2),
+                                                             .foregroundColor : UIColor.white]))
+        configure.baseBackgroundColor = .primaryNormal
+        configure.background.cornerRadius = 16
+        configure.background.strokeColor = .lineNormal
+        configure.background.strokeWidth = 0
+        configure.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+        
+        $0.configuration = configure
+    }
+    
+    private let closingOrder = UIButton(type: .system).then {
+        var configure = UIButton.Configuration.filled()
+        configure.attributedTitle = .init("마감순",
+                                          attributes: .init([.font: UIFont.pretendard(.body2),
+                                                             .foregroundColor : UIColor.textAlternative]))
+        configure.baseBackgroundColor = .white
+        configure.background.cornerRadius = 16
+        configure.background.strokeColor = .lineNormal
+        configure.background.strokeWidth = 1
+        configure.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+        
+        $0.configuration = configure
     }
     
     private let tableView = UITableView(frame: .zero, style: .grouped).then {
@@ -71,6 +100,10 @@ final class WelfareListViewController: BaseViewController {
         [searchBar, categoryCollectionView, sortView, sortContentView].forEach {
             headerView.addSubview($0)
         }
+        
+        [amountOrder, closingOrder].forEach {
+            sortContentView.addSubview($0)
+        }
     }
     
     override func setupBinding() {
@@ -80,12 +113,38 @@ final class WelfareListViewController: BaseViewController {
                 sortView.isOpen.toggle()
                 
                 let height = sortView.isOpen ? 56 : 0
+                sortContentView.isHidden = !sortView.isOpen
                 
                 self.sortContentView.snp.updateConstraints {
                     $0.height.equalTo(height)
                 }
                 self.tableView.reloadSections(.init(integer: 0), with: .none)
                 
+            }.store(in: &cancellable)
+        
+        // 임시
+        amountOrder.tapPublisher
+            .sink { [weak self] in
+                self?.sortView.title = "수혜금액"
+                self?.amountOrder.configuration?.attributedTitle?.foregroundColor = UIColor.white
+                self?.amountOrder.configuration?.baseBackgroundColor = .primaryNormal
+                self?.amountOrder.configuration?.background.strokeWidth = 0
+                
+                self?.closingOrder.configuration?.attributedTitle?.foregroundColor = .textAlternative
+                self?.closingOrder.configuration?.baseBackgroundColor = .white
+                self?.closingOrder.configuration?.background.strokeWidth = 1
+            }.store(in: &cancellable)
+        
+        closingOrder.tapPublisher
+            .sink { [weak self] in
+                self?.sortView.title = "마감순"
+                self?.amountOrder.configuration?.attributedTitle?.foregroundColor = .textAlternative
+                self?.amountOrder.configuration?.baseBackgroundColor = .white
+                self?.amountOrder.configuration?.background.strokeWidth = 1
+                
+                self?.closingOrder.configuration?.attributedTitle?.foregroundColor = UIColor.white
+                self?.closingOrder.configuration?.baseBackgroundColor = .primaryNormal
+                self?.closingOrder.configuration?.background.strokeWidth = 0
             }.store(in: &cancellable)
     }
     
@@ -121,6 +180,16 @@ final class WelfareListViewController: BaseViewController {
         tableView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
+        }
+        
+        amountOrder.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        closingOrder.snp.makeConstraints {
+            $0.leading.equalTo(amountOrder.snp.trailing).offset(8)
+            $0.centerY.equalToSuperview()
         }
     }
     
