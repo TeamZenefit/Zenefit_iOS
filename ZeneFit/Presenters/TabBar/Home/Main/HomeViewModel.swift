@@ -6,15 +6,39 @@
 //
 
 import Foundation
+import Combine
 
 final class HomeViewModel {
     weak var coordinator: HomeCoordinator?
     
-    init(coordinator: HomeCoordinator? = nil) {
+    private var cancellable = Set<AnyCancellable>()
+    private let usecase: HomeUseCase
+   
+    // output
+    var info = PassthroughSubject<HomeInfoDTO, Never>()
+    var error = PassthroughSubject<Error, Never>()
+    
+    init(coordinator: HomeCoordinator? = nil,
+         usecase: HomeUseCase = .init()) {
         self.coordinator = coordinator
+        self.usecase = usecase
     }
     
     func fetchBenefitList() {
-        coordinator
+        
+    }
+    
+    func fetchMainInfo() {
+        usecase.fetchHomeInfo()
+            .sink { [weak self] finish in
+                switch finish {
+                case .failure(let error):
+                    self?.error.send(error)
+                case .finished:
+                    break
+                }
+            } receiveValue: { [weak self] info in
+                self?.info.send(info)
+            }.store(in: &cancellable)
     }
 }

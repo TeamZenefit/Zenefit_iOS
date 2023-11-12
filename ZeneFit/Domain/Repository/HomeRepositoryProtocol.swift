@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol HomeRepositoryProtocol {
-    
+    func fetchHomeInfo() -> AnyPublisher<HomeInfoDTO, Error>
 }
