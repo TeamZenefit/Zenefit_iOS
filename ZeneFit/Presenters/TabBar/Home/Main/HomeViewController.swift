@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class HomeViewController: BaseViewController {
     private let viewModel: HomeViewModel
@@ -53,16 +54,26 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(KeychainManager.read("accessToken"))
-        
-        progressView.configureView(content: "상위 100% 앞서 가기", value: 0.5)
-        bookmarkInfoView.configureInfo(count: 1)
-        benefitInfoView.configureInfo(count: 2)
-        policyInfoView.setItems(items: ["정책 이름","정책 이름","정책 이름"])
-        deadLineInfoView.setItems(items: ["정책 이름","정책 이름","정책 이름"], temp: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchMainInfo()
     }
     
     override func setupBinding() {
-        
+        viewModel.info
+            .sink { [weak self] info in
+                self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"
+                self?.progressView.configureView(content: info.description,
+                                                 value: CGFloat(info.characterPercent)/100.0)
+                self?.bookmarkInfoView.configureInfo(count: info.applyPolicyCnt)
+                self?.benefitInfoView.configureInfo(count: info.interestPolicyCnt)
+                self?.imageView.kf.setImage(with: URL(string: info.characterImage))
+                
+                self?.policyInfoView.setItems(items: info.recommendPolicy)
+                self?.deadLineInfoView.setItems(items: info.endDatePolicy)
+            }.store(in: &cancellable)
     }
     
     override func configureUI() {

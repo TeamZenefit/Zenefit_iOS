@@ -24,6 +24,7 @@ final class ProgressView: UIStackView {
         setLayout()
         backgroundColor = .white
         layer.cornerRadius = 16
+        progressView.layer.masksToBounds = true
     }
     
     required init(coder: NSCoder) {

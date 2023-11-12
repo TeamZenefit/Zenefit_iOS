@@ -8,16 +8,7 @@
 import Foundation
 import Combine
 
-protocol AuthRepositoryProtocol {
-    func fetchAreaInfo() -> AnyPublisher<[String], Error>
-    func fetchCityInfo(area: String) -> AnyPublisher<[String], Error>
-    func signIn(oauthType: OAuthType,
-                token: String,
-                nickname: String?) -> AnyPublisher<SignInResponse, Error>
-    func signUp(signUpInfo: SignUpInfo)-> AnyPublisher<SignUpResponse, Error>
-}
-
-class AuthRepository: AuthRepositoryProtocol {
+final class AuthRepository: AuthRepositoryProtocol {
     private let authService: AuthService
     
     init(authService: AuthService = .init()) {

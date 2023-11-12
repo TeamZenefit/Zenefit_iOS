@@ -74,15 +74,16 @@ final class HomePolicyInfoView: UIStackView {
             $0.top.equalTo(mainImageView).offset(1)
         }
         
-        policyNameLabel.snp.makeConstraints {
-            $0.leading.equalTo(typeLabel)
-            $0.top.equalTo(typeLabel.snp.bottom).offset(2)
-        }
-        
         applyButton.snp.makeConstraints {
             $0.trailing.centerY.equalToSuperview()
             $0.height.equalTo(36)
             $0.width.equalTo(73)
+        }
+        
+        policyNameLabel.snp.makeConstraints {
+            $0.leading.equalTo(typeLabel)
+            $0.trailing.equalTo(applyButton.snp.leading).offset(-16)
+            $0.top.equalTo(typeLabel.snp.bottom).offset(2)
         }
         
         dateLabel.snp.makeConstraints {
