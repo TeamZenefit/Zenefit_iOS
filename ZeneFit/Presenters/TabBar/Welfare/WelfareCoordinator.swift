@@ -36,4 +36,12 @@ class WelfareCoordinator: Coordinator {
                                                        resultType: resultType)
         navigationController.pushViewController(resultVC, animated: false)
     }
+    
+    func showWelfareListVC(type: WelfareType) {
+        let listVM = WelfareListViewModel(coordinator: self,
+                                          type: type)
+        let listVC = WelfareListViewController(viewModel: listVM)
+        
+        navigationController.pushViewController(listVC, animated: true)
+    }
 }

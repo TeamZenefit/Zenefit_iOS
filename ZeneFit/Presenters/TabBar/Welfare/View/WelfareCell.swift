@@ -1,45 +1,22 @@
 //
-//  WelFareCategoryCell.swift
+//  WelfareCell.swift
 //  ZeneFit
 //
-//  Created by iOS신상우 on 2023/11/05.
+//  Created by iOS신상우 on 2023/11/09.
 //
 
 import UIKit
 import Combine
 
-final class WelFareCategoryCell: UITableViewCell {
-    static let identifier = "WelFareCategoryCell"
+final class WelfareCell: UITableViewCell {
+    static let identifier = "WelfareCell"
     
     private var cancellable = Set<AnyCancellable>()
     
     var titleTapHandler: (()->Void)?
     
-    private let totalFrameView = UIStackView().then {
-        $0.layer.cornerRadius = 16
+    private let frameView = UIStackView().then {
         $0.backgroundColor = .white
-    }
-    
-    private let topFrameView = UIStackView()
-    
-    private let titleLabel = UILabel().then {
-        $0.text = "정책명"
-        $0.font = .pretendard(.label2)
-        $0.textColor = .textStrong
-    }
-    
-    private let separatorView = UIView().then {
-        $0.backgroundColor = .lineAlternative
-    }
-    
-    private let countLabel = UILabel().then {
-        $0.textAlignment = .center
-        $0.clipsToBounds = true
-        $0.text = "0"
-        $0.layer.cornerRadius = 10
-        $0.textColor = .white
-        $0.font = .pretendard(.label5)
-        $0.backgroundColor = .primaryNormal
     }
     
     private let policyImageView = UIImageView().then {
@@ -60,6 +37,10 @@ final class WelFareCategoryCell: UITableViewCell {
         $0.textColor = .textNormal
     }
     
+    private let selectButton = UIButton(type: .system).then {
+        $0.setImage(.init(named: "Check-Off_welfare")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
     private let applyTypeStackView = UIStackView().then {
         $0.spacing = 4
     }
@@ -69,10 +50,6 @@ final class WelFareCategoryCell: UITableViewCell {
         $0.textColor = .textNormal
         $0.font = .pretendard(.body2)
         $0.numberOfLines = 3
-    }
-    
-    private let disclosureImage = UIImageView().then {
-        $0.image = .init(named: "i-nex-26")
     }
     
     private let addScheduleButton = UIButton(type: .system).then {
@@ -85,6 +62,10 @@ final class WelFareCategoryCell: UITableViewCell {
         $0.setTitleColor(.primaryNormal, for: .normal)
         $0.titleLabel?.font = .pretendard(.label4)
         $0.backgroundColor = .primaryAssistive
+    }
+    
+    private let separatorView = UIView().then {
+        $0.backgroundColor = .lineNormal
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -124,56 +105,24 @@ final class WelFareCategoryCell: UITableViewCell {
     }
     
     func configureCell(item: String) {
-        titleLabel.text = item
     }
 
     private func addSubViews() {
-        contentView.addSubview(totalFrameView)
+        contentView.addSubview(frameView)
         
-        [topFrameView, separatorView, policyImageView, agencyLabel, policyLabel, applyTypeStackView, contentLabel, addScheduleButton, applyButton].forEach {
-            totalFrameView.addSubview($0)
-        }
-        
-        [titleLabel, countLabel, disclosureImage].forEach {
-            topFrameView.addSubview($0)
+        [policyImageView, agencyLabel, policyLabel, applyTypeStackView, selectButton, contentLabel, addScheduleButton, applyButton, separatorView].forEach {
+            frameView.addSubview($0)
         }
     }
     
     private func setLayout() {
-        totalFrameView.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-16)
-        }
-        
-        topFrameView.snp.makeConstraints {
-            $0.horizontalEdges.top.equalToSuperview()
-        }
-        
-        separatorView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(1)
-            $0.top.equalTo(topFrameView.snp.bottom)
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.leading.verticalEdges.equalToSuperview().inset(16)
-        }
-        
-        disclosureImage.snp.makeConstraints {
-            $0.width.height.equalTo(28)
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.centerY.equalToSuperview()
-        }
-        
-        countLabel.snp.makeConstraints {
-            $0.width.height.equalTo(20)
-            $0.trailing.equalTo(disclosureImage.snp.leading)
-            $0.centerY.equalTo(disclosureImage)
+        frameView.snp.makeConstraints {
+            $0.top.bottom.horizontalEdges.equalToSuperview()
         }
         
         policyImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
-            $0.top.equalTo(separatorView.snp.bottom).offset(16)
+            $0.top.equalToSuperview().offset(16)
             $0.width.height.equalTo(44)
         }
         
@@ -185,6 +134,12 @@ final class WelFareCategoryCell: UITableViewCell {
         policyLabel.snp.makeConstraints {
             $0.leading.equalTo(agencyLabel)
             $0.top.equalTo(agencyLabel.snp.bottom).offset(4)
+        }
+        
+        selectButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.centerY.equalTo(policyImageView)
+            $0.width.height.equalTo(32)
         }
         
         applyTypeStackView.snp.makeConstraints {
@@ -204,13 +159,19 @@ final class WelFareCategoryCell: UITableViewCell {
             $0.height.equalTo(36)
             $0.width.equalTo(124)
             $0.top.equalTo(contentLabel.snp.bottom).offset(8)
-            $0.bottom.equalToSuperview().offset(-16)
         }
         
         addScheduleButton.snp.makeConstraints {
             $0.height.width.equalTo(36)
             $0.centerY.equalTo(applyButton)
             $0.trailing.equalTo(applyButton.snp.leading).offset(-8)
+        }
+        
+        separatorView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalTo(applyButton.snp.bottom).offset(16)
+            $0.bottom.equalToSuperview()
         }
     }
 
@@ -219,10 +180,5 @@ final class WelFareCategoryCell: UITableViewCell {
     }
     
     private func setGesture() {
-        topFrameView.gesture(for: .tap)
-            .sink { [weak self] _ in
-                self?.titleTapHandler?()
-            }.store(in: &cancellable)
     }
-    
 }

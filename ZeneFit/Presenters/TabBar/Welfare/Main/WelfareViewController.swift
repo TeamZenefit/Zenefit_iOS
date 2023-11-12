@@ -97,6 +97,11 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelFareCategoryCell.identifier, for: indexPath) as! WelFareCategoryCell
+        cell.configureCell(item: viewModel.policyItems[indexPath.row])
+        
+        cell.titleTapHandler = { [weak self] in
+            self?.viewModel.coordinator?.showWelfareListVC(type: .init(rawValue: indexPath.row) ?? .cash)
+        }
         
         return cell
     }

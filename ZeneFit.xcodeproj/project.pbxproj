@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */; };
+		B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B82AFBE406006DF4D2 /* WelfareCell.swift */; };
+		B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */; };
+		B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */; };
 		B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B69C62AEAB1C800D3E092 /* ManualView.swift */; };
 		B54A67482ADBCE3700971467 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67472ADBCE3700971467 /* Collections+.swift */; };
 		B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */; };
@@ -24,6 +28,8 @@
 		B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AA2AF7675D00429C52 /* WelFareCategoryCell.swift */; };
 		B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AD2AF76AA400429C52 /* BaseView.swift */; };
 		B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */; };
+		B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */; };
+		B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */; };
 		B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */; };
 		B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */; };
 		B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */; };
@@ -148,6 +154,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		B52437B82AFBE406006DF4D2 /* WelfareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCell.swift; sourceTree = "<group>"; };
+		B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSearchBar.swift; sourceTree = "<group>"; };
+		B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortButton.swift; sourceTree = "<group>"; };
 		B53B69C62AEAB1C800D3E092 /* ManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualView.swift; sourceTree = "<group>"; };
 		B54A67472ADBCE3700971467 /* Collections+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+.swift"; sourceTree = "<group>"; };
 		B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+.swift"; sourceTree = "<group>"; };
@@ -165,6 +175,8 @@
 		B54AB1AA2AF7675D00429C52 /* WelFareCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelFareCategoryCell.swift; sourceTree = "<group>"; };
 		B54AB1AD2AF76AA400429C52 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareViewModel.swift; sourceTree = "<group>"; };
+		B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewController.swift; sourceTree = "<group>"; };
+		B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewModel.swift; sourceTree = "<group>"; };
 		B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkFooterView.swift; sourceTree = "<group>"; };
 		B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
 		B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewController.swift; sourceTree = "<group>"; };
@@ -365,6 +377,10 @@
 			isa = PBXGroup;
 			children = (
 				B54AB1AA2AF7675D00429C52 /* WelFareCategoryCell.swift */,
+				B52437B82AFBE406006DF4D2 /* WelfareCell.swift */,
+				B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */,
+				B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */,
+				B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,6 +392,15 @@
 				B54AB1AD2AF76AA400429C52 /* BaseView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		B54AB1B12AF7E21F00429C52 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */,
+				B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		B54E92892AF3BE0B00F47A6B /* Benefit */ = {
@@ -404,9 +429,10 @@
 		B552F9CB2AE5444F00AA5F40 /* Welfare */ = {
 			isa = PBXGroup;
 			children = (
-				B54AB1A92AF7673A00429C52 /* View */,
 				B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */,
+				B54AB1A92AF7673A00429C52 /* View */,
 				B552F9DA2AE553D300AA5F40 /* Main */,
+				B54AB1B12AF7E21F00429C52 /* List */,
 				B552F9D72AE551E100AA5F40 /* Find */,
 			);
 			path = Welfare;
@@ -1064,10 +1090,12 @@
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
 				B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */,
+				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
+				B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
@@ -1080,6 +1108,7 @@
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
 				B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
+				B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
@@ -1109,8 +1138,10 @@
 				B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */,
 				B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */,
 				B5F624CE2AC5B68F002A1896 /* Coordinator.swift in Sources */,
+				B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */,
 				B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */,
 				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
+				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
 				B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */,
 				B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */,
@@ -1119,6 +1150,7 @@
 				B5F625052AC954A1002A1896 /* SignUpInfo.swift in Sources */,
 				B552F9DC2AE5588E00AA5F40 /* PolicyService.swift in Sources */,
 				B54A67512ADC11E900971467 /* AuthRepository.swift in Sources */,
+				B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */,
 				B552F9EF2AE56E5100AA5F40 /* RecommendWelFareEntity.swift in Sources */,
 				B5F624F42AC88DA9002A1896 /* BottomButton.swift in Sources */,
 				B5F624C82AC54876002A1896 /* UIView+.swift in Sources */,
