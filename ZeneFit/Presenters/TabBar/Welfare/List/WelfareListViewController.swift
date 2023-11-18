@@ -24,7 +24,7 @@ final class WelfareListViewController: BaseViewController {
         $0.bounces = false
     }
     
-    private let headerView = UIView()
+    private let headerView = UIStackView()
     
     private let sortView = WelfareSortButton(title: "수혜금액")
     
@@ -118,8 +118,9 @@ final class WelfareListViewController: BaseViewController {
                 self.sortContentView.snp.updateConstraints {
                     $0.height.equalTo(height)
                 }
-                self.tableView.reloadSections(.init(integer: 0), with: .none)
                 
+                self.tableView.reloadSections(.init(integer: 0), with: .none)
+                view.layoutIfNeeded()
             }.store(in: &cancellable)
         
         // 임시
@@ -166,7 +167,6 @@ final class WelfareListViewController: BaseViewController {
         
         sortView.snp.makeConstraints {
             $0.top.equalTo(categoryCollectionView.snp.bottom).offset(16)
-            $0.height.equalTo(32)
             $0.trailing.equalToSuperview().offset(-16)
         }
         

@@ -91,14 +91,14 @@ final class WelfareDetailViewController: BaseViewController {
             $0.height.equalTo(48)
         }
         
-        applyButton.snp.makeConstraints {
+        detailFetchButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.trailing.equalTo(view.snp.centerX).offset(-4)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
             $0.height.equalTo(48)
         }
         
-        applyButton.snp.makeConstraints {
+        interestButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(16)
             $0.leading.equalTo(view.snp.centerX).offset(4)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
