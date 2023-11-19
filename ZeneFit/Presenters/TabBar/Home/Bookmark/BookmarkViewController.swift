@@ -38,7 +38,7 @@ final class BookmarkViewController: BaseViewController {
         $0.titleLabel?.font = .pretendard(.label4)
     }
     
-    private let tableView = UITableView().then {
+    private let tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.separatorStyle = .none
         $0.register(BookmarkCell.self, forCellReuseIdentifier: BookmarkCell.identifier)
         $0.backgroundColor = .backgroundPrimary
@@ -51,6 +51,11 @@ final class BookmarkViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getBookmarkList()
     }
     
     override func configureUI() {
@@ -77,6 +82,11 @@ final class BookmarkViewController: BaseViewController {
         viewModel.$isEditMode
             .sink { [weak self] isEditMode in
                 self?.changeEditMode(isEditMode: isEditMode)
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        viewModel.bookmarkList
+            .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
     }
@@ -124,28 +134,35 @@ final class BookmarkViewController: BaseViewController {
 }
 
 extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return " "
-    }
-    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = BookmarkFooterView()
         footer.frame = .init(x: 16, y: 0, width: 200, height: 34)
         return footer
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return .init(frame: .init(x: 0, y: 0, width: 20, height: 20))
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.bookmarkList.count
+        return viewModel.bookmarkList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkCell.identifier, for: indexPath) as! BookmarkCell
-        cell.configureCell(isEditMode: viewModel.isEditMode)
+        cell.configureCell(policyItem: viewModel.bookmarkList.value[indexPath.row],
+                           isEditMode: viewModel.isEditMode)
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.height
+     
+        viewModel.didScroll(offsetY: offsetY,
+                            contentHeight: contentHeight,
+                            frameHeight: frameHeight)
     }
 }

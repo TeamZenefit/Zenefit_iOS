@@ -62,9 +62,14 @@ final class BookmarkCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(isEditMode: Bool) {
+    func configureCell(policyItem: BookmarkPolicy, isEditMode: Bool) {
         dateLabel.isHidden = isEditMode
         deleteButton.isHidden = !isEditMode
+        
+        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo))
+        titleLabel.text = policyItem.policyName
+        contentLabel.text = policyItem.policyIntroduction
+        dateLabel.text = policyItem.applyEndDate
     }
     
     private func setLayout() {
@@ -89,6 +94,8 @@ final class BookmarkCell: UITableViewCell {
             $0.trailing.equalTo(dateLabel.snp.leading).offset(-16)
         }
         
+        dateLabel.setContentHuggingPriority(.required, for: .horizontal)
+        dateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         dateLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.bottom.equalTo(titleLabel)

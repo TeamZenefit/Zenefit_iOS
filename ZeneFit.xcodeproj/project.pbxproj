@@ -70,6 +70,9 @@
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
 		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
+		B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */; };
+		B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */; };
+		B5A8706A2B09F6590052D5A1 /* BenefitPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
 		B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */; };
@@ -227,6 +230,9 @@
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
 		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyListDTO.swift; sourceTree = "<group>"; };
+		B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyUseCase.swift; sourceTree = "<group>"; };
+		B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitPolicyListDTO.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -513,6 +519,8 @@
 			isa = PBXGroup;
 			children = (
 				B552F9DE2AE55CD900AA5F40 /* RecommendWelFareDTO.swift */,
+				B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */,
+				B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -521,6 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				B552F9E12AE55D5E00AA5F40 /* FindWelfareUseCase.swift */,
+				B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -1165,6 +1174,7 @@
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
 				B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */,
+				B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */,
 				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
@@ -1221,8 +1231,10 @@
 				B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */,
 				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
 				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,
+				B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
 				B5ED7BB52B00E3A000138FE8 /* WelfareDetailViewModel.swift in Sources */,
+				B5A8706A2B09F6590052D5A1 /* BenefitPolicyListDTO.swift in Sources */,
 				B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */,
 				B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */,
 				B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */,

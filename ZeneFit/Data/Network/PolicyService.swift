@@ -34,4 +34,26 @@ class PolicyService {
         }
         .eraseToAnyPublisher()
     }
+    
+    func getBookmarkPolicyList(page: Int) -> AnyPublisher<BookmarkPolicyListDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/user/policy",
+                                queries: ["page" : "\(page)",
+                                            "size" : "\(10)"])
+            .setAccessToken()
+    
+            
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<BookmarkPolicyListDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> BookmarkPolicyListDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

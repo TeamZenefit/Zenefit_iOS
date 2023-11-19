@@ -20,4 +20,8 @@ final class PolicyRepository: PolicyRepositoryProtocol {
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
+    
+    func getBookmarkPolicyList(page: Int) -> AnyPublisher<BookmarkPolicyListDTO, Error> {
+        policyService.getBookmarkPolicyList(page: page)
+    }
 }
