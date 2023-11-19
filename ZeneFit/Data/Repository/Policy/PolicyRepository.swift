@@ -24,4 +24,8 @@ final class PolicyRepository: PolicyRepositoryProtocol {
     func getBookmarkPolicyList(page: Int) -> AnyPublisher<BookmarkPolicyListDTO, Error> {
         policyService.getBookmarkPolicyList(page: page)
     }
+    
+    func getBenefitPolicyList(page: Int) -> AnyPublisher<BenefitPolicyListDTO, Error> {
+        policyService.getBenefitPolicyList(page: page)
+    }
 }

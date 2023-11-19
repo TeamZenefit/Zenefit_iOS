@@ -73,6 +73,7 @@
 		B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */; };
 		B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */; };
 		B5A8706A2B09F6590052D5A1 /* BenefitPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */; };
+		B5A8706C2B0A0F3D0052D5A1 /* BenefitPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8706B2B0A0F3C0052D5A1 /* BenefitPolicyUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
 		B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */; };
@@ -233,6 +234,7 @@
 		B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyListDTO.swift; sourceTree = "<group>"; };
 		B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyUseCase.swift; sourceTree = "<group>"; };
 		B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitPolicyListDTO.swift; sourceTree = "<group>"; };
+		B5A8706B2B0A0F3C0052D5A1 /* BenefitPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitPolicyUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 			children = (
 				B552F9E12AE55D5E00AA5F40 /* FindWelfareUseCase.swift */,
 				B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */,
+				B5A8706B2B0A0F3C0052D5A1 /* BenefitPolicyUseCase.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* RegistInfoInputViewModel.swift in Sources */,
 				B54A67572ADC1BE600971467 /* SignInResponse.swift in Sources */,
+				B5A8706C2B0A0F3D0052D5A1 /* BenefitPolicyUseCase.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
 				B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,

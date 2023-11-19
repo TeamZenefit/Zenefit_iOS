@@ -13,6 +13,8 @@ final class BookmarkViewModel {
     weak var coordinator: HomeCoordinator?
     
     @Published var isEditMode: Bool = false
+    @Published var totalPolicy: Int = 0
+    
     var error = PassthroughSubject<Error, Never>()
     var bookmarkList = CurrentValueSubject<[BookmarkPolicy], Never>([])
     
@@ -39,13 +41,14 @@ final class BookmarkViewModel {
             },
                   receiveValue: { [weak self] res in
                 self?.bookmarkList.send(res.content)
+                self?.totalPolicy = res.totalElements
                 self?.isLastPage = res.last
                 self?.isPaging = false
             }).store(in: &cancellable)
     }
     
     func didScroll(offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) {
-        if offsetY > (contentHeight - frameHeight) {
+        if offsetY != 0 && offsetY > (contentHeight - frameHeight) {
             if self.isPaging == false && !isLastPage { self.paging() }
         }
     }
@@ -65,6 +68,7 @@ private extension BookmarkViewModel {
             },
                   receiveValue: { [weak self] res in
                 self?.bookmarkList.value.append(contentsOf: res.content)
+                self?.totalPolicy = res.totalElements
                 self?.isLastPage = res.last
                 self?.isPaging = false
             }).store(in: &cancellable)

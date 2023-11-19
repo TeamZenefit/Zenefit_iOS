@@ -62,9 +62,19 @@ final class BenefitCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(isEditMode: Bool) {
+    func configureCell(policyItem: BenefitPolicy, isEditMode: Bool) {
         infoLabel.isHidden = isEditMode
         deleteButton.isHidden = !isEditMode
+        
+        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo))
+        titleLabel.text = policyItem.policyName
+        contentLabel.text = policyItem.policyIntroduction
+        
+        if policyItem.supportPolicyType == "MONEY" {
+            infoLabel.text = "\(policyItem.benefit/10000)만원"
+        } else {
+            infoLabel.text = policyItem.supportPolicyTypeDescription
+        }
     }
     
     private func setLayout() {
@@ -89,6 +99,8 @@ final class BenefitCell: UITableViewCell {
             $0.trailing.equalTo(infoLabel.snp.leading).offset(-16)
         }
         
+        infoLabel.setContentHuggingPriority(.required, for: .horizontal)
+        infoLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         infoLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.bottom.equalTo(titleLabel)

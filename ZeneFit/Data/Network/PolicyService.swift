@@ -56,4 +56,26 @@ class PolicyService {
         }
         .eraseToAnyPublisher()
     }
+    
+    func getBenefitPolicyList(page: Int) -> AnyPublisher<BenefitPolicyListDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/user/policy/apply",
+                                queries: ["page" : "\(page)",
+                                            "size" : "\(7)"])
+            .setAccessToken()
+    
+            
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<BenefitPolicyListDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> BenefitPolicyListDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

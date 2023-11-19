@@ -22,13 +22,12 @@ struct BenefitPolicy: Codable {
     let policyID: Int
     let policyName, policyIntroduction: String
     let policyLogo: String
-    let applyEndDate: String
     let benefit: Int
     let supportPolicyType: String
     let supportPolicyTypeDescription: String
     
     enum CodingKeys: String, CodingKey {
         case policyID = "policyId"
-        case policyName, policyIntroduction, policyLogo, applyEndDate, benefit, supportPolicyType, supportPolicyTypeDescription
+        case policyName, policyIntroduction, policyLogo, benefit, supportPolicyType, supportPolicyTypeDescription
     }
 }

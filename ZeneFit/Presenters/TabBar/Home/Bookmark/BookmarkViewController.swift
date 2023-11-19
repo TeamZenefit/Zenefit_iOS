@@ -89,6 +89,11 @@ final class BookmarkViewController: BaseViewController {
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
+        
+        viewModel.$totalPolicy
+            .sink { [weak self] count in
+                self?.bookmarkCountLabel.text = "\(count)개"
+            }.store(in: &cancellable)
     }
     
     private func changeEditMode(isEditMode: Bool) {
@@ -137,6 +142,7 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = BookmarkFooterView()
         footer.frame = .init(x: 16, y: 0, width: 200, height: 34)
+        
         return footer
     }
     
@@ -158,7 +164,7 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
+        let contentHeight = tableView.contentSize.height
         let frameHeight = scrollView.frame.height
      
         viewModel.didScroll(offsetY: offsetY,

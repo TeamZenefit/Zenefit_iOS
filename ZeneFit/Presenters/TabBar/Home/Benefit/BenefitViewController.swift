@@ -52,6 +52,11 @@ final class BenefitViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getbenefitList()
+    }
+    
     override func setupBinding() {
         editButton.tapPublisher.sink { [weak self] in
             self?.viewModel.isEditMode.toggle()
@@ -61,6 +66,16 @@ final class BenefitViewController: BaseViewController {
             .sink { [weak self] isEditMode in
                 self?.changeEditMode(isEditMode: isEditMode)
                 self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        viewModel.policyList
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        viewModel.$totalPolicy
+            .sink { [weak self] count in
+                self?.benefitCountLabel.text = "\(count)개"
             }.store(in: &cancellable)
     }
     
@@ -133,14 +148,25 @@ extension BenefitViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.policyList.count
+        return viewModel.policyList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.identifier, for: indexPath) as! BenefitCell
-        cell.configureCell(isEditMode: viewModel.isEditMode)
+        cell.configureCell(policyItem: viewModel.policyList.value[indexPath.row],
+                           isEditMode: viewModel.isEditMode)
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.height
+        
+        viewModel.didScroll(offsetY: offsetY,
+                            contentHeight: contentHeight,
+                            frameHeight: frameHeight)
     }
 }
 
