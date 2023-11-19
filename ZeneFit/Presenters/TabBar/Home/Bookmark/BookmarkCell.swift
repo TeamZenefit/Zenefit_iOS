@@ -41,6 +41,16 @@ final class BookmarkCell: UITableViewCell {
         $0.backgroundColor = .primaryAssistive
     }
     
+    private let deleteButton = UIButton().then {
+        var configuration = UIButton.Configuration.filled()
+        configuration.background.cornerRadius = 13
+        configuration.contentInsets = .init(top: 6, leading: 10, bottom: 6, trailing: 10)
+        configuration.baseBackgroundColor = .alert
+        configuration.attributedTitle = .init("삭제하기", attributes: .init([.font : UIFont.pretendard(.label5),
+                                                                         .foregroundColor : UIColor.white]))
+        $0.configuration = configuration
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .backgroundPrimary
@@ -52,9 +62,14 @@ final class BookmarkCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(isEditMode: Bool) {
+        dateLabel.isHidden = isEditMode
+        deleteButton.isHidden = !isEditMode
+    }
+    
     private func setLayout() {
-        addSubview(frameView)
-        [thumbnailImageView, titleLabel, contentLabel, dateLabel].forEach {
+        contentView.addSubview(frameView)
+        [thumbnailImageView, titleLabel, contentLabel, dateLabel, deleteButton].forEach {
             frameView.addSubview($0)
         }
         
@@ -83,6 +98,11 @@ final class BookmarkCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel)
             $0.bottom.trailing.equalToSuperview().offset(-16)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.bottom.equalTo(titleLabel)
         }
     }
 }

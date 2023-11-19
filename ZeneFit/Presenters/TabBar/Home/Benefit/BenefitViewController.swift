@@ -10,6 +10,11 @@ import UIKit
 final class BenefitViewController: BaseViewController {
     private let viewModel: BenefitViewModel
     
+    private let editButton = UIButton().then {
+        $0.setImage(.init(named: "i-wr-28")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(.init(named: "i-wr-28-del")?.withRenderingMode(.alwaysOriginal), for: .selected)
+    }
+    
     private let topFrameView = UIView().then {
         $0.backgroundColor = .white
     }
@@ -20,10 +25,16 @@ final class BenefitViewController: BaseViewController {
         $0.textColor = .textNormal
     }
     
-    private let bookmarkCountLabel = UILabel().then {
+    private let benefitCountLabel = UILabel().then {
         $0.text = "n개"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal
+    }
+    
+    private let deleteAllButton = UIButton(type: .system).then {
+        $0.setTitle("전체 삭제", for: .normal)
+        $0.setTitleColor(.alert, for: .normal)
+        $0.titleLabel?.font = .pretendard(.label4)
     }
     
     private let tableView = UITableView().then {
@@ -41,6 +52,26 @@ final class BenefitViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setupBinding() {
+        editButton.tapPublisher.sink { [weak self] in
+            self?.viewModel.isEditMode.toggle()
+        }.store(in: &cancellable)
+        
+        viewModel.$isEditMode
+            .sink { [weak self] isEditMode in
+                self?.changeEditMode(isEditMode: isEditMode)
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
+    }
+    
+    private func changeEditMode(isEditMode: Bool) {
+        editButton.isSelected = isEditMode
+        benefitCountLabel.isHidden = isEditMode
+        subTitleLabel.isHidden = isEditMode
+        deleteAllButton.isHidden = !isEditMode
+        tableView.reloadData()
+    }
+    
     override func configureUI() {
         view.backgroundColor = .backgroundPrimary
     }
@@ -48,6 +79,8 @@ final class BenefitViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         setTitle = "수혜 정책"
+        
+        navigationItem.rightBarButtonItem = .init(customView: editButton)
     }
     
     override func setDelegate() {
@@ -60,7 +93,7 @@ final class BenefitViewController: BaseViewController {
             view.addSubview($0)
         }
            
-        [subTitleLabel, bookmarkCountLabel].forEach {
+        [subTitleLabel, benefitCountLabel, deleteAllButton].forEach {
             topFrameView.addSubview($0)
         }
     }
@@ -75,8 +108,12 @@ final class BenefitViewController: BaseViewController {
             $0.leading.top.equalToSuperview().offset(16)
         }
         
-        bookmarkCountLabel.snp.makeConstraints {
+        benefitCountLabel.snp.makeConstraints {
             $0.trailing.top.equalToSuperview().inset(16)
+        }
+        
+        deleteAllButton.snp.makeConstraints {
+            $0.leading.top.equalToSuperview().offset(16)
         }
         
         tableView.snp.makeConstraints {
@@ -101,6 +138,7 @@ extension BenefitViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.identifier, for: indexPath) as! BenefitCell
+        cell.configureCell(isEditMode: viewModel.isEditMode)
         
         return cell
     }

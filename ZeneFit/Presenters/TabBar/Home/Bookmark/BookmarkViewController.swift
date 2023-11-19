@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 final class BookmarkViewController: BaseViewController {
     private let viewModel: BookmarkViewModel
+    
+    private let editButton = UIButton().then {
+        $0.setImage(.init(named: "i-wr-28")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(.init(named: "i-wr-28-del")?.withRenderingMode(.alwaysOriginal), for: .selected)
+    }
     
     private let topFrameView = UIView().then {
         $0.backgroundColor = .white
@@ -24,6 +30,12 @@ final class BookmarkViewController: BaseViewController {
         $0.text = "n개"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal
+    }
+    
+    private let deleteAllButton = UIButton(type: .system).then {
+        $0.setTitle("전체 삭제", for: .normal)
+        $0.setTitleColor(.alert, for: .normal)
+        $0.titleLabel?.font = .pretendard(.label4)
     }
     
     private let tableView = UITableView().then {
@@ -48,6 +60,8 @@ final class BookmarkViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         setTitle = "관심 정책"
+        
+        navigationItem.rightBarButtonItem = .init(customView: editButton)
     }
     
     override func setDelegate() {
@@ -55,12 +69,31 @@ final class BookmarkViewController: BaseViewController {
         tableView.dataSource = self
     }
     
+    override func setupBinding() {
+        editButton.tapPublisher.sink { [weak self] in
+            self?.viewModel.isEditMode.toggle()
+        }.store(in: &cancellable)
+        
+        viewModel.$isEditMode
+            .sink { [weak self] isEditMode in
+                self?.changeEditMode(isEditMode: isEditMode)
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
+    }
+    
+    private func changeEditMode(isEditMode: Bool) {
+        editButton.isSelected = isEditMode
+        bookmarkCountLabel.isHidden = isEditMode
+        subTitleLabel.isHidden = isEditMode
+        deleteAllButton.isHidden = !isEditMode
+    }
+    
     override func addSubView() {
         [topFrameView, tableView].forEach {
             view.addSubview($0)
         }
            
-        [subTitleLabel, bookmarkCountLabel].forEach {
+        [subTitleLabel, bookmarkCountLabel, deleteAllButton].forEach {
             topFrameView.addSubview($0)
         }
     }
@@ -77,6 +110,10 @@ final class BookmarkViewController: BaseViewController {
         
         bookmarkCountLabel.snp.makeConstraints {
             $0.trailing.top.equalToSuperview().inset(16)
+        }
+        
+        deleteAllButton.snp.makeConstraints {
+            $0.leading.top.equalToSuperview().offset(16)
         }
         
         tableView.snp.makeConstraints {
@@ -107,6 +144,7 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkCell.identifier, for: indexPath) as! BookmarkCell
+        cell.configureCell(isEditMode: viewModel.isEditMode)
         
         return cell
     }
