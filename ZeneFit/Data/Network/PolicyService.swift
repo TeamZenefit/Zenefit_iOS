@@ -78,4 +78,24 @@ class PolicyService {
         }
         .eraseToAnyPublisher()
     }
+    
+    func getWelfareMainInfo() -> AnyPublisher<WelfareMainInfoDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/policy/recommend")
+            .setAccessToken()
+    
+            
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<WelfareMainInfoDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> WelfareMainInfoDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

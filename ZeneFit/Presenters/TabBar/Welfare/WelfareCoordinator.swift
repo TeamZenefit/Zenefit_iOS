@@ -37,7 +37,7 @@ class WelfareCoordinator: Coordinator {
         navigationController.pushViewController(resultVC, animated: false)
     }
     
-    func showWelfareListVC(type: WelfareType) {
+    func showWelfareListVC(type: SupportPolicyType) {
         let listVM = WelfareListViewModel(coordinator: self,
                                           type: type)
         let listVC = WelfareListViewController(viewModel: listVM)

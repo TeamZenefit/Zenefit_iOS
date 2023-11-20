@@ -28,4 +28,8 @@ final class PolicyRepository: PolicyRepositoryProtocol {
     func getBenefitPolicyList(page: Int) -> AnyPublisher<BenefitPolicyListDTO, Error> {
         policyService.getBenefitPolicyList(page: page)
     }
+    
+    func getWelfareMainInfo() -> AnyPublisher<WelfareMainInfoDTO, Error> {
+        policyService.getWelfareMainInfo()
+    }
 }

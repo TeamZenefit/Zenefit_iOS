@@ -37,6 +37,11 @@ final class WelfareViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getWelfareMainInfo()
+    }
+    
     override func configureNavigation() {
         super.configureNavigation()
         self.navigationController?.navigationBar.isHidden = false
@@ -66,6 +71,11 @@ final class WelfareViewController: BaseViewController {
             .sink { [weak self] in
                 self?.viewModel.coordinator?.findWelfare()
             }.store(in: &cancellable)
+        
+        viewModel.policyItems
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
     }
 
     override func addSubView() {
@@ -92,15 +102,16 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.policyItems.count
+        viewModel.policyItems.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelFareCategoryCell.identifier, for: indexPath) as! WelFareCategoryCell
-        cell.configureCell(item: viewModel.policyItems[indexPath.row])
+        let targetItem = viewModel.policyItems.value[indexPath.row]
+        cell.configureCell(item: targetItem)
         
         cell.titleTapHandler = { [weak self] in
-            self?.viewModel.coordinator?.showWelfareListVC(type: .init(rawValue: indexPath.row) ?? .cash)
+            self?.viewModel.coordinator?.showWelfareListVC(type: .init(rawValue: targetItem.supportType) ?? .money)
         }
         
         return cell

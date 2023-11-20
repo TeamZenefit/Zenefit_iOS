@@ -6,15 +6,33 @@
 //
 
 import Foundation
+import Combine
 
 final class WelfareViewModel {
+    private var cancellable = Set<AnyCancellable>()
     weak var coordinator: WelfareCoordinator?
     
-    @Published var policyItems: [String] = ["현금 정책", "대출 정책", "사회 서비스"]
+    var policyItems = CurrentValueSubject<[PolicyMainInfo], Never>([])
+    var error = PassthroughSubject<Error, Never>()
     
-    init(coordinator: WelfareCoordinator? = nil) {
+    private let welfareMainUseCase: WelfareMainUseCase
+    
+    init(coordinator: WelfareCoordinator? = nil,
+         welfareMainUseCase: WelfareMainUseCase = .init()) {
         self.coordinator = coordinator
+        self.welfareMainUseCase = welfareMainUseCase
     }
     
-    
+    func getWelfareMainInfo() {
+        welfareMainUseCase.getWelfareMainInfo()
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error):
+                    self?.error.send(error)
+                }
+            }, receiveValue: { [weak self] res in
+                self?.policyItems.send(res.policyInfos)
+            }).store(in: &cancellable)
+    }
 }

@@ -82,14 +82,7 @@ final class WelfareListViewController: BaseViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        switch viewModel.type {
-        case .cash:
-            setTitle = "현금 정책"
-        case .loan:
-            setTitle = "대출 정책"
-        case .social:
-            setTitle = "사회 서비스"
-        }
+        setTitle = viewModel.type.description
     }
     
     override func addSubView() {
