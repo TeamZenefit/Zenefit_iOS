@@ -80,6 +80,12 @@ final class WelfareListViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //TODO: API수정 요청 필요
+//        viewModel.getPolicyInfo()
+    }
+    
     override func configureNavigation() {
         super.configureNavigation()
         setTitle = viewModel.type.description
@@ -139,6 +145,11 @@ final class WelfareListViewController: BaseViewController {
                 self?.closingOrder.configuration?.attributedTitle?.foregroundColor = UIColor.white
                 self?.closingOrder.configuration?.baseBackgroundColor = .primaryNormal
                 self?.closingOrder.configuration?.background.strokeWidth = 0
+            }.store(in: &cancellable)
+        
+        viewModel.policyList
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
             }.store(in: &cancellable)
     }
     
@@ -201,7 +212,8 @@ extension WelfareListViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-        cell.configureCell(title: viewModel.categories[indexPath.row], selectedCategory: viewModel.selectedCategory)
+        cell.configureCell(title: viewModel.categories[indexPath.row].description,
+                           selectedCategory: viewModel.selectedCategory.description)
 
         return cell
     }
@@ -216,7 +228,7 @@ extension WelfareListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = viewModel.categories[indexPath.row]
         let mockLabel = PaddingLabel(padding: .init(top: 8, left: 16, bottom: 8, right: 16))
-        mockLabel.text = item
+        mockLabel.text = item.description
         
         return .init(width: mockLabel.intrinsicContentSize.width, height: 40)
     }
@@ -230,15 +242,27 @@ extension WelfareListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items.count
+        return viewModel.policyList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelfareCell.identifier, for: indexPath) as! WelfareCell
-        cell.configureCell(item: viewModel.items[indexPath.row])
+        cell.configureCell(item: viewModel.policyList.value[indexPath.row])
         cell.delegate = self
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView is UITableView {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = tableView.contentSize.height
+            let frameHeight = scrollView.frame.height
+         
+            viewModel.didScroll(offsetY: offsetY,
+                                contentHeight: contentHeight,
+                                frameHeight: frameHeight)
+        }
     }
 }
 

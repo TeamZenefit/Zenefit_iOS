@@ -32,4 +32,12 @@ final class PolicyRepository: PolicyRepositoryProtocol {
     func getWelfareMainInfo() -> AnyPublisher<WelfareMainInfoDTO, Error> {
         policyService.getWelfareMainInfo()
     }
+    
+    func getPolicyInfo(page: Int,
+                       supportPolicyType: SupportPolicyType,
+                       policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+        policyService.getPolicyInfo(page: page,
+                                    supportPolicyType: supportPolicyType,
+                                    policyType: policyType)
+    }
 }

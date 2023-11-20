@@ -35,12 +35,11 @@ final class BenefitViewModel {
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
+                    self?.isPaging = false
                     self?.error.send(error)
                 case .finished: break
                 }
-            },
-                  receiveValue: { [weak self] res in
-                res.totalElements
+            }, receiveValue: { [weak self] res in
                 self?.policyList.send(res.content)
                 self?.totalPolicy = res.totalElements
                 self?.isLastPage = res.last

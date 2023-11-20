@@ -78,6 +78,8 @@
 		B5A870702B0A64950052D5A1 /* WelfareMainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8706F2B0A64950052D5A1 /* WelfareMainUseCase.swift */; };
 		B5A870942B0B79110052D5A1 /* SupportPolicyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870932B0B79110052D5A1 /* SupportPolicyType.swift */; };
 		B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870952B0B79510052D5A1 /* PolicyType.swift */; };
+		B5A870982B0B99AC0052D5A1 /* PolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870972B0B99AC0052D5A1 /* PolicyListDTO.swift */; };
+		B5A8709A2B0B9BD40052D5A1 /* PolicyListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
 		B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */; };
@@ -243,6 +245,8 @@
 		B5A8706F2B0A64950052D5A1 /* WelfareMainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareMainUseCase.swift; sourceTree = "<group>"; };
 		B5A870932B0B79110052D5A1 /* SupportPolicyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportPolicyType.swift; sourceTree = "<group>"; };
 		B5A870952B0B79510052D5A1 /* PolicyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyType.swift; sourceTree = "<group>"; };
+		B5A870972B0B99AC0052D5A1 /* PolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyListDTO.swift; sourceTree = "<group>"; };
+		B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyListUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -532,6 +536,7 @@
 				B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */,
 				B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */,
 				B5A8706D2B0A636A0052D5A1 /* WelfareMainInfoDTO.swift */,
+				B5A870972B0B99AC0052D5A1 /* PolicyListDTO.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */,
 				B5A8706B2B0A0F3C0052D5A1 /* BenefitPolicyUseCase.swift */,
 				B5A8706F2B0A64950052D5A1 /* WelfareMainUseCase.swift */,
+				B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -1225,6 +1231,7 @@
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,
 				B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */,
 				B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */,
+				B5A870982B0B99AC0052D5A1 /* PolicyListDTO.swift in Sources */,
 				B54A67542ADC132700971467 /* BaseResponse.swift in Sources */,
 				B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */,
 				B5F625162ACAE3E9002A1896 /* SignInUseCase.swift in Sources */,
@@ -1285,6 +1292,7 @@
 				B5ED7BB72B00E3C100138FE8 /* WelfareDetailViewController.swift in Sources */,
 				B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */,
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,
+				B5A8709A2B0B9BD40052D5A1 /* PolicyListUseCase.swift in Sources */,
 				B54E928F2AF3BE9600F47A6B /* BenefitCell.swift in Sources */,
 				B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */,
 				B552F9D92AE551F100AA5F40 /* FindWelfareViewController.swift in Sources */,

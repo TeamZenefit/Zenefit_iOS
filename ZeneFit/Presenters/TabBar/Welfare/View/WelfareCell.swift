@@ -110,7 +110,7 @@ final class WelfareCell: UITableViewCell {
         }
     }
     
-    func configureCell(item: String) {
+    func configureCell(item: PolicyInfoDTO) {
     }
 
     private func addSubViews() {

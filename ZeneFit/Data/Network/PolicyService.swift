@@ -98,4 +98,29 @@ class PolicyService {
         }
         .eraseToAnyPublisher()
     }
+    
+    //TODO: API수정 요청 필요
+    func getPolicyInfo(page: Int,
+                       supportPolicyType: SupportPolicyType,
+                       policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/policy",
+                                queries: ["page" : "\(page)",
+                                          "size" : "\(10)"])
+            .setAccessToken()
+    
+            
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<PolicyListDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> PolicyListDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }
