@@ -12,6 +12,7 @@
 		B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */; };
 		B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */; };
 		B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B69C62AEAB1C800D3E092 /* ManualView.swift */; };
+		B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54646F62B0E1BF00051BBE5 /* UILabel+.swift */; };
 		B54A67482ADBCE3700971467 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67472ADBCE3700971467 /* Collections+.swift */; };
 		B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */; };
 		B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A674C2ADBE44D00971467 /* RegistCompleteViewController.swift */; };
@@ -182,6 +183,7 @@
 		B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSearchBar.swift; sourceTree = "<group>"; };
 		B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortButton.swift; sourceTree = "<group>"; };
 		B53B69C62AEAB1C800D3E092 /* ManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualView.swift; sourceTree = "<group>"; };
+		B54646F62B0E1BF00051BBE5 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B54A67472ADBCE3700971467 /* Collections+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+.swift"; sourceTree = "<group>"; };
 		B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+.swift"; sourceTree = "<group>"; };
 		B54A674C2ADBE44D00971467 /* RegistCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCompleteViewController.swift; sourceTree = "<group>"; };
@@ -833,6 +835,7 @@
 				B54A67492ADBD18700971467 /* UIGestureRecognizer+.swift */,
 				B54A67922ADD9A6B00971467 /* Publisher+.swift */,
 				B564524B2AEE8A61000A45FA /* UIImage+.swift */,
+				B54646F62B0E1BF00051BBE5 /* UILabel+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1234,6 +1237,7 @@
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
+				B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */,
 				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,

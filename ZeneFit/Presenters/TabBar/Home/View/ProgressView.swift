@@ -33,6 +33,7 @@ final class ProgressView: UIStackView {
     
     func configureView(content: String, value: CGFloat) {
         self.contentLabel.text = content
+        self.contentLabel.setPointTextAttribute("상위 \(Int(value*100))%", color: .primaryNormal)
         self.progressView.progress = Float(value)
     }
     

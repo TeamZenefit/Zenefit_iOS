@@ -65,6 +65,7 @@ final class HomeViewController: BaseViewController {
         viewModel.info
             .sink { [weak self] info in
                 self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"
+                self?.nameLabel.setPointTextAttribute(info.characterNickname, color: .primaryNormal)
                 self?.progressView.configureView(content: info.description,
                                                  value: CGFloat(info.characterPercent)/100.0)
                 self?.bookmarkInfoView.configureInfo(count: info.applyPolicyCnt)
