@@ -106,15 +106,23 @@ final class HomeViewController: BaseViewController {
     }
     
     override func setGesture() {
-        bookmarkInfoView.gesture(for: .tap)
+        bookmarkInfoView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
                 self?.viewModel.coordinator?.pushToBookmark()
             }.store(in: &cancellable)
         
-        benefitInfoView.gesture(for: .tap)
+        benefitInfoView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
                 self?.viewModel.coordinator?.pushToBenefit()
             }.store(in: &cancellable)
+        
+        policyInfoView.tapEventHandler = { [weak self] in
+            self?.tabBarController?.selectedIndex = 1
+        }
+        
+        deadLineInfoView.tapEventHandler = { [weak self] in
+            self?.tabBarController?.selectedIndex = 2
+        }
     }
     
     override func addSubView() {

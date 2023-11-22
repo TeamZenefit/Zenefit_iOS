@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 extension UIView {
     func setGradient() {
@@ -22,6 +23,12 @@ extension UIView {
     
     func gesture<G>(for gestureRecognizer: G) -> UIGestureRecognizer.Publisher<G> where G: UIGestureRecognizer {
         UIGestureRecognizer.Publisher(gestureRecognizer: gestureRecognizer, view: self)
+    }
+    
+    func gesturePublisher(for event: UIGestureRecognizer) -> AnyPublisher<UIGestureRecognizer, Never> {
+        gesture(for: event)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }
 

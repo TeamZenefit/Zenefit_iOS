@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 final class BigBoxView: UIStackView {
+    private var cancellable = Set<AnyCancellable>()
+    
+    var tapEventHandler: (()->Void)?
+    
+    private let topFrameView = UIView()
     
     private let titleLabel = UILabel().then {
         $0.textColor = .textNormal
@@ -30,6 +36,7 @@ final class BigBoxView: UIStackView {
         self.titleLabel.text = title
         super.init(frame: .zero)
         setLayout()
+        setupBinding()
         
         layer.cornerRadius = 16
         backgroundColor = .white
@@ -58,13 +65,30 @@ final class BigBoxView: UIStackView {
         }
     }
     
+    private func setupBinding() {
+        topFrameView.gesturePublisher(for: .tap)
+            .sink { [weak self] _ in
+                self?.tapEventHandler?()
+            }.store(in: &cancellable)
+    }
+    
     private func setLayout() {
-        [titleLabel, separatorLineView, disclosureButton, itemStackView].forEach {
+        addSubview(topFrameView)
+        
+        [titleLabel,disclosureButton].forEach {
+            topFrameView.addSubview($0)
+        }
+        
+        [topFrameView, separatorLineView, itemStackView].forEach {
             addSubview($0)
         }
         
+        topFrameView.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().inset(16)
+            $0.leading.verticalEdges.equalToSuperview().inset(16)
         }
         
         disclosureButton.snp.makeConstraints {
