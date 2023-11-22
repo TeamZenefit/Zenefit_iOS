@@ -49,7 +49,7 @@ final class WelfareDetailCell: UITableViewCell {
         
         contentLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(6)
         }
         
         applyTypeStackView.snp.makeConstraints {

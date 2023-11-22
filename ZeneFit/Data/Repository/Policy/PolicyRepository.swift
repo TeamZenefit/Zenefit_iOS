@@ -40,4 +40,8 @@ final class PolicyRepository: PolicyRepositoryProtocol {
                                     supportPolicyType: supportPolicyType,
                                     policyType: policyType)
     }
+    
+    func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error> {
+        policyService.getPolicyDetailInfo(policyId: policyId)
+    }
 }

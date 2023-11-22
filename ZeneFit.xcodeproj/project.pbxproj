@@ -80,6 +80,8 @@
 		B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870952B0B79510052D5A1 /* PolicyType.swift */; };
 		B5A870982B0B99AC0052D5A1 /* PolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870972B0B99AC0052D5A1 /* PolicyListDTO.swift */; };
 		B5A8709A2B0B9BD40052D5A1 /* PolicyListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */; };
+		B5A8709C2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */; };
+		B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
 		B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */; };
@@ -247,6 +249,8 @@
 		B5A870952B0B79510052D5A1 /* PolicyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyType.swift; sourceTree = "<group>"; };
 		B5A870972B0B99AC0052D5A1 /* PolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyListDTO.swift; sourceTree = "<group>"; };
 		B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyListUseCase.swift; sourceTree = "<group>"; };
+		B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailDTO.swift; sourceTree = "<group>"; };
+		B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -537,6 +541,7 @@
 				B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */,
 				B5A8706D2B0A636A0052D5A1 /* WelfareMainInfoDTO.swift */,
 				B5A870972B0B99AC0052D5A1 /* PolicyListDTO.swift */,
+				B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				B5A8706B2B0A0F3C0052D5A1 /* BenefitPolicyUseCase.swift */,
 				B5A8706F2B0A64950052D5A1 /* WelfareMainUseCase.swift */,
 				B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */,
+				B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -1224,9 +1230,11 @@
 				B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */,
+				B5A8709C2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
+				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,
 				B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */,

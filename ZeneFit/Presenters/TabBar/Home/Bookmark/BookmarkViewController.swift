@@ -162,6 +162,11 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let policyId = viewModel.bookmarkList.value[indexPath.row].policyID
+        viewModel.coordinator?.showWelfareDetail(welfareId: policyId)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = tableView.contentSize.height

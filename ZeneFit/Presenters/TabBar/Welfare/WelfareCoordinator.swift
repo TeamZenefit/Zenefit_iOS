@@ -46,7 +46,8 @@ class WelfareCoordinator: Coordinator {
     }
     
     func showWelfareDetail(welfareId: Int) {
-        let detailVM = WelfareDetailViewModel(coordinator: self)
+        let detailVM = WelfareDetailViewModel(coordinator: self,
+                                              policyId: welfareId)
         let detailVC = WelfareDetailViewController(viewModel: detailVM)
         navigationController.pushViewController(detailVC, animated: true)
     }

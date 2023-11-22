@@ -16,4 +16,5 @@ protocol PolicyRepositoryProtocol {
     func getPolicyInfo(page: Int,
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error>
+    func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error>
 }

@@ -45,4 +45,19 @@ extension HomeCoordinator {
         let benefitVC = BenefitViewController(viewModel: benefitVM)
         navigationController.pushViewController(benefitVC, animated: true)
     }
+    
+    func showWelfareDetail(welfareId: Int) {
+        let welfareCoordinator = WelfareCoordinator(navigationController: navigationController)
+        childCoordinators.append(welfareCoordinator)
+        welfareCoordinator.delegate = self
+        welfareCoordinator.showWelfareDetail(welfareId: welfareId)
+    }
+}
+
+extension HomeCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: Coordinator) {
+        if let index = childCoordinators.firstIndex(where: { $0 === childCoordinator }) {
+            childCoordinators.remove(at: index)
+        }
+    }
 }

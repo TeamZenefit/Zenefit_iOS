@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class WelfareDetailViewController: BaseViewController {
     private let viewModel: WelfareDetailViewModel
@@ -26,6 +27,7 @@ final class WelfareDetailViewController: BaseViewController {
     private let tableView = UITableView().then {
         $0.backgroundColor = .white
         $0.separatorStyle = .none
+        $0.isScrollEnabled = false
         $0.register(WelfareDetailCell.self, forCellReuseIdentifier: WelfareDetailCell.identifier)
     }
     
@@ -61,6 +63,22 @@ final class WelfareDetailViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setupBinding() {
+        viewModel.detailInfo
+            .compactMap { $0 }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] info in
+                self?.titleLabel.text = "\(info.policyName)을 신청하면\n월 n만원 정도를 받을 수 있어요"
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        applyButton.tapPublisher
+            .sink { [weak self] in
+                guard let siteURL = self?.viewModel.detailInfo.value?.referenceSite else { return }
+                self?.openTermOfUseContentWithSafari(urlString: siteURL)
+            }.store(in: &cancellable)
     }
     
     override func addSubView() {
@@ -110,6 +128,15 @@ final class WelfareDetailViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    //MARK: - 화면 이동
+    private func openTermOfUseContentWithSafari(urlString: String) {
+        guard let termURL = URL(string: urlString) else { return }
+
+        let safariViewController = SFSafariViewController(url: termURL)
+        safariViewController.modalPresentationStyle = .automatic
+        self.present(safariViewController, animated: true, completion: nil)
+    }
 }
 
 extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -119,16 +146,22 @@ extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelfareDetailCell.identifier, for: indexPath) as! WelfareDetailCell
+        guard let policyInfo = viewModel.detailInfo.value else { return .init() }
         
         switch indexPath.row {
         case 0:
-            cell.configureCell(title: "서비스 소개", content: "유치원에 다니는 만 3~5세 아동에게 유아학비, 방과후 과정비 등 지원")
+            cell.configureCell(title: "서비스 소개",
+                               content: policyInfo.policyIntroduction)
         case 1:
-            cell.configureCell(title: "신청 서류", content: "주민등록등본, 신분증, 확정일 자부 월세 계약서 사본, 계약금 지급 영수증")
+            cell.configureCell(title: "신청 서류",
+                               content: policyInfo.policyApplyDocument)
         case 2:
-            cell.configureCell(title: "신청 방법", content: "홈페이지에 접속해서 별도 회원가입한 후 수강신청")
+            cell.configureCell(title: "신청 방법",
+                               content: policyInfo.policyApplyMethod)
         default:
-            cell.configureApplyTypeCell(title: "신청 기간", content: nil, types: ["상시신청"])
+            cell.configureApplyTypeCell(title: "신청 기간",
+                                        content: nil,
+                                        types: [policyInfo.policyApplyMethod])
             
         }
         return cell

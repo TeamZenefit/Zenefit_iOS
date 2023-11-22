@@ -123,4 +123,25 @@ class PolicyService {
         }
         .eraseToAnyPublisher()
     }
+    
+    
+    func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/policy/\(policyId)")
+            .setAccessToken()
+    
+            
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<PolicyDetailDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> PolicyDetailDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }
