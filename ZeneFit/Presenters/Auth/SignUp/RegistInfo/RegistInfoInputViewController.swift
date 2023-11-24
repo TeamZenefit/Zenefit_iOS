@@ -181,7 +181,7 @@ final class RegistInfoInputViewController: BaseViewController {
                     }
                 default:
                     view.endEditing(false)
-                    coordinator?.showAgreementVC()
+                    coordinator?.setAction(.agreement)
                 }
             }
             .store(in: &cancellable)

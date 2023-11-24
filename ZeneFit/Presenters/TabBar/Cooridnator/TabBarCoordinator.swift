@@ -8,7 +8,12 @@
 import UIKit
 
 final class TabBarCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
+    
+    enum CoordinatorAction {
+        case tabBar
+    }
+    
+    var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
     
     weak var delegate: CoordinatorDelegate?
@@ -18,15 +23,22 @@ final class TabBarCoordinator: Coordinator {
     }
     
     func start() {
-        let items = TabBarItem.allCases.map {
-            createNavigationController(item: $0)
+        setAction(.tabBar)
+    }
+    
+    func setAction(_ action: CoordinatorAction) {
+        switch action {
+        case .tabBar:
+            let items = TabBarItem.allCases.map {
+                createNavigationController(item: $0)
+            }
+            
+            let tabBarController = MainTabbarController()
+            tabBarController.viewControllers = items
+            tabBarController.coordinator = self
+            
+            navigationController.present(tabBarController, animated: true)
         }
-        
-        let tabBarController = MainTabbarController()
-        tabBarController.viewControllers = items
-        tabBarController.coordinator = self
-        
-        navigationController.present(tabBarController, animated: true)
     }
 }
 
@@ -62,7 +74,7 @@ private extension TabBarCoordinator {
 }
 
 extension TabBarCoordinator: CoordinatorDelegate {
-    func didFinish(childCoordinator: Coordinator) {
+    func didFinish(childCoordinator: any Coordinator) {
         childCoordinators = []
         finish()
         self.navigationController.dismiss(animated: true)

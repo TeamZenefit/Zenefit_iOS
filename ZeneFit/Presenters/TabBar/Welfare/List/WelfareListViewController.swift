@@ -281,6 +281,6 @@ extension WelfareListViewController: WelfareDelegate {
     }
     
     func tapApplyWelfare() {
-        viewModel.coordinator?.showWelfareDetail(welfareId: 0) // 임시
+        viewModel.coordinator?.setAction(.detail(id: 0)) // 임시
     }
 }

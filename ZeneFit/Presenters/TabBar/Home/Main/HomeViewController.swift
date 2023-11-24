@@ -94,7 +94,7 @@ final class HomeViewController: BaseViewController {
         
         manualItem.tapPublisher
             .sink { [weak self] in
-                self?.viewModel.coordinator?.presentToMenual()
+                self?.viewModel.coordinator?.setAction(.menual)
             }.store(in: &cancellable)
 
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -108,12 +108,12 @@ final class HomeViewController: BaseViewController {
     override func setGesture() {
         bookmarkInfoView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
-                self?.viewModel.coordinator?.pushToBookmark()
+                self?.viewModel.coordinator?.setAction(.bookmark)
             }.store(in: &cancellable)
         
         benefitInfoView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
-                self?.viewModel.coordinator?.pushToBenefit()
+                self?.viewModel.coordinator?.setAction(.benefit)
             }.store(in: &cancellable)
         
         policyInfoView.tapEventHandler = { [weak self] in

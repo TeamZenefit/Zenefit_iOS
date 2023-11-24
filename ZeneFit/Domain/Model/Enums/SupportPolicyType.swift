@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SupportPolicyType: String {
+enum SupportPolicyType: String, Equatable {
     case money = "MONEY"
     case loans = "LOANS"
     case social = "SOCIAL_SERVICE"

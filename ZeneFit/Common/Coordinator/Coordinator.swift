@@ -8,14 +8,18 @@
 import UIKit
 
 protocol CoordinatorDelegate: AnyObject {
-    func didFinish(childCoordinator: Coordinator)
+    func didFinish(childCoordinator: any Coordinator)
 }
 
 protocol Coordinator: AnyObject {
-    var childCoordinators: [Coordinator] { get set }
+    
+    associatedtype CoordinatorAction
+    
+    var childCoordinators: [any Coordinator] { get set }
     var navigationController: UINavigationController { get set }
     var delegate: CoordinatorDelegate? { get set }
     
+    func setAction(_ action: CoordinatorAction)
     func start()
     func finish()
 }

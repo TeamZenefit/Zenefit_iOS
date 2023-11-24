@@ -47,8 +47,8 @@ final class FindWelfareViewController: BaseViewController {
             .sink { [weak self] result in
                 guard let self else { return }
                 let resultType: FindWelfareResultType = result.policyCnt > 0 ? .success : .fail
-                coordinator?.showFindWelfareResultVC(viewModel: viewModel,
-                                                     resultType: resultType)
+                coordinator?.setAction(.findResult(viewModel: viewModel,
+                                                   resultType: resultType))
             }.store(in: &cancellable)
     }
     

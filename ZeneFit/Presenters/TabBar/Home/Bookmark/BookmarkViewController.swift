@@ -164,7 +164,7 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let policyId = viewModel.bookmarkList.value[indexPath.row].policyID
-        viewModel.coordinator?.showWelfareDetail(welfareId: policyId)
+        viewModel.coordinator?.setAction(.welfareDetail(welfareId: policyId))
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

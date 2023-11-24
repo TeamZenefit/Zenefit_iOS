@@ -69,7 +69,7 @@ final class WelfareViewController: BaseViewController {
     override func setupBinding() {
         testButton.tapPublisher
             .sink { [weak self] in
-                self?.viewModel.coordinator?.findWelfare()
+                self?.viewModel.coordinator?.setAction(.find)
             }.store(in: &cancellable)
         
         viewModel.policyItems
@@ -111,7 +111,7 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(item: targetItem)
         
         cell.titleTapHandler = { [weak self] in
-            self?.viewModel.coordinator?.showWelfareListVC(type: .init(rawValue: targetItem.supportType) ?? .money)
+            self?.viewModel.coordinator?.setAction(.list(type: .init(rawValue: targetItem.supportType) ?? .money))
         }
         
         return cell
