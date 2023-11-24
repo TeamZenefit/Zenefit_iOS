@@ -1,38 +1,37 @@
 //
-//  WelfareViewModel.swift
+//  WelfareDetailViewModel.swift
 //  ZeneFit
 //
-//  Created by iOS신상우 on 2023/11/05.
+//  Created by iOS신상우 on 11/12/23.
 //
 
 import Foundation
 import Combine
 
-final class WelfareViewModel {
+final class WelfareDetailViewModel {
     private var cancellable = Set<AnyCancellable>()
     weak var coordinator: WelfareCoordinator?
     
-    var policyItems = CurrentValueSubject<[PolicyMainInfo], Never>([])
+    var detailInfo = CurrentValueSubject<PolicyDetailDTO?, Never>(nil)
     var error = PassthroughSubject<Error, Never>()
     
-    private let welfareMainUseCase: WelfareMainUseCase
+    private let policyDetailUseCase: PolicyDetailUseCase
     
     init(coordinator: WelfareCoordinator? = nil,
-         welfareMainUseCase: WelfareMainUseCase = .init()) {
+         policyDetailUseCase: PolicyDetailUseCase = .init(),
+         policyId: Int) {
+        self.policyDetailUseCase = policyDetailUseCase
         self.coordinator = coordinator
-        self.welfareMainUseCase = welfareMainUseCase
-    }
-    
-    func getWelfareMainInfo() {
-        welfareMainUseCase.getWelfareMainInfo()
+        
+        policyDetailUseCase.getPolicyDetailInfo(policyId: policyId)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished: break
                 case .failure(let error):
                     self?.error.send(error)
                 }
-            }, receiveValue: { [weak self] res in
-                self?.policyItems.send(res.policyInfos)
+            },receiveValue: { [weak self] res in
+                self?.detailInfo.send(res)
             }).store(in: &cancellable)
     }
 }

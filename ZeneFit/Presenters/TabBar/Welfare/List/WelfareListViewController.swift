@@ -24,12 +24,41 @@ final class WelfareListViewController: BaseViewController {
         $0.bounces = false
     }
     
-    private let headerView = UIView()
+    private let headerView = UIStackView()
     
     private let sortView = WelfareSortButton(title: "수혜금액")
     
     private let sortContentView = UIView().then {
         $0.backgroundColor = .backgroundPrimary
+        $0.isHidden = true
+    }
+    
+    private let amountOrder = UIButton(type: .system).then {
+        var configure = UIButton.Configuration.filled()
+        configure.attributedTitle = .init("수혜금액",
+                                          attributes: .init([.font: UIFont.pretendard(.body2),
+                                                             .foregroundColor : UIColor.white]))
+        configure.baseBackgroundColor = .primaryNormal
+        configure.background.cornerRadius = 16
+        configure.background.strokeColor = .lineNormal
+        configure.background.strokeWidth = 0
+        configure.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+        
+        $0.configuration = configure
+    }
+    
+    private let closingOrder = UIButton(type: .system).then {
+        var configure = UIButton.Configuration.filled()
+        configure.attributedTitle = .init("마감순",
+                                          attributes: .init([.font: UIFont.pretendard(.body2),
+                                                             .foregroundColor : UIColor.textAlternative]))
+        configure.baseBackgroundColor = .white
+        configure.background.cornerRadius = 16
+        configure.background.strokeColor = .lineNormal
+        configure.background.strokeWidth = 1
+        configure.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+        
+        $0.configuration = configure
     }
     
     private let tableView = UITableView(frame: .zero, style: .grouped).then {
@@ -51,16 +80,15 @@ final class WelfareListViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //TODO: API수정 요청 필요
+//        viewModel.getPolicyInfo()
+    }
+    
     override func configureNavigation() {
         super.configureNavigation()
-        switch viewModel.type {
-        case .cash:
-            setTitle = "현금 정책"
-        case .loan:
-            setTitle = "대출 정책"
-        case .social:
-            setTitle = "사회 서비스"
-        }
+        setTitle = viewModel.type.description
     }
     
     override func addSubView() {
@@ -71,6 +99,10 @@ final class WelfareListViewController: BaseViewController {
         [searchBar, categoryCollectionView, sortView, sortContentView].forEach {
             headerView.addSubview($0)
         }
+        
+        [amountOrder, closingOrder].forEach {
+            sortContentView.addSubview($0)
+        }
     }
     
     override func setupBinding() {
@@ -80,12 +112,44 @@ final class WelfareListViewController: BaseViewController {
                 sortView.isOpen.toggle()
                 
                 let height = sortView.isOpen ? 56 : 0
+                sortContentView.isHidden = !sortView.isOpen
                 
                 self.sortContentView.snp.updateConstraints {
                     $0.height.equalTo(height)
                 }
-                self.tableView.reloadSections(.init(integer: 0), with: .none)
                 
+                self.tableView.reloadSections(.init(integer: 0), with: .none)
+                view.layoutIfNeeded()
+            }.store(in: &cancellable)
+        
+        // 임시
+        amountOrder.tapPublisher
+            .sink { [weak self] in
+                self?.sortView.title = "수혜금액"
+                self?.amountOrder.configuration?.attributedTitle?.foregroundColor = UIColor.white
+                self?.amountOrder.configuration?.baseBackgroundColor = .primaryNormal
+                self?.amountOrder.configuration?.background.strokeWidth = 0
+                
+                self?.closingOrder.configuration?.attributedTitle?.foregroundColor = .textAlternative
+                self?.closingOrder.configuration?.baseBackgroundColor = .white
+                self?.closingOrder.configuration?.background.strokeWidth = 1
+            }.store(in: &cancellable)
+        
+        closingOrder.tapPublisher
+            .sink { [weak self] in
+                self?.sortView.title = "마감순"
+                self?.amountOrder.configuration?.attributedTitle?.foregroundColor = .textAlternative
+                self?.amountOrder.configuration?.baseBackgroundColor = .white
+                self?.amountOrder.configuration?.background.strokeWidth = 1
+                
+                self?.closingOrder.configuration?.attributedTitle?.foregroundColor = UIColor.white
+                self?.closingOrder.configuration?.baseBackgroundColor = .primaryNormal
+                self?.closingOrder.configuration?.background.strokeWidth = 0
+            }.store(in: &cancellable)
+        
+        viewModel.policyList
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
             }.store(in: &cancellable)
     }
     
@@ -107,7 +171,6 @@ final class WelfareListViewController: BaseViewController {
         
         sortView.snp.makeConstraints {
             $0.top.equalTo(categoryCollectionView.snp.bottom).offset(16)
-            $0.height.equalTo(32)
             $0.trailing.equalToSuperview().offset(-16)
         }
         
@@ -121,6 +184,16 @@ final class WelfareListViewController: BaseViewController {
         tableView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview()
+        }
+        
+        amountOrder.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        closingOrder.snp.makeConstraints {
+            $0.leading.equalTo(amountOrder.snp.trailing).offset(8)
+            $0.centerY.equalToSuperview()
         }
     }
     
@@ -139,8 +212,9 @@ extension WelfareListViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
-        cell.configureCell(title: viewModel.categories[indexPath.row], selectedCategory: viewModel.selectedCategory)
-        
+        cell.configureCell(title: viewModel.categories[indexPath.row].description,
+                           selectedCategory: viewModel.selectedCategory.description)
+
         return cell
     }
     
@@ -154,7 +228,7 @@ extension WelfareListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = viewModel.categories[indexPath.row]
         let mockLabel = PaddingLabel(padding: .init(top: 8, left: 16, bottom: 8, right: 16))
-        mockLabel.text = item
+        mockLabel.text = item.description
         
         return .init(width: mockLabel.intrinsicContentSize.width, height: 40)
     }
@@ -168,14 +242,27 @@ extension WelfareListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.items.count
+        return viewModel.policyList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelfareCell.identifier, for: indexPath) as! WelfareCell
-        cell.configureCell(item: viewModel.items[indexPath.row])
+        cell.configureCell(item: viewModel.policyList.value[indexPath.row])
+        cell.delegate = self
         
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView is UITableView {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = tableView.contentSize.height
+            let frameHeight = scrollView.frame.height
+         
+            viewModel.didScroll(offsetY: offsetY,
+                                contentHeight: contentHeight,
+                                frameHeight: frameHeight)
+        }
     }
 }
 
@@ -185,5 +272,15 @@ extension WelfareListViewController {
         layout.scrollDirection = .horizontal
         
         return layout
+    }
+}
+
+extension WelfareListViewController: WelfareDelegate {
+    func toggleCalendarStatus() {
+        self.notiAlert("달력에 추가되었습니다.")
+    }
+    
+    func tapApplyWelfare() {
+        viewModel.coordinator?.setAction(.detail(id: 0)) // 임시
     }
 }

@@ -20,4 +20,28 @@ final class PolicyRepository: PolicyRepositoryProtocol {
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }
+    
+    func getBookmarkPolicyList(page: Int) -> AnyPublisher<BookmarkPolicyListDTO, Error> {
+        policyService.getBookmarkPolicyList(page: page)
+    }
+    
+    func getBenefitPolicyList(page: Int) -> AnyPublisher<BenefitPolicyListDTO, Error> {
+        policyService.getBenefitPolicyList(page: page)
+    }
+    
+    func getWelfareMainInfo() -> AnyPublisher<WelfareMainInfoDTO, Error> {
+        policyService.getWelfareMainInfo()
+    }
+    
+    func getPolicyInfo(page: Int,
+                       supportPolicyType: SupportPolicyType,
+                       policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+        policyService.getPolicyInfo(page: page,
+                                    supportPolicyType: supportPolicyType,
+                                    policyType: policyType)
+    }
+    
+    func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error> {
+        policyService.getPolicyDetailInfo(policyId: policyId)
+    }
 }

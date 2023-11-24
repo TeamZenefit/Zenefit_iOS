@@ -41,6 +41,16 @@ final class BenefitCell: UITableViewCell {
         $0.backgroundColor = .primaryAssistive
     }
     
+    private let deleteButton = UIButton().then {
+        var configuration = UIButton.Configuration.filled()
+        configuration.background.cornerRadius = 13
+        configuration.contentInsets = .init(top: 6, leading: 10, bottom: 6, trailing: 10)
+        configuration.baseBackgroundColor = .alert
+        configuration.attributedTitle = .init("삭제하기", attributes: .init([.font : UIFont.pretendard(.label5),
+                                                                         .foregroundColor : UIColor.white]))
+        $0.configuration = configuration
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .backgroundPrimary
@@ -52,9 +62,24 @@ final class BenefitCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(policyItem: BenefitPolicy, isEditMode: Bool) {
+        infoLabel.isHidden = isEditMode
+        deleteButton.isHidden = !isEditMode
+        
+        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo))
+        titleLabel.text = policyItem.policyName
+        contentLabel.text = policyItem.policyIntroduction
+        
+        if policyItem.supportPolicyType == "MONEY" {
+            infoLabel.text = "\(policyItem.benefit/10000)만원"
+        } else {
+            infoLabel.text = policyItem.supportPolicyTypeDescription
+        }
+    }
+    
     private func setLayout() {
-        addSubview(frameView)
-        [thumbnailImageView, titleLabel, contentLabel, infoLabel].forEach {
+        contentView.addSubview(frameView)
+        [thumbnailImageView, titleLabel, contentLabel, infoLabel, deleteButton].forEach {
             frameView.addSubview($0)
         }
         
@@ -74,6 +99,8 @@ final class BenefitCell: UITableViewCell {
             $0.trailing.equalTo(infoLabel.snp.leading).offset(-16)
         }
         
+        infoLabel.setContentHuggingPriority(.required, for: .horizontal)
+        infoLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         infoLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.bottom.equalTo(titleLabel)
@@ -83,6 +110,11 @@ final class BenefitCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.equalTo(titleLabel)
             $0.bottom.trailing.equalToSuperview().offset(-16)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.bottom.equalTo(titleLabel)
         }
     }
 }

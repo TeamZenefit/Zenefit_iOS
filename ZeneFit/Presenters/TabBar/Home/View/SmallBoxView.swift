@@ -32,6 +32,9 @@ final class SmallBoxView: UIView {
     
     func configureInfo(count: Int) {
         countLabel.text = "\(count)개"
+        countLabel.setPointTextAttribute("개",
+                                         color: .textStrong,
+                                         font: .pretendard(.label1))
     }
     
     private func setLayout() {

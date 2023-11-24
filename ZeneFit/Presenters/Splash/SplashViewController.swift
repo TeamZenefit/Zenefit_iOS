@@ -31,9 +31,9 @@ final class SplashViewController: BaseViewController {
         super.viewWillAppear(animated)
         if let _ = KeychainManager.read("accessToken") {
             // TODO: 일단 이걸로 체크..
-            coordinator?.pushToTabbar()
+            coordinator?.setAction(.tabBar)
         } else {
-            coordinator?.pushToAuth()
+            coordinator?.setAction(.auth)
         }
     }
 }

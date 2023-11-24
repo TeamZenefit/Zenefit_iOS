@@ -118,7 +118,7 @@ final class SignInViewController: BaseViewController {
             .sink { [weak self] error in
                 switch error {
                 case let CommonError.tempUser(userId):
-                    self?.coordinator?.showRegistVC(userId: userId)
+                    self?.coordinator?.setAction(.signUp(userId: userId))
                 case CommonError.serverError:
                     self?.notiAlert("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
                 default:

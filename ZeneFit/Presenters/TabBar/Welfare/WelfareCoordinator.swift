@@ -8,9 +8,18 @@
 import UIKit
 
 class WelfareCoordinator: Coordinator {
-    weak var delegate: CoordinatorDelegate?
     
-    var childCoordinators: [Coordinator] = []
+    enum CoordinatorAction {
+        case welfare,
+             find,
+             findResult(viewModel: FindWelfareViewModel,
+                        resultType: FindWelfareResultType),
+             list(type: SupportPolicyType),
+             detail(id: Int)
+    }
+    
+    weak var delegate: CoordinatorDelegate?
+    var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -18,30 +27,35 @@ class WelfareCoordinator: Coordinator {
     }
     
     func start() {
-        let welfareVM = WelfareViewModel(coordinator: self)
-        let welfareVC = WelfareViewController(viewModel: welfareVM)
-        navigationController.viewControllers = [welfareVC]
+        setAction(.welfare)
     }
     
-    func findWelfare() {
-        let viewModel = FindWelfareViewModel()
-        let findWelfareVC = FindWelfareViewController(viewModel: viewModel)
-        findWelfareVC.coordinator = self
-        navigationController.pushViewController(findWelfareVC, animated: false)
-    }
-    
-    func showFindWelfareResultVC(viewModel: FindWelfareViewModel,
-                                 resultType: FindWelfareResultType) {
-        let resultVC = FindWelfareResultViewController(viewModel: viewModel,
-                                                       resultType: resultType)
-        navigationController.pushViewController(resultVC, animated: false)
-    }
-    
-    func showWelfareListVC(type: WelfareType) {
-        let listVM = WelfareListViewModel(coordinator: self,
-                                          type: type)
-        let listVC = WelfareListViewController(viewModel: listVM)
-        
-        navigationController.pushViewController(listVC, animated: true)
+    func setAction(_ action: CoordinatorAction) {
+        switch action {
+        case .welfare:
+            let welfareVM = WelfareViewModel(coordinator: self)
+            let welfareVC = WelfareViewController(viewModel: welfareVM)
+            navigationController.viewControllers = [welfareVC]
+        case .find:
+            let viewModel = FindWelfareViewModel()
+            let findWelfareVC = FindWelfareViewController(viewModel: viewModel)
+            findWelfareVC.coordinator = self
+            navigationController.pushViewController(findWelfareVC, animated: false)
+        case .findResult(let viewModel, let resultType):
+            let resultVC = FindWelfareResultViewController(viewModel: viewModel,
+                                                           resultType: resultType)
+            navigationController.pushViewController(resultVC, animated: false)
+        case .list(let type):
+            let listVM = WelfareListViewModel(coordinator: self,
+                                              type: type)
+            let listVC = WelfareListViewController(viewModel: listVM)
+            
+            navigationController.pushViewController(listVC, animated: true)
+        case .detail(let id):
+            let detailVM = WelfareDetailViewModel(coordinator: self,
+                                                  policyId: id)
+            let detailVC = WelfareDetailViewController(viewModel: detailVM)
+            navigationController.pushViewController(detailVC, animated: true)
+        }
     }
 }

@@ -10,7 +10,11 @@ import Combine
 
 final class MainCoordinator: Coordinator {
     
-    var childCoordinators: [Coordinator] = []
+    enum CoordinatorAction {
+        case auth, tabBar
+    }
+    
+    var childCoordinators: [ any Coordinator] = []
     var navigationController: UINavigationController
     
     weak var delegate: CoordinatorDelegate?
@@ -24,31 +28,30 @@ final class MainCoordinator: Coordinator {
         splashVC.coordinator = self
         navigationController.setViewControllers([splashVC], animated: false)
     }
-}
-
-extension MainCoordinator {
-    func pushToAuth() {
-        let authCoordinator = AuthCoordinator(navigationController: navigationController)
-        authCoordinator.delegate = self
-        authCoordinator.start()
-        childCoordinators.append(authCoordinator)
-    }
     
-    func pushToTabbar() {
-        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
-        tabBarCoordinator.delegate = self
-        tabBarCoordinator.start()
-        childCoordinators.append(tabBarCoordinator)
+    func setAction(_ action: CoordinatorAction) {
+        switch action {
+        case .auth:
+            let authCoordinator = AuthCoordinator(navigationController: navigationController)
+            authCoordinator.delegate = self
+            authCoordinator.start()
+            childCoordinators.append(authCoordinator)
+        case .tabBar:
+            let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
+            tabBarCoordinator.delegate = self
+            tabBarCoordinator.start()
+            childCoordinators.append(tabBarCoordinator)
+        }
     }
 }
 
 extension MainCoordinator: CoordinatorDelegate {
-    func didFinish(childCoordinator: Coordinator) {
+    func didFinish(childCoordinator: any Coordinator) {
         childCoordinators = []
         if childCoordinator is AuthCoordinator {
-            pushToTabbar()
+            setAction(.tabBar)
         } else {
-            pushToAuth()
+            setAction(.auth)
         }
     }
 }

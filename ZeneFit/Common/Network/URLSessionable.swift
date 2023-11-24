@@ -28,19 +28,21 @@ extension URLSessionable {
                 - method: \(request.httpMethod ?? "")
                 - body: \(body ?? "")
             """
+        
         print(log)
     }
     
     func logResponseInfo(_ response: HTTPURLResponse, data: Data?) {
         let body = String(data: data ?? .init(),
                           encoding: .utf8)
-
+        
         let log = """
             🔴 Network Response Info Log
                 - absoluteURL: \(response.url?.absoluteString ?? "")
                 - statusCode: \(response.statusCode)
                 - data: \(body ?? "")
             """
+        
         print(log)
     }
 }

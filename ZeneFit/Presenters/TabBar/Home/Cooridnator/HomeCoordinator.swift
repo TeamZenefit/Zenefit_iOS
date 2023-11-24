@@ -8,10 +8,13 @@
 import UIKit
 
 final class HomeCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
     
+    enum CoordinatorAction {
+        case home, menual, bookmark, benefit, welfareDetail(welfareId: Int)
+    }
+    
+    var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
-    
     var delegate: CoordinatorDelegate?
     
     init(navigationController: UINavigationController) {
@@ -19,30 +22,38 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        pushToHomeMain()
+        setAction(.home)
+    }
+    
+    func setAction(_ action: CoordinatorAction) {
+        switch action {
+        case .home:
+            let homeVM = HomeViewModel(coordinator: self)
+            let homeVC = HomeViewController(viewModel: homeVM)
+            navigationController.pushViewController(homeVC, animated: true)
+        case .menual:
+            navigationController.present(ManualViewController(), animated: false)
+        case .bookmark:
+            let bookmarkVM = BookmarkViewModel(coordinator: self)
+            let bookmarkVC = BookmarkViewController(viewModel: bookmarkVM)
+            navigationController.pushViewController(bookmarkVC, animated: true)
+        case .benefit:
+            let benefitVM = BenefitViewModel(coordinator: self)
+            let benefitVC = BenefitViewController(viewModel: benefitVM)
+            navigationController.pushViewController(benefitVC, animated: true)
+        case .welfareDetail(let welfareId):
+            let welfareCoordinator = WelfareCoordinator(navigationController: navigationController)
+            childCoordinators.append(welfareCoordinator)
+            welfareCoordinator.delegate = self
+            welfareCoordinator.setAction(.detail(id: welfareId))
+        }
     }
 }
 
-extension HomeCoordinator {
-    func pushToHomeMain() {
-        let homeVM = HomeViewModel(coordinator: self)
-        let homeVC = HomeViewController(viewModel: homeVM)
-        navigationController.pushViewController(homeVC, animated: true)
-    }
-    
-    func presentToMenual() {
-        navigationController.present(ManualViewController(), animated: false)
-    }
-    
-    func pushToBookmark() {
-        let bookmarkVM = BookmarkViewModel(coordinator: self)
-        let bookmarkVC = BookmarkViewController(viewModel: bookmarkVM)
-        navigationController.pushViewController(bookmarkVC, animated: true)
-    }
-    
-    func pushToBenefit() {
-        let benefitVM = BenefitViewModel(coordinator: self)
-        let benefitVC = BenefitViewController(viewModel: benefitVM)
-        navigationController.pushViewController(benefitVC, animated: true)
+extension HomeCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: any Coordinator) {
+        if let index = childCoordinators.firstIndex(where: { $0 === childCoordinator }) {
+            childCoordinators.remove(at: index)
+        }
     }
 }

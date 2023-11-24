@@ -96,8 +96,6 @@ final class WelFareCategoryCell: UITableViewCell {
         setLayout()
         setupBinding()
         setGesture()
-        
-        configureApplyType(types: ["기간신청","방문신청"])
     }
     
     required init(coder: NSCoder) {
@@ -105,9 +103,10 @@ final class WelFareCategoryCell: UITableViewCell {
     }
     
     private func configureApplyType(types: [String]) {
+        resetItem()
         types.forEach { type in
-            let textColor: UIColor = type == "기간신청" ? .secondaryNormal : .primaryNormal
-            let borderColor: UIColor = type == "기간신청" ? .secondaryAssistive : .primaryAssistive
+            let textColor: UIColor = type == "기간 신청" ? .secondaryNormal : .primaryNormal
+            let borderColor: UIColor = type == "기간 신청" ? .secondaryAssistive : .primaryAssistive
             
             let label = PaddingLabel(padding: .init(top: 8, left: 8, bottom: 8, right: 8)).then {
                 $0.clipsToBounds = true
@@ -123,8 +122,21 @@ final class WelFareCategoryCell: UITableViewCell {
         }
     }
     
-    func configureCell(item: String) {
-        titleLabel.text = item
+    private func resetItem() {
+        applyTypeStackView.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
+    
+    func configureCell(item: PolicyMainInfo) {
+        titleLabel.text = SupportPolicyType(rawValue: item.supportType)?.description
+        countLabel.text = "\(item.supportTypePolicyCnt)"
+        policyImageView.kf.setImage(with: URL(string: item.policyLogo))
+        agencyLabel.text = item.policyCityCode
+        policyLabel.text = item.policyName
+        contentLabel.text = item.policyIntroduction
+        
+        configureApplyType(types: [item.policyDateType])
     }
 
     private func addSubViews() {

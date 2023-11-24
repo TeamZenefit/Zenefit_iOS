@@ -8,7 +8,11 @@
 import UIKit
 
 final class SettingCoordinator: Coordinator {
-    var childCoordinators: [Coordinator] = []
+    enum CoordinatorAction {
+        case setting
+    }
+    
+    var childCoordinators: [any Coordinator] = []
     
     var navigationController: UINavigationController
     
@@ -19,12 +23,15 @@ final class SettingCoordinator: Coordinator {
     }
     
     func start() {
-        pushToSettingMain()
+        setAction(.setting)
     }
     
-    func pushToSettingMain() {
-        let settingVM = SettingViewModel(coordinator: self)
-        let settingVC = SettingViewController(viewModel: settingVM)
-        navigationController.viewControllers = [settingVC]
+    func setAction(_ action: CoordinatorAction) {
+        switch action {
+        case .setting:
+            let settingVM = SettingViewModel(coordinator: self)
+            let settingVC = SettingViewController(viewModel: settingVM)
+            navigationController.viewControllers = [settingVC]
+        }
     }
 }

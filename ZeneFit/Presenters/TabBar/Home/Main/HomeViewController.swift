@@ -65,6 +65,7 @@ final class HomeViewController: BaseViewController {
         viewModel.info
             .sink { [weak self] info in
                 self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"
+                self?.nameLabel.setPointTextAttribute(info.characterNickname, color: .primaryNormal)
                 self?.progressView.configureView(content: info.description,
                                                  value: CGFloat(info.characterPercent)/100.0)
                 self?.bookmarkInfoView.configureInfo(count: info.applyPolicyCnt)
@@ -93,7 +94,7 @@ final class HomeViewController: BaseViewController {
         
         manualItem.tapPublisher
             .sink { [weak self] in
-                self?.viewModel.coordinator?.presentToMenual()
+                self?.viewModel.coordinator?.setAction(.menual)
             }.store(in: &cancellable)
 
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -105,15 +106,23 @@ final class HomeViewController: BaseViewController {
     }
     
     override func setGesture() {
-        bookmarkInfoView.gesture(for: .tap)
+        bookmarkInfoView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
-                self?.viewModel.coordinator?.pushToBookmark()
+                self?.viewModel.coordinator?.setAction(.bookmark)
             }.store(in: &cancellable)
         
-        benefitInfoView.gesture(for: .tap)
+        benefitInfoView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
-                self?.viewModel.coordinator?.pushToBenefit()
+                self?.viewModel.coordinator?.setAction(.benefit)
             }.store(in: &cancellable)
+        
+        policyInfoView.tapEventHandler = { [weak self] in
+            self?.tabBarController?.selectedIndex = 1
+        }
+        
+        deadLineInfoView.tapEventHandler = { [weak self] in
+            self?.tabBarController?.selectedIndex = 2
+        }
     }
     
     override func addSubView() {

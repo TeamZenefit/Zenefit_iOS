@@ -39,11 +39,12 @@ final class BookmarkFooterView: UIView {
         frameView.snp.makeConstraints {
             $0.height.equalTo(34)
             $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.verticalEdges.equalToSuperview()
         }
         
         stackView.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview().inset(8)
             $0.centerX.equalToSuperview()
+            $0.verticalEdges.equalToSuperview().inset(8)
         }
         
         infoImageView.snp.makeConstraints {

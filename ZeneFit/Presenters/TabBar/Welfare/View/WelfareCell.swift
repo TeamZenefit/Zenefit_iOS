@@ -8,10 +8,16 @@
 import UIKit
 import Combine
 
+protocol WelfareDelegate: AnyObject {
+    func toggleCalendarStatus()
+    func tapApplyWelfare()
+}
+
 final class WelfareCell: UITableViewCell {
     static let identifier = "WelfareCell"
     
     private var cancellable = Set<AnyCancellable>()
+    weak var delegate: WelfareDelegate?
     
     var titleTapHandler: (()->Void)?
     
@@ -104,7 +110,7 @@ final class WelfareCell: UITableViewCell {
         }
     }
     
-    func configureCell(item: String) {
+    func configureCell(item: PolicyInfoDTO) {
     }
 
     private func addSubViews() {
@@ -176,7 +182,15 @@ final class WelfareCell: UITableViewCell {
     }
 
     private func setupBinding() {
+        addScheduleButton.tapPublisher
+            .sink { [weak self] in
+                self?.delegate?.toggleCalendarStatus()
+            }.store(in: &cancellable)
         
+        applyButton.tapPublisher
+            .sink { [weak self] in
+                self?.delegate?.tapApplyWelfare()
+            }.store(in: &cancellable)
     }
     
     private func setGesture() {

@@ -57,7 +57,7 @@ final class AgreementViewModel {
             } receiveValue: { [weak self] res in
                 KeychainManager.create(key: "accessToken", value: res.accessToken)
                 KeychainManager.create(key: "refreshToken", value: res.refreshToken)
-                self?.coordinator?.showRegistCompleteVC(userName: res.nickname)
+                self?.coordinator?.setAction(.signUpComplete(userName: res.nickname))
             }.store(in: &cancellable)
 
     }

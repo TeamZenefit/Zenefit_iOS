@@ -8,9 +8,17 @@
 import UIKit
 
 final class AuthCoordinator: Coordinator {
+    
+    enum CoordinatorAction {
+        case signIn,
+             signUp(userId: String?),
+             signUpComplete(userName: String),
+             agreement
+    }
+    
     weak var delegate: CoordinatorDelegate?
     
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
     
     var registInfoInputViewModel = RegistInfoInputViewModel()
@@ -21,37 +29,38 @@ final class AuthCoordinator: Coordinator {
     }
     
     func start() {
-        let viewModel = SignInViewModel()
-        let signInVC = SignInViewController(viewModel: viewModel)
-        signInVC.coordinator = self
-        
-        navigationController.viewControllers = [signInVC]
+        setAction(.signIn)
+    }
+    
+    func setAction(_ action: CoordinatorAction) {
+        switch action {
+        case .signIn:
+            let viewModel = SignInViewModel()
+            let signInVC = SignInViewController(viewModel: viewModel)
+            signInVC.coordinator = self
+            
+            navigationController.viewControllers = [signInVC]
+        case .signUp(let userId):
+            registInfoInputViewModel = RegistInfoInputViewModel()
+            registInfoInputViewModel.signUpInfo.userId = userId
+            let registVC = RegistInfoInputViewController(viewModel: registInfoInputViewModel)
+            registVC.coordinator = self
+            navigationController.pushViewController(registVC, animated: false)
+        case .signUpComplete(let userName):
+            let completeVC = RegistCompleteViewController(userName: userName)
+            completeVC.coordinator = self
+            navigationController.pushViewController(completeVC, animated: false)
+        case .agreement:
+            agreementViewModel = AgreementViewModel()
+            agreementViewModel.signUpInfo = registInfoInputViewModel.signUpInfo
+            let agreementVC = AgreementViewController(viewModel: agreementViewModel)
+            agreementViewModel.coordinator = self
+            navigationController.pushViewController(agreementVC, animated: false)
+        }
     }
 }
 
 extension AuthCoordinator {
-    func showAgreementVC() {
-        agreementViewModel = AgreementViewModel()
-        agreementViewModel.signUpInfo = registInfoInputViewModel.signUpInfo
-        let agreementVC = AgreementViewController(viewModel: agreementViewModel)
-        agreementViewModel.coordinator = self
-        navigationController.pushViewController(agreementVC, animated: false)
-    }
-    
-    func showRegistVC(userId: String? = nil) {
-        registInfoInputViewModel = RegistInfoInputViewModel()
-        registInfoInputViewModel.signUpInfo.userId = userId
-        let registVC = RegistInfoInputViewController(viewModel: registInfoInputViewModel)
-        registVC.coordinator = self
-        navigationController.pushViewController(registVC, animated: false)
-    }
-    
-    func showRegistCompleteVC(userName: String) {
-        let completeVC = RegistCompleteViewController(userName: userName)
-        completeVC.coordinator = self
-        navigationController.pushViewController(completeVC, animated: false)
-    }
-    
     func showSelectionBottomSheet(title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)? = nil) {
         SelectionBottomSheet.showBottomSheet(view: navigationController.view,
                                              title: title,

@@ -6,9 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class WelfareSortButton: UIButton {
-    var isOpen: Bool = false
+    private var cancellable = Set<AnyCancellable>()
+    @Published var isOpen: Bool = false
+    
+    var title: String = "수혜정책" {
+        didSet {
+            self.configuration?.attributedTitle = .init(title,
+                                                        attributes: .init([.font : UIFont.pretendard(.body2),
+                                                                           .foregroundColor : UIColor.textNormal]))
+        }
+    }
     
     init(title: String) {
         super.init(frame: .zero)
@@ -24,9 +34,18 @@ final class WelfareSortButton: UIButton {
         configure.imagePlacement = .trailing
         
         self.configuration = configure
+        
+        setupBinding()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupBinding() {
+        $isOpen.sink { [weak self] isOpen in
+            let image: UIImage? = isOpen ? .init(named: "i-fol-20") : .init(named: "i-op-20")
+            self?.configuration?.image = image
+        }.store(in: &cancellable)
     }
 }
