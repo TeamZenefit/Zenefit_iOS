@@ -94,6 +94,21 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath {
+        case .init(row: 0, section: 0):
+            break
+        case .init(row: 1, section: 0):
+            break
+        case .init(row: 0, section: 1):
+            break
+        case .init(row: 1, section: 1):
+            break
+        case .init(row: 2, section: 1):
+            break
+        default:
+            viewModel.coordinator?.setAction(.appInfo)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

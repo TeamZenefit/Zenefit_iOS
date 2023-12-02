@@ -53,6 +53,9 @@
 		B55826DE2B1B953500A360E9 /* SettingMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826DD2B1B953500A360E9 /* SettingMainCell.swift */; };
 		B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */; };
 		B55826E22B1B9AB000A360E9 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E12B1B9AB000A360E9 /* SettingHeaderView.swift */; };
+		B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E42B1BA0E200A360E9 /* AppInfoViewModel.swift */; };
+		B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E62B1BA12200A360E9 /* AppInfoViewController.swift */; };
+		B55826EA2B1BA50400A360E9 /* SettingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E92B1BA50400A360E9 /* SettingItemView.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -227,6 +230,9 @@
 		B55826DD2B1B953500A360E9 /* SettingMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainCell.swift; sourceTree = "<group>"; };
 		B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
 		B55826E12B1B9AB000A360E9 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
+		B55826E42B1BA0E200A360E9 /* AppInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewModel.swift; sourceTree = "<group>"; };
+		B55826E62B1BA12200A360E9 /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
+		B55826E92B1BA50400A360E9 /* SettingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemView.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -507,6 +513,8 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B55826E82B1BA4D100A360E9 /* Common */,
+				B55826E32B1BA0CE00A360E9 /* AppInfo */,
 				B564523F2AEE742E000A45FA /* Coordinator */,
 				B56452422AEE74AA000A45FA /* Main */,
 			);
@@ -580,6 +588,23 @@
 				B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */,
 			);
 			path = Policy;
+			sourceTree = "<group>";
+		};
+		B55826E32B1BA0CE00A360E9 /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B55826E42B1BA0E200A360E9 /* AppInfoViewModel.swift */,
+				B55826E62B1BA12200A360E9 /* AppInfoViewController.swift */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		B55826E82B1BA4D100A360E9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B55826E92B1BA50400A360E9 /* SettingItemView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
@@ -1214,6 +1239,7 @@
 				B56452542AEEB229000A45FA /* GestureType.swift in Sources */,
 				B5F625212ACC5A8C002A1896 /* String+.swift in Sources */,
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
+				B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
 				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
@@ -1234,6 +1260,7 @@
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
 				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,
+				B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */,
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
 				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
@@ -1266,6 +1293,7 @@
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* RegistInfoInputViewModel.swift in Sources */,
 				B54A67572ADC1BE600971467 /* SignInResponse.swift in Sources */,
+				B55826EA2B1BA50400A360E9 /* SettingItemView.swift in Sources */,
 				B5A8706C2B0A0F3D0052D5A1 /* BenefitPolicyUseCase.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
 				B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */,

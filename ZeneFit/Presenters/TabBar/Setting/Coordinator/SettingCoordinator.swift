@@ -9,7 +9,8 @@ import UIKit
 
 final class SettingCoordinator: Coordinator {
     enum CoordinatorAction {
-        case setting
+        case main,
+             appInfo
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -23,15 +24,19 @@ final class SettingCoordinator: Coordinator {
     }
     
     func start() {
-        setAction(.setting)
+        setAction(.main)
     }
     
     func setAction(_ action: CoordinatorAction) {
         switch action {
-        case .setting:
+        case .main:
             let settingVM = SettingViewModel(coordinator: self)
             let settingVC = SettingViewController(viewModel: settingVM)
             navigationController.viewControllers = [settingVC]
+        case .appInfo:
+            let appInfoVM = AppInfoViewModel(coordinator: self)
+            let appInfoVC = AppInfoViewController(viewModel: appInfoVM)
+            navigationController.pushViewController(appInfoVC, animated: true)
         }
     }
 }
