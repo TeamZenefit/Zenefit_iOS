@@ -102,7 +102,7 @@ final class FindWelfareResultViewController: BaseViewController {
     }
     
     private func configureUI(resultType: FindWelfareResultType) {
-        var title: String = "\(viewModel.findResult.nickname)님이 신청할 수 있는\n"
+        var title: String = "\(viewModel.findResult.value.nickname)님이 신청할 수 있는\n"
         let subTitle: String
         let completionTitle: String
         let completionBGColor: UIColor
@@ -115,7 +115,7 @@ final class FindWelfareResultViewController: BaseViewController {
             completionTitleColor = .primaryNormal
             completionBGColor = .primaryAssistive
             completionTitle = "모든 정책 볼래요"
-            title += "정책을 \(viewModel.findResult.policyCnt)가지 찾았어요!"
+            title += "정책을 \(viewModel.findResult.value.policyCnt)가지 찾았어요!"
             subTitle = "닉네임이 받을 수 있는 금액도\n모두 계산이 끝났어요"
         case .fail:
             giftImage = UIImage(named: "FailGift")

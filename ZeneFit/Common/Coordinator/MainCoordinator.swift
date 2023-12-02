@@ -11,7 +11,7 @@ import Combine
 final class MainCoordinator: Coordinator {
     
     enum CoordinatorAction {
-        case auth, tabBar
+        case auth, tabBar, registComplete
     }
     
     var childCoordinators: [ any Coordinator] = []
@@ -34,12 +34,19 @@ final class MainCoordinator: Coordinator {
         case .auth:
             let authCoordinator = AuthCoordinator(navigationController: navigationController)
             authCoordinator.delegate = self
+            authCoordinator.mainCoordinator = self
             authCoordinator.start()
             childCoordinators.append(authCoordinator)
         case .tabBar:
             let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
             tabBarCoordinator.delegate = self
             tabBarCoordinator.start()
+            childCoordinators.append(tabBarCoordinator)
+        case .registComplete:
+            childCoordinators = []
+            let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
+            tabBarCoordinator.delegate = self
+            tabBarCoordinator.setAction(.tabBar(isRegist: true))
             childCoordinators.append(tabBarCoordinator)
         }
     }

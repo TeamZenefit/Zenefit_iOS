@@ -14,8 +14,8 @@ final class FindWelfareViewModel {
     private let findWelfareUseCase: FindWelfareUseCase
     
     // output
-    @Published var findResult: RecommendWelFareEntity = .init(nickname: "사용자",
-                                                              policyCnt: -1)
+    var findResult = CurrentValueSubject<RecommendWelFareEntity, Never>(.init(nickname: "사용자",
+                                                                             policyCnt: -1))
     var error = PassthroughSubject<Error, Never>()
     
     init(findWelfareUseCase: FindWelfareUseCase = .init()) {
@@ -31,7 +31,7 @@ final class FindWelfareViewModel {
                     self?.error.send(error)
                 }
             }, receiveValue: { [weak self] response in
-                self?.findResult = response
+                self?.findResult.send(response)
             }).store(in: &cancellable)
     }
 }
