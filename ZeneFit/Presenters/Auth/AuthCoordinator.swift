@@ -13,10 +13,12 @@ final class AuthCoordinator: Coordinator {
         case signIn,
              signUp(userId: String?),
              signUpComplete(userName: String),
-             agreement
+             agreement,
+             findWelfare
     }
     
     weak var delegate: CoordinatorDelegate?
+    weak var mainCoordinator: MainCoordinator?
     
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
@@ -56,6 +58,9 @@ final class AuthCoordinator: Coordinator {
             let agreementVC = AgreementViewController(viewModel: agreementViewModel)
             agreementViewModel.coordinator = self
             navigationController.pushViewController(agreementVC, animated: false)
+        case .findWelfare:
+            childCoordinators = []
+            mainCoordinator?.setAction(.registComplete)
         }
     }
 }

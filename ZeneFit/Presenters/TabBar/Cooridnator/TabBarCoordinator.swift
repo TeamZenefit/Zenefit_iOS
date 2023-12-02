@@ -10,7 +10,7 @@ import UIKit
 final class TabBarCoordinator: Coordinator {
     
     enum CoordinatorAction {
-        case tabBar
+        case tabBar(isRegist: Bool)
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -23,12 +23,12 @@ final class TabBarCoordinator: Coordinator {
     }
     
     func start() {
-        setAction(.tabBar)
+        setAction(.tabBar(isRegist: false))
     }
     
     func setAction(_ action: CoordinatorAction) {
         switch action {
-        case .tabBar:
+        case .tabBar(let isRegist):
             let items = TabBarItem.allCases.map {
                 createNavigationController(item: $0)
             }
@@ -38,6 +38,14 @@ final class TabBarCoordinator: Coordinator {
             tabBarController.coordinator = self
             
             navigationController.present(tabBarController, animated: true)
+            if let welfare = tabBarController.coordinator?.childCoordinators.first(
+                where: { $0 is WelfareCoordinator }) as? WelfareCoordinator,
+               isRegist {
+                tabBarController.selectedIndex = 1
+                welfare.setAction(.find)
+            }
+            
+            
         }
     }
 }

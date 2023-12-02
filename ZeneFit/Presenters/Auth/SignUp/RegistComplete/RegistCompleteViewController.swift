@@ -62,7 +62,7 @@ final class RegistCompleteViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] in
-            self?.coordinator?.finish()
+            self?.coordinator?.setAction(.findWelfare)
         }
     }
     

@@ -42,7 +42,7 @@ final class FindWelfareViewController: BaseViewController {
     }
     
     override func setupBinding() {
-        viewModel.$findResult
+        viewModel.findResult
             .dropFirst()
             .sink { [weak self] result in
                 guard let self else { return }
