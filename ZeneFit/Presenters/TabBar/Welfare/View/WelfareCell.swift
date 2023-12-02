@@ -14,7 +14,6 @@ protocol WelfareDelegate: AnyObject {
 }
 
 final class WelfareCell: UITableViewCell {
-    static let identifier = "WelfareCell"
     
     private var cancellable = Set<AnyCancellable>()
     weak var delegate: WelfareDelegate?

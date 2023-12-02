@@ -8,7 +8,6 @@
 import UIKit
 
 final class BenefitCell: UITableViewCell {
-    static let identifier = "BenefitCell"
     
     private let frameView = UIView().then {
         $0.backgroundColor = .white

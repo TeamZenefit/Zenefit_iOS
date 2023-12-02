@@ -8,7 +8,6 @@
 import UIKit
 
 final class SelectionCell: UITableViewCell {
-    static let identifier = "SelectionCell"
     
     private let titleLabel = UILabel().then {
         $0.textColor = .textNormal

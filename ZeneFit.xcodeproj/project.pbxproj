@@ -50,6 +50,9 @@
 		B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */; };
 		B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9EB2AE56B6400AA5F40 /* FindWelfareResultViewController.swift */; };
 		B552F9EF2AE56E5100AA5F40 /* RecommendWelFareEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */; };
+		B55826DE2B1B953500A360E9 /* SettingMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826DD2B1B953500A360E9 /* SettingMainCell.swift */; };
+		B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */; };
+		B55826E22B1B9AB000A360E9 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E12B1B9AB000A360E9 /* SettingHeaderView.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -221,6 +224,9 @@
 		B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCoordinator.swift; sourceTree = "<group>"; };
 		B552F9EB2AE56B6400AA5F40 /* FindWelfareResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindWelfareResultViewController.swift; sourceTree = "<group>"; };
 		B552F9EE2AE56E5100AA5F40 /* RecommendWelFareEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendWelFareEntity.swift; sourceTree = "<group>"; };
+		B55826DD2B1B953500A360E9 /* SettingMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMainCell.swift; sourceTree = "<group>"; };
+		B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
+		B55826E12B1B9AB000A360E9 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -503,7 +509,6 @@
 			children = (
 				B564523F2AEE742E000A45FA /* Coordinator */,
 				B56452422AEE74AA000A45FA /* Main */,
-				B552F9D22AE544C800AA5F40 /* SettingViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -626,7 +631,10 @@
 		B56452422AEE74AA000A45FA /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B552F9D22AE544C800AA5F40 /* SettingViewController.swift */,
 				B56452432AEE74B8000A45FA /* SettingViewModel.swift */,
+				B55826DD2B1B953500A360E9 /* SettingMainCell.swift */,
+				B55826E12B1B9AB000A360E9 /* SettingHeaderView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -836,6 +844,7 @@
 				B54A67922ADD9A6B00971467 /* Publisher+.swift */,
 				B564524B2AEE8A61000A45FA /* UIImage+.swift */,
 				B54646F62B0E1BF00051BBE5 /* UILabel+.swift */,
+				B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1216,6 +1225,7 @@
 				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
+				B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
 				B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */,
@@ -1228,6 +1238,7 @@
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
 				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
+				B55826DE2B1B953500A360E9 /* SettingMainCell.swift in Sources */,
 				B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */,
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
 				B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */,
@@ -1264,6 +1275,7 @@
 				B54A67482ADBCE3700971467 /* Collections+.swift in Sources */,
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
 				B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */,
+				B55826E22B1B9AB000A360E9 /* SettingHeaderView.swift in Sources */,
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
 				B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */,
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,

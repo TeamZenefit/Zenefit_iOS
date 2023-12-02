@@ -8,7 +8,6 @@
 import UIKit
 
 final class WelfareDetailCell: UITableViewCell {
-    static let identifier = "WelfareDetailCell"
     
     private let titleLabel = UILabel().then {
         $0.text = "제목"
