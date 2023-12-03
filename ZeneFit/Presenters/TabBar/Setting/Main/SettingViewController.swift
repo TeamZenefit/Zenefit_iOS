@@ -105,7 +105,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case .init(row: 1, section: 1):
             break
         case .init(row: 2, section: 1):
-            break
+            viewModel.coordinator?.setAction(.agreementForm)
         default:
             viewModel.coordinator?.setAction(.appInfo)
         }

@@ -56,6 +56,8 @@
 		B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E42B1BA0E200A360E9 /* AppInfoViewModel.swift */; };
 		B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E62B1BA12200A360E9 /* AppInfoViewController.swift */; };
 		B55826EA2B1BA50400A360E9 /* SettingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E92B1BA50400A360E9 /* SettingItemView.swift */; };
+		B55826ED2B1C482C00A360E9 /* AgreementFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826EC2B1C482C00A360E9 /* AgreementFormViewModel.swift */; };
+		B55826EF2B1C484800A360E9 /* AgreementFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826EE2B1C484800A360E9 /* AgreementFormViewController.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -233,6 +235,8 @@
 		B55826E42B1BA0E200A360E9 /* AppInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewModel.swift; sourceTree = "<group>"; };
 		B55826E62B1BA12200A360E9 /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		B55826E92B1BA50400A360E9 /* SettingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemView.swift; sourceTree = "<group>"; };
+		B55826EC2B1C482C00A360E9 /* AgreementFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementFormViewModel.swift; sourceTree = "<group>"; };
+		B55826EE2B1C484800A360E9 /* AgreementFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementFormViewController.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -514,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				B55826E82B1BA4D100A360E9 /* Common */,
+				B55826EB2B1C481300A360E9 /* AgreementForm */,
 				B55826E32B1BA0CE00A360E9 /* AppInfo */,
 				B564523F2AEE742E000A45FA /* Coordinator */,
 				B56452422AEE74AA000A45FA /* Main */,
@@ -605,6 +610,15 @@
 				B55826E92B1BA50400A360E9 /* SettingItemView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		B55826EB2B1C481300A360E9 /* AgreementForm */ = {
+			isa = PBXGroup;
+			children = (
+				B55826EC2B1C482C00A360E9 /* AgreementFormViewModel.swift */,
+				B55826EE2B1C484800A360E9 /* AgreementFormViewController.swift */,
+			);
+			path = AgreementForm;
 			sourceTree = "<group>";
 		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
@@ -1276,6 +1290,7 @@
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
 				B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */,
+				B55826EF2B1C484800A360E9 /* AgreementFormViewController.swift in Sources */,
 				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,
@@ -1338,6 +1353,7 @@
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
 				B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,
+				B55826ED2B1C482C00A360E9 /* AgreementFormViewModel.swift in Sources */,
 				B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,

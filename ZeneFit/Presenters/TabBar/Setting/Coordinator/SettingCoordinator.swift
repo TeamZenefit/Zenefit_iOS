@@ -10,7 +10,8 @@ import UIKit
 final class SettingCoordinator: Coordinator {
     enum CoordinatorAction {
         case main,
-             appInfo
+             appInfo,
+             agreementForm
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -37,6 +38,10 @@ final class SettingCoordinator: Coordinator {
             let appInfoVM = AppInfoViewModel(coordinator: self)
             let appInfoVC = AppInfoViewController(viewModel: appInfoVM)
             navigationController.pushViewController(appInfoVC, animated: true)
+        case .agreementForm:
+            let agreementFormVM = AgreementFormViewModel(coordinator: self)
+            let agreementFormVC = AgreementFormViewController(viewModel: agreementFormVM)
+            navigationController.pushViewController(agreementFormVC, animated: true)
         }
     }
 }
