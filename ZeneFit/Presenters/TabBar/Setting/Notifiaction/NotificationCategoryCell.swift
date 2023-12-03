@@ -1,13 +1,13 @@
 //
-//  CategoryCell.swift
+//  NotificationCategoryCell.swift
 //  ZeneFit
 //
-//  Created by iOS신상우 on 2023/11/08.
+//  Created by iOS신상우 on 12/3/23.
 //
 
 import UIKit
 
-final class CategoryCell: UICollectionViewCell {
+final class NotificationCategoryCell: UICollectionViewCell {
     
     private let titleLabel = UILabel().then {
         $0.font = .pretendard(.label3)
@@ -16,8 +16,11 @@ final class CategoryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.cornerRadius = 20
+        layer.cornerRadius = 16
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.lineNormal.cgColor
         backgroundColor = .white
+        titleLabel.textColor = .textAlternative
         addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints {
@@ -28,8 +31,9 @@ final class CategoryCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        layer.borderColor = UIColor.lineNormal.cgColor
         backgroundColor = .white
-        titleLabel.textColor = .textAssistive
+        titleLabel.textColor = .textAlternative
     }
     
     
@@ -40,8 +44,9 @@ final class CategoryCell: UICollectionViewCell {
     func configureCell(title: String, selectedCategory: String) {
         titleLabel.text = title
         if selectedCategory == title {
-            backgroundColor = .textNormal
-            titleLabel.textColor = .white
+            layer.borderColor = UIColor.primaryNormal.cgColor
+            titleLabel.textColor = .primaryNormal
+            backgroundColor = .primaryNormal.withAlphaComponent(0.07)
         }
     }
 }

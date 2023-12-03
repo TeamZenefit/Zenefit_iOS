@@ -140,7 +140,7 @@ final class BookmarkViewController: BaseViewController {
 
 extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = BookmarkFooterView()
+        let footer = ZFTableViewFooterView(title: "관심 정책은 달력에도 추가됩니다.")
         footer.frame = .init(x: 16, y: 0, width: 200, height: 34)
         
         return footer

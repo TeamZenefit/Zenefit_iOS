@@ -31,7 +31,7 @@
 		B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */; };
 		B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */; };
 		B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */; };
-		B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */; };
+		B54E92882AF3B96600F47A6B /* ZFTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E92872AF3B96600F47A6B /* ZFTableViewFooterView.swift */; };
 		B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */; };
 		B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */; };
 		B54E928F2AF3BE9600F47A6B /* BenefitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928E2AF3BE9600F47A6B /* BenefitCell.swift */; };
@@ -66,6 +66,12 @@
 		B55827012B1C6EEB00A360E9 /* NotiSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827002B1C6EEB00A360E9 /* NotiSettingViewModel.swift */; };
 		B55827032B1C6F0C00A360E9 /* NotiSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827022B1C6F0C00A360E9 /* NotiSettingViewController.swift */; };
 		B55827052B1C70E700A360E9 /* NotiSettingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827042B1C70E700A360E9 /* NotiSettingItemView.swift */; };
+		B55827072B1C963B00A360E9 /* NotiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827062B1C963B00A360E9 /* NotiViewModel.swift */; };
+		B558270A2B1C967E00A360E9 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827092B1C967E00A360E9 /* NotiViewController.swift */; };
+		B558270C2B1C98AE00A360E9 /* NotificationCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558270B2B1C98AE00A360E9 /* NotificationCategoryCell.swift */; };
+		B558270E2B1C98D500A360E9 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */; };
+		B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558270F2B1C9FB500A360E9 /* NotificationCell.swift */; };
+		B55827132B1CA31100A360E9 /* NotificationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827122B1CA31100A360E9 /* NotificationItem.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -218,7 +224,7 @@
 		B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareViewModel.swift; sourceTree = "<group>"; };
 		B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewController.swift; sourceTree = "<group>"; };
 		B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewModel.swift; sourceTree = "<group>"; };
-		B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkFooterView.swift; sourceTree = "<group>"; };
+		B54E92872AF3B96600F47A6B /* ZFTableViewFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFTableViewFooterView.swift; sourceTree = "<group>"; };
 		B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
 		B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewController.swift; sourceTree = "<group>"; };
 		B54E928E2AF3BE9600F47A6B /* BenefitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitCell.swift; sourceTree = "<group>"; };
@@ -253,6 +259,12 @@
 		B55827002B1C6EEB00A360E9 /* NotiSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewModel.swift; sourceTree = "<group>"; };
 		B55827022B1C6F0C00A360E9 /* NotiSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewController.swift; sourceTree = "<group>"; };
 		B55827042B1C70E700A360E9 /* NotiSettingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingItemView.swift; sourceTree = "<group>"; };
+		B55827062B1C963B00A360E9 /* NotiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewModel.swift; sourceTree = "<group>"; };
+		B55827092B1C967E00A360E9 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
+		B558270B2B1C98AE00A360E9 /* NotificationCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCategoryCell.swift; sourceTree = "<group>"; };
+		B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
+		B558270F2B1C9FB500A360E9 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		B55827122B1CA31100A360E9 /* NotificationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItem.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -533,6 +545,7 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B55827082B1C966000A360E9 /* Notifiaction */,
 				B55826FF2B1C6ED200A360E9 /* NotiSetting */,
 				B55826FA2B1C607500A360E9 /* LoginInfo */,
 				B55826E82B1BA4D100A360E9 /* Common */,
@@ -668,6 +681,25 @@
 			path = NotiSetting;
 			sourceTree = "<group>";
 		};
+		B55827082B1C966000A360E9 /* Notifiaction */ = {
+			isa = PBXGroup;
+			children = (
+				B55827062B1C963B00A360E9 /* NotiViewModel.swift */,
+				B55827092B1C967E00A360E9 /* NotiViewController.swift */,
+				B558270B2B1C98AE00A360E9 /* NotificationCategoryCell.swift */,
+				B558270F2B1C9FB500A360E9 /* NotificationCell.swift */,
+			);
+			path = Notifiaction;
+			sourceTree = "<group>";
+		};
+		B55827112B1CA30000A360E9 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B55827122B1CA31100A360E9 /* NotificationItem.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,7 +783,6 @@
 				B56452D72AEFE55D000A45FA /* BookmarkViewModel.swift */,
 				B56452D92AEFE5A0000A45FA /* BookmarkViewController.swift */,
 				B56452DB2AF005A1000A45FA /* BookmarkCell.swift */,
-				B54E92872AF3B96600F47A6B /* BookmarkFooterView.swift */,
 			);
 			path = Bookmark;
 			sourceTree = "<group>";
@@ -931,6 +962,7 @@
 				B564524B2AEE8A61000A45FA /* UIImage+.swift */,
 				B54646F62B0E1BF00051BBE5 /* UILabel+.swift */,
 				B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */,
+				B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */,
 				B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */,
 			);
 			path = Extension;
@@ -971,6 +1003,7 @@
 				B55826F02B1C4D7C00A360E9 /* Alert */,
 				B54AB1AC2AF76A9600429C52 /* Base */,
 				B5F624F72AC8A169002A1896 /* InfoSelectionBottomSheet */,
+				B54E92872AF3B96600F47A6B /* ZFTableViewFooterView.swift */,
 				B5F624C92AC54C53002A1896 /* PaddingLabel.swift */,
 				B5F624ED2AC87907002A1896 /* UserInfoInputTextField.swift */,
 				B5F624F32AC88DA9002A1896 /* BottomButton.swift */,
@@ -1037,6 +1070,7 @@
 		B5F625022AC95488002A1896 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B55827112B1CA30000A360E9 /* Setting */,
 				B5A870922B0B79000052D5A1 /* Enums */,
 				B552F9ED2AE56E4600AA5F40 /* Policy */,
 				B5F625032AC95492002A1896 /* Auth */,
@@ -1311,7 +1345,7 @@
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
-				B54E92882AF3B96600F47A6B /* BookmarkFooterView.swift in Sources */,
+				B54E92882AF3B96600F47A6B /* ZFTableViewFooterView.swift in Sources */,
 				B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */,
 				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
@@ -1319,6 +1353,7 @@
 				B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
+				B558270C2B1C98AE00A360E9 /* NotificationCategoryCell.swift in Sources */,
 				B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */,
 				B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */,
 				B55826FC2B1C609C00A360E9 /* LoginInfoViewModel.swift in Sources */,
@@ -1327,6 +1362,7 @@
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
 				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,
+				B55827072B1C963B00A360E9 /* NotiViewModel.swift in Sources */,
 				B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */,
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
@@ -1340,6 +1376,7 @@
 				B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */,
 				B5A8709C2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
+				B558270A2B1C967E00A360E9 /* NotiViewController.swift in Sources */,
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
 				B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */,
@@ -1366,6 +1403,7 @@
 				B5A8706C2B0A0F3D0052D5A1 /* BenefitPolicyUseCase.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
 				B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */,
+				B558270E2B1C98D500A360E9 /* UICollectionViewCell+.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
 				B5ED7BA72B00ADF500138FE8 /* AuthRepositoryProtocol.swift in Sources */,
 				B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */,
@@ -1378,6 +1416,7 @@
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,
 				B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */,
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
+				B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */,
 				B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */,
 				B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */,
 				B5A870702B0A64950052D5A1 /* WelfareMainUseCase.swift in Sources */,
@@ -1405,6 +1444,7 @@
 				B5F624C82AC54876002A1896 /* UIView+.swift in Sources */,
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
+				B55827132B1CA31100A360E9 /* NotificationItem.swift in Sources */,
 				B55826F42B1C4D7C00A360E9 /* StandardAlertController.swift in Sources */,
 				B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,

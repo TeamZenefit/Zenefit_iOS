@@ -57,7 +57,9 @@ final class SettingCoordinator: Coordinator {
             let notiSettingVC = NotiSettingViewController(viewModel: notiSettingVM)
             navigationController.pushViewController(notiSettingVC, animated: true)
         case .notiList:
-            break
+            let notiListVM = NotiViewModel(coordinator: self)
+            let notiListVC = NotiViewController(viewModel: notiListVM)
+            navigationController.pushViewController(notiListVC, animated: true)
         }
     }
 }

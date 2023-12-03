@@ -81,7 +81,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath {
         case .init(row: 0, section: 0):
-            break
+            viewModel.coordinator?.setAction(.notiList)
         case .init(row: 1, section: 0):
             viewModel.coordinator?.setAction(.notiSetting)
         case .init(row: 0, section: 1):
