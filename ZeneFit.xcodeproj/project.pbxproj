@@ -58,6 +58,9 @@
 		B55826EA2B1BA50400A360E9 /* SettingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826E92B1BA50400A360E9 /* SettingItemView.swift */; };
 		B55826ED2B1C482C00A360E9 /* AgreementFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826EC2B1C482C00A360E9 /* AgreementFormViewModel.swift */; };
 		B55826EF2B1C484800A360E9 /* AgreementFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826EE2B1C484800A360E9 /* AgreementFormViewController.swift */; };
+		B55826F42B1C4D7C00A360E9 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F12B1C4D7C00A360E9 /* StandardAlertController.swift */; };
+		B55826F62B1C4D7C00A360E9 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F32B1C4D7C00A360E9 /* StandardAlertAction.swift */; };
+		B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -237,6 +240,9 @@
 		B55826E92B1BA50400A360E9 /* SettingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemView.swift; sourceTree = "<group>"; };
 		B55826EC2B1C482C00A360E9 /* AgreementFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementFormViewModel.swift; sourceTree = "<group>"; };
 		B55826EE2B1C484800A360E9 /* AgreementFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementFormViewController.swift; sourceTree = "<group>"; };
+		B55826F12B1C4D7C00A360E9 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
+		B55826F32B1C4D7C00A360E9 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
+		B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -621,6 +627,16 @@
 			path = AgreementForm;
 			sourceTree = "<group>";
 		};
+		B55826F02B1C4D7C00A360E9 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				B55826F12B1C4D7C00A360E9 /* StandardAlertController.swift */,
+				B55826F32B1C4D7C00A360E9 /* StandardAlertAction.swift */,
+				B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +900,7 @@
 				B564524B2AEE8A61000A45FA /* UIImage+.swift */,
 				B54646F62B0E1BF00051BBE5 /* UILabel+.swift */,
 				B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */,
+				B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -920,13 +937,13 @@
 		B5F624C12AC53B66002A1896 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B55826F02B1C4D7C00A360E9 /* Alert */,
 				B54AB1AC2AF76A9600429C52 /* Base */,
 				B5F624F72AC8A169002A1896 /* InfoSelectionBottomSheet */,
 				B5F624C92AC54C53002A1896 /* PaddingLabel.swift */,
 				B5F624ED2AC87907002A1896 /* UserInfoInputTextField.swift */,
 				B5F624F32AC88DA9002A1896 /* BottomButton.swift */,
 				B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */,
-				B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1256,6 +1273,7 @@
 				B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
+				B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */,
 				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
@@ -1293,6 +1311,7 @@
 				B55826EF2B1C484800A360E9 /* AgreementFormViewController.swift in Sources */,
 				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
+				B55826F62B1C4D7C00A360E9 /* StandardAlertAction.swift in Sources */,
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,
 				B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */,
 				B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */,
@@ -1351,6 +1370,7 @@
 				B5F624C82AC54876002A1896 /* UIView+.swift in Sources */,
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
+				B55826F42B1C4D7C00A360E9 /* StandardAlertController.swift in Sources */,
 				B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,
 				B55826ED2B1C482C00A360E9 /* AgreementFormViewModel.swift in Sources */,
