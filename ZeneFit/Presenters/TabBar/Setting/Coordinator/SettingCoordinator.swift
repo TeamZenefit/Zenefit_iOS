@@ -14,8 +14,8 @@ final class SettingCoordinator: Coordinator {
              agreementForm,
              loginInfo,
              personalInfo,
-             alertSetting,
-             alertList
+             notiSetting,
+             notiList
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -52,9 +52,11 @@ final class SettingCoordinator: Coordinator {
             navigationController.pushViewController(loginInfoVC, animated: true)
         case .personalInfo:
             break
-        case .alertSetting:
-            break
-        case .alertList:
+        case .notiSetting:
+            let notiSettingVM = NotiSettingViewModel(coordinator: self)
+            let notiSettingVC = NotiSettingViewController(viewModel: notiSettingVM)
+            navigationController.pushViewController(notiSettingVC, animated: true)
+        case .notiList:
             break
         }
     }

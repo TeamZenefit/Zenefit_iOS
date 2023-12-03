@@ -63,6 +63,9 @@
 		B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */; };
 		B55826FC2B1C609C00A360E9 /* LoginInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826FB2B1C609C00A360E9 /* LoginInfoViewModel.swift */; };
 		B55826FE2B1C60C000A360E9 /* LoginInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826FD2B1C60C000A360E9 /* LoginInfoViewController.swift */; };
+		B55827012B1C6EEB00A360E9 /* NotiSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827002B1C6EEB00A360E9 /* NotiSettingViewModel.swift */; };
+		B55827032B1C6F0C00A360E9 /* NotiSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827022B1C6F0C00A360E9 /* NotiSettingViewController.swift */; };
+		B55827052B1C70E700A360E9 /* NotiSettingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827042B1C70E700A360E9 /* NotiSettingItemView.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -247,6 +250,9 @@
 		B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
 		B55826FB2B1C609C00A360E9 /* LoginInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfoViewModel.swift; sourceTree = "<group>"; };
 		B55826FD2B1C60C000A360E9 /* LoginInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfoViewController.swift; sourceTree = "<group>"; };
+		B55827002B1C6EEB00A360E9 /* NotiSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewModel.swift; sourceTree = "<group>"; };
+		B55827022B1C6F0C00A360E9 /* NotiSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingViewController.swift; sourceTree = "<group>"; };
+		B55827042B1C70E700A360E9 /* NotiSettingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiSettingItemView.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -527,6 +533,7 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B55826FF2B1C6ED200A360E9 /* NotiSetting */,
 				B55826FA2B1C607500A360E9 /* LoginInfo */,
 				B55826E82B1BA4D100A360E9 /* Common */,
 				B55826EB2B1C481300A360E9 /* AgreementForm */,
@@ -649,6 +656,16 @@
 				B55826FD2B1C60C000A360E9 /* LoginInfoViewController.swift */,
 			);
 			path = LoginInfo;
+			sourceTree = "<group>";
+		};
+		B55826FF2B1C6ED200A360E9 /* NotiSetting */ = {
+			isa = PBXGroup;
+			children = (
+				B55827002B1C6EEB00A360E9 /* NotiSettingViewModel.swift */,
+				B55827022B1C6F0C00A360E9 /* NotiSettingViewController.swift */,
+				B55827042B1C70E700A360E9 /* NotiSettingItemView.swift */,
+			);
+			path = NotiSetting;
 			sourceTree = "<group>";
 		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
@@ -1279,6 +1296,7 @@
 				B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */,
 				B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */,
 				B5F624EB2AC87818002A1896 /* RegistInfoInputViewController.swift in Sources */,
+				B55827012B1C6EEB00A360E9 /* NotiSettingViewModel.swift in Sources */,
 				B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */,
 				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
 				B56452542AEEB229000A45FA /* GestureType.swift in Sources */,
@@ -1287,6 +1305,7 @@
 				B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
+				B55827052B1C70E700A360E9 /* NotiSettingItemView.swift in Sources */,
 				B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */,
 				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
@@ -1393,6 +1412,7 @@
 				B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,
+				B55827032B1C6F0C00A360E9 /* NotiSettingViewController.swift in Sources */,
 				B5ED7BB72B00E3C100138FE8 /* WelfareDetailViewController.swift in Sources */,
 				B552F9CD2AE5446D00AA5F40 /* WelfareViewController.swift in Sources */,
 				B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */,

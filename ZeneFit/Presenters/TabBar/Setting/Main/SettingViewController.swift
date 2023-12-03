@@ -83,7 +83,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case .init(row: 0, section: 0):
             break
         case .init(row: 1, section: 0):
-            break
+            viewModel.coordinator?.setAction(.notiSetting)
         case .init(row: 0, section: 1):
             break
         case .init(row: 1, section: 1):
