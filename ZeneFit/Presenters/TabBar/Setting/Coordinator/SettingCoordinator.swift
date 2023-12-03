@@ -11,7 +11,11 @@ final class SettingCoordinator: Coordinator {
     enum CoordinatorAction {
         case main,
              appInfo,
-             agreementForm
+             agreementForm,
+             loginInfo,
+             personalInfo,
+             alertSetting,
+             alertList
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -42,6 +46,16 @@ final class SettingCoordinator: Coordinator {
             let agreementFormVM = AgreementFormViewModel(coordinator: self)
             let agreementFormVC = AgreementFormViewController(viewModel: agreementFormVM)
             navigationController.pushViewController(agreementFormVC, animated: true)
+        case .loginInfo:
+            let loginInfoVM = LoginInfoViewModel(coordinator: self)
+            let loginInfoVC = LoginInfoViewController(viewModel: loginInfoVM)
+            navigationController.pushViewController(loginInfoVC, animated: true)
+        case .personalInfo:
+            break
+        case .alertSetting:
+            break
+        case .alertList:
+            break
         }
     }
 }

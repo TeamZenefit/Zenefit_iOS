@@ -8,10 +8,6 @@
 import UIKit
 
 final class SettingViewController: BaseViewController {
-    private let tempLogoutButton = UIButton(type: .system).then {
-        $0.setTitle("임시 로그아웃", for: .normal)
-    }
-    
     private let viewModel: SettingViewModel
     
     private let tableView = UITableView(frame: .zero, style: .grouped).then {
@@ -48,25 +44,13 @@ final class SettingViewController: BaseViewController {
     }
     
     override func addSubView() {
-        view.addSubview(tempLogoutButton)
         view.addSubview(tableView)
     }
     
     override func layout() {
-        tempLogoutButton.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-    
-    override func setupBinding() {
-        tempLogoutButton.tapPublisher
-            .sink { [weak self] in
-                self?.viewModel.logout()
-            }.store(in: &cancellable)
     }
 }
 
@@ -103,7 +87,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case .init(row: 0, section: 1):
             break
         case .init(row: 1, section: 1):
-            break
+            viewModel.coordinator?.setAction(.loginInfo)
         case .init(row: 2, section: 1):
             viewModel.coordinator?.setAction(.agreementForm)
         default:

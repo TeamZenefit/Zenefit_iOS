@@ -17,12 +17,6 @@ final class SettingViewModel {
     init(coordinator: SettingCoordinator? = nil) {
         self.coordinator = coordinator
     }
-    
-    func logout() {
-        KeychainManager.delete(key: "accessToken")
-        KeychainManager.delete(key: "refreshToken")
-        coordinator?.finish()
-    }
 }
 
 struct HeaderModel {

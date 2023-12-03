@@ -61,6 +61,8 @@
 		B55826F42B1C4D7C00A360E9 /* StandardAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F12B1C4D7C00A360E9 /* StandardAlertController.swift */; };
 		B55826F62B1C4D7C00A360E9 /* StandardAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F32B1C4D7C00A360E9 /* StandardAlertAction.swift */; };
 		B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */; };
+		B55826FC2B1C609C00A360E9 /* LoginInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826FB2B1C609C00A360E9 /* LoginInfoViewModel.swift */; };
+		B55826FE2B1C60C000A360E9 /* LoginInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55826FD2B1C60C000A360E9 /* LoginInfoViewController.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -243,6 +245,8 @@
 		B55826F12B1C4D7C00A360E9 /* StandardAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertController.swift; sourceTree = "<group>"; };
 		B55826F32B1C4D7C00A360E9 /* StandardAlertAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardAlertAction.swift; sourceTree = "<group>"; };
 		B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
+		B55826FB2B1C609C00A360E9 /* LoginInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfoViewModel.swift; sourceTree = "<group>"; };
+		B55826FD2B1C60C000A360E9 /* LoginInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfoViewController.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -523,6 +527,7 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B55826FA2B1C607500A360E9 /* LoginInfo */,
 				B55826E82B1BA4D100A360E9 /* Common */,
 				B55826EB2B1C481300A360E9 /* AgreementForm */,
 				B55826E32B1BA0CE00A360E9 /* AppInfo */,
@@ -635,6 +640,15 @@
 				B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		B55826FA2B1C607500A360E9 /* LoginInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B55826FB2B1C609C00A360E9 /* LoginInfoViewModel.swift */,
+				B55826FD2B1C60C000A360E9 /* LoginInfoViewController.swift */,
+			);
+			path = LoginInfo;
 			sourceTree = "<group>";
 		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
@@ -1288,7 +1302,9 @@
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
 				B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */,
 				B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */,
+				B55826FC2B1C609C00A360E9 /* LoginInfoViewModel.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
+				B55826FE2B1C60C000A360E9 /* LoginInfoViewController.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
 				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,

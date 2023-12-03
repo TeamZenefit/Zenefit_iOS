@@ -10,6 +10,7 @@ import UIKit
 enum StandardAlertStyle {
     case cancel
     case basic
+    case gray
 }
 
 final class StandardAlertAction: UIButton {
@@ -31,6 +32,9 @@ final class StandardAlertAction: UIButton {
         case .basic:
             configuration?.baseBackgroundColor = .alert
             configuration?.baseForegroundColor = .white
+        case .gray:
+            configuration?.baseBackgroundColor = .fillNormal
+            configuration?.baseForegroundColor = .textAlternative
         }
         
         configuration?.background.cornerRadius = 20
