@@ -7,8 +7,7 @@
 
 import UIKit
 
-final class BookmarkCell: UITableViewCell {
-    static let identifier = "BookmarkCell"	
+final class BookmarkCell: UITableViewCell {	
     
     private let frameView = UIView().then {
         $0.backgroundColor = .white

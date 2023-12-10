@@ -1,5 +1,5 @@
 //
-//  BookmarkFooterView.swift
+//  ZFFooterView.swift
 //  ZeneFit
 //
 //  Created by iOS신상우 on 2023/11/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BookmarkFooterView: UIView {
+final class ZFTableViewFooterView: UIView {
     private let frameView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -15,7 +15,10 @@ final class BookmarkFooterView: UIView {
         $0.layer.borderColor = UIColor.lineNormal.cgColor
     }
     
-    private lazy var stackView = UIStackView()
+    private lazy var stackView = UIStackView(arrangedSubviews: [infoImageView, guideLabel]).then {
+        $0.distribution = .fillProportionally
+        $0.spacing = 8
+    }
     
     private let infoImageView = UIImageView().then {
         $0.image = UIImage(named: "InfoIcon")?.withRenderingMode(.alwaysOriginal)
@@ -27,34 +30,22 @@ final class BookmarkFooterView: UIView {
         $0.textColor = .textAlternative
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(title: String) {
+        guideLabel.text = title
+        super.init(frame: .zero)
+        
         addSubview(frameView)
         frameView.addSubview(stackView)
         
-        [infoImageView, guideLabel].forEach {
-            stackView.addSubview($0)
-        }
-        
         frameView.snp.makeConstraints {
             $0.height.equalTo(34)
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.verticalEdges.equalToSuperview()
+            $0.width.equalTo(UIScreen.main.bounds.width-32)
+            $0.center.equalToSuperview()
         }
         
         stackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.verticalEdges.equalToSuperview().inset(8)
-        }
-        
-        infoImageView.snp.makeConstraints {
-            $0.leading.verticalEdges.equalToSuperview()
-            $0.width.height.equalTo(18)
-        }
-        
-        guideLabel.snp.makeConstraints {
-            $0.centerY.trailing.equalToSuperview()
-            $0.leading.equalTo(infoImageView.snp.trailing).offset(8)
         }
     }
     

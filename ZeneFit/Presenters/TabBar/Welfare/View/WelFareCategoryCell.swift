@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 final class WelFareCategoryCell: UITableViewCell {
-    static let identifier = "WelFareCategoryCell"
     
     private var cancellable = Set<AnyCancellable>()
     

@@ -9,7 +9,13 @@ import UIKit
 
 final class SettingCoordinator: Coordinator {
     enum CoordinatorAction {
-        case setting
+        case main,
+             appInfo,
+             agreementForm,
+             loginInfo,
+             personalInfo,
+             notiSetting,
+             notiList
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -23,15 +29,39 @@ final class SettingCoordinator: Coordinator {
     }
     
     func start() {
-        setAction(.setting)
+        setAction(.main)
     }
     
     func setAction(_ action: CoordinatorAction) {
         switch action {
-        case .setting:
+        case .main:
             let settingVM = SettingViewModel(coordinator: self)
             let settingVC = SettingViewController(viewModel: settingVM)
             navigationController.viewControllers = [settingVC]
+        case .appInfo:
+            let appInfoVM = AppInfoViewModel(coordinator: self)
+            let appInfoVC = AppInfoViewController(viewModel: appInfoVM)
+            navigationController.pushViewController(appInfoVC, animated: true)
+        case .agreementForm:
+            let agreementFormVM = AgreementFormViewModel(coordinator: self)
+            let agreementFormVC = AgreementFormViewController(viewModel: agreementFormVM)
+            navigationController.pushViewController(agreementFormVC, animated: true)
+        case .loginInfo:
+            let loginInfoVM = LoginInfoViewModel(coordinator: self)
+            let loginInfoVC = LoginInfoViewController(viewModel: loginInfoVM)
+            navigationController.pushViewController(loginInfoVC, animated: true)
+        case .personalInfo:
+            let personalInfoVM = PersonalInfoViewModel(cooridnator: self)
+            let personalInfoVC = PersonalInfoViewController(viewModel: personalInfoVM)
+            navigationController.pushViewController(personalInfoVC, animated: true)
+        case .notiSetting:
+            let notiSettingVM = NotiSettingViewModel(coordinator: self)
+            let notiSettingVC = NotiSettingViewController(viewModel: notiSettingVM)
+            navigationController.pushViewController(notiSettingVC, animated: true)
+        case .notiList:
+            let notiListVM = NotiViewModel(coordinator: self)
+            let notiListVC = NotiViewController(viewModel: notiListVM)
+            navigationController.pushViewController(notiListVC, animated: true)
         }
     }
 }
