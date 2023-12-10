@@ -117,6 +117,7 @@ extension NotiViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = viewModel.categories[indexPath.row]
         let mockLabel = PaddingLabel(padding: .init(top: 8, left: 16, bottom: 8, right: 16))
+        mockLabel.font = .pretendard(.body2)
         mockLabel.text = item.description
         
         return .init(width: mockLabel.intrinsicContentSize.width, height: 32)

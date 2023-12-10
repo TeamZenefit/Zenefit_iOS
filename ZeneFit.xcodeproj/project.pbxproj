@@ -72,6 +72,9 @@
 		B558270E2B1C98D500A360E9 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */; };
 		B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558270F2B1C9FB500A360E9 /* NotificationCell.swift */; };
 		B55827132B1CA31100A360E9 /* NotificationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827122B1CA31100A360E9 /* NotificationItem.swift */; };
+		B55827162B1CD33600A360E9 /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */; };
+		B55827182B1CD35300A360E9 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */; };
+		B558271A2B1CD47F00A360E9 /* PersonalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -265,6 +268,9 @@
 		B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		B558270F2B1C9FB500A360E9 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		B55827122B1CA31100A360E9 /* NotificationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItem.swift; sourceTree = "<group>"; };
+		B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
+		B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoCell.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -545,13 +551,14 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B55827142B1CD32100A360E9 /* PersonalInfo */,
+				B564523F2AEE742E000A45FA /* Coordinator */,
 				B55827082B1C966000A360E9 /* Notifiaction */,
 				B55826FF2B1C6ED200A360E9 /* NotiSetting */,
 				B55826FA2B1C607500A360E9 /* LoginInfo */,
 				B55826E82B1BA4D100A360E9 /* Common */,
 				B55826EB2B1C481300A360E9 /* AgreementForm */,
 				B55826E32B1BA0CE00A360E9 /* AppInfo */,
-				B564523F2AEE742E000A45FA /* Coordinator */,
 				B56452422AEE74AA000A45FA /* Main */,
 			);
 			path = Setting;
@@ -698,6 +705,16 @@
 				B55827122B1CA31100A360E9 /* NotificationItem.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		B55827142B1CD32100A360E9 /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */,
+				B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */,
+				B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */,
+			);
+			path = PersonalInfo;
 			sourceTree = "<group>";
 		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
@@ -1374,9 +1391,11 @@
 				B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */,
+				B558271A2B1CD47F00A360E9 /* PersonalInfoCell.swift in Sources */,
 				B5A8709C2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift in Sources */,
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B558270A2B1C967E00A360E9 /* NotiViewController.swift in Sources */,
+				B55827182B1CD35300A360E9 /* PersonalInfoViewController.swift in Sources */,
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
 				B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */,
@@ -1395,6 +1414,7 @@
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
 				B5A8706E2B0A636A0052D5A1 /* WelfareMainInfoDTO.swift in Sources */,
 				B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */,
+				B55827162B1CD33600A360E9 /* PersonalInfoViewModel.swift in Sources */,
 				B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
 				B5F625012AC94A8B002A1896 /* RegistInfoInputViewModel.swift in Sources */,

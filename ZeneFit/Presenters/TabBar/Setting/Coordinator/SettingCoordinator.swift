@@ -51,7 +51,9 @@ final class SettingCoordinator: Coordinator {
             let loginInfoVC = LoginInfoViewController(viewModel: loginInfoVM)
             navigationController.pushViewController(loginInfoVC, animated: true)
         case .personalInfo:
-            break
+            let personalInfoVM = PersonalInfoViewModel(cooridnator: self)
+            let personalInfoVC = PersonalInfoViewController(viewModel: personalInfoVM)
+            navigationController.pushViewController(personalInfoVC, animated: true)
         case .notiSetting:
             let notiSettingVM = NotiSettingViewModel(coordinator: self)
             let notiSettingVC = NotiSettingViewController(viewModel: notiSettingVM)
