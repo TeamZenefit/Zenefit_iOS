@@ -96,6 +96,13 @@
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
 		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
+		B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */; };
+		B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */; };
+		B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2E2B25E24F00236C2F /* UserService.swift */; };
+		B596BA322B25E8E100236C2F /* SettingRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA312B25E8E100236C2F /* SettingRepositoryProtocol.swift */; };
+		B596BA342B25E9BB00236C2F /* SettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA332B25E9BB00236C2F /* SettingRepository.swift */; };
+		B596BA372B25F51200236C2F /* GetSocialInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */; };
+		B596BA392B25F6DB00236C2F /* GetUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */; };
 		B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */; };
 		B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */; };
 		B5A8706A2B09F6590052D5A1 /* BenefitPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */; };
@@ -291,6 +298,13 @@
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
 		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
+		B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialInfoDTO.swift; sourceTree = "<group>"; };
+		B596BA2E2B25E24F00236C2F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		B596BA312B25E8E100236C2F /* SettingRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepositoryProtocol.swift; sourceTree = "<group>"; };
+		B596BA332B25E9BB00236C2F /* SettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepository.swift; sourceTree = "<group>"; };
+		B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSocialInfoUseCase.swift; sourceTree = "<group>"; };
+		B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserInfoUseCase.swift; sourceTree = "<group>"; };
 		B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyListDTO.swift; sourceTree = "<group>"; };
 		B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyUseCase.swift; sourceTree = "<group>"; };
 		B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitPolicyListDTO.swift; sourceTree = "<group>"; };
@@ -428,6 +442,7 @@
 		B54A67522ADC12F300971467 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				B596BA292B25E03000236C2F /* Setting */,
 				B5ED7BAA2B00AF6800138FE8 /* Home */,
 				B552F9DD2AE55CAB00AA5F40 /* Policy */,
 				B54A67552ADC1BDA00971467 /* Auth */,
@@ -457,6 +472,7 @@
 		B54A675F2ADC3BB000971467 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				B596BA302B25E8AB00236C2F /* Setting */,
 				B5ED7BA02B00AC4900138FE8 /* Home */,
 				B552F9E32AE55D9400AA5F40 /* Policy */,
 				B54A674F2ADC11CD00971467 /* Auth */,
@@ -470,6 +486,7 @@
 				B54A67612ADC3BC600971467 /* AuthService.swift */,
 				B552F9DB2AE5588E00AA5F40 /* PolicyService.swift */,
 				B5ED7BA82B00AE6500138FE8 /* HomeService.swift */,
+				B596BA2E2B25E24F00236C2F /* UserService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -813,6 +830,32 @@
 			path = Manual;
 			sourceTree = "<group>";
 		};
+		B596BA292B25E03000236C2F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */,
+				B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		B596BA302B25E8AB00236C2F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B596BA332B25E9BB00236C2F /* SettingRepository.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		B596BA352B25F50200236C2F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */,
+				B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		B5A870922B0B79000052D5A1 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,6 +879,7 @@
 				B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */,
 				B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */,
 				B5ED7BA62B00ADF500138FE8 /* AuthRepositoryProtocol.swift */,
+				B596BA312B25E8E100236C2F /* SettingRepositoryProtocol.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1143,6 +1187,7 @@
 		B5F625132ACAE3C0002A1896 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				B596BA352B25F50200236C2F /* Setting */,
 				B5ED7BAD2B00B17900138FE8 /* Home */,
 				B552F9E02AE55D4D00AA5F40 /* Policy */,
 				B5F625142ACAE3CB002A1896 /* Auth */,
@@ -1356,12 +1401,14 @@
 				B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
+				B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */,
 				B55827052B1C70E700A360E9 /* NotiSettingItemView.swift in Sources */,
 				B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */,
 				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
+				B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */,
 				B54E92882AF3B96600F47A6B /* ZFTableViewFooterView.swift in Sources */,
 				B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */,
 				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
@@ -1398,16 +1445,19 @@
 				B55827182B1CD35300A360E9 /* PersonalInfoViewController.swift in Sources */,
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
+				B596BA342B25E9BB00236C2F /* SettingRepository.swift in Sources */,
 				B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */,
 				B55826EF2B1C484800A360E9 /* AgreementFormViewController.swift in Sources */,
 				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
+				B596BA392B25F6DB00236C2F /* GetUserInfoUseCase.swift in Sources */,
 				B55826F62B1C4D7C00A360E9 /* StandardAlertAction.swift in Sources */,
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,
 				B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */,
 				B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */,
 				B5A870982B0B99AC0052D5A1 /* PolicyListDTO.swift in Sources */,
 				B54A67542ADC132700971467 /* BaseResponse.swift in Sources */,
+				B596BA322B25E8E100236C2F /* SettingRepositoryProtocol.swift in Sources */,
 				B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */,
 				B5F625162ACAE3E9002A1896 /* SignInUseCase.swift in Sources */,
 				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
@@ -1429,6 +1479,7 @@
 				B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */,
 				B54A67482ADBCE3700971467 /* Collections+.swift in Sources */,
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
+				B596BA372B25F51200236C2F /* GetSocialInfoUseCase.swift in Sources */,
 				B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */,
 				B55826E22B1B9AB000A360E9 /* SettingHeaderView.swift in Sources */,
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
@@ -1457,6 +1508,7 @@
 				B5ED7BAC2B00AF8400138FE8 /* HomeInfoDTO.swift in Sources */,
 				B552F9DC2AE5588E00AA5F40 /* PolicyService.swift in Sources */,
 				B5ED7BA92B00AE6500138FE8 /* HomeService.swift in Sources */,
+				B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */,
 				B54A67512ADC11E900971467 /* AuthRepository.swift in Sources */,
 				B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */,
 				B552F9EF2AE56E5100AA5F40 /* RecommendWelFareEntity.swift in Sources */,

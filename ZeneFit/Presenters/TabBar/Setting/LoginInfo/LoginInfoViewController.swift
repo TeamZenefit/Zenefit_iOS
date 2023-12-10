@@ -47,12 +47,17 @@ final class LoginInfoViewController: BaseViewController {
     override func setupBinding() {
         logoutItemView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
-                self?.viewModel.logout()
+                self?.showLogoutNotification()
             }.store(in: &cancellable)
         
         withdrawalItemView.gesturePublisher(for: .tap)
             .sink { [weak self] _ in
                 self?.showWithdrawalNotification()
+            }.store(in: &cancellable)
+        
+        viewModel.$socialInfo
+            .sink { [weak self] info in
+                self?.loginInfoItemView.setContent(content: info.email)
             }.store(in: &cancellable)
     }
     
@@ -61,6 +66,18 @@ final class LoginInfoViewController: BaseViewController {
                                             message: "탈퇴하시게 되면 취소할 수 없습니다.")
         let withdrawal = StandardAlertAction(title: "탈퇴하기", style: .basic) { [weak self] _ in
             self?.showWithdrawalCompletionNotification()
+        }
+        let no = StandardAlertAction(title: "아니오", style: .cancel)
+        alert.addAction(no, withdrawal)
+        
+        present(alert, animated: false)
+    }
+    
+    private func showLogoutNotification() {
+        let alert = StandardAlertController(title: "정말로 로그아웃 하시겠습니까?",
+                                            message: "로그아웃을 하게되면\n로그인 페이지로 돌아가게 됩니다.")
+        let withdrawal = StandardAlertAction(title: "로그아웃", style: .basic) { [weak self] _ in
+            self?.viewModel.logout()
         }
         let no = StandardAlertAction(title: "아니오", style: .cancel)
         alert.addAction(no, withdrawal)

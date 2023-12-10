@@ -19,6 +19,11 @@ final class PersonalInfoCell: UITableViewCell {
         $0.textColor = .textNormal
     }
     
+    private let switchView = UISwitch().then {
+        $0.isHidden = true
+        $0.onTintColor = .primaryNormal
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -29,13 +34,26 @@ final class PersonalInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(title: String, content: String) {
+    func configureCell(title: String, content: String? = nil, isOn: Bool? = nil) {
         titleLabel.text = title
         contentLabel.text = content
+        
+        if let isOn {
+            contentLabel.isHidden = true
+            switchView.isHidden = false
+            
+            switchView.isOn = isOn
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        contentLabel.isHidden = false
+        switchView.isHidden = true
     }
     
     private func setLayout() {
-        [titleLabel, contentLabel].forEach {
+        [titleLabel, contentLabel, switchView].forEach {
             addSubview($0)
         }
         
@@ -46,6 +64,11 @@ final class PersonalInfoCell: UITableViewCell {
         
         contentLabel.snp.makeConstraints {
             $0.verticalEdges.equalToSuperview().inset(12)
+            $0.trailing.equalToSuperview().offset(-16)
+        }
+        
+        switchView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-16)
         }
     }

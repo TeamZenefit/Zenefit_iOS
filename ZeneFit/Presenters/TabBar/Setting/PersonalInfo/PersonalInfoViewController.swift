@@ -51,6 +51,11 @@ final class PersonalInfoViewController: BaseViewController {
             .sink { [weak self] in
                 self?.editButton.isSelected.toggle()
             }.store(in: &cancellable)
+        
+        viewModel.userInfo
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
     }
     
     override func addSubView() {
@@ -101,15 +106,60 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInfoCell.identifier,
                                                  for: indexPath) as! PersonalInfoCell
+        
+        guard let userInfo = viewModel.userInfo.value else { return cell }
+        
         switch indexPath.section {
         case 0:
             let item = viewModel.personalInfoItems[indexPath.row]
-            cell.configureCell(title: item.rawValue,
-                               content: "임시 내용")
+            switch indexPath.row {
+            case 0:
+                cell.configureCell(title: item.title,
+                                   content: userInfo.nickname)
+            case 1:
+                cell.configureCell(title: item.title,
+                                   content: "\(userInfo.age)")
+            case 2:
+                cell.configureCell(title: item.title,
+                                   content: userInfo.area + " " + userInfo.city)
+            case 3:
+                let income = Int(userInfo.lastYearIncome) / 10000
+                cell.configureCell(title: item.title,
+                                   content: "\(income) 만원")
+            case 4:
+                cell.configureCell(title: item.title,
+                                   content: userInfo.educationType)
+            default:
+                cell.configureCell(title: item.title,
+                                   content: userInfo.jobs.joined(separator: ", "))
+            }
         default:
             let item = viewModel.otherInfoItems[indexPath.row]
-            cell.configureCell(title: item.rawValue,
-                               content: "임시 내용")
+            switch indexPath.row {
+            case 0:
+                cell.configureCell(title: item.title,
+                                   content: "성별")
+                break
+            case 1:
+                cell.configureCell(title: item.title,
+                                   isOn: userInfo.smallBusiness)
+            case 2:
+                cell.configureCell(title: item.title,
+                                   isOn: userInfo.soldier)
+            case 3:
+                cell.configureCell(title: item.title,
+                                   isOn: userInfo.lowIncome)
+            case 4:
+                cell.configureCell(title: item.title,
+                                   isOn: userInfo.disabled)
+            case 5:
+                cell.configureCell(title: item.title,
+                                   isOn: userInfo.localTalent)
+            default:
+                cell.configureCell(title: item.title,
+                                   isOn: userInfo.farmer)
+                
+            }
         }
         
         return cell
