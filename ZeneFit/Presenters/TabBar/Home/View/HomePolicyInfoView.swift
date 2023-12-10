@@ -41,14 +41,18 @@ final class HomePolicyInfoView: UIStackView {
         $0.backgroundColor = .secondaryAssistive
     }
     
-    init(type: String?, title: String, image: String?, date: String?) {
+    init(type: String?, title: String, image: String?, dday: Int, hasDday: Bool) {
         self.typeLabel.text = type
         self.policyNameLabel.text = title
         self.mainImageView.kf.setImage(with: URL(string: image ?? ""))
-        if let date {
+        if hasDday {
             applyButton.isHidden = true
             dateLabel.isHidden = false
-            dateLabel.text = date
+            if dday > 0 {
+                dateLabel.text = "D-\(dday)"
+            } else {
+                dateLabel.text = "D-Day"
+            }
         }
         super.init(frame: .zero)
         setNeedsLayout()

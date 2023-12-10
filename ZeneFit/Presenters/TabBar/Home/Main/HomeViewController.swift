@@ -30,9 +30,11 @@ final class HomeViewController: BaseViewController {
     
     private let imageView = UIImageView(image: .init(named: "m-smart"))
     
-    private let bookmarkInfoView = SmallBoxView(title: "관심 등록")
+    private let bookmarkInfoView = SmallBoxView(title: "관심 등록",
+                                                icon: .init(resource: .search28))
     
-    private let benefitInfoView = SmallBoxView(title: "수혜 정책")
+    private let benefitInfoView = SmallBoxView(title: "수혜 정책",
+                                               icon: .init(resource: .gift28))
     
     private lazy var smallBoxStackView = UIStackView(arrangedSubviews: [bookmarkInfoView, benefitInfoView]).then {
         $0.distribution = .fillEqually
@@ -73,7 +75,8 @@ final class HomeViewController: BaseViewController {
                 self?.imageView.kf.setImage(with: URL(string: info.characterImage))
                 
                 self?.policyInfoView.setItems(items: info.recommendPolicy)
-                self?.deadLineInfoView.setItems(items: info.endDatePolicy)
+                self?.deadLineInfoView.setItems(items: info.endDatePolicy,
+                                                hasDday: true)
             }.store(in: &cancellable)
     }
     

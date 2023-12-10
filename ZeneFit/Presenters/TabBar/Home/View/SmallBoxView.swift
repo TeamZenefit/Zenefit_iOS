@@ -8,18 +8,21 @@
 import UIKit
 
 final class SmallBoxView: UIView {
+    private let iconImageView = UIImageView()
+    
     private let titleLabel = UILabel().then {
         $0.textColor = .textNormal
-        $0.font = .pretendard(.label5)
+        $0.font = .pretendard(.label3)
     }
     
     private let countLabel = UILabel().then {
-        $0.textColor = .textNormal
-        $0.font = .pretendard(.title1)
+        $0.textColor = .textStrong
+        $0.font = .pretendard(.label2)
     }
     
-    init(title: String) {
+    init(title: String, icon: UIImage) {
         titleLabel.text = title
+        iconImageView.image = icon
         super.init(frame: .zero)
         backgroundColor = .white
         layer.cornerRadius = 8
@@ -32,25 +35,28 @@ final class SmallBoxView: UIView {
     
     func configureInfo(count: Int) {
         countLabel.text = "\(count)개"
-        countLabel.setPointTextAttribute("개",
-                                         color: .textStrong,
-                                         font: .pretendard(.label1))
     }
     
     private func setLayout() {
-        [titleLabel, countLabel].forEach {
+        [iconImageView, titleLabel, countLabel].forEach {
             addSubview($0)
         }
         
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(24)
+        iconImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
             $0.top.equalToSuperview().offset(16)
+            $0.size.equalTo(20)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalTo(iconImageView.snp.trailing).offset(2)
+            $0.centerY.equalTo(iconImageView)
         }
         
         countLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-16)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
-            $0.trailing.equalToSuperview().offset(-24)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(2)
+            $0.trailing.equalToSuperview().offset(-16)
         }
     }
 }

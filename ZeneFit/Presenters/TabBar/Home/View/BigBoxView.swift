@@ -46,14 +46,15 @@ final class BigBoxView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setItems(items: [PolicyDTO]) {
+    func setItems(items: [PolicyDTO], hasDday: Bool = false) {
         resetItems()
         
         for item in items {
             let view = HomePolicyInfoView(type: item.supportPolicyTypeName,
                                           title: item.policyName,
                                           image: item.policyLogo,
-                                          date: item.endDate)
+                                          dday: item.dueDate,
+                                          hasDday: hasDday)
             itemStackView.addArrangedSubview(view)
         }
         self.layoutIfNeeded()
