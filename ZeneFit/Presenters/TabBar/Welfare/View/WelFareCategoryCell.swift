@@ -130,7 +130,8 @@ final class WelFareCategoryCell: UITableViewCell {
     func configureCell(item: PolicyMainInfo) {
         titleLabel.text = SupportPolicyType(rawValue: item.supportType)?.description
         countLabel.text = "\(item.supportTypePolicyCnt)"
-        policyImageView.kf.setImage(with: URL(string: item.policyLogo))
+        policyImageView.kf.setImage(with: URL(string: item.policyLogo),
+                                    placeholder: UIImage(named: "DefaultPolicy"))
         agencyLabel.text = item.policyCityCode
         policyLabel.text = item.policyName
         contentLabel.text = item.policyIntroduction

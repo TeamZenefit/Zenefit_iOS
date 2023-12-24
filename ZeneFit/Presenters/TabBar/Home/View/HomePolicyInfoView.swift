@@ -44,7 +44,9 @@ final class HomePolicyInfoView: UIStackView {
     init(type: String?, title: String, image: String?, dday: Int, hasDday: Bool) {
         self.typeLabel.text = type
         self.policyNameLabel.text = title
-        self.mainImageView.kf.setImage(with: URL(string: image ?? ""))
+        self.mainImageView.kf.setImage(with: URL(string: image ?? ""),
+                                       placeholder: UIImage(named: "DefaultPolicy"))
+        
         if hasDday {
             applyButton.isHidden = true
             dateLabel.isHidden = false

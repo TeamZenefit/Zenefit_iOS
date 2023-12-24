@@ -103,10 +103,19 @@ class PolicyService {
     func getPolicyInfo(page: Int,
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+        let query: [String : String] = ["page" : "\(page)",
+                                        "size" : "\(10)",
+                                        "sortField" : "asc",
+                                        "sortOrder" : "asc"]
+        
+        let parameter: [String : Any] = [
+            "supportPolicyType" : supportPolicyType.rawValue,
+            "policyType" : policyType.rawValue]
+        
         let endpoint = Endpoint(method: .GET,
                                 paths: "/policy",
-                                queries: ["page" : "\(page)",
-                                          "size" : "\(10)"])
+                                queries: query,
+                                body: parameter) // TODO: 수정
             .setAccessToken()
     
             

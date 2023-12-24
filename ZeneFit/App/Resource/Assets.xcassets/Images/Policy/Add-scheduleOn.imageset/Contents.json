@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "Add-scheduleOn@1x.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Add-scheduleOn@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Add-scheduleOn@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "Add-scheduleOn.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
