@@ -8,13 +8,13 @@
 import Foundation
 
 struct PolicyDetailDTO: Codable {
-    let policyID: Int
+    let policyId: Int
     let policyName, policyApplyDenialReason, policyIntroduction, policyApplyDocument: String
     let policyApplyMethod, policyApplyDate, applicationSite: String
+    let policyDateType: String
+    let policyDateTypeDescription: String
     let referenceSite: String
-
-    enum CodingKeys: String, CodingKey {
-        case policyID = "policyId"
-        case policyName, policyApplyDenialReason, policyIntroduction, policyApplyDocument, policyApplyMethod, policyApplyDate, applicationSite, referenceSite
-    }
+    let benefit: Int?
+    let policyMethodType : String
+    let policyMethodTypeDescription: String
 }
