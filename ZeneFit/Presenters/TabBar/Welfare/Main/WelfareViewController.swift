@@ -8,7 +8,6 @@
 import UIKit
 
 final class WelfareViewController: BaseViewController {
-    weak var coordinator: WelfareCoordinator?
     
     private let viewModel: WelfareViewModel
     
@@ -112,6 +111,10 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.titleTapHandler = { [weak self] in
             self?.viewModel.coordinator?.setAction(.list(type: .init(rawValue: targetItem.supportType) ?? .money))
+        }
+        
+        cell.applyTapHandler = { [weak self] in
+            self?.viewModel.coordinator?.setAction(.detail(id: targetItem.policyID))
         }
         
         return cell

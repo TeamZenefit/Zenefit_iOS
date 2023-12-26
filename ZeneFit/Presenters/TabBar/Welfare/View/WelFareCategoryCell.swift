@@ -13,6 +13,7 @@ final class WelFareCategoryCell: UITableViewCell {
     private var cancellable = Set<AnyCancellable>()
     
     var titleTapHandler: (()->Void)?
+    var applyTapHandler: (()->Void)?
     
     private let totalFrameView = UIStackView().then {
         $0.layer.cornerRadius = 16
@@ -79,11 +80,14 @@ final class WelFareCategoryCell: UITableViewCell {
     }
     
     private let applyButton = UIButton().then {
-        $0.layer.cornerRadius = 8
-        $0.setTitle("월n만원 신청하기", for: .normal)
-        $0.setTitleColor(.primaryNormal, for: .normal)
-        $0.titleLabel?.font = .pretendard(.label4)
-        $0.backgroundColor = .primaryAssistive
+        var configure = UIButton.Configuration.filled()
+        configure.background.cornerRadius = 8
+        configure.baseForegroundColor = .primaryNormal
+        configure.baseBackgroundColor = .primaryAssistive
+        configure.attributedTitle = .init("월 n만원 신청하기",
+                                          attributes: .init([.font : UIFont.pretendard(.label4)]))
+        
+        $0.configuration = configure
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -135,7 +139,9 @@ final class WelFareCategoryCell: UITableViewCell {
         agencyLabel.text = item.policyCityCode
         policyLabel.text = item.policyName
         contentLabel.text = item.policyIntroduction
-        
+        applyButton.configuration?.attributedTitle = .init("월 \(item.benefit/10000)만원 신청하기",
+                                                           attributes: .init([.font : UIFont.pretendard(.label4)]))
+        // TODO: 닉이 API 수정해주면 관심정책 플래그 설정 해야함
         configureApplyType(types: [item.policyDateType])
     }
 
@@ -214,7 +220,6 @@ final class WelFareCategoryCell: UITableViewCell {
         applyButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.height.equalTo(36)
-            $0.width.equalTo(124)
             $0.top.equalTo(contentLabel.snp.bottom).offset(8)
             $0.bottom.equalToSuperview().offset(-16)
         }
@@ -227,7 +232,11 @@ final class WelFareCategoryCell: UITableViewCell {
     }
 
     private func setupBinding() {
-        
+        applyButton.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                self?.applyTapHandler?()
+            }.store(in: &cancellable)
     }
     
     private func setGesture() {
