@@ -10,6 +10,7 @@ import Combine
 
 final class BigBoxView: UIStackView {
     private var cancellable = Set<AnyCancellable>()
+    private let coordinator: HomeCoordinator?
     
     var tapEventHandler: (()->Void)?
     
@@ -32,8 +33,10 @@ final class BigBoxView: UIStackView {
         $0.axis = .vertical
     }
     
-    init(title: String) {
+    init(title: String,
+         coordinator: HomeCoordinator?) {
         self.titleLabel.text = title
+        self.coordinator = coordinator
         super.init(frame: .zero)
         setLayout()
         setupBinding()
@@ -56,6 +59,10 @@ final class BigBoxView: UIStackView {
                                           dday: item.dueDate,
                                           hasDday: hasDday)
             itemStackView.addArrangedSubview(view)
+            
+            view.applyTapHandler = { [weak self] in
+                self?.coordinator?.setAction(.welfareDetail(welfareId: item.policyID))
+            }
         }
         self.layoutIfNeeded()
     }

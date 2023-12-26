@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class HomePolicyInfoView: UIStackView {
-    static let identifier = "HomePolicyCell"
+    
+    private var cancellable = Set<AnyCancellable>()
+    var applyTapHandler: (()->Void)?
     
     private let mainImageView = UIImageView().then {
         $0.image = .init(named: "DefaultPolicy")
@@ -58,10 +61,19 @@ final class HomePolicyInfoView: UIStackView {
         }
         super.init(frame: .zero)
         setNeedsLayout()
+        setupBinding()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupBinding() {
+        applyButton.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                self?.applyTapHandler?()
+            }.store(in: &cancellable)
     }
     
     

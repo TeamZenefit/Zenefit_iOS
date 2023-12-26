@@ -41,8 +41,8 @@ final class HomeViewController: BaseViewController {
         $0.spacing = 8
     }
     
-    private let policyInfoView = BigBoxView(title: "정책 추천")
-    private let deadLineInfoView = BigBoxView(title: "신청 마감일")
+    private lazy var policyInfoView = BigBoxView(title: "정책 추천", coordinator: viewModel.coordinator)
+    private lazy var deadLineInfoView = BigBoxView(title: "신청 마감일", coordinator: nil)
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
