@@ -70,11 +70,43 @@ final class WelfareDetailViewController: BaseViewController {
             .compactMap { $0 }
             .receive(on: RunLoop.main)
             .sink { [weak self] info in
-                self?.titleLabel.text = "\(info.policyName)을 신청하면\n월 n만원 정도를 받을 수 있어요"
+                if let reason = info.policyApplyDenialReason {
+                    self?.titleLabel.text = "\(info.policyName)은\n신청할 수 없어요"
+                    self?.subTitleLabel.text = reason
+                    self?.interestButton.isEnabled = info.interestFlag
+                    self?.subTitleLabel.isHidden = false
+                    self?.interestButton.isHidden = false
+                    self?.detailFetchButton.isHidden = false
+                    self?.applyButton.isHidden = true
+                } else {
+                    if let benefit = info.benefit {
+                        let title = "\(info.policyName)을 신청하면\n월 \(benefit/10000)만원 정도를 받을 수 있어요"
+                        self?.titleLabel.text = title
+                        self?.titleLabel.setPointTextAttribute("월 \(benefit/10000)만원", color: .primaryNormal)
+                    } else {
+                        let title = "\(info.policyName)은\n지금 바로 신청 가능해요"
+                        self?.titleLabel.text = title
+                    }
+                }
+
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
+        interestButton.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                // TODO: 관심 정책 토글 실행
+            }.store(in: &cancellable)
+        
         applyButton.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                guard let siteURL = self?.viewModel.detailInfo.value?.referenceSite else { return }
+                self?.openTermOfUseContentWithSafari(urlString: siteURL)
+            }.store(in: &cancellable)
+        
+        detailFetchButton.tapPublisher
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 guard let siteURL = self?.viewModel.detailInfo.value?.referenceSite else { return }
                 self?.openTermOfUseContentWithSafari(urlString: siteURL)
@@ -161,7 +193,7 @@ extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSourc
         default:
             cell.configureApplyTypeCell(title: "신청 기간",
                                         content: nil,
-                                        types: [policyInfo.policyApplyMethod])
+                                        types: [policyInfo.policyDateTypeDescription])
             
         }
         return cell

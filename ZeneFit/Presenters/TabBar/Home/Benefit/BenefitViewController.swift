@@ -151,6 +151,11 @@ extension BenefitViewController: UITableViewDelegate, UITableViewDataSource {
         return viewModel.policyList.value.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let policyId = viewModel.policyList.value[indexPath.row].policyID
+        viewModel.coordinator?.setAction(.welfareDetail(welfareId: policyId))
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.identifier, for: indexPath) as! BenefitCell
         cell.configureCell(policyItem: viewModel.policyList.value[indexPath.row],
