@@ -37,7 +37,6 @@ final class WelfareListViewModel {
         self.policyListUseCase = policyListUseCase
     }
     
-    //TODO: API수정 요청 필요
     func getPolicyInfo() {
         policyListUseCase.getPolicyInfo(page: currentPage,
                                         supportPolicyType: type,
@@ -55,7 +54,7 @@ final class WelfareListViewModel {
     }
     
     func didScroll(offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) {
-        if offsetY > (contentHeight - frameHeight) {
+        if offsetY > 0 && offsetY > (contentHeight - frameHeight) {
             if self.isPaging == false && !isLastPage { self.paging() }
         }
     }

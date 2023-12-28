@@ -105,14 +105,14 @@ class PolicyService {
                        policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
         let query: [String : String] = ["page" : "\(page)",
                                         "size" : "\(10)",
-                                        "sortField" : "asc",
+                                        "sortField" : "applyEndDate",
                                         "sortOrder" : "asc"]
         
         let parameter: [String : Any] = [
             "supportPolicyType" : supportPolicyType.rawValue,
             "policyType" : policyType.rawValue]
         
-        let endpoint = Endpoint(method: .GET,
+        let endpoint = Endpoint(method: .POST,
                                 paths: "/policy",
                                 queries: query,
                                 body: parameter) // TODO: 수정

@@ -82,8 +82,7 @@ final class WelfareListViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //TODO: API수정 요청 필요
-//        viewModel.getPolicyInfo()
+        viewModel.getPolicyInfo()
     }
     
     override func configureNavigation() {
@@ -148,6 +147,7 @@ final class WelfareListViewController: BaseViewController {
             }.store(in: &cancellable)
         
         viewModel.policyList
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
@@ -258,7 +258,7 @@ extension WelfareListViewController: UITableViewDelegate, UITableViewDataSource 
             let offsetY = scrollView.contentOffset.y
             let contentHeight = tableView.contentSize.height
             let frameHeight = scrollView.frame.height
-         
+    
             viewModel.didScroll(offsetY: offsetY,
                                 contentHeight: contentHeight,
                                 frameHeight: frameHeight)

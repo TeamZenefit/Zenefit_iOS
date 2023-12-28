@@ -22,10 +22,11 @@ struct PolicyInfoDTO: Codable {
     let policyID: Int
     let policyName: String
     let policyApplyDenialReason: String?
-    let areaCode, cityCode: String
+    let areaCode: String
+    let cityCode: String?
     let policyLogo: String
     let policyIntroduction: String
-    let applyStatus: String?
+    let applyStatus: Bool
     let benefit: Int
     let applyFlag, interestFlag: Bool
 
