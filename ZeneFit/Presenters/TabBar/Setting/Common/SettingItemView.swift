@@ -70,7 +70,7 @@ final class SettingItemView: BaseView {
         contentLabel.text = content
     }
     
-    override func layout() {
+    override func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.verticalEdges.equalToSuperview().inset(12)
             $0.leading.equalToSuperview().offset(16)

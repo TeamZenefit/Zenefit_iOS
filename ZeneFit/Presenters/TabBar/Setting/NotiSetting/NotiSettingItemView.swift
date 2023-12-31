@@ -48,7 +48,7 @@ final class NotiSettingItemView: BaseView {
         }
     }
     
-    override func layout() {
+    override func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.top.equalToSuperview().offset(12)

@@ -13,7 +13,7 @@ class BaseView: UIView {
         super.init(frame: frame)
         configureUI()
         addSubView()
-        layout()
+        setLayout()
         setupBinding()
         setGesture()
         setDelegate()
@@ -29,7 +29,7 @@ class BaseView: UIView {
     
     func addSubView() { }
     
-    func layout() { }
+    func setLayout() { }
 
     func setupBinding() { }
     

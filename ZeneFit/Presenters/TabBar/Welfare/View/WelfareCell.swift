@@ -20,7 +20,7 @@ final class WelfareCell: UITableViewCell {
     
     var titleTapHandler: (()->Void)?
     
-    private let frameView = UIStackView().then {
+    private let frameView = UIView().then {
         $0.backgroundColor = .white
     }
     
@@ -47,6 +47,7 @@ final class WelfareCell: UITableViewCell {
     }
     
     private let applyTypeStackView = UIStackView().then {
+        $0.distribution = . fill
         $0.spacing = 4
     }
     
@@ -76,7 +77,7 @@ final class WelfareCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        backgroundColor = .backgroundPrimary
+        backgroundColor = .white
         
         addSubViews()
         setLayout()
@@ -122,7 +123,8 @@ final class WelfareCell: UITableViewCell {
     
     private func setLayout() {
         frameView.snp.makeConstraints {
-            $0.top.bottom.horizontalEdges.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
         policyImageView.snp.makeConstraints {

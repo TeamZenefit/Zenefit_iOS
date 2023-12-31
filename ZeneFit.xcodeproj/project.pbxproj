@@ -75,6 +75,8 @@
 		B55827162B1CD33600A360E9 /* PersonalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */; };
 		B55827182B1CD35300A360E9 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */; };
 		B558271A2B1CD47F00A360E9 /* PersonalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */; };
+		B55E42462B3F021200E4B893 /* WelfareListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */; };
+		B55E42482B3F3F0F00E4B893 /* WelfareSortContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -278,6 +280,8 @@
 		B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewModel.swift; sourceTree = "<group>"; };
 		B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoCell.swift; sourceTree = "<group>"; };
+		B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListHeaderView.swift; sourceTree = "<group>"; };
+		B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortContentView.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */,
 				B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */,
 				B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */,
+				B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 			children = (
 				B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */,
 				B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */,
+				B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1472,6 +1478,7 @@
 				B55826EA2B1BA50400A360E9 /* SettingItemView.swift in Sources */,
 				B5A8706C2B0A0F3D0052D5A1 /* BenefitPolicyUseCase.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
+				B55E42482B3F3F0F00E4B893 /* WelfareSortContentView.swift in Sources */,
 				B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */,
 				B558270E2B1C98D500A360E9 /* UICollectionViewCell+.swift in Sources */,
 				B5F624622AC2F6A0002A1896 /* SceneDelegate.swift in Sources */,
@@ -1485,6 +1492,7 @@
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
 				B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */,
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,
+				B55E42462B3F021200E4B893 /* WelfareListHeaderView.swift in Sources */,
 				B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */,
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
 				B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */,
