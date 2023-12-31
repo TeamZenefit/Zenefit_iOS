@@ -23,6 +23,7 @@ final class WelfareListViewModel {
     
     var sortType = CurrentValueSubject<WelfareSortType, Never>(.applyEndDate)
     var selectedCategory = CurrentValueSubject<PolicyType, Never>(.none)
+    var showSkeleton = PassthroughSubject<Bool, Never>()
     
     private var currentPage = 0
     private var isPaging: Bool = false
@@ -56,6 +57,7 @@ final class WelfareListViewModel {
     }
     
     func getPolicyInfo() {
+        showSkeleton.send(true)
         policyListUseCase.getPolicyInfo(page: currentPage,
                                         supportPolicyType: type,
                                         policyType: selectedCategory.value,
@@ -65,10 +67,12 @@ final class WelfareListViewModel {
             case .finished: break
             case .failure(let error):
                 self?.error.send(error)
+                self?.showSkeleton.send(false)
             }
         }, receiveValue: { [weak self] res in
             self?.policyList.send(res.content)
             self?.isLastPage = res.last
+            self?.showSkeleton.send(false)
         }).store(in: &cancellable)
     }
     
@@ -81,6 +85,7 @@ final class WelfareListViewModel {
 
 private extension WelfareListViewModel {
     func paging() {
+        showSkeleton.send(true)
         isPaging = true
         currentPage += 1
         policyListUseCase.getPolicyInfo(page: currentPage,
@@ -92,9 +97,11 @@ private extension WelfareListViewModel {
                 case .failure(let error):
                     self?.isPaging = false
                     self?.error.send(error)
+                    self?.showSkeleton.send(false)
                 case .finished: break
                 }
             }, receiveValue: { [weak self] res in
+                self?.showSkeleton.send(false)
                 self?.policyList.value.append(contentsOf: res.content)
                 self?.isLastPage = res.last
                 self?.isPaging = false

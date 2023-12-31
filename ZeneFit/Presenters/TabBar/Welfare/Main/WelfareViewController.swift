@@ -15,11 +15,6 @@ final class WelfareViewController: BaseViewController {
         $0.setImage(.init(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
-    private let testButton = UIButton(type: .system).then {
-        $0.setTitle("테스트찾기", for: .normal)
-        $0.setTitleColor(.textStrong, for: .normal)
-    }
-    
     private let tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
@@ -66,11 +61,6 @@ final class WelfareViewController: BaseViewController {
     }
     
     override func setupBinding() {
-        testButton.tapPublisher
-            .sink { [weak self] in
-                self?.viewModel.coordinator?.setAction(.find)
-            }.store(in: &cancellable)
-        
         viewModel.policyItems
             .sink { [weak self] _ in
                 self?.tableView.reloadData()

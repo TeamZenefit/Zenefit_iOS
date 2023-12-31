@@ -75,8 +75,9 @@ final class WelFareCategoryCell: UITableViewCell {
         $0.image = .init(named: "i-nex-26")
     }
     
-    private let addScheduleButton = UIButton(type: .system).then {
+    private let addScheduleButton = UIButton().then {
         $0.setImage(.init(named: "Add-scheduleOff")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(.init(named: "Add-scheduleOn")?.withRenderingMode(.alwaysOriginal), for: .selected)
     }
     
     private let applyButton = UIButton().then {
@@ -139,9 +140,9 @@ final class WelFareCategoryCell: UITableViewCell {
         agencyLabel.text = item.policyCityCode
         policyLabel.text = item.policyName
         contentLabel.text = item.policyIntroduction
+        addScheduleButton.isSelected = item.interestFlag
         applyButton.configuration?.attributedTitle = .init("월 \(item.benefit/10000)만원 신청하기",
                                                            attributes: .init([.font : UIFont.pretendard(.label4)]))
-        // TODO: 닉이 API 수정해주면 관심정책 플래그 설정 해야함
         configureApplyType(types: [item.policyDateType])
     }
 
@@ -236,6 +237,13 @@ final class WelFareCategoryCell: UITableViewCell {
             .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.applyTapHandler?()
+            }.store(in: &cancellable)
+        
+        addScheduleButton.tapPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                // TODO: 관심정책 등록 API 호출 및 noti
+                self?.addScheduleButton.isSelected.toggle()
             }.store(in: &cancellable)
     }
     

@@ -78,6 +78,8 @@
 		B55E42462B3F021200E4B893 /* WelfareListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */; };
 		B55E42482B3F3F0F00E4B893 /* WelfareSortContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */; };
 		B55E424A2B411C2700E4B893 /* WelfareSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42492B411C2700E4B893 /* WelfareSortType.swift */; };
+		B55E424D2B4127F000E4B893 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = B55E424C2B4127F000E4B893 /* SkeletonView */; };
+		B55E42502B412EC500E4B893 /* SkeletonTableViewDataSource+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E424F2B412EC500E4B893 /* SkeletonTableViewDataSource+.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -284,6 +286,7 @@
 		B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListHeaderView.swift; sourceTree = "<group>"; };
 		B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortContentView.swift; sourceTree = "<group>"; };
 		B55E42492B411C2700E4B893 /* WelfareSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortType.swift; sourceTree = "<group>"; };
+		B55E424F2B412EC500E4B893 /* SkeletonTableViewDataSource+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SkeletonTableViewDataSource+.swift"; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -389,6 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55E424D2B4127F000E4B893 /* SkeletonView in Frameworks */,
 				B5F624BB2AC33CF8002A1896 /* FirebaseMessaging in Frameworks */,
 				B5F624B22AC33B8A002A1896 /* KakaoSDKCommon in Frameworks */,
 				B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */,
@@ -742,6 +746,13 @@
 			path = PersonalInfo;
 			sourceTree = "<group>";
 		};
+		B55E424E2B412EA100E4B893 /* Porotocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Porotocols;
+			sourceTree = "<group>";
+		};
 		B56452352AEE45A7000A45FA /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,16 +873,6 @@
 				B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */,
 			);
 			path = Setting;
-			sourceTree = "<group>";
-		};
-		B5A870922B0B79000052D5A1 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				B5A870932B0B79110052D5A1 /* SupportPolicyType.swift */,
-				B5A870952B0B79510052D5A1 /* PolicyType.swift */,
-				B55E42492B411C2700E4B893 /* WelfareSortType.swift */,
-			);
-			path = Enums;
 			sourceTree = "<group>";
 		};
 		B5ED7BA02B00AC4900138FE8 /* Home */ = {
@@ -1004,6 +1005,7 @@
 		B5F6249E2AC31432002A1896 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B55E424E2B412EA100E4B893 /* Porotocols */,
 				B552F9D42AE54F6C00AA5F40 /* Manager */,
 				B5F6250C2ACAACD0002A1896 /* Error */,
 				B5F625092ACAAC3C002A1896 /* Network */,
@@ -1018,6 +1020,7 @@
 		B5F6249F2AC31438002A1896 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B55E424F2B412EC500E4B893 /* SkeletonTableViewDataSource+.swift */,
 				B5F624A02AC3144A002A1896 /* UIFont+.swift */,
 				B5F624A42AC32919002A1896 /* UIColor+.swift */,
 				B5F624C52AC54338002A1896 /* UIViewController+.swift */,
@@ -1093,6 +1096,9 @@
 		B5F624D62AC5FA9D002A1896 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				B5A870932B0B79110052D5A1 /* SupportPolicyType.swift */,
+				B5A870952B0B79510052D5A1 /* PolicyType.swift */,
+				B55E42492B411C2700E4B893 /* WelfareSortType.swift */,
 				B5F624D72AC5FAB1002A1896 /* OAuthType.swift */,
 				B56452532AEEB229000A45FA /* GestureType.swift */,
 			);
@@ -1141,7 +1147,6 @@
 			isa = PBXGroup;
 			children = (
 				B55827112B1CA30000A360E9 /* Setting */,
-				B5A870922B0B79000052D5A1 /* Enums */,
 				B552F9ED2AE56E4600AA5F40 /* Policy */,
 				B5F625032AC95492002A1896 /* Auth */,
 			);
@@ -1261,6 +1266,7 @@
 				B5F624BA2AC33CF8002A1896 /* FirebaseMessaging */,
 				B57242AD2AE187CC007D6BC2 /* Lottie */,
 				B5ED7BB12B00B50900138FE8 /* Kingfisher */,
+				B55E424C2B4127F000E4B893 /* SkeletonView */,
 			);
 			productName = ZeneFit;
 			productReference = B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */;
@@ -1341,6 +1347,7 @@
 				B5F624B52AC33CF8002A1896 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				B5ED7BB02B00B50900138FE8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B55E424B2B4127F000E4B893 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = B5F6245D2AC2F6A0002A1896 /* Products */;
 			projectDirPath = "";
@@ -1501,6 +1508,7 @@
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
 				B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */,
 				B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */,
+				B55E42502B412EC500E4B893 /* SkeletonTableViewDataSource+.swift in Sources */,
 				B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */,
 				B5A870702B0A64950052D5A1 /* WelfareMainUseCase.swift in Sources */,
 				B5F624CE2AC5B68F002A1896 /* Coordinator.swift in Sources */,
@@ -1910,6 +1918,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B55E424B2B4127F000E4B893 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.30.4;
+			};
+		};
 		B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm";
@@ -1961,6 +1977,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B55E424C2B4127F000E4B893 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B55E424B2B4127F000E4B893 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
 		B57242AD2AE187CC007D6BC2 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */;

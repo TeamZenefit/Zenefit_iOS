@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 // TODO: Compositional로 변경
 final class WelfareListViewController: BaseViewController {
@@ -23,19 +24,24 @@ final class WelfareListViewController: BaseViewController {
         $0.sectionHeaderTopPadding = 0
         $0.register(WelfareCell.self, forCellReuseIdentifier: WelfareCell.identifier)
         $0.backgroundColor = .white
+        $0.isSkeletonable = true
         $0.tableHeaderView = headerView
     }
     
     init(viewModel: WelfareListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        headerView.updateHeightHandler = {
-            self.tableView.reloadData()
+        headerView.updateHeightHandler = { [ weak self] in
+            self?.tableView.reloadData()
         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func configureUI() {
@@ -56,7 +62,7 @@ final class WelfareListViewController: BaseViewController {
     
     override func setupBinding() {
         viewModel.policyList
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
@@ -65,10 +71,12 @@ final class WelfareListViewController: BaseViewController {
             .sink { [weak self] type in
                 self?.viewModel.sortType.send(type)
             }.store(in: &cancellable)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
+        viewModel.showSkeleton
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isShow in
+                isShow ? self?.tableView.showSkeleton(usingColor: .fillAlternative) : self?.tableView.hideSkeleton()
+            }.store(in: &cancellable)
     }
     
     override func layout() {
@@ -116,7 +124,7 @@ extension WelfareListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension WelfareListViewController: UITableViewDelegate, UITableViewDataSource {
+extension WelfareListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.policyList.value.count
@@ -159,5 +167,15 @@ extension WelfareListViewController: WelfareDelegate {
     
     func tapApplyWelfare() {
         viewModel.coordinator?.setAction(.detail(id: 0)) // 임시
+    }
+}
+
+extension WelfareListViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return WelfareCell.identifier
     }
 }
