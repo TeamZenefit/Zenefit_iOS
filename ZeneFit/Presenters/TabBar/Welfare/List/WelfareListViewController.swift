@@ -7,7 +7,7 @@
 
 import UIKit
 
-// TODO: Compositional로 변경 
+// TODO: Compositional로 변경
 final class WelfareListViewController: BaseViewController {
     private let viewModel: WelfareListViewModel
     
@@ -38,11 +38,6 @@ final class WelfareListViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.getPolicyInfo()
-    }
-    
     override func configureUI() {
         super.configureUI()
         view.backgroundColor = .white
@@ -64,6 +59,11 @@ final class WelfareListViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        headerView.sortContentView.$selectedSortType
+            .sink { [weak self] type in
+                self?.viewModel.sortType.send(type)
             }.store(in: &cancellable)
     }
     
@@ -94,13 +94,13 @@ extension WelfareListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier, for: indexPath) as! CategoryCell
         cell.configureCell(title: viewModel.categories[indexPath.row].description,
-                           selectedCategory: viewModel.selectedCategory.description)
+                           selectedCategory: viewModel.selectedCategory.value.description)
 
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.selectedCategory = viewModel.categories[indexPath.row]
+        viewModel.selectedCategory.send(viewModel.categories[indexPath.row])
         collectionView.reloadSections(.init(integer: 0))
     }
 }

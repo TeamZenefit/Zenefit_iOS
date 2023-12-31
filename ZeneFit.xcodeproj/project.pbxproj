@@ -77,6 +77,7 @@
 		B558271A2B1CD47F00A360E9 /* PersonalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */; };
 		B55E42462B3F021200E4B893 /* WelfareListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */; };
 		B55E42482B3F3F0F00E4B893 /* WelfareSortContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */; };
+		B55E424A2B411C2700E4B893 /* WelfareSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E42492B411C2700E4B893 /* WelfareSortType.swift */; };
 		B56452392AEE45E0000A45FA /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */; };
 		B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */; };
 		B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564523D2AEE4EF2000A45FA /* TabBarItem.swift */; };
@@ -282,6 +283,7 @@
 		B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoCell.swift; sourceTree = "<group>"; };
 		B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListHeaderView.swift; sourceTree = "<group>"; };
 		B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortContentView.swift; sourceTree = "<group>"; };
+		B55E42492B411C2700E4B893 /* WelfareSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortType.swift; sourceTree = "<group>"; };
 		B56452382AEE45E0000A45FA /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		B564523B2AEE4CA5000A45FA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		B564523D2AEE4EF2000A45FA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -867,6 +869,7 @@
 			children = (
 				B5A870932B0B79110052D5A1 /* SupportPolicyType.swift */,
 				B5A870952B0B79510052D5A1 /* PolicyType.swift */,
+				B55E42492B411C2700E4B893 /* WelfareSortType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1441,6 +1444,7 @@
 				B55826DE2B1B953500A360E9 /* SettingMainCell.swift in Sources */,
 				B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */,
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
+				B55E424A2B411C2700E4B893 /* WelfareSortType.swift in Sources */,
 				B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */,

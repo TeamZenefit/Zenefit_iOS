@@ -35,10 +35,12 @@ final class PolicyRepository: PolicyRepositoryProtocol {
     
     func getPolicyInfo(page: Int,
                        supportPolicyType: SupportPolicyType,
-                       policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+                       policyType: PolicyType,
+                       sortType: WelfareSortType) -> AnyPublisher<PolicyListDTO, Error> {
         policyService.getPolicyInfo(page: page,
                                     supportPolicyType: supportPolicyType,
-                                    policyType: policyType)
+                                    policyType: policyType,
+                                    sortType: sortType)
     }
     
     func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error> {

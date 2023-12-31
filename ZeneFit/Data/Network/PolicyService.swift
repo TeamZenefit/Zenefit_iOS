@@ -99,13 +99,13 @@ class PolicyService {
         .eraseToAnyPublisher()
     }
     
-    //TODO: API수정 요청 필요
     func getPolicyInfo(page: Int,
                        supportPolicyType: SupportPolicyType,
-                       policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+                       policyType: PolicyType,
+                       sortType: WelfareSortType) -> AnyPublisher<PolicyListDTO, Error> {
         let query: [String : String] = ["page" : "\(page)",
                                         "size" : "\(10)",
-                                        "sortField" : "applyEndDate",
+                                        "sortField" : sortType.rawValue,
                                         "sortOrder" : "asc"]
         
         let parameter: [String : Any] = [

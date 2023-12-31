@@ -20,7 +20,9 @@ final class WelfareListViewModel {
     
     var error = PassthroughSubject<Error, Never>()
     var policyList = CurrentValueSubject<[PolicyInfoDTO], Never>([])
-    @Published var selectedCategory: PolicyType = .none
+    
+    var sortType = CurrentValueSubject<WelfareSortType, Never>(.applyEndDate)
+    var selectedCategory = CurrentValueSubject<PolicyType, Never>(.none)
     
     private var currentPage = 0
     private var isPaging: Bool = false
@@ -35,12 +37,29 @@ final class WelfareListViewModel {
         self.coordinator = coordinator
         self.type = type
         self.policyListUseCase = policyListUseCase
+        
+        bind()
+    }
+    
+    private func bind() {
+        sortType
+            .dropFirst()
+            .sink { [weak self] _ in
+                self?.getPolicyInfo()
+            }.store(in: &cancellable)
+        
+        selectedCategory
+            .dropFirst()
+            .sink { [weak self] _ in
+                self?.getPolicyInfo()
+            }.store(in: &cancellable)
     }
     
     func getPolicyInfo() {
         policyListUseCase.getPolicyInfo(page: currentPage,
                                         supportPolicyType: type,
-                                        policyType: selectedCategory)
+                                        policyType: selectedCategory.value,
+                                        sortType: sortType.value)
         .sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished: break
@@ -66,7 +85,8 @@ private extension WelfareListViewModel {
         currentPage += 1
         policyListUseCase.getPolicyInfo(page: currentPage,
                                         supportPolicyType: type,
-                                        policyType: selectedCategory)
+                                        policyType: selectedCategory.value,
+                                        sortType: sortType.value)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):

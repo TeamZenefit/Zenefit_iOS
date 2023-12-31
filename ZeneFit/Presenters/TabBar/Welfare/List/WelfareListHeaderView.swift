@@ -27,7 +27,7 @@ final class WelfareListHeaderView: BaseView {
     
     let sortButton = WelfareSortButton(title: "수혜금액")
     
-    private let sortContentView = WelfareSortContentView().then {
+    let sortContentView = WelfareSortContentView().then {
         $0.backgroundColor = .backgroundPrimary
     }
     

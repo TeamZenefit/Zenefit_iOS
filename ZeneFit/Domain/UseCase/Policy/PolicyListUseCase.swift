@@ -17,9 +17,11 @@ final class PolicyListUseCase {
     
     func getPolicyInfo(page: Int,
                        supportPolicyType: SupportPolicyType,
-                       policyType: PolicyType) -> AnyPublisher<PolicyListDTO, Error> {
+                       policyType: PolicyType,
+                       sortType: WelfareSortType) -> AnyPublisher<PolicyListDTO, Error> {
         self.policyRepo.getPolicyInfo(page: page,
                                       supportPolicyType: supportPolicyType,
-                                      policyType: policyType)
+                                      policyType: policyType,
+                                      sortType: sortType)
     }
 }
