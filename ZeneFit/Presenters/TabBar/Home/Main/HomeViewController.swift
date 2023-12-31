@@ -44,6 +44,13 @@ final class HomeViewController: BaseViewController {
     private lazy var policyInfoView = BigBoxView(title: "정책 추천", coordinator: viewModel.coordinator)
     private lazy var deadLineInfoView = BigBoxView(title: "신청 마감일", coordinator: nil)
     
+    private lazy var errorView = DefaultErrorView().then {
+        $0.retryHandler = { [weak self] in
+            self?.viewModel.fetchMainInfo()
+        }
+        $0.isHidden = true
+    }
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -66,6 +73,7 @@ final class HomeViewController: BaseViewController {
     override func setupBinding() {
         viewModel.info
             .sink { [weak self] info in
+                self?.errorView.isHidden = true
                 self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"
                 self?.nameLabel.setPointTextAttribute(info.characterNickname, color: .primaryNormal)
                 self?.progressView.configureView(content: info.description,
@@ -77,6 +85,20 @@ final class HomeViewController: BaseViewController {
                 self?.policyInfoView.setItems(items: info.recommendPolicy)
                 self?.deadLineInfoView.setItems(items: info.endDatePolicy,
                                                 hasDday: true)
+            }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                if case CommonError.serverError = error {
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = "홈 정보를 불러올 수 없어요."
+                    self?.errorView.contentLabel.text = "인터넷 연결이 안 되어 있어요!"
+                } else {
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = "알 수 없는 에러가 발생했습니다."
+                    self?.errorView.contentLabel.text = "잠시 후 다시 시도해 주세요."
+                }
             }.store(in: &cancellable)
     }
     
@@ -130,10 +152,12 @@ final class HomeViewController: BaseViewController {
     
     override func addSubView() {
         view.addSubview(scollView)
-        
+        view.addSubview(errorView)
         [topBGView, nameLabel, imageView, progressView, smallBoxStackView, policyInfoView, deadLineInfoView].forEach {
             scollView.addSubview($0)
         }
+        
+        
     }
     
     override func layout() {
@@ -178,6 +202,10 @@ final class HomeViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.top.equalTo(policyInfoView.snp.bottom).offset(24)
             $0.bottom.equalToSuperview().offset(-16)
+        }
+        
+        errorView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

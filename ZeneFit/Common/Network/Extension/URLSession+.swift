@@ -29,6 +29,11 @@ extension URLSession: URLSessionable {
                 guard let res = response as? HTTPURLResponse else {
                     throw CommonError.otherError
                 }
+                
+                if (500...599).contains(res.statusCode) {
+                    throw CommonError.serverError
+                }
+                
                 #if DEBUG
                 self?.logResponseInfo(res, data: data)
                 #endif

@@ -188,12 +188,17 @@ extension WelfareListViewController {
 }
 
 extension WelfareListViewController: WelfareDelegate {
-    func toggleCalendarStatus() {
+    func toggleCalendarStatus(policyId: Int) {
         self.notiAlert("달력에 추가되었습니다.")
     }
     
-    func tapApplyWelfare() {
-        viewModel.coordinator?.setAction(.detail(id: 0)) // 임시
+    func tapApplyWelfare(policyId: Int) {
+        viewModel.coordinator?.setAction(.detail(id: policyId))
+    }
+    
+    func tapApplyWelfareFlag(policyId: Int) {
+        // TODO: 변경 API호출 및 해당 row reload
+        
     }
 }
 
