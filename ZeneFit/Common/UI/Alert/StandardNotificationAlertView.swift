@@ -22,7 +22,8 @@ final class StandardNotificationAlertView: UIStackView {
         self.addSubview(self.contentLabel)
         
         self.contentLabel.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview().inset(20)
+            $0.verticalEdges.equalToSuperview().inset(16)
+            $0.horizontalEdges.equalToSuperview().inset(24)
         }
         
         self.contentLabel.text = content

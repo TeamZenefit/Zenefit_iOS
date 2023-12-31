@@ -16,7 +16,14 @@ final class WelfareListViewController: BaseViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+    private lazy var errorView = DefaultErrorView().then {
+        $0.retryHandler = { [weak self] in
+            self?.viewModel.getPolicyInfo()
+        }
+        $0.isHidden = true
+    }
+    
+    private lazy var tableView = UITableView(frame: .zero).then {
         $0.clipsToBounds = false
         $0.showsVerticalScrollIndicator = false
         $0.sectionFooterHeight = 0
@@ -25,6 +32,7 @@ final class WelfareListViewController: BaseViewController {
         $0.register(WelfareCell.self, forCellReuseIdentifier: WelfareCell.identifier)
         $0.backgroundColor = .white
         $0.isSkeletonable = true
+        $0.isUserInteractionDisabledWhenSkeletonIsActive = false
         $0.tableHeaderView = headerView
     }
     
@@ -55,7 +63,7 @@ final class WelfareListViewController: BaseViewController {
     }
     
     override func addSubView() {
-        [tableView].forEach {
+        [tableView, errorView].forEach {
             view.addSubview($0)
         }
     }
@@ -65,6 +73,7 @@ final class WelfareListViewController: BaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
+                self?.errorView.isHidden = true
             }.store(in: &cancellable)
         
         headerView.sortContentView.$selectedSortType
@@ -77,12 +86,30 @@ final class WelfareListViewController: BaseViewController {
             .sink { [weak self] isShow in
                 isShow ? self?.tableView.showSkeleton(usingColor: .fillAlternative) : self?.tableView.hideSkeleton()
             }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                if case CommonError.serverError = error {
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = "복지 정책을 불러올 수 없어요."
+                    self?.errorView.contentLabel.text = "인터넷 연결이 안 되어 있어요!"
+                } else {
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = "복지 정책을 불러올 수 없어요."
+                    self?.errorView.contentLabel.text = "요청량이 많아 수행할 수 없었어요"
+                }
+            }.store(in: &cancellable)
     }
     
     override func layout() {
         tableView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16)
             $0.bottom.horizontalEdges.equalToSuperview()
+        }
+        
+        errorView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
@@ -172,7 +199,7 @@ extension WelfareListViewController: WelfareDelegate {
 
 extension WelfareListViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        return self.viewModel.policyList.value.count + 10
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {

@@ -126,6 +126,8 @@ class PolicyService {
             switch response.code {
             case 200:
                 return response.result
+            case 500...599:
+                throw CommonError.serverError
             default:
                 throw CommonError.otherError
             }

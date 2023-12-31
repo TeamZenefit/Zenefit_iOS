@@ -102,8 +102,6 @@ final class WelfareCell: UITableViewCell {
             .forEach {
                 $0.removeFromSuperview()
             }
-        selectButton.setImage(nil, for: .normal)
-        addScheduleButton.setImage(nil, for: .normal)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -164,7 +162,8 @@ final class WelfareCell: UITableViewCell {
                                          placeholder: UIImage(named: "DefaultPolicy"))
         self.policyLabel.text = item.policyName
         self.contentLabel.text = item.policyIntroduction
-        self.applyButton.configuration?.attributedTitle = .init("월 \(item.benefit/10000)만원 신청하기",
+        let title = item.benefit == 0 ? "신청하기" : "월 \(item.benefit/10000)만원 신청하기"
+        self.applyButton.configuration?.attributedTitle = .init(title,
                                                                 attributes: .init([.font : UIFont.pretendard(.label4)]))
         self.selectButton.isSelected = item.applyFlag
         self.addScheduleButton.isSelected = item.interestFlag

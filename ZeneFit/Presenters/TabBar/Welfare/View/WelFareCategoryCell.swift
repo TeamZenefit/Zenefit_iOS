@@ -141,8 +141,9 @@ final class WelFareCategoryCell: UITableViewCell {
         policyLabel.text = item.policyName
         contentLabel.text = item.policyIntroduction
         addScheduleButton.isSelected = item.interestFlag
-        applyButton.configuration?.attributedTitle = .init("월 \(item.benefit/10000)만원 신청하기",
-                                                           attributes: .init([.font : UIFont.pretendard(.label4)]))
+        let title = item.benefit == 0 ? "신청하기" : "월 \(item.benefit/10000)만원 신청하기"
+        self.applyButton.configuration?.attributedTitle = .init(title,
+                                                                attributes: .init([.font : UIFont.pretendard(.label4)]))
         configureApplyType(types: [item.policyDateType])
     }
 
