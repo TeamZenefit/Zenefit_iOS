@@ -13,14 +13,12 @@ final class WelfareListViewModel {
     weak var coordinator: WelfareCoordinator?
     
     let type: SupportPolicyType
-    
     let categories = PolicyType.allCases
-    
-    let items = ["1","2","3","4","5","6","7","8"]
     
     var error = PassthroughSubject<Error, Never>()
     var policyList = CurrentValueSubject<[PolicyInfoDTO], Never>([])
     
+    var keyword = CurrentValueSubject<String, Never>("")
     var sortType = CurrentValueSubject<WelfareSortType, Never>(.applyEndDate)
     var selectedCategory = CurrentValueSubject<PolicyType, Never>(.none)
     var showSkeleton = PassthroughSubject<Bool, Never>()
@@ -74,7 +72,8 @@ final class WelfareListViewModel {
         policyListUseCase.getPolicyInfo(page: currentPage,
                                         supportPolicyType: type,
                                         policyType: selectedCategory.value,
-                                        sortType: sortType.value)
+                                        sortType: sortType.value,
+                                        keyword: keyword.value)
         .sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished: break
@@ -136,7 +135,8 @@ private extension WelfareListViewModel {
         policyListUseCase.getPolicyInfo(page: currentPage,
                                         supportPolicyType: type,
                                         policyType: selectedCategory.value,
-                                        sortType: sortType.value)
+                                        sortType: sortType.value,
+                                        keyword: keyword.value)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):

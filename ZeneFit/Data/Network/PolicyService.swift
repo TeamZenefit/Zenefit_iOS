@@ -102,6 +102,45 @@ class PolicyService {
     func getPolicyInfo(page: Int,
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType,
+                       sortType: WelfareSortType,
+                       keyword: String) -> AnyPublisher<PolicyListDTO, Error> {
+        let query: [String : String] = ["page" : "\(page)",
+                                        "size" : "\(10)",
+                                        "sortField" : sortType.rawValue,
+                                        "sortOrder" : "asc"]
+        
+        let parameter: [String : Any] = [
+            "supportPolicyType" : supportPolicyType.rawValue,
+            "policyType" : policyType.rawValue,
+            "keyword" : keyword]
+        
+        
+        let endpoint = Endpoint(method: .POST,
+                                paths: "/policy/search",
+                                queries: query,
+                                body: parameter) // TODO: 수정
+            .setAccessToken()
+    
+            
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<PolicyListDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> PolicyListDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            case 500...599:
+                throw CommonError.serverError
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getPolicyInfo(page: Int,
+                       supportPolicyType: SupportPolicyType,
+                       policyType: PolicyType,
                        sortType: WelfareSortType) -> AnyPublisher<PolicyListDTO, Error> {
         let query: [String : String] = ["page" : "\(page)",
                                         "size" : "\(10)",

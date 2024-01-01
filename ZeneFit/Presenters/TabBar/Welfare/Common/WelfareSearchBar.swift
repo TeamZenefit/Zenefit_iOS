@@ -11,7 +11,7 @@ import Combine
 final class WelfareSearchBar: UISearchBar {
     private var cancellable = Set<AnyCancellable>()
     
-    private let searchButton = UIButton(type: .system).then {
+    let searchButton = UIButton(type: .system).then {
         $0.setImage(.init(named: "i-sear-24")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
@@ -23,7 +23,8 @@ final class WelfareSearchBar: UISearchBar {
         self.searchTextField.leftView = nil
         self.backgroundImage = UIImage()
         self.searchTextField.backgroundColor = .clear
-        
+        self.searchTextField.rightViewMode = .never
+        self.searchTextField.clearButtonMode = .never
         addSubview(searchButton)
         
         searchButton.snp.makeConstraints {
@@ -31,11 +32,6 @@ final class WelfareSearchBar: UISearchBar {
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(24)
         }
-        
-        searchButton.tapPublisher
-            .sink { [weak self] in
-                self?.endEditing(false)
-            }.store(in: &cancellable)
     }
     
     required init?(coder: NSCoder) {

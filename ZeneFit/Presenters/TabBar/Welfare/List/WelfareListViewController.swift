@@ -82,6 +82,17 @@ final class WelfareListViewController: BaseViewController {
                 self?.errorView.isHidden = true
             }.store(in: &cancellable)
         
+        headerView.searchBar.searchTextField
+            .textPublisher.sink { [weak self] keyword in
+                self?.viewModel.keyword.send(keyword)
+            }.store(in: &cancellable)
+        
+        headerView.searchBar.searchButton.tapPublisher
+            .sink { [weak self] in
+                self?.viewModel.getPolicyInfo()
+                self?.view.endEditing(false)
+            }.store(in: &cancellable)
+        
         headerView.sortContentView.$selectedSortType
             .sink { [weak self] type in
                 self?.viewModel.sortType.send(type)
