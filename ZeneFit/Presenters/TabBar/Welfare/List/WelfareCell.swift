@@ -59,10 +59,30 @@ final class WelfareCell: UITableViewCell {
         $0.setImage(.init(named: "Check-On_welfare")?.withRenderingMode(.alwaysOriginal), for: .selected)
     }
     
-    private let applyTypeStackView = UIStackView().then {
+    private lazy var applyTypeStackView = UIStackView(arrangedSubviews: [dateTypeLabel, methodTypeLabel]).then {
         $0.isSkeletonable = true
         $0.distribution = . fill
         $0.spacing = 4
+    }
+    
+    private let dateTypeLabel =  PaddingLabel(allPadding: 8).then {
+        $0.isSkeletonable = true
+        $0.clipsToBounds = true
+        $0.font = .pretendard(.chips)
+        $0.textColor = .secondaryNormal
+        $0.layer.cornerRadius = 14
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.secondaryAssistive.cgColor
+    }
+    
+    private let methodTypeLabel =  PaddingLabel(allPadding: 8).then {
+        $0.isSkeletonable = true
+        $0.clipsToBounds = true
+        $0.font = .pretendard(.chips)
+        $0.textColor = .primaryNormal
+        $0.layer.cornerRadius = 14
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.primaryAssistive.cgColor
     }
     
     private let contentLabel = UILabel().then {
@@ -99,12 +119,24 @@ final class WelfareCell: UITableViewCell {
         $0.backgroundColor = .lineNormal
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        applyTypeStackView.arrangedSubviews
-            .forEach {
-                $0.removeFromSuperview()
-            }
+    override var isSelected: Bool {
+        didSet {
+            guard let policy else { return }
+            var title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
+            
+            self.applyButton.configuration?.attributedTitle = .init(title,
+                                                                    attributes: .init([.font : UIFont.pretendard(.label4)]))
+            
+            self.addScheduleButton.isEnabled = !isSelected
+            self.applyButton.isEnabled = !isSelected
+            
+            self.policyLabel.textColor = isSelected ? .textDisable : .textNormal
+            self.agencyLabel.textColor = isSelected ? .textDisable : .textAlternative
+            self.contentLabel.textColor = isSelected ? .textDisable : .textNormal
+            
+            configureDateType(type: PolicyDateType(rawValue: policy.policyDateType) ?? .blank)
+            configureMethodType(type: PolicyMethodType(rawValue: policy.policyMethodType) ?? .blank)
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -123,43 +155,6 @@ final class WelfareCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureApplyType(types: [String]) {
-        
-        applyTypeStackView.arrangedSubviews.forEach {
-            $0.removeFromSuperview()
-        }
-        
-        types.forEach { type in
-            let textColor: UIColor = type == "기간신청" ? .secondaryNormal : .primaryNormal
-            let borderColor: UIColor = type == "기간신청" ? .secondaryAssistive : .primaryAssistive
-            
-            let label = PaddingLabel(padding: .init(top: 8, left: 8, bottom: 8, right: 8)).then {
-                $0.isSkeletonable = true
-                $0.clipsToBounds = true
-                $0.text = type
-                $0.font = .pretendard(.chips)
-                $0.textColor = textColor
-                $0.layer.cornerRadius = 14
-                $0.layer.borderColor = borderColor.cgColor
-                $0.layer.borderWidth = 1
-            }
-            
-            
-            _ = UIView(frame: label.frame).then {
-                $0.isSkeletonable = true
-                
-                label.addSubview($0)
-                
-                $0.snp.makeConstraints {
-                    $0.edges.equalToSuperview()
-                }
-            }
-            
-            applyTypeStackView.addArrangedSubview(label)
-        }
-    
-    }
-    
     // selectButton에 따라 분기해줘야함
     func configureCell(item: PolicyInfoDTO) {
         self.policy = item
@@ -167,35 +162,35 @@ final class WelfareCell: UITableViewCell {
                                          placeholder: UIImage(named: "DefaultPolicy"))
         
         self.selectButton.isSelected = item.applyFlag
+        self.isSelected = item.applyFlag
         
-        self.addScheduleButton.isEnabled = true
-        self.applyButton.isEnabled = true
+        self.configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
+        self.configureMethodType(type: PolicyMethodType(rawValue: item.policyMethodType) ?? .blank)
         
         self.policyLabel.text = item.policyName
         self.contentLabel.text = item.policyIntroduction
-        var title = item.benefit == 0 ? "신청하기" : "월 \(item.benefit/10000)만원 신청하기"
-        
-        self.applyButton.configuration?.attributedTitle = .init(title,
-                                                                attributes: .init([.font : UIFont.pretendard(.label4)]))
         
         self.addScheduleButton.isSelected = item.interestFlag
-        
-        configureApplyType(types: [item.policyDateTypeDescription])
-        responseToSelection(isSelect: item.applyFlag)
     }
     
-    private func responseToSelection(isSelect: Bool) {
-        if isSelect {
-            self.agencyLabel.textColor = .textDisable
-            self.policyLabel.textColor = .textDisable
-            self.contentLabel.textColor = .textDisable
-            self.addScheduleButton.isEnabled = false
-            let title = "이미 신청한 정책입니다"
-            self.applyButton.configuration?.attributedTitle = .init(title,
-                                                                    attributes: .init([.font : UIFont.pretendard(.label4)]))
-            self.applyButton.configuration?.baseBackgroundColor = .fillDisable
-            self.applyButton.isEnabled = false
-        }
+    private func configureDateType(type: PolicyDateType) {
+        let textColor: UIColor = self.isSelected ? .textDisable : .secondaryNormal
+        let borderColor: UIColor = self.isSelected ? .lineDisable : .secondaryAssistive
+        
+        dateTypeLabel.text = type.description
+        dateTypeLabel.isHidden = type == .blank || type == .undecided
+        dateTypeLabel.textColor = textColor
+        dateTypeLabel.layer.borderColor = borderColor.cgColor
+    }
+    
+    private func configureMethodType(type: PolicyMethodType) {
+        let textColor: UIColor = self.isSelected ? .textDisable : .primaryNormal
+        let borderColor: UIColor = self.isSelected ? .lineDisable : .primaryAssistive
+        
+        methodTypeLabel.text = type.description
+        methodTypeLabel.isHidden = type == .blank
+        methodTypeLabel.textColor = textColor
+        methodTypeLabel.layer.borderColor = borderColor.cgColor
     }
 
     private func addSubViews() {
@@ -286,7 +281,8 @@ final class WelfareCell: UITableViewCell {
                 guard let self,
                       let policy else { return }
                 // TODO: api호출 후 토글
-                self.selectButton.isSelected.toggle()   
+                self.isSelected.toggle()
+                self.selectButton.isSelected.toggle()
             }.store(in: &cancellable)
     }
     

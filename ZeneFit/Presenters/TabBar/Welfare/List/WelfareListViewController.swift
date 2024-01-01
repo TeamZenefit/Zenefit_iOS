@@ -23,6 +23,10 @@ final class WelfareListViewController: BaseViewController {
         $0.isHidden = true
     }
     
+    private let emptyView = WelfareEmptyView().then {
+        $0.isHidden = true
+    }
+    
     private lazy var tableView = UITableView(frame: .zero).then {
         $0.clipsToBounds = false
         $0.showsVerticalScrollIndicator = false
@@ -34,6 +38,7 @@ final class WelfareListViewController: BaseViewController {
         $0.isSkeletonable = true
         $0.isUserInteractionDisabledWhenSkeletonIsActive = false
         $0.tableHeaderView = headerView
+        $0.backgroundView = emptyView
     }
     
     init(viewModel: WelfareListViewModel) {
@@ -71,7 +76,8 @@ final class WelfareListViewController: BaseViewController {
     override func setupBinding() {
         viewModel.policyList
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] list in
+                self?.emptyView.isHidden = list.isNotEmpty
                 self?.tableView.reloadData()
                 self?.errorView.isHidden = true
             }.store(in: &cancellable)

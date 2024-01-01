@@ -18,7 +18,7 @@ final class WelfareViewController: BaseViewController {
     private let tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
-        $0.register(WelFareCategoryCell.self, forCellReuseIdentifier: WelFareCategoryCell.identifier)
+        $0.register(WelfareMainItemCell.self, forCellReuseIdentifier: WelfareMainItemCell.identifier)
         $0.backgroundColor = .backgroundPrimary
     }
     
@@ -95,7 +95,7 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WelFareCategoryCell.identifier, for: indexPath) as! WelFareCategoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WelfareMainItemCell.identifier, for: indexPath) as! WelfareMainItemCell
         let targetItem = viewModel.policyItems.value[indexPath.row]
         cell.configureCell(item: targetItem)
         

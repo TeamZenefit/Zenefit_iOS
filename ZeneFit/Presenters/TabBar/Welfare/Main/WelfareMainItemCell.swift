@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class WelFareCategoryCell: UITableViewCell {
+final class WelfareMainItemCell: UITableViewCell {
     
     private var cancellable = Set<AnyCancellable>()
     
@@ -60,8 +60,30 @@ final class WelFareCategoryCell: UITableViewCell {
         $0.textColor = .textNormal
     }
     
-    private let applyTypeStackView = UIStackView().then {
+    private lazy var applyTypeStackView = UIStackView(arrangedSubviews: [dateTypeLabel, methodTypeLabel]).then {
+        $0.isSkeletonable = true
+        $0.distribution = . fill
         $0.spacing = 4
+    }
+    
+    private let dateTypeLabel =  PaddingLabel(allPadding: 8).then {
+        $0.isSkeletonable = true
+        $0.clipsToBounds = true
+        $0.font = .pretendard(.chips)
+        $0.textColor = .secondaryNormal
+        $0.layer.cornerRadius = 14
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.secondaryAssistive.cgColor
+    }
+    
+    private let methodTypeLabel =  PaddingLabel(allPadding: 8).then {
+        $0.isSkeletonable = true
+        $0.clipsToBounds = true
+        $0.font = .pretendard(.chips)
+        $0.textColor = .primaryNormal
+        $0.layer.cornerRadius = 14
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.primaryAssistive.cgColor
     }
     
     private let contentLabel = UILabel().then {
@@ -106,26 +128,6 @@ final class WelFareCategoryCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureApplyType(types: [String]) {
-        resetItem()
-        types.forEach { type in
-            let textColor: UIColor = type == "기간 신청" ? .secondaryNormal : .primaryNormal
-            let borderColor: UIColor = type == "기간 신청" ? .secondaryAssistive : .primaryAssistive
-            
-            let label = PaddingLabel(padding: .init(top: 8, left: 8, bottom: 8, right: 8)).then {
-                $0.clipsToBounds = true
-                $0.text = type
-                $0.font = .pretendard(.chips)
-                $0.textColor = textColor
-                $0.layer.cornerRadius = 14
-                $0.layer.borderColor = borderColor.cgColor
-                $0.layer.borderWidth = 1
-            }
-            
-            applyTypeStackView.addArrangedSubview(label)
-        }
-    }
-    
     private func resetItem() {
         applyTypeStackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
@@ -144,7 +146,28 @@ final class WelFareCategoryCell: UITableViewCell {
         let title = item.benefit == 0 ? "신청하기" : "월 \(item.benefit/10000)만원 신청하기"
         self.applyButton.configuration?.attributedTitle = .init(title,
                                                                 attributes: .init([.font : UIFont.pretendard(.label4)]))
-        configureApplyType(types: [item.policyDateType])
+        self.configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
+        self.configureMethodType(type: PolicyMethodType(rawValue: item.policyMethodType) ?? .blank)
+    }
+    
+    private func configureDateType(type: PolicyDateType) {
+        let textColor: UIColor = self.isSelected ? .textDisable : .secondaryNormal
+        let borderColor: UIColor = self.isSelected ? .lineDisable : .secondaryAssistive
+        
+        dateTypeLabel.text = type.description
+        dateTypeLabel.isHidden = type == .blank || type == .undecided
+        dateTypeLabel.textColor = textColor
+        dateTypeLabel.layer.borderColor = borderColor.cgColor
+    }
+    
+    private func configureMethodType(type: PolicyMethodType) {
+        let textColor: UIColor = self.isSelected ? .textDisable : .primaryNormal
+        let borderColor: UIColor = self.isSelected ? .lineDisable : .primaryAssistive
+        
+        methodTypeLabel.text = type.description
+        methodTypeLabel.isHidden = type == .blank
+        methodTypeLabel.textColor = textColor
+        methodTypeLabel.layer.borderColor = borderColor.cgColor
     }
 
     private func addSubViews() {

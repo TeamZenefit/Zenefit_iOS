@@ -20,11 +20,12 @@ struct PolicyMainInfo: Codable {
     let policyAreaCode, policyCityCode, policyIntroduction: String
     let supportTypePolicyCnt, benefit: Int
     let policyDateType: String
+    let policyMethodType: String
 
     enum CodingKeys: String, CodingKey {
         case supportType, supportTypeDescription
         case policyID = "policyId"
-        case policyName, policyLogo, policyAreaCode, policyCityCode, policyIntroduction, supportTypePolicyCnt, benefit, policyDateType, interestFlag
+        case policyName, policyLogo, policyAreaCode, policyCityCode, policyIntroduction, supportTypePolicyCnt, benefit, policyDateType, interestFlag, policyMethodType
     }
 }
 

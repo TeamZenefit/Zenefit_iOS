@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */; };
 		B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */; };
 		B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B82AFBE406006DF4D2 /* WelfareCell.swift */; };
 		B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */; };
 		B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */; };
+		B531CC302B4295DE00EF5095 /* PolicyMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */; };
+		B531CC322B42A2AD00EF5095 /* WelfareEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC312B42A2AD00EF5095 /* WelfareEmptyView.swift */; };
 		B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B69C62AEAB1C800D3E092 /* ManualView.swift */; };
 		B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54646F62B0E1BF00051BBE5 /* UILabel+.swift */; };
 		B54A67482ADBCE3700971467 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67472ADBCE3700971467 /* Collections+.swift */; };
@@ -26,7 +29,7 @@
 		B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */; };
 		B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */; };
 		B54A67932ADD9A6B00971467 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67922ADD9A6B00971467 /* Publisher+.swift */; };
-		B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AA2AF7675D00429C52 /* WelFareCategoryCell.swift */; };
+		B54AB1AB2AF7675D00429C52 /* WelfareMainItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AA2AF7675D00429C52 /* WelfareMainItemCell.swift */; };
 		B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AD2AF76AA400429C52 /* BaseView.swift */; };
 		B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */; };
 		B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */; };
@@ -216,10 +219,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDateType.swift; sourceTree = "<group>"; };
 		B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B52437B82AFBE406006DF4D2 /* WelfareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCell.swift; sourceTree = "<group>"; };
 		B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSearchBar.swift; sourceTree = "<group>"; };
 		B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortButton.swift; sourceTree = "<group>"; };
+		B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyMethodType.swift; sourceTree = "<group>"; };
+		B531CC312B42A2AD00EF5095 /* WelfareEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareEmptyView.swift; sourceTree = "<group>"; };
 		B53B69C62AEAB1C800D3E092 /* ManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualView.swift; sourceTree = "<group>"; };
 		B54646F62B0E1BF00051BBE5 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B54A67472ADBCE3700971467 /* Collections+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+.swift"; sourceTree = "<group>"; };
@@ -235,7 +241,7 @@
 		B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAreaUseCase.swift; sourceTree = "<group>"; };
 		B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCityUseCase.swift; sourceTree = "<group>"; };
 		B54A67922ADD9A6B00971467 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
-		B54AB1AA2AF7675D00429C52 /* WelFareCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelFareCategoryCell.swift; sourceTree = "<group>"; };
+		B54AB1AA2AF7675D00429C52 /* WelfareMainItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareMainItemCell.swift; sourceTree = "<group>"; };
 		B54AB1AD2AF76AA400429C52 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareViewModel.swift; sourceTree = "<group>"; };
 		B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewController.swift; sourceTree = "<group>"; };
@@ -503,17 +509,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		B54AB1A92AF7673A00429C52 /* View */ = {
+		B54AB1A92AF7673A00429C52 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B54AB1AA2AF7675D00429C52 /* WelFareCategoryCell.swift */,
-				B52437B82AFBE406006DF4D2 /* WelfareCell.swift */,
 				B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */,
-				B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */,
 				B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */,
 				B55E42472B3F3F0F00E4B893 /* WelfareSortContentView.swift */,
+				B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */,
 			);
-			path = View;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		B54AB1AC2AF76A9600429C52 /* Base */ = {
@@ -528,9 +532,11 @@
 		B54AB1B12AF7E21F00429C52 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				B52437B82AFBE406006DF4D2 /* WelfareCell.swift */,
 				B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */,
 				B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */,
 				B55E42452B3F021200E4B893 /* WelfareListHeaderView.swift */,
+				B531CC312B42A2AD00EF5095 /* WelfareEmptyView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -562,7 +568,7 @@
 			isa = PBXGroup;
 			children = (
 				B552F9E92AE5648200AA5F40 /* WelfareCoordinator.swift */,
-				B54AB1A92AF7673A00429C52 /* View */,
+				B54AB1A92AF7673A00429C52 /* Common */,
 				B552F9DA2AE553D300AA5F40 /* Main */,
 				B54AB1B12AF7E21F00429C52 /* List */,
 				B552F9D72AE551E100AA5F40 /* Find */,
@@ -616,6 +622,7 @@
 		B552F9DA2AE553D300AA5F40 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B54AB1AA2AF7675D00429C52 /* WelfareMainItemCell.swift */,
 				B552F9CC2AE5446D00AA5F40 /* WelfareViewController.swift */,
 				B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */,
 			);
@@ -1112,6 +1119,8 @@
 				B55E42492B411C2700E4B893 /* WelfareSortType.swift */,
 				B5F624D72AC5FAB1002A1896 /* OAuthType.swift */,
 				B56452532AEEB229000A45FA /* GestureType.swift */,
+				B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */,
+				B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1418,6 +1427,7 @@
 				B5F624D82AC5FAB1002A1896 /* OAuthType.swift in Sources */,
 				B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */,
 				B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */,
+				B531CC322B42A2AD00EF5095 /* WelfareEmptyView.swift in Sources */,
 				B5F624EB2AC87818002A1896 /* RegistInfoInputViewController.swift in Sources */,
 				B55827012B1C6EEB00A360E9 /* NotiSettingViewModel.swift in Sources */,
 				B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */,
@@ -1463,7 +1473,7 @@
 				B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */,
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
 				B55E424A2B411C2700E4B893 /* WelfareSortType.swift in Sources */,
-				B54AB1AB2AF7675D00429C52 /* WelFareCategoryCell.swift in Sources */,
+				B54AB1AB2AF7675D00429C52 /* WelfareMainItemCell.swift in Sources */,
 				B552F9CF2AE5449000AA5F40 /* ScheduleViewController.swift in Sources */,
 				B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */,
 				B558271A2B1CD47F00A360E9 /* PersonalInfoCell.swift in Sources */,
@@ -1535,6 +1545,7 @@
 				B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */,
 				B5F624CA2AC54C53002A1896 /* PaddingLabel.swift in Sources */,
 				B552F9D62AE54FE500AA5F40 /* KeyChainManager.swift in Sources */,
+				B531CC302B4295DE00EF5095 /* PolicyMethodType.swift in Sources */,
 				B5F625052AC954A1002A1896 /* SignUpInfo.swift in Sources */,
 				B55E42532B41605100E4B893 /* DefaultErrorView.swift in Sources */,
 				B5ED7BAC2B00AF8400138FE8 /* HomeInfoDTO.swift in Sources */,
@@ -1565,6 +1576,7 @@
 				B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */,
 				B552F9D92AE551F100AA5F40 /* FindWelfareViewController.swift in Sources */,
 				B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */,
+				B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */,
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,

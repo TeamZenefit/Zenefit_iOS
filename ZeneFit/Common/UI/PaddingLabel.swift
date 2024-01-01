@@ -21,6 +21,26 @@ final class PaddingLabel: UILabel {
         self.right = padding.right
     }
     
+    /// - Parameter allPadding: 전체 패딩
+    convenience init(allPadding: CGFloat) {
+        self.init()
+        self.top = allPadding
+        self.left = allPadding
+        self.bottom = allPadding
+        self.right = allPadding
+    }
+    
+    /// - Parameters:
+    ///   - vPadding: 수직 패딩
+    ///   - hPadding: 수평 패딩
+    convenience init(vPadding: CGFloat, hPadding: CGFloat) {
+        self.init()
+        self.top = vPadding
+        self.left = hPadding
+        self.bottom = vPadding
+        self.right = hPadding
+    }
+    
     override func drawText(in rect: CGRect) {
         let inset = UIEdgeInsets(top: self.top, left: self.left, bottom: self.bottom, right: self.right)
         super.drawText(in: rect.inset(by: inset))
