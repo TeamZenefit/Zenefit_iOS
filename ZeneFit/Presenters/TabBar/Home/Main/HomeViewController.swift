@@ -157,8 +157,6 @@ final class HomeViewController: BaseViewController {
         [topBGView, nameLabel, imageView, progressView, smallBoxStackView, policyInfoView, deadLineInfoView].forEach {
             scollView.addSubview($0)
         }
-        
-        
     }
     
     override func layout() {

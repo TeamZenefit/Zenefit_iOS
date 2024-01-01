@@ -37,7 +37,7 @@ final class WelfareMainItemCell: UITableViewCell {
         $0.backgroundColor = .lineAlternative
     }
     
-    private let countLabel = UILabel().then {
+    private let countLabel = PaddingLabel(vPadding: 0, hPadding: 6).then {
         $0.textAlignment = .center
         $0.clipsToBounds = true
         $0.text = "0"
@@ -142,7 +142,9 @@ final class WelfareMainItemCell: UITableViewCell {
     func configureCell(item: PolicyMainInfo) {
         policy = item
         titleLabel.text = SupportPolicyType(rawValue: item.supportType)?.description
-        countLabel.text = "\(item.supportTypePolicyCnt)"
+        var count = "\(item.supportTypePolicyCnt)"
+        if count.count > 2 { count += "+" }
+        countLabel.text = count
         policyImageView.kf.setImage(with: URL(string: item.policyLogo),
                                     placeholder: UIImage(named: "DefaultPolicy"))
         agencyLabel.text = item.policyCityCode
@@ -215,7 +217,7 @@ final class WelfareMainItemCell: UITableViewCell {
         }
         
         countLabel.snp.makeConstraints {
-            $0.width.height.equalTo(20)
+            $0.height.equalTo(20)
             $0.trailing.equalTo(disclosureImage.snp.leading)
             $0.centerY.equalTo(disclosureImage)
         }
