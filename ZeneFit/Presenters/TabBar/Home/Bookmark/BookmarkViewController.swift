@@ -80,17 +80,20 @@ final class BookmarkViewController: BaseViewController {
         }.store(in: &cancellable)
         
         viewModel.$isEditMode
+            .receive(on: RunLoop.main)
             .sink { [weak self] isEditMode in
                 self?.changeEditMode(isEditMode: isEditMode)
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
         viewModel.bookmarkList
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
         viewModel.$totalPolicy
+            .receive(on: RunLoop.main)
             .sink { [weak self] count in
                 self?.bookmarkCountLabel.text = "\(count)개"
             }.store(in: &cancellable)

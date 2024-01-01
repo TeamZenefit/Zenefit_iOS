@@ -11,12 +11,12 @@ struct WelfareMainInfoDTO: Codable {
     let policyInfos: [PolicyMainInfo]
 }
 
-struct PolicyMainInfo: Codable {
+class PolicyMainInfo: Codable {
     let supportType, supportTypeDescription: String
     let policyID: Int
     let policyName: String
     let policyLogo: String
-    let interestFlag: Bool
+    var interestFlag: Bool
     let policyAreaCode, policyCityCode, policyIntroduction: String
     let supportTypePolicyCnt, benefit: Int
     let policyDateType: String

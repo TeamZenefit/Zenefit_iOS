@@ -46,4 +46,20 @@ final class PolicyRepository: PolicyRepositoryProtocol {
     func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error> {
         policyService.getPolicyDetailInfo(policyId: policyId)
     }
+    
+    func addInterestPolicy(policyId: Int) async throws -> Bool {
+        try await policyService.addInterestPolicy(policyId: policyId)
+    }
+    
+    func removeInterestPolicy(policyId: Int) async throws -> Bool {
+        try await policyService.removeInterestPolicy(policyId: policyId)
+    }
+    
+    func addApplyingPolicy(policyId: Int) async throws -> Bool {
+        try await policyService.addApplyingPolicy(policyId: policyId)
+    }
+    
+    func removeApplyingPolicy(policyId: Int) async throws -> Bool {
+        try await policyService.removeApplyingPolicy(policyId: policyId)
+    }
 }

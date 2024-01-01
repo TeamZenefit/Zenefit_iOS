@@ -72,6 +72,7 @@ final class HomeViewController: BaseViewController {
     
     override func setupBinding() {
         viewModel.info
+            .receive(on: RunLoop.main)
             .sink { [weak self] info in
                 self?.errorView.isHidden = true
                 self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"

@@ -14,6 +14,10 @@
 		B52437BD2AFD1B63006DF4D2 /* WelfareSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */; };
 		B531CC302B4295DE00EF5095 /* PolicyMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */; };
 		B531CC322B42A2AD00EF5095 /* WelfareEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC312B42A2AD00EF5095 /* WelfareEmptyView.swift */; };
+		B531CC342B42BF5A00EF5095 /* AddInterestPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC332B42BF5A00EF5095 /* AddInterestPolicyUseCase.swift */; };
+		B531CC362B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC352B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift */; };
+		B531CC382B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC372B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift */; };
+		B531CC3A2B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B531CC392B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift */; };
 		B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B69C62AEAB1C800D3E092 /* ManualView.swift */; };
 		B54646F72B0E1BF00051BBE5 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54646F62B0E1BF00051BBE5 /* UILabel+.swift */; };
 		B54A67482ADBCE3700971467 /* Collections+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A67472ADBCE3700971467 /* Collections+.swift */; };
@@ -226,6 +230,10 @@
 		B52437BC2AFD1B63006DF4D2 /* WelfareSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSortButton.swift; sourceTree = "<group>"; };
 		B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyMethodType.swift; sourceTree = "<group>"; };
 		B531CC312B42A2AD00EF5095 /* WelfareEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareEmptyView.swift; sourceTree = "<group>"; };
+		B531CC332B42BF5A00EF5095 /* AddInterestPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInterestPolicyUseCase.swift; sourceTree = "<group>"; };
+		B531CC352B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveInterestPolicyUseCase.swift; sourceTree = "<group>"; };
+		B531CC372B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveApplyingPolicyUseCase.swift; sourceTree = "<group>"; };
+		B531CC392B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddApplyingPolicyUseCase.swift; sourceTree = "<group>"; };
 		B53B69C62AEAB1C800D3E092 /* ManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualView.swift; sourceTree = "<group>"; };
 		B54646F62B0E1BF00051BBE5 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		B54A67472ADBCE3700971467 /* Collections+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+.swift"; sourceTree = "<group>"; };
@@ -651,6 +659,10 @@
 				B5A8706F2B0A64950052D5A1 /* WelfareMainUseCase.swift */,
 				B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */,
 				B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */,
+				B531CC332B42BF5A00EF5095 /* AddInterestPolicyUseCase.swift */,
+				B531CC352B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift */,
+				B531CC372B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift */,
+				B531CC392B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -1463,6 +1475,7 @@
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
 				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,
+				B531CC342B42BF5A00EF5095 /* AddInterestPolicyUseCase.swift in Sources */,
 				B55827072B1C963B00A360E9 /* NotiViewModel.swift in Sources */,
 				B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */,
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
@@ -1489,6 +1502,7 @@
 				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
 				B596BA392B25F6DB00236C2F /* GetUserInfoUseCase.swift in Sources */,
+				B531CC382B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift in Sources */,
 				B55826F62B1C4D7C00A360E9 /* StandardAlertAction.swift in Sources */,
 				B5A870962B0B79510052D5A1 /* PolicyType.swift in Sources */,
 				B56452472AEE86F2000A45FA /* HomeViewModel.swift in Sources */,
@@ -1497,6 +1511,7 @@
 				B54A67542ADC132700971467 /* BaseResponse.swift in Sources */,
 				B596BA322B25E8E100236C2F /* SettingRepositoryProtocol.swift in Sources */,
 				B564523E2AEE4EF2000A45FA /* TabBarItem.swift in Sources */,
+				B531CC362B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift in Sources */,
 				B5F625162ACAE3E9002A1896 /* SignInUseCase.swift in Sources */,
 				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
@@ -1539,6 +1554,7 @@
 				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,
 				B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
+				B531CC3A2B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift in Sources */,
 				B5ED7BB52B00E3A000138FE8 /* WelfareDetailViewModel.swift in Sources */,
 				B5A8706A2B09F6590052D5A1 /* BenefitPolicyListDTO.swift in Sources */,
 				B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */,

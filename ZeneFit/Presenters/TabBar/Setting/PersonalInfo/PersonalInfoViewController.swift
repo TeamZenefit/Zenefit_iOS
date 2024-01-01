@@ -48,11 +48,13 @@ final class PersonalInfoViewController: BaseViewController {
     
     override func setupBinding() {
         editButton.tapPublisher
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 self?.editButton.isSelected.toggle()
             }.store(in: &cancellable)
         
         viewModel.userInfo
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)

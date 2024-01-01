@@ -18,7 +18,7 @@ struct PolicyListDTO: Codable {
 }
 
 // MARK: - Content
-struct PolicyInfoDTO: Codable {
+class PolicyInfoDTO: Codable {
     let policyID: Int
     let policyName: String
     let policyApplyDenialReason: String?
@@ -29,9 +29,9 @@ struct PolicyInfoDTO: Codable {
     let cityCode: String?
     let policyLogo: String
     let policyIntroduction: String
-    let applyStatus: Bool
+    var applyStatus: Bool
     let benefit: Int
-    let applyFlag, interestFlag: Bool
+    var applyFlag, interestFlag: Bool
 
     enum CodingKeys: String, CodingKey {
         case policyID = "policyId"

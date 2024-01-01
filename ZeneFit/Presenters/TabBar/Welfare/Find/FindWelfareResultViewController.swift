@@ -101,6 +101,7 @@ final class FindWelfareResultViewController: BaseViewController {
         }
     }
     
+    @MainActor
     private func configureUI(resultType: FindWelfareResultType) {
         var title: String = "\(viewModel.findResult.value.nickname)님이 신청할 수 있는\n"
         let subTitle: String

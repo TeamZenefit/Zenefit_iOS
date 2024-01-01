@@ -46,6 +46,7 @@ final class WelfareDetailViewController: BaseViewController {
     
     private let interestButton = UIButton().then {
         $0.setTitle("관심 정책 등록하기", for: .normal)
+        $0.setTitle("관심 정책 등록완료", for: .selected)
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = .pretendard(.label3)
         $0.backgroundColor = .primaryNormal
@@ -82,11 +83,12 @@ final class WelfareDetailViewController: BaseViewController {
                 if let reason = info.policyApplyDenialReason {
                     self?.titleLabel.text = "\(info.policyName)은\n신청할 수 없어요"
                     self?.subTitleLabel.text = reason
-                    self?.interestButton.isEnabled = info.interestFlag
                     self?.subTitleLabel.isHidden = false
                     self?.interestButton.isHidden = false
                     self?.detailFetchButton.isHidden = false
                     self?.applyButton.isHidden = true
+                    self?.interestButton.isSelected = info.interestFlag
+                    self?.interestButton.backgroundColor = info.interestFlag ? .fillDisable : .primaryNormal
                 } else {
                     if let benefit = info.benefit {
                         let title = "\(info.policyName)을 신청하면\n월 \(benefit/10000)만원 정도를 받을 수 있어요"
@@ -96,6 +98,7 @@ final class WelfareDetailViewController: BaseViewController {
                         let title = "\(info.policyName)은\n지금 바로 신청 가능해요"
                         self?.titleLabel.text = title
                     }
+                    
                 }
 
                 self?.tableView.reloadData()
@@ -104,7 +107,26 @@ final class WelfareDetailViewController: BaseViewController {
         interestButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                // TODO: 관심 정책 토글 실행
+                
+                guard let self,
+                let detailInfo = viewModel.detailInfo.value else { return }
+                
+                Task {
+                    do {
+                        if self.viewModel.detailInfo.value?.interestFlag == true {
+                            try await self.viewModel.removeInterestPolicy(policyId: detailInfo.policyId)
+                        } else {
+                            try await self.viewModel.addInterestPolicy(policyId: detailInfo.policyId)
+                        }
+                    } catch {
+                        if case CommonError.alreadyInterestingPolicy = error {
+                            self.notiAlert("이미 등록된 관심 정책입니다")
+                        } else {
+                            self.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                        }
+                    }
+                    
+                }
             }.store(in: &cancellable)
         
         applyButton.tapPublisher

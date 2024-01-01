@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PolicyDetailDTO: Codable {
+class PolicyDetailDTO: Codable {
     let policyId: Int
     let policyApplyDenialReason: String?
     let policyName, policyIntroduction, policyApplyDocument: String
@@ -18,6 +18,6 @@ struct PolicyDetailDTO: Codable {
     let benefit: Int?
     let policyMethodType : String
     let policyMethodTypeDescription: String
-    let applyFlag: Bool
-    let interestFlag: Bool
+    var applyFlag: Bool
+    var interestFlag: Bool
 }

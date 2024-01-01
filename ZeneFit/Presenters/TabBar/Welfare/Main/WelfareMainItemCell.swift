@@ -8,13 +8,18 @@
 import UIKit
 import Combine
 
+protocol WelfareMainItemCellDelegate: AnyObject {
+    func tapTitle(type: SupportPolicyType) -> Void
+    func tapApply(policyId: Int) -> Void
+    func tapInterest(policy: PolicyMainInfo, completion: (()->Void)?) -> Void
+}
+
 final class WelfareMainItemCell: UITableViewCell {
+    private var policy: PolicyMainInfo?
+    weak var delegate: WelfareMainItemCellDelegate?
     
     private var cancellable = Set<AnyCancellable>()
-    
-    var titleTapHandler: (()->Void)?
-    var applyTapHandler: (()->Void)?
-    
+
     private let totalFrameView = UIStackView().then {
         $0.layer.cornerRadius = 16
         $0.backgroundColor = .white
@@ -135,6 +140,7 @@ final class WelfareMainItemCell: UITableViewCell {
     }
     
     func configureCell(item: PolicyMainInfo) {
+        policy = item
         titleLabel.text = SupportPolicyType(rawValue: item.supportType)?.description
         countLabel.text = "\(item.supportTypePolicyCnt)"
         policyImageView.kf.setImage(with: URL(string: item.policyLogo),
@@ -259,21 +265,25 @@ final class WelfareMainItemCell: UITableViewCell {
         applyButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                self?.applyTapHandler?()
+                guard let policyId = self?.policy?.policyID else { return }
+                self?.delegate?.tapApply(policyId: policyId)
             }.store(in: &cancellable)
         
         addScheduleButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                // TODO: 관심정책 등록 API 호출 및 noti
-                self?.addScheduleButton.isSelected.toggle()
+                guard let policy = self?.policy else { return }
+                self?.delegate?.tapInterest(policy: policy) {
+                    self?.addScheduleButton.isSelected.toggle()
+                }
             }.store(in: &cancellable)
     }
     
     private func setGesture() {
         topFrameView.gesture(for: .tap)
             .sink { [weak self] _ in
-                self?.titleTapHandler?()
+                guard let typeRawValue = self?.policy?.supportType else { return }
+                self?.delegate?.tapTitle(type: .init(rawValue: typeRawValue) ?? .loans)
             }.store(in: &cancellable)
     }
     

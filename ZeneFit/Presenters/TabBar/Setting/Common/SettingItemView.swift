@@ -66,6 +66,7 @@ final class SettingItemView: BaseView {
         }
     }
     
+    @MainActor
     func setContent(content: String) {
         contentLabel.text = content
     }

@@ -155,4 +155,94 @@ class PolicyService {
         }
         .eraseToAnyPublisher()
     }
+    
+    func addInterestPolicy(policyId: Int) async throws -> Bool {
+        let endpoint = Endpoint(method: .POST,
+                                paths: "user/policy/\(policyId)")
+            .setAccessToken()
+    
+            
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<Bool?>.self) { res in
+            if res.statusCode == 401 {
+                throw CommonError.alreadyInterestingPolicy
+            }     
+        }
+        .tryMap { response -> Bool in
+            switch response.code {
+            case 200:
+                return true
+            case 4002:
+                return false
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
+    
+    func removeInterestPolicy(policyId: Int) async throws -> Bool {
+        let endpoint = Endpoint(method: .DELETE,
+                                paths: "user/policy/\(policyId)")
+            .setAccessToken()
+    
+            
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<Bool?>.self) { res in
+        }
+        .tryMap { response -> Bool in
+            switch response.code {
+            case 200:
+                return true
+            case 4002:
+                return false
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
+    
+    func addApplyingPolicy(policyId: Int) async throws -> Bool {
+        let endpoint = Endpoint(method: .POST,
+                                paths: "user/policy/apply/\(policyId)")
+            .setAccessToken()
+    
+            
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<Bool?>.self) { res in
+            if res.statusCode == 401 {
+                throw CommonError.alreadyInterestingPolicy
+            }
+        }
+        .tryMap { response -> Bool in
+            switch response.code {
+            case 200:
+                return true
+            case 4002:
+                return false
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
+    
+    func removeApplyingPolicy(policyId: Int) async throws -> Bool {
+        let endpoint = Endpoint(method: .DELETE,
+                                paths: "user/policy/apply/\(policyId)")
+            .setAccessToken()
+    
+            
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<Bool?>.self) { res in
+        }
+        .tryMap { response -> Bool in
+            switch response.code {
+            case 200:
+                return true
+            case 4002:
+                return false
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
 }

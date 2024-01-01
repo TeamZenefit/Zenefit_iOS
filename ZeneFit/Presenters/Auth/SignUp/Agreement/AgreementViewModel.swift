@@ -47,6 +47,7 @@ final class AgreementViewModel {
     
     func didTapCompletion() {
         signUpUseCase.execute(signUpInfo: signUpInfo)
+            .receive(on: RunLoop.main)
             .sink { [weak self] finish in
                 switch finish {
                 case .finished:

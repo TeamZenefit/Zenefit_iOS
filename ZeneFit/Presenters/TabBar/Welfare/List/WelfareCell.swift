@@ -11,9 +11,9 @@ import Kingfisher
 import SkeletonView
 
 protocol WelfareDelegate: AnyObject {
-    func toggleCalendarStatus(policyId: Int)
+    func toggleCalendarStatus(policy: PolicyInfoDTO, completion: (()->Void)?)
     func tapApplyWelfare(policyId: Int)
-    func tapApplyWelfareFlag(policyId: Int)
+    func tapApplyWelfareFlag(policy: PolicyInfoDTO, completion: (()->Void)?)
 }
 
 final class WelfareCell: UITableViewCell {
@@ -102,7 +102,7 @@ final class WelfareCell: UITableViewCell {
         $0.setImage(.init(named: "Add-schedule")?.withRenderingMode(.alwaysOriginal), for: .disabled)
     }
     
-    private let applyButton = UIButton().then {
+    private let applyButton = UIButton(type: .system).then {
         var configure = UIButton.Configuration.filled()
         configure.background.cornerRadius = 8
         configure.baseForegroundColor = .primaryNormal
@@ -124,6 +124,7 @@ final class WelfareCell: UITableViewCell {
             guard let policy else { return }
             var title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
             title = self.isSelected ? "이미 신청한 정책입니다." : title
+            
             self.applyButton.configuration?.attributedTitle = .init(title,
                                                                     attributes: .init([.font : UIFont.pretendard(.label4)]))
             
@@ -266,8 +267,9 @@ final class WelfareCell: UITableViewCell {
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
-                self.delegate?.toggleCalendarStatus(policyId: policy.policyID)
-                self.addScheduleButton.isSelected.toggle()
+                self.delegate?.toggleCalendarStatus(policy: policy) {
+                    self.addScheduleButton.isSelected.toggle()
+                }
             }.store(in: &cancellable)
         
         applyButton.tapPublisher
@@ -281,9 +283,11 @@ final class WelfareCell: UITableViewCell {
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
-                // TODO: api호출 후 토글
-                self.isSelected.toggle()
-                self.selectButton.isSelected.toggle()
+                
+                self.delegate?.tapApplyWelfareFlag(policy: policy) {
+                    self.isSelected.toggle()
+                    self.selectButton.isSelected.toggle()
+                }
             }.store(in: &cancellable)
     }
     

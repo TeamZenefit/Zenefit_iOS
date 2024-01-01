@@ -16,10 +16,16 @@ final class WelfareViewModel {
     var error = PassthroughSubject<Error, Never>()
     
     private let welfareMainUseCase: WelfareMainUseCase
+    private let addInterestPolicyUseCase: AddInterestPolicyUseCase
+    private let removeInterestPolicyUseCase: RemoveInterestPolicyUseCase
     
     init(coordinator: WelfareCoordinator? = nil,
-         welfareMainUseCase: WelfareMainUseCase = .init()) {
+         welfareMainUseCase: WelfareMainUseCase = .init(),
+         addInterestPolicyUseCase: AddInterestPolicyUseCase = .init(),
+         removeInterestPolicyUseCase: RemoveInterestPolicyUseCase = .init()) {
         self.coordinator = coordinator
+        self.addInterestPolicyUseCase = addInterestPolicyUseCase
+        self.removeInterestPolicyUseCase = removeInterestPolicyUseCase
         self.welfareMainUseCase = welfareMainUseCase
     }
     
@@ -34,5 +40,21 @@ final class WelfareViewModel {
             }, receiveValue: { [weak self] res in
                 self?.policyItems.send(res.policyInfos)
             }).store(in: &cancellable)
+    }
+    
+    @discardableResult
+    func addInterrestPolicy(policyId: Int) async throws -> Bool {
+        let isSuccess = try await addInterestPolicyUseCase.execute(policyId: policyId)
+        policyItems.value.filter { $0.policyID == policyId }.first?.interestFlag = true
+        
+        return isSuccess
+    }
+    
+    @discardableResult
+    func removeInterrestPolicy(policyId: Int) async throws -> Bool {
+        let isSuccess = try await removeInterestPolicyUseCase.execute(policyId: policyId)
+        policyItems.value.filter { $0.policyID == policyId }.first?.interestFlag = false
+        
+        return isSuccess
     }
 }

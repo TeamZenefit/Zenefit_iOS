@@ -194,17 +194,50 @@ extension WelfareListViewController {
 }
 
 extension WelfareListViewController: WelfareDelegate {
-    func toggleCalendarStatus(policyId: Int) {
-        self.notiAlert("달력에 추가되었습니다.")
+    func toggleCalendarStatus(policy: PolicyInfoDTO, completion: (() -> Void)?) {
+        Task { [weak self] in
+            do {
+                if policy.interestFlag {
+                    try await self?.viewModel.removeInterestPolicy(policyId: policy.policyID)
+                    self?.notiAlert("달력에서 제거되었습니다.")
+                } else {
+                    try await self?.viewModel.addInterestPolicy(policyId: policy.policyID)
+                    self?.notiAlert("달력에 추가되었습니다.")
+                }
+                
+                completion?()
+            } catch {
+                if case CommonError.alreadyInterestingPolicy = error {
+                    self?.notiAlert("이미 등록된 관심 정책입니다")
+                } else {
+                    self?.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                }
+            }
+        }
     }
     
     func tapApplyWelfare(policyId: Int) {
         viewModel.coordinator?.setAction(.detail(id: policyId))
     }
     
-    func tapApplyWelfareFlag(policyId: Int) {
-        // TODO: 변경 API호출 및 해당 row reload
-        
+    func tapApplyWelfareFlag(policy: PolicyInfoDTO, completion: (() -> Void)?) {
+        Task { [weak self] in
+            do {
+                if policy.applyFlag {
+                    try await self?.viewModel.removeApplyingPolicy(policyId: policy.policyID)
+                } else {
+                    try await self?.viewModel.addApplyingPolicy(policyId: policy.policyID)
+                }
+                
+                completion?()
+            } catch {
+                if case CommonError.alreadyInterestingPolicy = error {
+                    self?.notiAlert("이미 등록된 수혜 정책입니다")
+                } else {
+                    self?.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                }
+            }
+        }
     }
 }
 

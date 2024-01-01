@@ -62,6 +62,7 @@ final class WelfareViewController: BaseViewController {
     
     override func setupBinding() {
         viewModel.policyItems
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
@@ -98,19 +99,44 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelfareMainItemCell.identifier, for: indexPath) as! WelfareMainItemCell
         let targetItem = viewModel.policyItems.value[indexPath.row]
         cell.configureCell(item: targetItem)
-        
-        cell.titleTapHandler = { [weak self] in
-            self?.viewModel.coordinator?.setAction(.list(type: .init(rawValue: targetItem.supportType) ?? .money))
-        }
-        
-        cell.applyTapHandler = { [weak self] in
-            self?.viewModel.coordinator?.setAction(.detail(id: targetItem.policyID))
-        }
+        cell.delegate = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
+    }
+}
+
+extension WelfareViewController: WelfareMainItemCellDelegate {
+    func tapTitle(type: SupportPolicyType) {
+        self.viewModel.coordinator?.setAction(.list(type: type))
+    }
+    
+    func tapApply(policyId: Int) {
+        self.viewModel.coordinator?.setAction(.detail(id: policyId))
+    }
+    
+    func tapInterest(policy: PolicyMainInfo, completion: (() -> Void)?) {
+        Task { [weak self] in
+            do {
+                if policy.interestFlag {
+                    try await self?.viewModel.removeInterrestPolicy(policyId: policy.policyID)
+                    self?.notiAlert("달력에서 제거되었습니다.")
+                } else {
+                    try await self?.viewModel.addInterrestPolicy(policyId: policy.policyID)
+                    self?.notiAlert("달력에 추가되었습니다.")
+                }
+                
+                completion?()
+            } catch {
+                if case CommonError.alreadyInterestingPolicy = error {
+                    self?.notiAlert("이미 등록된 관심 정책입니다")
+                } else {
+                    self?.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                }
+            }
+        }
     }
 }

@@ -31,13 +31,26 @@ final class WelfareListViewModel {
     
     // usecase
     private let policyListUseCase: PolicyListUseCase
+    private let addInterestPolicyUseCase: AddInterestPolicyUseCase
+    private let removeInterestPolicyUseCase: RemoveInterestPolicyUseCase
+    private let addApplyingPolicyUseCase: AddApplyingPolicyUseCase
+    private let removeApplyingPolicyUseCase: RemoveApplyingPolicyUseCase
     
     init(coordinator: WelfareCoordinator? = nil,
          type: SupportPolicyType,
-         policyListUseCase: PolicyListUseCase = .init()) {
+         policyListUseCase: PolicyListUseCase = .init(),
+         removeInterestPolicyUseCase: RemoveInterestPolicyUseCase = .init(),
+         addInterestPolicyUseCase: AddInterestPolicyUseCase = .init(),
+         addApplyingPolicyUseCase: AddApplyingPolicyUseCase = .init(),
+         removeApplyingPolicyUseCase: RemoveApplyingPolicyUseCase = .init()
+    ) {
         self.coordinator = coordinator
         self.type = type
         self.policyListUseCase = policyListUseCase
+        self.removeInterestPolicyUseCase = removeInterestPolicyUseCase
+        self.addInterestPolicyUseCase = addInterestPolicyUseCase
+        self.removeApplyingPolicyUseCase = removeApplyingPolicyUseCase
+        self.addApplyingPolicyUseCase = addApplyingPolicyUseCase
         
         bind()
     }
@@ -80,6 +93,38 @@ final class WelfareListViewModel {
         if offsetY > 0 && offsetY > (contentHeight - frameHeight) {
             if self.isPaging == false && !isLastPage { self.paging() }
         }
+    }
+    
+    @discardableResult
+    func addInterestPolicy(policyId: Int) async throws -> Bool {
+        let isSuccess = try await addInterestPolicyUseCase.execute(policyId: policyId)
+        policyList.value.filter { $0.policyID == policyId }.first?.interestFlag = true
+        
+        return isSuccess
+    }
+    
+    @discardableResult
+    func removeInterestPolicy(policyId: Int) async throws -> Bool {
+        let isSuccess = try await removeInterestPolicyUseCase.execute(policyId: policyId)
+        policyList.value.filter { $0.policyID == policyId }.first?.interestFlag = false
+        
+        return isSuccess
+    }
+    
+    @discardableResult
+    func addApplyingPolicy(policyId: Int) async throws -> Bool {
+        let isSuccess = try await addApplyingPolicyUseCase.execute(policyId: policyId)
+        policyList.value.filter { $0.policyID == policyId }.first?.applyFlag = true
+        
+        return isSuccess
+    }
+    
+    @discardableResult
+    func removeApplyingPolicy(policyId: Int) async throws -> Bool {
+        let isSuccess = try await removeApplyingPolicyUseCase.execute(policyId: policyId)
+        policyList.value.filter { $0.policyID == policyId }.first?.applyFlag = false
+        
+        return isSuccess
     }
 }
 

@@ -12,4 +12,7 @@ enum CommonError: Error {
     case otherError
     case serverError
     case tempUser(String)
+    
+    // policy
+    case alreadyInterestingPolicy
 }

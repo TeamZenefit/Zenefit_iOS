@@ -69,11 +69,13 @@ final class BenefitViewController: BaseViewController {
             }.store(in: &cancellable)
         
         viewModel.policyList
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
         viewModel.$totalPolicy
+            .receive(on: RunLoop.main)
             .sink { [weak self] count in
                 self?.benefitCountLabel.text = "\(count)개"
             }.store(in: &cancellable)
