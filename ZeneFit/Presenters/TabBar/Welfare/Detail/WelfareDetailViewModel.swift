@@ -10,6 +10,7 @@ import Combine
 
 final class WelfareDetailViewModel {
     private var cancellable = Set<AnyCancellable>()
+    private let policyId: Int
     weak var coordinator: WelfareCoordinator?
     
     var detailInfo = CurrentValueSubject<PolicyDetailDTO?, Never>(nil)
@@ -22,7 +23,12 @@ final class WelfareDetailViewModel {
          policyId: Int) {
         self.policyDetailUseCase = policyDetailUseCase
         self.coordinator = coordinator
+        self.policyId = policyId
         
+        getPolicyDetailInfo()
+    }
+    
+    func getPolicyDetailInfo() {
         policyDetailUseCase.getPolicyDetailInfo(policyId: policyId)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {

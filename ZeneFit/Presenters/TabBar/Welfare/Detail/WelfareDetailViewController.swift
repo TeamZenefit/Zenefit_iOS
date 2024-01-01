@@ -11,6 +11,13 @@ import SafariServices
 final class WelfareDetailViewController: BaseViewController {
     private let viewModel: WelfareDetailViewModel
     
+    private lazy var errorView = DefaultErrorView().then {
+        $0.retryHandler = { [weak self] in
+            self?.viewModel.getPolicyDetailInfo()
+        }
+        $0.isHidden = true
+    }
+    
     private let titleLabel = UILabel().then {
         $0.text = "정책 이름을 신청하면\n월 n만원 정도를 받을 수 있어요"
         $0.textColor = .textStrong
@@ -70,6 +77,8 @@ final class WelfareDetailViewController: BaseViewController {
             .compactMap { $0 }
             .receive(on: RunLoop.main)
             .sink { [weak self] info in
+                self?.errorView.isHidden = true
+                
                 if let reason = info.policyApplyDenialReason {
                     self?.titleLabel.text = "\(info.policyName)은\n신청할 수 없어요"
                     self?.subTitleLabel.text = reason
@@ -111,10 +120,24 @@ final class WelfareDetailViewController: BaseViewController {
                 guard let siteURL = self?.viewModel.detailInfo.value?.referenceSite else { return }
                 self?.openTermOfUseContentWithSafari(urlString: siteURL)
             }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                if case CommonError.serverError = error {
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = "복지 정책을 불러올 수 없어요."
+                    self?.errorView.contentLabel.text = "인터넷 연결이 안 되어 있어요!"
+                } else {
+                    self?.errorView.isHidden = false
+                    self?.errorView.titleLabel.text = "복지 정책을 불러올 수 없어요."
+                    self?.errorView.contentLabel.text = "요청량이 많아 수행할 수 없었어요"
+                }
+            }.store(in: &cancellable)
     }
     
     override func addSubView() {
-        [titleLabel, subTitleLabel, tableView, applyButton, detailFetchButton, interestButton].forEach {
+        [titleLabel, subTitleLabel, tableView, applyButton, detailFetchButton, interestButton, errorView].forEach {
             view.addSubview($0)
         }
     }
@@ -153,6 +176,10 @@ final class WelfareDetailViewController: BaseViewController {
             $0.leading.equalTo(view.snp.centerX).offset(4)
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
             $0.height.equalTo(48)
+        }
+        
+        errorView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
