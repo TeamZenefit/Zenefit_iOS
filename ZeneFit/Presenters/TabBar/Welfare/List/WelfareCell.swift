@@ -65,22 +65,22 @@ final class WelfareCell: UITableViewCell {
         $0.spacing = 4
     }
     
-    private let dateTypeLabel =  PaddingLabel(allPadding: 8).then {
+    private let dateTypeLabel =  PaddingLabel(vPadding: 4, hPadding: 8).then {
         $0.isSkeletonable = true
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .secondaryNormal
-        $0.layer.cornerRadius = 14
+        $0.layer.cornerRadius = 13
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.secondaryAssistive.cgColor
     }
     
-    private let methodTypeLabel =  PaddingLabel(allPadding: 8).then {
+    private let methodTypeLabel = PaddingLabel(vPadding: 4, hPadding: 8).then {
         $0.isSkeletonable = true
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .primaryNormal
-        $0.layer.cornerRadius = 14
+        $0.layer.cornerRadius = 13
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.primaryAssistive.cgColor
     }
@@ -123,7 +123,7 @@ final class WelfareCell: UITableViewCell {
         didSet {
             guard let policy else { return }
             var title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
-            
+            title = self.isSelected ? "이미 신청한 정책입니다." : title
             self.applyButton.configuration?.attributedTitle = .init(title,
                                                                     attributes: .init([.font : UIFont.pretendard(.label4)]))
             
@@ -157,6 +157,7 @@ final class WelfareCell: UITableViewCell {
     
     // selectButton에 따라 분기해줘야함
     func configureCell(item: PolicyInfoDTO) {
+        self.isHidden = false
         self.policy = item
         self.policyImageView.kf.setImage(with: URL(string: item.policyLogo),
                                          placeholder: UIImage(named: "DefaultPolicy"))

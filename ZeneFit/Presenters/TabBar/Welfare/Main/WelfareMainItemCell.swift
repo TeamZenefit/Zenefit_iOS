@@ -66,22 +66,22 @@ final class WelfareMainItemCell: UITableViewCell {
         $0.spacing = 4
     }
     
-    private let dateTypeLabel =  PaddingLabel(allPadding: 8).then {
+    private let dateTypeLabel =  PaddingLabel(vPadding: 4, hPadding: 8).then {
         $0.isSkeletonable = true
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .secondaryNormal
-        $0.layer.cornerRadius = 14
+        $0.layer.cornerRadius = 13
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.secondaryAssistive.cgColor
     }
     
-    private let methodTypeLabel =  PaddingLabel(allPadding: 8).then {
+    private let methodTypeLabel = PaddingLabel(vPadding: 4, hPadding: 8).then {
         $0.isSkeletonable = true
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .primaryNormal
-        $0.layer.cornerRadius = 14
+        $0.layer.cornerRadius = 13
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.primaryAssistive.cgColor
     }
@@ -233,7 +233,6 @@ final class WelfareMainItemCell: UITableViewCell {
         applyTypeStackView.snp.makeConstraints {
             $0.top.equalTo(policyLabel.snp.bottom).offset(4)
             $0.leading.equalTo(agencyLabel)
-            $0.height.equalTo(26)
         }
         
         contentLabel.snp.makeConstraints {
