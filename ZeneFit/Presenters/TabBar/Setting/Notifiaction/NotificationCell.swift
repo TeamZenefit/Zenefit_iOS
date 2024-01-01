@@ -27,6 +27,7 @@ final class NotificationCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

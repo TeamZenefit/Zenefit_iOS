@@ -25,6 +25,7 @@ final class WelfareSearchBar: UISearchBar {
         self.searchTextField.backgroundColor = .clear
         self.searchTextField.rightViewMode = .never
         self.searchTextField.clearButtonMode = .never
+        self.searchTextField.textColor = .textNormal
         addSubview(searchButton)
         
         searchButton.snp.makeConstraints {

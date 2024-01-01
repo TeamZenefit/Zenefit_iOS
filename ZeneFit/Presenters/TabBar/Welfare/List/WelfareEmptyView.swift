@@ -14,7 +14,7 @@ final class WelfareEmptyView: BaseView {
     }
     
     let titleLabel = UILabel().then {
-        $0.text = "받을 수 있는 정책이 없어요."
+        $0.text = "이 조건에는 받을 수 있는 정책이 없어요."
         $0.textColor = .textAlternative
         $0.font = .pretendard(.label1)
     }

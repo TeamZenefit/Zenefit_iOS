@@ -182,9 +182,6 @@
 		B5F624D82AC5FAB1002A1896 /* OAuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624D72AC5FAB1002A1896 /* OAuthType.swift */; };
 		B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624D92AC5FF9C002A1896 /* UIControl+.swift */; };
 		B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624DB2AC60090002A1896 /* UIButton+.swift */; };
-		B5F624DF2AC60F99002A1896 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */; };
-		B5F624E02AC60F99002A1896 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */; };
-		B5F624E12AC60F99002A1896 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */; };
 		B5F624EB2AC87818002A1896 /* RegistInfoInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624EA2AC87818002A1896 /* RegistInfoInputViewController.swift */; };
 		B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624ED2AC87907002A1896 /* UserInfoInputTextField.swift */; };
 		B5F624F22AC87E1D002A1896 /* SignUpOrderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F624F12AC87E1D002A1896 /* SignUpOrderLabel.swift */; };
@@ -1348,7 +1345,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					B5F6245B2AC2F6A0002A1896 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -1397,7 +1394,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F624DF2AC60F99002A1896 /* AppInfo.xcconfig in Resources */,
 				B5F6246C2AC2F6A1002A1896 /* LaunchScreen.storyboard in Resources */,
 				B5F6249A2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
 				B5F624972AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
@@ -1410,7 +1406,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F624E02AC60F99002A1896 /* AppInfo.xcconfig in Resources */,
 				B5F624952AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
 				B5F6249B2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
 				B5F624982AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
@@ -1421,7 +1416,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F624E12AC60F99002A1896 /* AppInfo.xcconfig in Resources */,
 				B5F624962AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
 				B5F6249C2AC2F896002A1896 /* Pretendard-Regular.otf in Resources */,
 				B5F624992AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
@@ -1687,6 +1681,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1748,6 +1743,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1788,7 +1784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1823,7 +1819,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

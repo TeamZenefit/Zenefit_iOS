@@ -66,9 +66,10 @@ final class SettingItemView: BaseView {
         }
     }
     
-    @MainActor
     func setContent(content: String) {
-        contentLabel.text = content
+        DispatchQueue.main.async {
+            self.contentLabel.text = content
+        }
     }
     
     override func setLayout() {

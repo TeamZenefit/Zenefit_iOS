@@ -18,6 +18,7 @@ final class NotiViewController: BaseViewController {
     private let categoryCollectionView = UICollectionView(frame: .zero,
                                                           collectionViewLayout: UICollectionViewFlowLayout()).then {
         $0.register(NotificationCategoryCell.self, forCellWithReuseIdentifier: NotificationCategoryCell.identifier)
+        $0.backgroundColor = .white
         $0.contentInset = .init(top: 0, left: 20, bottom: 0, right: 0)
     }
     
