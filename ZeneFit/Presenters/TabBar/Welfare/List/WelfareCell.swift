@@ -127,9 +127,9 @@ final class WelfareCell: UITableViewCell {
             
             self.applyButton.configuration?.attributedTitle = .init(title,
                                                                     attributes: .init([.font : UIFont.pretendard(.label4)]))
-            
             self.addScheduleButton.isEnabled = !isSelected
             self.applyButton.isEnabled = !isSelected
+            self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
             
             self.policyLabel.textColor = isSelected ? .textDisable : .textNormal
             self.agencyLabel.textColor = isSelected ? .textDisable : .textAlternative
@@ -264,6 +264,7 @@ final class WelfareCell: UITableViewCell {
 
     private func setupBinding() {
         addScheduleButton.tapPublisher
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
@@ -273,6 +274,7 @@ final class WelfareCell: UITableViewCell {
             }.store(in: &cancellable)
         
         applyButton.tapPublisher
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
@@ -280,6 +282,7 @@ final class WelfareCell: UITableViewCell {
             }.store(in: &cancellable)
         
         selectButton.tapPublisher
+            .receive(on: RunLoop.main)
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
