@@ -102,15 +102,30 @@ final class WelfareCell: UITableViewCell {
         $0.setImage(.init(named: "Add-schedule")?.withRenderingMode(.alwaysOriginal), for: .disabled)
     }
     
-    private let applyButton = UIButton().then {
-        $0.setTitle("  월 n만원 신청하기  ", for: .normal)
-        $0.setTitle("  이미 신청한 정책입니다.  ", for: .disabled)
-        $0.setTitleColor(.primaryNormal, for: .normal)
-        $0.backgroundColor = .primaryAssistive
-        $0.setTitleColor(.white, for: .disabled)
-        $0.layer.cornerRadius = 8
-        $0.titleLabel?.font = .pretendard(.label4)
+    private let applyButton = UIButton(type: .custom).then {
+        var configure = UIButton.Configuration.filled()
+        configure.background.cornerRadius = 8
+        configure.baseForegroundColor = .primaryNormal
+        configure.baseBackgroundColor = .primaryAssistive
+        configure.attributedTitle = .init("월 n만원 신청하기",
+                                          attributes: .init([.font : UIFont.pretendard(.label4)]))
         
+        $0.configurationUpdateHandler = {
+            switch $0.state {
+            case .disabled:
+                $0.configuration?.attributedTitle = .init(
+                    "이미 신청한 정책입니다.",
+                    attributes:.init( [.font : UIFont.pretendard(.label4),
+                                       .foregroundColor: UIColor.white])
+                )
+            default:
+                $0.configuration?.attributedTitle?.font = UIFont.pretendard(.label4)
+                $0.configuration?.attributedTitle?.foregroundColor = UIColor.primaryNormal
+                break
+            }
+        }
+        
+        $0.configuration = configure
         $0.isSkeletonable = true
         $0.skeletonCornerRadius = 8
     }
@@ -122,17 +137,28 @@ final class WelfareCell: UITableViewCell {
     override var isSelected: Bool {
         didSet {
             guard let policy else { return }
-            var title = policy.benefit == 0 ? "  신청하기  " : "  월 \(policy.benefit/10000)만원 신청하기  "
+            var title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
             
             if isSelected {
-                self.applyButton.backgroundColor = .fillDisable
+                self.applyButton.configuration?.attributedTitle = .init(
+                    "이미 신청한 정책입니다.",
+                    attributes: .init([.font : UIFont.pretendard(.label4),
+                                       .foregroundColor : UIColor.white])
+                )
             } else {
-                self.applyButton.setTitle(title, for: .normal)
-                self.applyButton.backgroundColor = .primaryAssistive
+                self.applyButton.configuration?.attributedTitle = .init(
+                    title,
+                    attributes: .init([.font : UIFont.pretendard(.label4),
+                                       .foregroundColor : UIColor.primaryNormal])
+                )
             }
+            title = self.isSelected ? "이미 신청한 정책입니다." : title
             
+            self.applyButton.configuration?.attributedTitle = .init(title,
+                                                                    attributes: .init([.font : UIFont.pretendard(.label4)]))
             self.addScheduleButton.isEnabled = !isSelected
             self.applyButton.isEnabled = !isSelected
+            self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
             
             self.policyLabel.textColor = isSelected ? .textDisable : .textNormal
             self.agencyLabel.textColor = isSelected ? .textDisable : .textAlternative
