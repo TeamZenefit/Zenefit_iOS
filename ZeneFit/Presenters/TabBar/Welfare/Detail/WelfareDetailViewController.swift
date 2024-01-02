@@ -51,7 +51,6 @@ final class WelfareDetailViewController: BaseViewController {
         $0.titleLabel?.font = .pretendard(.label3)
         $0.backgroundColor = .primaryNormal
         $0.layer.cornerRadius = 8
-        $0.isHidden = true
     }
     
     private let detailFetchButton = UIButton().then {
@@ -76,7 +75,7 @@ final class WelfareDetailViewController: BaseViewController {
     override func setupBinding() {
         viewModel.detailInfo
             .compactMap { $0 }
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] info in
                 self?.errorView.isHidden = true
                 
@@ -105,7 +104,7 @@ final class WelfareDetailViewController: BaseViewController {
             }.store(in: &cancellable)
         
         interestButton.tapPublisher
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 
                 guard let self,
@@ -125,7 +124,6 @@ final class WelfareDetailViewController: BaseViewController {
                             self.notiAlert("알 수 없는 에러로 실패하였습니다.")
                         }
                     }
-                    
                 }
             }.store(in: &cancellable)
         
@@ -144,7 +142,7 @@ final class WelfareDetailViewController: BaseViewController {
             }.store(in: &cancellable)
         
         viewModel.error
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 if case CommonError.serverError = error {
                     self?.errorView.isHidden = false
@@ -227,7 +225,9 @@ extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WelfareDetailCell.identifier, for: indexPath) as! WelfareDetailCell
-        guard let policyInfo = viewModel.detailInfo.value else { return .init() }
+        guard let policyInfo = viewModel.detailInfo.value else {
+            return cell
+        }
         
         switch indexPath.row {
         case 0:

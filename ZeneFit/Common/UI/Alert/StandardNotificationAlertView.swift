@@ -8,7 +8,6 @@
 import UIKit
 
 final class StandardNotificationAlertView: UIStackView {
-    private var delayedExecutionWorkItem: DispatchWorkItem?
     
     private let contentLabel = UILabel().then {
         $0.font = .pretendard(.label3)
@@ -20,6 +19,7 @@ final class StandardNotificationAlertView: UIStackView {
     init(_ content: String) {
         super.init(frame: .zero)
         self.addSubview(self.contentLabel)
+        self.frame.origin = .init(x: 0, y: UIScreen.main.bounds.height)
         
         self.contentLabel.snp.makeConstraints {
             $0.verticalEdges.equalToSuperview().inset(16)
@@ -30,25 +30,34 @@ final class StandardNotificationAlertView: UIStackView {
         self.backgroundColor = .textNormal.withAlphaComponent(0.7)
         self.layer.cornerRadius = 8
         
-        delayedExecutionWorkItem?.cancel()
-        
-        let workItem = DispatchWorkItem { [weak self] in
-            guard let self else { return }
-            UIView.animate(withDuration: 0.7, animations: {
-                self.frame.origin = .init(x: 16, y: UIScreen.main.bounds.height)
-            }) { _ in
-                self.removeFromSuperview()
-            }
-        }
-        
-        // 0.6초 후에 클로저를 실행
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: workItem)
-        
-        // 현재 작업 항목을 저장 ( 추후 슈퍼뷰 탭 이벤트시 취소 기능 추가 가능성 )
-        self.delayedExecutionWorkItem = workItem
+        show()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func show() {
+        // 화면 아래에서 시작
+        self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+        
+        UIView.animate(withDuration: 0.7,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            // 화면 위로 이동
+            self.transform = CGAffineTransform.identity
+        }) { _ in
+            // 0.7초 후에 사라지기
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                UIView.animate(withDuration: 0.7, animations: {
+                    // 화면 아래로 이동하여 사라지기
+                    self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+                }) { _ in
+                    // 토스트가 사라진 후에는 제거
+                    self.removeFromSuperview()
+                }
+            }
+        }
     }
 }

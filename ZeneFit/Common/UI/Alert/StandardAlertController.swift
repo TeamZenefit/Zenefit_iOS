@@ -17,14 +17,14 @@ final class StandardAlertController: UIViewController{
         $0.layer.cornerRadius = 16
     }
     
-    private let titleLabel = PaddingLabel(padding: .init(top: 0, left: 30, bottom: 0, right: 30)).then {
+    private let titleLabel = UILabel().then {
         $0.textAlignment = .center
         $0.font = .pretendard(.label3)
         $0.numberOfLines = 0
         $0.textColor = .textStrong
     }
     
-    private let messageLabel = PaddingLabel(padding: .init(top: 0, left: 20, bottom: 0, right: 20)).then {
+    private let messageLabel = UILabel().then {
         $0.textAlignment = .center
         $0.font = .pretendard(.label5)
         $0.numberOfLines = 0
@@ -33,7 +33,7 @@ final class StandardAlertController: UIViewController{
     
     private lazy var contentStackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel]).then {
         $0.spacing = 4
-        $0.layoutMargins = .init(top: 0, left: 0, bottom: 0, right: 0)
+        $0.layoutMargins = .init(top: 0, left: 10, bottom: 0, right: 10)
         $0.isLayoutMarginsRelativeArrangement = true
         $0.axis = .vertical
     }

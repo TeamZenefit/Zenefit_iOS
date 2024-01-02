@@ -28,6 +28,7 @@ final class WelfareDetailCell: UITableViewCell {
     
     private let applyTypeStackView = UIStackView().then {
         $0.spacing = 4
+        $0.backgroundColor = .white
         $0.clipsToBounds = false
     }
     
