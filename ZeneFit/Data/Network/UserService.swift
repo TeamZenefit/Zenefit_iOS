@@ -64,4 +64,28 @@ final class UserService {
         .eraseToAnyPublisher()
     }
     
+    func updateFCMToken(fcmToken: String) async throws {
+        let endpoint = Endpoint(method: .PATCH,
+                                paths: "/user/fcm_token",
+                                queries: ["fcmToken" : fcmToken])
+            .setAccessToken()
+        
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<SocialInfoDTO>.self,
+                                         responseHandler: { res in
+            guard (200...299).contains(res.statusCode) else {
+                throw CommonError.serverError
+            }
+        })
+        .tryMap { response in
+            switch response.code {
+            case 200:
+                break
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
+    
+    
 }

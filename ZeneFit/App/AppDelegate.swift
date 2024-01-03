@@ -7,6 +7,8 @@
 
 import UIKit
 import KakaoSDKCommon
+import FirebaseCore
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         guard let appKey = Bundle.main.object(forInfoDictionaryKey: "KAKAO_APP_KEY") as? String else { return true }
         KakaoSDK.initSDK(appKey: appKey)
+        FirebaseApp.configure()
+        
+        self.registerForPushNotifications()
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
         
         return true
     }
@@ -31,5 +38,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    //MARK: - RemotePushNotification
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+                print("Permission granted: \(granted)")
+                self.getNotificationSettings()
+            }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("디바이스 토큰 정상 발급 완료")
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register(deviceToken): \(error)")
+    }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    // 포그라운드에서 받았을 때
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let content = notification.request.content
+
+        print("title: \(content.title)")
+        print("body: \(content.body)")
+        completionHandler([.badge , .banner, .sound])
+    }
+    
+    // 백그라운드에서 받았을 때
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//        let content = response.notification.request.content
+//        let pk = content.userInfo["targetPK"] as? String ?? ""
+//        let target = content.userInfo["targetView"] as? String ?? ""
+//        UserDefaults.standard.setValue(pk, forKey: "targetPK")
+//        UserDefaults.standard.setValue(target, forKey: "targetView")
+//        NotificationCenter.default.post(name: .didRecieveAlert, object: nil)
+//        
+//        print("title: \(content.title)")
+//        print("body: \(content.body)")
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken else { return }
+        print("fcmToken 정상 발급 : \(fcmToken)")
+        UserDefaults.standard.set(fcmToken, forKey: ZFKeyType.fcmToken.rawValue)
+    }
+}

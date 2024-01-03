@@ -23,8 +23,11 @@ final class AgreementViewModel {
     @Published var marketingAgree = false
     
     private let signUpUseCase: SignUpUseCase
+    private let updateFCMTokenUseCase: UpdateFCMTokenUseCase
     
-    init(signUpUseCase: SignUpUseCase = .init()) {
+    init(signUpUseCase: SignUpUseCase = .init(),
+         updateFCMTokenUseCase: UpdateFCMTokenUseCase = .init()) {
+        self.updateFCMTokenUseCase = updateFCMTokenUseCase
         self.signUpUseCase = signUpUseCase
         bind()
     }
@@ -56,9 +59,15 @@ final class AgreementViewModel {
                     self?.error.send(error)
                 }
             } receiveValue: { [weak self] res in
+                guard let self else { return }
                 KeychainManager.create(key: "accessToken", value: res.accessToken)
                 KeychainManager.create(key: "refreshToken", value: res.refreshToken)
-                self?.coordinator?.setAction(.signUpComplete(userName: res.nickname))
+                
+                Task {
+                    try? await self.updateFCMTokenUseCase.execute()
+                }
+                
+                self.coordinator?.setAction(.signUpComplete(userName: res.nickname))
             }.store(in: &cancellable)
 
     }

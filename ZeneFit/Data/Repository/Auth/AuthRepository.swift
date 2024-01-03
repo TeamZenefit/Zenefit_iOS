@@ -10,9 +10,12 @@ import Combine
 
 final class AuthRepository: AuthRepositoryProtocol {
     private let authService: AuthService
+    private let userService: UserService
     
-    init(authService: AuthService = .init()) {
+    init(authService: AuthService = .init(),
+         userService: UserService = .init()) {
         self.authService = authService
+        self.userService = userService
     }
     
     func signIn(oauthType: OAuthType,
@@ -31,5 +34,9 @@ final class AuthRepository: AuthRepositoryProtocol {
     
     func signUp(signUpInfo: SignUpInfo)-> AnyPublisher<SignUpResponse, Error> {
         return authService.signUp(signUpInfo: signUpInfo)
+    }
+    
+    func updateFCMToken(fcmToken: String) async throws {
+        try await userService.updateFCMToken(fcmToken: fcmToken)
     }
 }

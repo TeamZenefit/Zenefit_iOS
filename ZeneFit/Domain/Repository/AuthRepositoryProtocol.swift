@@ -15,4 +15,5 @@ protocol AuthRepositoryProtocol {
                 token: String,
                 nickname: String?) -> AnyPublisher<SignInResponse, Error>
     func signUp(signUpInfo: SignUpInfo)-> AnyPublisher<SignUpResponse, Error>
+    func updateFCMToken(fcmToken: String) async throws
 }

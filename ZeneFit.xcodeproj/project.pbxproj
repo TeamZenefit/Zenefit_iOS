@@ -109,6 +109,9 @@
 		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
 		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
+		B583E8CE2B45A2E900C4A1A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */; };
+		B583E8D02B45A5A700C4A1A7 /* ZFKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */; };
+		B583E8D22B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583E8D12B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift */; };
 		B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */; };
 		B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */; };
 		B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2E2B25E24F00236C2F /* UserService.swift */; };
@@ -320,6 +323,9 @@
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
 		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
 		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
+		B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFKeyType.swift; sourceTree = "<group>"; };
+		B583E8D12B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFCMTokenUseCase.swift; sourceTree = "<group>"; };
 		B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2E2B25E24F00236C2F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -1002,6 +1008,7 @@
 				B5F6246A2AC2F6A1002A1896 /* LaunchScreen.storyboard */,
 				B5F624902AC2F868002A1896 /* Resource */,
 				B5F6246D2AC2F6A1002A1896 /* Info.plist */,
+				B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */,
 				B5F6245F2AC2F6A0002A1896 /* AppDelegate.swift */,
 				B5F624612AC2F6A0002A1896 /* SceneDelegate.swift */,
 				B5F624DE2AC60F99002A1896 /* AppInfo.xcconfig */,
@@ -1130,6 +1137,7 @@
 				B56452532AEEB229000A45FA /* GestureType.swift */,
 				B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */,
 				B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */,
+				B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1245,6 +1253,7 @@
 				B54A678E2ADD8EDB00971467 /* FetchAreaUseCase.swift */,
 				B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */,
 				B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */,
+				B583E8D12B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1399,6 +1408,7 @@
 				B5F624972AC2F896002A1896 /* Pretendard-Bold.otf in Resources */,
 				B5F624692AC2F6A1002A1896 /* Assets.xcassets in Resources */,
 				B5F624942AC2F896002A1896 /* Pretendard-SemiBold.otf in Resources */,
+				B583E8CE2B45A2E900C4A1A7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,6 +1448,7 @@
 				B55827012B1C6EEB00A360E9 /* NotiSettingViewModel.swift in Sources */,
 				B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */,
 				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
+				B583E8D22B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift in Sources */,
 				B56452542AEEB229000A45FA /* GestureType.swift in Sources */,
 				B5F625212ACC5A8C002A1896 /* String+.swift in Sources */,
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
@@ -1563,6 +1574,7 @@
 				B5ED7BA92B00AE6500138FE8 /* HomeService.swift in Sources */,
 				B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */,
 				B54A67512ADC11E900971467 /* AuthRepository.swift in Sources */,
+				B583E8D02B45A5A700C4A1A7 /* ZFKeyType.swift in Sources */,
 				B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */,
 				B552F9EF2AE56E5100AA5F40 /* RecommendWelFareEntity.swift in Sources */,
 				B5F624F42AC88DA9002A1896 /* BottomButton.swift in Sources */,
@@ -1771,7 +1783,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
@@ -1784,7 +1796,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1806,7 +1818,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
@@ -1819,7 +1831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.0;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -10,10 +10,14 @@ import Combine
 
 final class SignInViewModel {
     private var cancellable = Set<AnyCancellable>()
-    private let signInUseCase: SignInUseCase
     
-    init(signInUseCase: SignInUseCase = .init()) {
+    private let signInUseCase: SignInUseCase
+    private let updateFCMTokenUseCase: UpdateFCMTokenUseCase
+    
+    init(signInUseCase: SignInUseCase = .init(),
+         updateFCMTokenUseCase: UpdateFCMTokenUseCase = .init()) {
         self.signInUseCase = signInUseCase
+        self.updateFCMTokenUseCase = updateFCMTokenUseCase
     }
     
     // Output
@@ -29,14 +33,19 @@ final class SignInViewModel {
                     self?.errorPublisher.send(error)
                 }
             }, receiveValue: { [weak self] result in
-                guard let accessToken = result.accessToken,
+                guard let self,
+                      let accessToken = result.accessToken,
                       let refreshToken = result.refreshToken else {
                     self?.loginResult.send(false)
                     return
                 }
                 KeychainManager.create(key: "accessToken", value: accessToken)
                 KeychainManager.create(key: "refreshToken", value: refreshToken)
-                self?.loginResult.send(true)
+                Task {
+                    try? await self.updateFCMTokenUseCase.execute()
+                }
+                
+                self.loginResult.send(true)
             }).store(in: &cancellable)
             
 
