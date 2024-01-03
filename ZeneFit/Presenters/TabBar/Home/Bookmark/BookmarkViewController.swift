@@ -98,6 +98,11 @@ final class BookmarkViewController: BaseViewController {
                 self?.bookmarkCountLabel.text = "\(count)개"
             }.store(in: &cancellable)
         
+        deleteAllButton.tapPublisher
+            .sink { [weak self] in
+                self?.deleteAllNotification()
+            }.store(in: &cancellable)
+        
         viewModel.error
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
@@ -197,6 +202,20 @@ extension BookmarkViewController {
         let cancel = StandardAlertAction(title: "아니오", style: .cancel)
         let delete = StandardAlertAction(title: "삭제하기", style: .basic) { [weak self] _ in
             self?.viewModel.deleteBookmark(policyId: policyId)
+            self?.viewModel.isEditMode.toggle()
+        }
+        
+        alert.addAction(cancel, delete)
+        
+        self.present(alert, animated: false)
+    }
+    
+    private func deleteAllNotification() {
+        let alert = StandardAlertController(title: "모두 삭제할까요?",
+                                            message: nil)
+        let cancel = StandardAlertAction(title: "아니오", style: .cancel)
+        let delete = StandardAlertAction(title: "삭제하기", style: .basic) { [weak self] _ in
+            self?.viewModel.deleteBookmark(policyId: nil)
             self?.viewModel.isEditMode.toggle()
         }
         

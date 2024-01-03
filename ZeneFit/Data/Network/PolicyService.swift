@@ -219,9 +219,15 @@ class PolicyService {
         }.asyncThrows
     }
     
-    func removeInterestPolicy(policyId: Int) async throws -> Bool {
+    func removeInterestPolicy(policyId: Int?) async throws -> Bool {
+        var path: String = "user/policy/"
+        if let policyId {
+            path += "\(policyId)"
+        } else {
+            path += "all"
+        }
         let endpoint = Endpoint(method: .DELETE,
-                                paths: "user/policy/\(policyId)")
+                                paths: path)
             .setAccessToken()
     
             
@@ -264,9 +270,16 @@ class PolicyService {
         }.asyncThrows
     }
     
-    func removeApplyingPolicy(policyId: Int) async throws -> Bool {
+    func removeApplyingPolicy(policyId: Int?) async throws -> Bool {
+        var path: String = "user/policy/apply/"
+        if let policyId {
+            path += "\(policyId)"
+        } else {
+            path += "all"
+        }
+        
         let endpoint = Endpoint(method: .DELETE,
-                                paths: "user/policy/apply/\(policyId)")
+                                paths: path)
             .setAccessToken()
     
             

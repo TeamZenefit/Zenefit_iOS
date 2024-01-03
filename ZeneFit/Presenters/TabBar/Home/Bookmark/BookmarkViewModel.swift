@@ -49,12 +49,16 @@ final class BookmarkViewModel {
             }).store(in: &cancellable)
     }
     
-    func deleteBookmark(policyId: Int) {
+    func deleteBookmark(policyId: Int?) {
         Task {
             do {
                 try await deleteBookmark.execute(policyId: policyId)
                 bookmarkList.value.removeAll(where: { $0.policyID == policyId })
-                totalPolicy -= 1
+                if policyId == nil {
+                    totalPolicy = 0
+                } else {
+                    totalPolicy -= 1
+                }
             } catch {
                 self.error.send(error)
             }

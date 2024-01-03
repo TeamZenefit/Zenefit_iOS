@@ -101,7 +101,7 @@ final class LoginInfoViewController: BaseViewController {
         let alert = StandardAlertController(title: "회원탈퇴가 완료되었습니다.\n감사합니다",
                                             message: nil)
         let ok = StandardAlertAction(title: "확인", style: .gray) { [weak self] _ in
-            self?.viewModel.coordinator?.finish()
+            self?.viewModel.logout()
         }
         alert.addAction(ok)
         present(alert, animated: false)

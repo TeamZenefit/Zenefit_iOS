@@ -21,8 +21,8 @@ protocol PolicyRepositoryProtocol {
     func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error>
     
     func addInterestPolicy(policyId: Int) async throws -> Bool
-    func removeInterestPolicy(policyId: Int) async throws -> Bool
+    func removeInterestPolicy(policyId: Int?) async throws -> Bool
     
     func addApplyingPolicy(policyId: Int) async throws -> Bool
-    func removeApplyingPolicy(policyId: Int) async throws -> Bool
+    func removeApplyingPolicy(policyId: Int?) async throws -> Bool
 }

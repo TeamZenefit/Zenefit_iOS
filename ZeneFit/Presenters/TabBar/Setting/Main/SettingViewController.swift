@@ -81,8 +81,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         switch indexPath {
         case .init(row: 0, section: 0):
             viewModel.coordinator?.setAction(.notiList)
