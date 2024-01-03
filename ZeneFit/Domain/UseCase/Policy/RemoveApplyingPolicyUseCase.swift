@@ -14,6 +14,7 @@ struct RemoveApplyingPolicyUseCase {
         self.policyRepo = policyRepo
     }
     
+    @discardableResult
     func execute(policyId: Int) async throws -> Bool {
         try await policyRepo.removeApplyingPolicy(policyId: policyId)
     }

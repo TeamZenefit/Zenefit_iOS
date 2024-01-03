@@ -19,14 +19,17 @@ final class BenefitViewModel {
     var policyList = CurrentValueSubject<[BenefitPolicy], Never>([])
     
     private let benefitPolicyUseCase: BenefitPolicyUseCase
+    private let deleteApplyUseCase: RemoveApplyingPolicyUseCase
     
     private var currentPage = 0
     private var isPaging: Bool = false
     private var isLastPage: Bool = false
     
     init(coordinator: HomeCoordinator? = nil,
-         benefitPolicyUseCase: BenefitPolicyUseCase = .init()) {
+         benefitPolicyUseCase: BenefitPolicyUseCase = .init(),
+         deleteApplyUseCase: RemoveApplyingPolicyUseCase = .init()) {
         self.coordinator = coordinator
+        self.deleteApplyUseCase = deleteApplyUseCase
         self.benefitPolicyUseCase = benefitPolicyUseCase
     }
     
@@ -46,6 +49,19 @@ final class BenefitViewModel {
                 self?.isPaging = false
             }).store(in: &cancellable)
     }
+    
+    func deleteApplying(policyId: Int) {
+        Task {
+            do {
+                try await deleteApplyUseCase.execute(policyId: policyId)
+                policyList.value.removeAll(where: { $0.policyID == policyId })
+                totalPolicy -= 1
+            } catch {
+                self.error.send(error)
+            }
+        }
+    }
+    
     
     func didScroll(offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) {
         if offsetY > (contentHeight - frameHeight) {

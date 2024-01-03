@@ -8,6 +8,7 @@
 import UIKit
 
 final class BookmarkCell: UITableViewCell {	
+    var deleteButtonTapped: ((Int)->Void)?
     
     private let frameView = UIView().then {
         $0.backgroundColor = .white
@@ -70,6 +71,11 @@ final class BookmarkCell: UITableViewCell {
         titleLabel.text = policyItem.policyName
         contentLabel.text = policyItem.policyIntroduction
         dateLabel.text = policyItem.applyEndDate
+        
+        deleteButton.addAction(
+            .init(handler: { [weak self] _ in
+            self?.deleteButtonTapped?(policyItem.policyID)
+        }), for: .touchUpInside)
     }
     
     private func setLayout() {

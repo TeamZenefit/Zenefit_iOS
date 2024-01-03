@@ -19,15 +19,18 @@ final class BookmarkViewModel {
     var bookmarkList = CurrentValueSubject<[BookmarkPolicy], Never>([])
     
     private let bookmarkPolicyUseCase: BookmarkPolicyUseCase
+    private let deleteBookmark: RemoveInterestPolicyUseCase
     
     private var currentPage = 0
     private var isPaging: Bool = false
     private var isLastPage: Bool = false
     
     init(coordinator: HomeCoordinator? = nil,
-         bookmarkPolicyUseCase: BookmarkPolicyUseCase = .init()) {
+         bookmarkPolicyUseCase: BookmarkPolicyUseCase = .init(),
+         deleteBookmark: RemoveInterestPolicyUseCase = .init()) {
         self.coordinator = coordinator
         self.bookmarkPolicyUseCase = bookmarkPolicyUseCase
+        self.deleteBookmark = deleteBookmark
     }
     
     func getBookmarkList() {
@@ -38,13 +41,24 @@ final class BookmarkViewModel {
                     self?.error.send(error)
                 case .finished: break
                 }
-            },
-                  receiveValue: { [weak self] res in
+            }, receiveValue: { [weak self] res in
                 self?.bookmarkList.send(res.content)
                 self?.totalPolicy = res.totalElements
                 self?.isLastPage = res.last
                 self?.isPaging = false
             }).store(in: &cancellable)
+    }
+    
+    func deleteBookmark(policyId: Int) {
+        Task {
+            do {
+                try await deleteBookmark.execute(policyId: policyId)
+                bookmarkList.value.removeAll(where: { $0.policyID == policyId })
+                totalPolicy -= 1
+            } catch {
+                self.error.send(error)
+            }
+        }
     }
     
     func didScroll(offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) {

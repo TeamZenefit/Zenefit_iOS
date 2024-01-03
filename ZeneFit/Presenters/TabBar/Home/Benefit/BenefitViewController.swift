@@ -79,6 +79,12 @@ final class BenefitViewController: BaseViewController {
             .sink { [weak self] count in
                 self?.benefitCountLabel.text = "\(count)개"
             }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                self?.notiAlert("알 수 없는 에러가 발생했습니다.")
+            }.store(in: &cancellable)
     }
     
     private func changeEditMode(isEditMode: Bool) {
@@ -177,3 +183,19 @@ extension BenefitViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+extension BenefitViewController {
+    private func deleteNotification(policyId: Int) {
+        let alert = StandardAlertController(title: "수혜 정책을 삭제할까요?",
+                                            message: "삭제하면 정책이 다시 추천될 수도 있어요")
+        let cancel = StandardAlertAction(title: "아니오", style: .cancel)
+        let delete = StandardAlertAction(title: "삭제하기", style: .basic) { [weak self] _ in
+            self?.viewModel.deleteApplying(policyId: policyId)
+            self?.viewModel.isEditMode.toggle()
+        }
+        
+        alert.addAction(cancel, delete)
+        
+        self.present(alert, animated: false)
+    }
+}

@@ -97,6 +97,12 @@ final class BookmarkViewController: BaseViewController {
             .sink { [weak self] count in
                 self?.bookmarkCountLabel.text = "\(count)개"
             }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                self?.notiAlert("알 수 없는 에러가 발생했습니다.")
+            }.store(in: &cancellable)
     }
     
     private func changeEditMode(isEditMode: Bool) {
@@ -161,6 +167,9 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkCell.identifier, for: indexPath) as! BookmarkCell
         cell.configureCell(policyItem: viewModel.bookmarkList.value[indexPath.row],
                            isEditMode: viewModel.isEditMode)
+        cell.deleteButtonTapped = { [weak self] policyId in
+            self?.deleteNotification(policyId: policyId)
+        }
         
         return cell
     }
@@ -178,5 +187,21 @@ extension BookmarkViewController: UITableViewDelegate, UITableViewDataSource {
         viewModel.didScroll(offsetY: offsetY,
                             contentHeight: contentHeight,
                             frameHeight: frameHeight)
+    }
+}
+
+extension BookmarkViewController {
+    private func deleteNotification(policyId: Int) {
+        let alert = StandardAlertController(title: "관심 정책을 삭제할까요?",
+                                            message: "스크랩한 정책이 달력에서도 제거돼요!")
+        let cancel = StandardAlertAction(title: "아니오", style: .cancel)
+        let delete = StandardAlertAction(title: "삭제하기", style: .basic) { [weak self] _ in
+            self?.viewModel.deleteBookmark(policyId: policyId)
+            self?.viewModel.isEditMode.toggle()
+        }
+        
+        alert.addAction(cancel, delete)
+        
+        self.present(alert, animated: false)
     }
 }

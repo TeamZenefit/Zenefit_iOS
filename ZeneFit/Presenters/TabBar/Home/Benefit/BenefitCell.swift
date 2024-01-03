@@ -8,6 +8,9 @@
 import UIKit
 
 final class BenefitCell: UITableViewCell {
+    private var policy: BenefitPolicy?
+    
+    var deleteButtonTapped: ((Int)->Void)?
     
     private let frameView = UIView().then {
         $0.backgroundColor = .white
@@ -70,6 +73,11 @@ final class BenefitCell: UITableViewCell {
         titleLabel.text = policyItem.policyName
         contentLabel.text = policyItem.policyIntroduction
         infoLabel.text = "\(policyItem.benefit/10000)만원"
+        
+        deleteButton.addAction(
+            .init(handler: { [weak self] _ in
+                self?.deleteButtonTapped?(policyItem.policyID)
+            }), for: .touchUpInside)
     }
     
     private func setLayout() {

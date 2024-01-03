@@ -79,8 +79,8 @@ final class HomeViewController: BaseViewController {
                 self?.nameLabel.setPointTextAttribute(info.characterNickname, color: .primaryNormal)
                 self?.progressView.configureView(content: info.description,
                                                  value: CGFloat(info.characterPercent)/100.0)
-                self?.bookmarkInfoView.configureInfo(count: info.applyPolicyCnt)
-                self?.benefitInfoView.configureInfo(count: info.interestPolicyCnt)
+                self?.bookmarkInfoView.configureInfo(count: info.interestPolicyCnt)
+                self?.benefitInfoView.configureInfo(count: info.applyPolicyCnt)
                 self?.imageView.kf.setImage(with: URL(string: info.characterImage))
                 
                 self?.policyInfoView.setItems(items: info.recommendPolicy)
