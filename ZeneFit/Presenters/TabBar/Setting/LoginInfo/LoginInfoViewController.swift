@@ -59,13 +59,24 @@ final class LoginInfoViewController: BaseViewController {
             .sink { [weak self] info in
                 self?.loginInfoItemView.setContent(content: info.email)
             }.store(in: &cancellable)
+        
+        viewModel.errorPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                self?.notiAlert("알 수 없는 에러가 발생했습니다.")
+            }.store(in: &cancellable)
     }
     
     private func showWithdrawalNotification() {
         let alert = StandardAlertController(title: "정말로 탈퇴히시겠습니까?",
                                             message: "탈퇴하시게 되면 취소할 수 없습니다.")
         let withdrawal = StandardAlertAction(title: "탈퇴하기", style: .basic) { [weak self] _ in
-            self?.showWithdrawalCompletionNotification()
+            guard let self else { return }
+            Task {
+                if await self.viewModel.unregistUser() {
+                    self.showWithdrawalCompletionNotification()
+                }
+            }
         }
         let no = StandardAlertAction(title: "아니오", style: .cancel)
         alert.addAction(no, withdrawal)
@@ -85,6 +96,7 @@ final class LoginInfoViewController: BaseViewController {
         present(alert, animated: false)
     }
     
+    @MainActor
     private func showWithdrawalCompletionNotification() {
         let alert = StandardAlertController(title: "회원탈퇴가 완료되었습니다.\n감사합니다",
                                             message: nil)

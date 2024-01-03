@@ -11,4 +11,5 @@ import Combine
 protocol SettingRepositoryProtocol {
     func getSocialInfo() -> AnyPublisher<SocialInfoDTO, Error>
     func getUserInfo() -> AnyPublisher<UserInfoDTO, Error>
+    func unregistUser() async throws
 }

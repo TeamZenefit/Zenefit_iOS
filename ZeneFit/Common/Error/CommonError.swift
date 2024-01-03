@@ -15,4 +15,7 @@ enum CommonError: Error {
     
     // policy
     case alreadyInterestingPolicy
+    
+    // user
+    case unregist
 }

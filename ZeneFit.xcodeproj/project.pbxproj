@@ -131,6 +131,7 @@
 		B5A8709A2B0B9BD40052D5A1 /* PolicyListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */; };
 		B5A8709C2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */; };
 		B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */; };
+		B5E4B5AF2B45B19A00F63486 /* UnregistUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
 		B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */; };
@@ -345,6 +346,7 @@
 		B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyListUseCase.swift; sourceTree = "<group>"; };
 		B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailDTO.swift; sourceTree = "<group>"; };
 		B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailUseCase.swift; sourceTree = "<group>"; };
+		B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregistUserUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
 		B5ED7BA42B00AD3600138FE8 /* PolicyRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -903,6 +905,7 @@
 			children = (
 				B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */,
 				B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */,
+				B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1569,6 +1572,7 @@
 				B531CC302B4295DE00EF5095 /* PolicyMethodType.swift in Sources */,
 				B5F625052AC954A1002A1896 /* SignUpInfo.swift in Sources */,
 				B55E42532B41605100E4B893 /* DefaultErrorView.swift in Sources */,
+				B5E4B5AF2B45B19A00F63486 /* UnregistUserUseCase.swift in Sources */,
 				B5ED7BAC2B00AF8400138FE8 /* HomeInfoDTO.swift in Sources */,
 				B552F9DC2AE5588E00AA5F40 /* PolicyService.swift in Sources */,
 				B5ED7BA92B00AE6500138FE8 /* HomeService.swift in Sources */,

@@ -22,4 +22,8 @@ final class SettingRepository: SettingRepositoryProtocol {
     func getUserInfo() -> AnyPublisher<UserInfoDTO, Error> {
         service.getUserInfo()
     }
+    
+    func unregistUser() async throws {
+        try await service.unregistUser()
+    }
 }

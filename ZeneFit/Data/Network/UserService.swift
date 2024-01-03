@@ -71,7 +71,7 @@ final class UserService {
             .setAccessToken()
         
         return try await session.dataTaskPublisher(urlRequest: endpoint.request,
-                                         expect: BaseResponse<SocialInfoDTO>.self,
+                                         expect: BaseResponse<Bool?>.self,
                                          responseHandler: { res in
             guard (200...299).contains(res.statusCode) else {
                 throw CommonError.serverError
@@ -87,5 +87,25 @@ final class UserService {
         }.asyncThrows
     }
     
-    
+    func unregistUser() async throws {
+        let endpoint = Endpoint(method: .DELETE,
+                                paths: "/user")
+            .setAccessToken()
+        
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<Bool?>.self,
+                                         responseHandler: { res in
+            guard (200...299).contains(res.statusCode) else {
+                throw CommonError.serverError
+            }
+        })
+        .tryMap { response in
+            switch response.code {
+            case 200:
+                break
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
 }

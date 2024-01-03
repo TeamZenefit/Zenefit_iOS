@@ -19,11 +19,14 @@ final class LoginInfoViewModel {
     
     // usecase
     private let getSocialInfoUseCase: GetSocialInfoUseCase
+    private let unregistUserUseCase: UnregistUserUseCase
     
     init(coordinator: SettingCoordinator?,
-         getSocialInfoUseCase: GetSocialInfoUseCase = .init()) {
+         getSocialInfoUseCase: GetSocialInfoUseCase = .init(),
+         unregistUserUseCase: UnregistUserUseCase = .init()) {
         self.coordinator = coordinator
         self.getSocialInfoUseCase = getSocialInfoUseCase
+        self.unregistUserUseCase = unregistUserUseCase
         
         bind()
     }
@@ -37,6 +40,16 @@ final class LoginInfoViewModel {
             }, receiveValue: { [weak self] socialInfo in
                 self?.socialInfo = socialInfo
             }).store(in: &cancellable)
+    }
+    
+    func unregistUser() async -> Bool {
+        do {
+            try await unregistUserUseCase.execute()
+            return true
+        } catch {
+            self.errorPublisher.send(error)
+            return false
+        }
     }
     
     func logout() {
