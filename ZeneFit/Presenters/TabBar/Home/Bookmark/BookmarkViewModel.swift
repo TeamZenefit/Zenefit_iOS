@@ -34,6 +34,7 @@ final class BookmarkViewModel {
     }
     
     func getBookmarkList() {
+        currentPage = 0
         bookmarkPolicyUseCase.getBookmarkPolicyList(page: currentPage)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
@@ -53,11 +54,13 @@ final class BookmarkViewModel {
         Task {
             do {
                 try await deleteBookmark.execute(policyId: policyId)
-                bookmarkList.value.removeAll(where: { $0.policyID == policyId })
+                
                 if policyId == nil {
                     totalPolicy = 0
+                    bookmarkList.send([])
                 } else {
-                    totalPolicy -= 1
+                    bookmarkList.value.removeAll(where: { $0.policyID == policyId })
+                    totalPolicy = bookmarkList.value.count
                 }
             } catch {
                 self.error.send(error)
@@ -85,10 +88,13 @@ private extension BookmarkViewModel {
                 case .finished: break
                 }
             }, receiveValue: { [weak self] res in
-                self?.bookmarkList.value.append(contentsOf: res.content)
-                self?.totalPolicy = res.totalElements
-                self?.isLastPage = res.last
-                self?.isPaging = false
+                guard let self else { return }
+                
+                let newBookmakrList = bookmarkList.value + res.content
+                bookmarkList.send(newBookmakrList)
+                totalPolicy = res.totalElements
+                isLastPage = res.last
+                isPaging = false
             }).store(in: &cancellable)
     }
 }

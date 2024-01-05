@@ -10,6 +10,8 @@ import UIKit
 final class BenefitViewController: BaseViewController {
     private let viewModel: BenefitViewModel
     
+    private let refreshControl = UIRefreshControl()
+    
     private let editButton = UIButton().then {
         $0.setImage(.init(named: "i-wr-28")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.setImage(.init(named: "i-wr-28-del")?.withRenderingMode(.alwaysOriginal), for: .selected)
@@ -37,10 +39,11 @@ final class BenefitViewController: BaseViewController {
         $0.titleLabel?.font = .pretendard(.label4)
     }
     
-    private let tableView = UITableView().then {
+    private lazy var tableView = UITableView().then {
         $0.separatorStyle = .none
         $0.register(BenefitCell.self, forCellReuseIdentifier: BenefitCell.identifier)
         $0.backgroundColor = .backgroundPrimary
+        $0.refreshControl = refreshControl
     }
     
     init(viewModel: BenefitViewModel) {
@@ -52,8 +55,8 @@ final class BenefitViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         viewModel.getbenefitList()
     }
     
@@ -71,6 +74,7 @@ final class BenefitViewController: BaseViewController {
         viewModel.policyList
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
+                self?.refreshControl.endRefreshing()
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
@@ -88,7 +92,13 @@ final class BenefitViewController: BaseViewController {
         viewModel.error
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
+                self?.refreshControl.endRefreshing()
                 self?.notiAlert("알 수 없는 에러가 발생했습니다.")
+            }.store(in: &cancellable)
+        
+        refreshControl.controlPublisher(for: .valueChanged)
+            .sink { [weak self] _ in
+                self?.viewModel.getbenefitList()
             }.store(in: &cancellable)
     }
     
@@ -173,6 +183,9 @@ extension BenefitViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: BenefitCell.identifier, for: indexPath) as! BenefitCell
         cell.configureCell(policyItem: viewModel.policyList.value[indexPath.row],
                            isEditMode: viewModel.isEditMode)
+        cell.deleteButtonTapped = { [weak self] policyId in
+            self?.deleteNotification(policyId: policyId)
+        }
         
         return cell
     }

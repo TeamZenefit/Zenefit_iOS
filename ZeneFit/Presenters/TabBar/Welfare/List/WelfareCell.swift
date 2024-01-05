@@ -159,7 +159,7 @@ final class WelfareCell: UITableViewCell {
             self.addScheduleButton.isEnabled = !isSelected
             self.applyButton.isEnabled = !isSelected
             self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
-            
+            self.selectButton.isSelected = isSelected
             self.policyLabel.textColor = isSelected ? .textDisable : .textNormal
             self.agencyLabel.textColor = isSelected ? .textDisable : .textAlternative
             self.contentLabel.textColor = isSelected ? .textDisable : .textNormal
@@ -191,8 +191,7 @@ final class WelfareCell: UITableViewCell {
         self.policy = item
         self.policyImageView.kf.setImage(with: URL(string: item.policyLogo),
                                          placeholder: UIImage(named: "DefaultPolicy"))
-        
-        self.selectButton.isSelected = item.applyFlag
+    
         self.isSelected = item.applyFlag
         
         self.configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
@@ -318,7 +317,6 @@ final class WelfareCell: UITableViewCell {
                 
                 self.delegate?.tapApplyWelfareFlag(policy: policy) {
                     self.isSelected.toggle()
-                    self.selectButton.isSelected.toggle()
                 }
             }.store(in: &cancellable)
     }

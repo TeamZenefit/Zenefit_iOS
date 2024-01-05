@@ -11,6 +11,8 @@ import Combine
 final class BookmarkViewController: BaseViewController {
     private let viewModel: BookmarkViewModel
     
+    private let refreshControl = UIRefreshControl()
+    
     private let editButton = UIButton().then {
         $0.setImage(.init(named: "i-wr-28")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.setImage(.init(named: "i-wr-28-del")?.withRenderingMode(.alwaysOriginal), for: .selected)
@@ -38,10 +40,11 @@ final class BookmarkViewController: BaseViewController {
         $0.titleLabel?.font = .pretendard(.label4)
     }
     
-    private let tableView = UITableView(frame: .zero, style: .grouped).then {
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.separatorStyle = .none
         $0.register(BookmarkCell.self, forCellReuseIdentifier: BookmarkCell.identifier)
         $0.backgroundColor = .backgroundPrimary
+        $0.refreshControl = refreshControl
     }
     
     init(viewModel: BookmarkViewModel) {
@@ -53,8 +56,8 @@ final class BookmarkViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         viewModel.getBookmarkList()
     }
     
@@ -89,6 +92,7 @@ final class BookmarkViewController: BaseViewController {
         viewModel.bookmarkList
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
+                self?.refreshControl.endRefreshing()
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
@@ -103,9 +107,15 @@ final class BookmarkViewController: BaseViewController {
                 self?.deleteAllNotification()
             }.store(in: &cancellable)
         
+        refreshControl.controlPublisher(for: .valueChanged)
+            .sink { [weak self] _ in
+                self?.viewModel.getBookmarkList()
+            }.store(in: &cancellable)
+        
         viewModel.error
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
+                self?.refreshControl.endRefreshing()
                 self?.notiAlert("알 수 없는 에러가 발생했습니다.")
             }.store(in: &cancellable)
     }

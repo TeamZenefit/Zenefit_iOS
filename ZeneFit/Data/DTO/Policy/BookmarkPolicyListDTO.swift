@@ -24,7 +24,7 @@ struct BookmarkPolicy: Codable {
     let policyID: Int
     let policyName, policyIntroduction: String
     let policyLogo: String
-    let applyEndDate: String
+    let applyEndDate: String?
 
     enum CodingKeys: String, CodingKey {
         case policyID = "policyId"
@@ -41,4 +41,3 @@ struct Pageable: Codable {
 struct Sort: Codable {
     let empty, sorted, unsorted: Bool
 }
-

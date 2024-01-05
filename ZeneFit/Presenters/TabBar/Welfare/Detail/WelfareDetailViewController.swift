@@ -17,6 +17,9 @@ final class WelfareDetailViewController: BaseViewController {
         }
         $0.isHidden = true
     }
+    private let titleView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     private let titleLabel = UILabel().then {
         $0.text = "정책 이름을 신청하면\n월 n만원 정도를 받을 수 있어요"
@@ -34,7 +37,7 @@ final class WelfareDetailViewController: BaseViewController {
     private let tableView = UITableView().then {
         $0.backgroundColor = .white
         $0.separatorStyle = .none
-        $0.isScrollEnabled = false
+        $0.bounces = false
         $0.register(WelfareDetailCell.self, forCellReuseIdentifier: WelfareDetailCell.identifier)
     }
     
@@ -157,25 +160,31 @@ final class WelfareDetailViewController: BaseViewController {
     }
     
     override func addSubView() {
-        [titleLabel, subTitleLabel, tableView, applyButton, detailFetchButton, interestButton, errorView].forEach {
+        [tableView, applyButton, detailFetchButton, interestButton, errorView].forEach {
             view.addSubview($0)
+        }
+        
+        [titleLabel, subTitleLabel].forEach {
+            titleView.addSubview($0)
         }
     }
     
     override func layout() {
         titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            $0.top.equalToSuperview().offset(8)
         }
         
         subTitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().offset(-26)
         }
         
         tableView.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalToSuperview()
-            $0.top.equalTo(subTitleLabel.snp.bottom).offset(56)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-100)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
         }
         
         applyButton.snp.makeConstraints {
@@ -201,6 +210,8 @@ final class WelfareDetailViewController: BaseViewController {
         errorView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        
     }
     
     override func setDelegate() {
@@ -246,5 +257,9 @@ extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSourc
             
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return titleView
     }
 }

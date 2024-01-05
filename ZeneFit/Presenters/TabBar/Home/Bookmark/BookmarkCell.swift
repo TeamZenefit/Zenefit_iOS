@@ -63,8 +63,8 @@ final class BookmarkCell: UITableViewCell {
     }
     
     func configureCell(policyItem: BookmarkPolicy, isEditMode: Bool) {
-        dateLabel.isHidden = isEditMode
         deleteButton.isHidden = !isEditMode
+        dateLabel.isHidden = policyItem.applyEndDate == nil || isEditMode
         
         thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo),
                                        placeholder: UIImage(named: "DefaultPolicy"))

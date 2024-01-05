@@ -34,6 +34,7 @@ final class BenefitViewModel {
     }
     
     func getbenefitList() {
+        currentPage = 0
         benefitPolicyUseCase.getBenefitPolicyList(page: currentPage)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
@@ -55,10 +56,13 @@ final class BenefitViewModel {
             do {
                 try await deleteApplyUseCase.execute(policyId: policyId)
                 policyList.value.removeAll(where: { $0.policyID == policyId })
+                
                 if policyId == nil {
+                    policyList.send([])
                     totalPolicy = 0
                 } else {
-                    totalPolicy -= 1
+                    policyList.value.removeAll(where: { $0.policyID == policyId })
+                    totalPolicy = policyList.value.count
                 }
             } catch {
                 self.error.send(error)
@@ -85,12 +89,13 @@ private extension BenefitViewModel {
                     self?.error.send(error)
                 case .finished: break
                 }
-            },
-                  receiveValue: { [weak self] res in
-                self?.policyList.value.append(contentsOf: res.content)
-                self?.totalPolicy = res.totalElements
-                self?.isLastPage = res.last
-                self?.isPaging = false
+            }, receiveValue: { [weak self] res in
+                guard let self else { return }
+                let newPolicyList = policyList.value + res.content
+                policyList.send(newPolicyList)
+                totalPolicy = res.totalElements
+                isLastPage = res.last
+                isPaging = false
             }).store(in: &cancellable)
     }
 }
