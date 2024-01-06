@@ -34,6 +34,7 @@ final class BookmarkViewModel {
     }
     
     func getBookmarkList() {
+        isLastPage = false
         currentPage = 0
         bookmarkPolicyUseCase.getBookmarkPolicyList(page: currentPage)
             .sink(receiveCompletion: { [weak self] completion in

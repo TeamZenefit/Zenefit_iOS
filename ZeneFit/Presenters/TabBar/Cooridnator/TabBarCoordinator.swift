@@ -70,6 +70,7 @@ private extension TabBarCoordinator {
             let scheduleCoordinator = ScheduleCoordinator(navigationController: nc)
             scheduleCoordinator.delegate = self
             scheduleCoordinator.start()
+            childCoordinators.append(scheduleCoordinator)
         case .welfare:
             let welfareCoordinator = WelfareCoordinator(navigationController: nc)
             welfareCoordinator.delegate = self

@@ -29,12 +29,19 @@ final class SplashViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         if let _ = KeychainManager.read("accessToken") {
             // TODO: 일단 이걸로 체크..
             coordinator?.setAction(.tabBar)
         } else {
             coordinator?.setAction(.auth)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }
 

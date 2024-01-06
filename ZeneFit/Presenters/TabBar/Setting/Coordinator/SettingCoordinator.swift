@@ -55,13 +55,23 @@ final class SettingCoordinator: Coordinator {
             let personalInfoVC = PersonalInfoViewController(viewModel: personalInfoVM)
             navigationController.pushViewController(personalInfoVC, animated: true)
         case .notiSetting:
-            let notiSettingVM = NotiSettingViewModel(coordinator: self)
-            let notiSettingVC = NotiSettingViewController(viewModel: notiSettingVM)
-            navigationController.pushViewController(notiSettingVC, animated: true)
+            let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            notiCoordinator.delegate = self
+            notiCoordinator.setAction(.notiSetting)
         case .notiList:
-            let notiListVM = NotiViewModel(coordinator: self)
-            let notiListVC = NotiViewController(viewModel: notiListVM)
-            navigationController.pushViewController(notiListVC, animated: true)
+            let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            notiCoordinator.delegate = self
+            notiCoordinator.setAction(.notiList)
+        }
+    }
+}
+extension SettingCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: any Coordinator) {
+        if childCoordinator is NotificationCoordinator {
+            let newVC = navigationController.viewControllers.filter {
+                !($0 is NotiViewController || $0 is NotiSettingViewController)
+            }
+            navigationController.setViewControllers(newVC, animated: true)
         }
     }
 }

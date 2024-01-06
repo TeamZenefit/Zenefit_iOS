@@ -18,7 +18,7 @@ final class NotiSettingItemView: BaseView {
         $0.textColor = .textAlternative
     }
     
-    private let notiSwitch = UISwitch().then {
+    let notiSwitch = UISwitch().then {
         $0.onTintColor = .primaryNormal
     }
     

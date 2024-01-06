@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Result
 struct NotificationDTO: Codable {
-    let content: [Content]
+    let content: [NotificationInfo]
     let pageable: Pageable
     let totalPages, totalElements: Int
     let last: Bool
@@ -21,7 +21,7 @@ struct NotificationDTO: Codable {
 }
 
 // MARK: - Content
-struct Content: Codable {
+struct NotificationInfo: Codable {
     let notificationID: Int
     let title, content: String
     let logo: String

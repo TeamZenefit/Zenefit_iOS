@@ -34,10 +34,10 @@ final class NotificationCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(item: NotificationItem) {
+    func configureCell(item: NotificationInfo) {
         titleLabel.text = item.title
         contentLabel.text = item.content
-        iconImageView.image = .init(resource: .bell)
+        iconImageView.kf.setImage(with: URL(string: item.logo))
     }
     
     private func setLayout() {

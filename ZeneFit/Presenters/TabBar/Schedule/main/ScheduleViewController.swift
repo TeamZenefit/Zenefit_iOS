@@ -17,6 +17,7 @@ final class ScheduleViewController: BaseViewController {
     
     private let tableViewSectionHeaderView = CalendarSectionHedaer().then {
         $0.month = "6"
+        $0.count = "4"
     }
     
     private let calendarFrameView = UIView().then {
@@ -61,6 +62,7 @@ final class ScheduleViewController: BaseViewController {
         $0.layer.cornerRadius = 8
         $0.showsVerticalScrollIndicator = false
         $0.register(CalendarPolicyCell.self, forCellReuseIdentifier: CalendarPolicyCell.identifier)
+        $0.estimatedSectionHeaderHeight = 81
     }
     
     
@@ -93,11 +95,15 @@ final class ScheduleViewController: BaseViewController {
             $0.textColor = .textStrong
             $0.font = .pretendard(.label1)
         }
-        
+
         navigationItem.standardAppearance?.backgroundColor = .backgroundPrimary
         navigationItem.scrollEdgeAppearance?.backgroundColor = .backgroundPrimary
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         navigationItem.rightBarButtonItem = .init(customView: notiButton)
+        
+        notiButton.addAction(.init(handler: { [weak self] _ in
+            self?.viewModel.coordinator?.setAction(.notiList)
+        }), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -159,7 +165,6 @@ final class ScheduleViewController: BaseViewController {
     }
     
     override func setupBinding() {
-        
     }
 }
 

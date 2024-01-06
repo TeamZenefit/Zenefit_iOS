@@ -39,4 +39,8 @@ final class AuthRepository: AuthRepositoryProtocol {
     func updateFCMToken(fcmToken: String) async throws {
         try await userService.updateFCMToken(fcmToken: fcmToken)
     }
+    
+    func getNotification(page: Int) -> AnyPublisher<NotificationDTO, Error> {
+        userService.getNotification(page: page)
+    }
 }

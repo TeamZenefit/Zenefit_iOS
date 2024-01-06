@@ -13,6 +13,11 @@
 		B50F35A42B49436A0047CEC3 /* CalendarPolicyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35A32B49436A0047CEC3 /* CalendarPolicyDTO.swift */; };
 		B50F35A62B4945CB0047CEC3 /* CalendarPolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35A52B4945CB0047CEC3 /* CalendarPolicyCell.swift */; };
 		B50F35A82B49544E0047CEC3 /* CalendarSectionHedaer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35A72B49544E0047CEC3 /* CalendarSectionHedaer.swift */; };
+		B50F35AA2B4994860047CEC3 /* GetNotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35A92B4994860047CEC3 /* GetNotificationUseCase.swift */; };
+		B50F35AC2B499F610047CEC3 /* NotificationStatusDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35AB2B499F610047CEC3 /* NotificationStatusDTO.swift */; };
+		B50F35AE2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */; };
+		B50F35B02B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */; };
+		B50F35B22B49B0D20047CEC3 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35B12B49B0D20047CEC3 /* NotificationCoordinator.swift */; };
 		B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */; };
 		B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */; };
 		B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B82AFBE406006DF4D2 /* WelfareCell.swift */; };
@@ -239,6 +244,11 @@
 		B50F35A32B49436A0047CEC3 /* CalendarPolicyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPolicyDTO.swift; sourceTree = "<group>"; };
 		B50F35A52B4945CB0047CEC3 /* CalendarPolicyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPolicyCell.swift; sourceTree = "<group>"; };
 		B50F35A72B49544E0047CEC3 /* CalendarSectionHedaer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSectionHedaer.swift; sourceTree = "<group>"; };
+		B50F35A92B4994860047CEC3 /* GetNotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotificationUseCase.swift; sourceTree = "<group>"; };
+		B50F35AB2B499F610047CEC3 /* NotificationStatusDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatusDTO.swift; sourceTree = "<group>"; };
+		B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotificationStateUseCase.swift; sourceTree = "<group>"; };
+		B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationStateUseCase.swift; sourceTree = "<group>"; };
+		B50F35B12B49B0D20047CEC3 /* NotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
 		B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDateType.swift; sourceTree = "<group>"; };
 		B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B52437B82AFBE406006DF4D2 /* WelfareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCell.swift; sourceTree = "<group>"; };
@@ -784,6 +794,7 @@
 				B55827092B1C967E00A360E9 /* NotiViewController.swift */,
 				B558270B2B1C98AE00A360E9 /* NotificationCategoryCell.swift */,
 				B558270F2B1C9FB500A360E9 /* NotificationCell.swift */,
+				B50F35B12B49B0D20047CEC3 /* NotificationCoordinator.swift */,
 			);
 			path = Notifiaction;
 			sourceTree = "<group>";
@@ -922,6 +933,7 @@
 			children = (
 				B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */,
 				B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */,
+				B50F35AB2B499F610047CEC3 /* NotificationStatusDTO.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -940,6 +952,8 @@
 				B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */,
 				B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */,
 				B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */,
+				B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */,
+				B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1291,6 +1305,7 @@
 				B54A67902ADD8F4000971467 /* FetchCityUseCase.swift */,
 				B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */,
 				B583E8D12B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift */,
+				B50F35A92B4994860047CEC3 /* GetNotificationUseCase.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1490,6 +1505,7 @@
 				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
 				B583E8D22B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift in Sources */,
 				B56452542AEEB229000A45FA /* GestureType.swift in Sources */,
+				B50F35B02B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift in Sources */,
 				B5F625212ACC5A8C002A1896 /* String+.swift in Sources */,
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
 				B54C706D2B47C7440041C99D /* ScheduleCoordinator.swift in Sources */,
@@ -1501,6 +1517,7 @@
 				B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */,
 				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
+				B50F35AC2B499F610047CEC3 /* NotificationStatusDTO.swift in Sources */,
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
 				B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */,
@@ -1565,6 +1582,7 @@
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
 				B5A8706E2B0A636A0052D5A1 /* WelfareMainInfoDTO.swift in Sources */,
 				B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */,
+				B50F35AA2B4994860047CEC3 /* GetNotificationUseCase.swift in Sources */,
 				B55827162B1CD33600A360E9 /* PersonalInfoViewModel.swift in Sources */,
 				B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */,
 				B5F624602AC2F6A0002A1896 /* AppDelegate.swift in Sources */,
@@ -1583,6 +1601,7 @@
 				B50F35A62B4945CB0047CEC3 /* CalendarPolicyCell.swift in Sources */,
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
 				B596BA372B25F51200236C2F /* GetSocialInfoUseCase.swift in Sources */,
+				B50F35AE2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift in Sources */,
 				B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */,
 				B50F359E2B48638F0047CEC3 /* CalendarHeaderView.swift in Sources */,
 				B55826E22B1B9AB000A360E9 /* SettingHeaderView.swift in Sources */,
@@ -1601,6 +1620,7 @@
 				B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */,
 				B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */,
 				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
+				B50F35B22B49B0D20047CEC3 /* NotificationCoordinator.swift in Sources */,
 				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,
 				B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
@@ -1831,7 +1851,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
@@ -1844,7 +1864,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.2;
+				MARKETING_VERSION = 0.7.3;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1866,7 +1886,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
@@ -1879,7 +1899,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7.2;
+				MARKETING_VERSION = 0.7.3;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -118,6 +118,10 @@ final class HomeViewController: BaseViewController {
             $0.setImage(UIImage(named: "manual_on")?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         
+        notiItem.addAction(.init(handler: { [weak self] _ in
+            self?.viewModel.coordinator?.setAction(.notiList)
+        }), for: .touchUpInside)
+        
         manualItem.tapPublisher
             .sink { [weak self] in
                 self?.viewModel.coordinator?.setAction(.menual)

@@ -15,7 +15,8 @@ class WelfareCoordinator: Coordinator {
              findResult(viewModel: FindWelfareViewModel,
                         resultType: FindWelfareResultType),
              list(type: SupportPolicyType),
-             detail(id: Int)
+             detail(id: Int),
+             notiList
     }
     
     weak var delegate: CoordinatorDelegate?
@@ -56,6 +57,21 @@ class WelfareCoordinator: Coordinator {
                                                   policyId: id)
             let detailVC = WelfareDetailViewController(viewModel: detailVM)
             navigationController.pushViewController(detailVC, animated: true)
+        case .notiList:
+            let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            notiCoordinator.delegate = self
+            notiCoordinator.setAction(.notiList)
+        }
+    }
+}
+
+extension WelfareCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: any Coordinator) {
+        if childCoordinator is NotificationCoordinator {
+            let newVC = navigationController.viewControllers.filter {
+                !($0 is NotiViewController || $0 is NotiSettingViewController)
+            }
+            navigationController.setViewControllers(newVC, animated: true)
         }
     }
 }

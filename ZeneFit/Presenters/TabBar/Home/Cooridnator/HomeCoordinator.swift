@@ -10,7 +10,7 @@ import UIKit
 final class HomeCoordinator: Coordinator {
     
     enum CoordinatorAction {
-        case home, menual, bookmark, benefit, welfareDetail(welfareId: Int)
+        case home, menual, bookmark, benefit, welfareDetail(welfareId: Int), notiList
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -46,13 +46,22 @@ final class HomeCoordinator: Coordinator {
             childCoordinators.append(welfareCoordinator)
             welfareCoordinator.delegate = self
             welfareCoordinator.setAction(.detail(id: welfareId))
+        case .notiList:
+            let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            notiCoordinator.delegate = self
+            notiCoordinator.setAction(.notiList)
         }
     }
 }
 
 extension HomeCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: any Coordinator) {
-        if let index = childCoordinators.firstIndex(where: { $0 === childCoordinator }) {
+        if childCoordinator is NotificationCoordinator {
+            let newVC = navigationController.viewControllers.filter {
+                !($0 is NotiViewController || $0 is NotiSettingViewController)
+            }
+            navigationController.setViewControllers(newVC, animated: true)
+        } else if let index = childCoordinators.firstIndex(where: { $0 === childCoordinator }) {
             childCoordinators.remove(at: index)
         }
     }

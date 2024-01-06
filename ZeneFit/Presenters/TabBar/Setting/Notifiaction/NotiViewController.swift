@@ -7,8 +7,11 @@
 
 import UIKit
 
+// TODO: order 정렬필요
 final class NotiViewController: BaseViewController {
     private let viewModel: NotiViewModel
+    
+    private let refreshControl = UIRefreshControl()
     
     private let notiSetting = UIButton(type: .system).then {
         $0.setImage(.init(resource: .setting).withRenderingMode(.alwaysOriginal),
@@ -26,8 +29,9 @@ final class NotiViewController: BaseViewController {
         $0.backgroundColor = .lineNormal
     }
     
-    private let tableView = UITableView().then {
+    private lazy var tableView = UITableView().then {
         $0.backgroundColor = .white
+        $0.refreshControl = refreshControl
         $0.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.identifier)
     }
     
@@ -46,6 +50,26 @@ final class NotiViewController: BaseViewController {
         notiSetting.tapPublisher
             .sink { [weak self] in
                 self?.viewModel.coordinator?.setAction(.notiSetting)
+            }.store(in: &cancellable)
+        
+        viewModel.notificationList
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        refreshControl.controlPublisher(for: .valueChanged)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.viewModel.getNotificationInfo()
+                self?.refreshControl.endRefreshing()
+            }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                self?.refreshControl.endRefreshing()
+                self?.notiAlert("알 수 없는 에러가 발생했습니다.")
             }.store(in: &cancellable)
     }
     
@@ -148,5 +172,17 @@ extension NotiViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView is UITableView {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = tableView.contentSize.height
+            let frameHeight = scrollView.frame.height
+    
+            viewModel.didScroll(offsetY: offsetY,
+                                contentHeight: contentHeight,
+                                frameHeight: frameHeight)
+        }
     }
 }

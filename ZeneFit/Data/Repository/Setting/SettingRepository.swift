@@ -26,4 +26,12 @@ final class SettingRepository: SettingRepositoryProtocol {
     func unregistUser() async throws {
         try await service.unregistUser()
     }
+    
+    func updateNotificationStatus(isAllow: Bool) -> AnyPublisher<Void, Error> {
+        service.updateNotificationStatus(isAllow: isAllow)
+    }
+    
+    func getNotificationStatus() -> AnyPublisher<NotificationStatusDTO, Error> {
+        service.getNotificationStatus()
+    }
 }

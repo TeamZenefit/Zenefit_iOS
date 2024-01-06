@@ -12,4 +12,6 @@ protocol SettingRepositoryProtocol {
     func getSocialInfo() -> AnyPublisher<SocialInfoDTO, Error>
     func getUserInfo() -> AnyPublisher<UserInfoDTO, Error>
     func unregistUser() async throws
+    func updateNotificationStatus(isAllow: Bool) -> AnyPublisher<Void, Error>
+    func getNotificationStatus() -> AnyPublisher<NotificationStatusDTO, Error>
 }

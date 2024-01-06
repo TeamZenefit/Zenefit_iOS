@@ -49,6 +49,10 @@ final class WelfareViewController: BaseViewController {
         navigationItem.scrollEdgeAppearance?.backgroundColor = .backgroundPrimary
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         navigationItem.rightBarButtonItem = .init(customView: notiButton)
+        
+        notiButton.addAction(.init(handler: { [weak self] _ in
+            self?.viewModel.coordinator?.setAction(.notiList)
+        }), for: .touchUpInside)
     }
     
     override func configureUI() {

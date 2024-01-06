@@ -9,7 +9,7 @@ import UIKit
 
 class ScheduleCoordinator: Coordinator {
     enum CoordinatorAction {
-        case main
+        case main, notiList
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -32,6 +32,21 @@ class ScheduleCoordinator: Coordinator {
             let scheduleVM = ScheduleViewModel(coordinator: self)
             let scheduleVC = ScheduleViewController(viewModel: scheduleVM)
             navigationController.viewControllers = [scheduleVC]
+        case .notiList:
+            let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            notiCoordinator.delegate = self
+            notiCoordinator.setAction(.notiList)
+        }
+    }
+}
+
+extension ScheduleCoordinator: CoordinatorDelegate {
+    func didFinish(childCoordinator: any Coordinator) {
+        if childCoordinator is NotificationCoordinator {
+            let newVC = navigationController.viewControllers.filter {
+                !($0 is NotiViewController || $0 is NotiSettingViewController)
+            }
+            navigationController.setViewControllers(newVC, animated: true)
         }
     }
 }

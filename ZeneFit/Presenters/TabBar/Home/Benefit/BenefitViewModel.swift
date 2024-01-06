@@ -34,6 +34,7 @@ final class BenefitViewModel {
     }
     
     func getbenefitList() {
+        isLastPage = false
         currentPage = 0
         benefitPolicyUseCase.getBenefitPolicyList(page: currentPage)
             .sink(receiveCompletion: { [weak self] completion in

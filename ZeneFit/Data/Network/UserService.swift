@@ -108,4 +108,76 @@ final class UserService {
             }
         }.asyncThrows
     }
+    
+    func getNotification(page: Int) -> AnyPublisher<NotificationDTO, Error> {
+        let parameter: [String : String] = [
+            "size" : "10",
+            "page" : "\(page)"
+        ]
+        
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/notify",
+                                queries: parameter)
+            .setAccessToken()
+        
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<NotificationDTO>.self,
+                                         responseHandler: { res in
+            guard (200...299).contains(res.statusCode) ||
+                    res.statusCode == 401 else {
+                throw CommonError.serverError
+            }
+        })
+        .tryMap { response -> NotificationDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getNotificationStatus() -> AnyPublisher<NotificationStatusDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/user/notification")
+            .setAccessToken()
+        
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<NotificationStatusDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> NotificationStatusDTO in
+            switch response.code {
+            case 200:
+                return response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func updateNotificationStatus(isAllow: Bool) -> AnyPublisher<Void, Error> {
+        let parameter: [String : String] = [
+            "pushNotificationStatus" : "\(isAllow)"
+        ]
+        let endpoint = Endpoint(method: .PATCH,
+                                paths: "/user/notification",
+                                queries: parameter)
+            .setAccessToken()
+        
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<String?>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> Void in
+            switch response.code {
+            case 200:
+                break
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

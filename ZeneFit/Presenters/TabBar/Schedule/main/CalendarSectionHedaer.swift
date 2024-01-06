@@ -74,7 +74,7 @@ final class CalendarSectionHedaer: UIView {
         separatorView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(1)
-            $0.width.equalTo(UIScreen.main.bounds.width-32)
+            $0.width.equalTo(UIScreen.main.bounds.width-64)
             $0.top.equalTo(policyCountLabel.snp.bottom).offset(4)
             $0.bottom.equalToSuperview()
         }
