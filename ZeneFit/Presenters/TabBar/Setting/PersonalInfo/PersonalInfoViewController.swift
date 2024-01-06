@@ -140,7 +140,7 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
             switch indexPath.row {
             case 0:
                 cell.configureCell(title: item.title,
-                                   content: "성별")
+                                   content: userInfo.gender)
                 break
             case 1:
                 cell.configureCell(title: item.title,
@@ -168,7 +168,7 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-#Preview(body: {
-    let vc = PersonalInfoViewController(viewModel: PersonalInfoViewModel(cooridnator: nil))
-    return UINavigationController(rootViewController: vc).preview
-})
+//#Preview(body: {
+//    let vc = PersonalInfoViewController(viewModel: PersonalInfoViewModel(cooridnator: nil))
+//    return UINavigationController(rootViewController: vc).preview
+//})

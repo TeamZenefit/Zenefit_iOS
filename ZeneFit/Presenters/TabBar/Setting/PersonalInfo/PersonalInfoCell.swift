@@ -38,12 +38,8 @@ final class PersonalInfoCell: UITableViewCell {
     func configureCell(title: String, content: String? = nil, isOn: Bool? = nil) {
         titleLabel.text = title
         contentLabel.text = content
-        
         if let isOn {
-            contentLabel.isHidden = true
-            switchView.isHidden = false
-            
-            switchView.isOn = isOn
+            contentLabel.text = isOn == true ? "네" : "아니오"
         }
     }
     

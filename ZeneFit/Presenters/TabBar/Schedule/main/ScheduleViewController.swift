@@ -11,7 +11,16 @@ import FSCalendar
 final class ScheduleViewController: BaseViewController {
     private let viewModel: ScheduleViewModel
     
+    private let policyHeaderView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private let tableViewSectionHeaderView = CalendarSectionHedaer().then {
+        $0.month = "6"
+    }
+    
     private let calendarFrameView = UIView().then {
+        $0.backgroundColor = .backgroundPrimary
         $0.layer.cornerRadius = 8
         $0.backgroundColor = .white
     }
@@ -45,6 +54,16 @@ final class ScheduleViewController: BaseViewController {
         $0.setImage(.init(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
+    private lazy var policyTableView = UITableView(frame: .zero, style: .grouped).then {
+        $0.backgroundColor = .backgroundPrimary
+        $0.tableHeaderView = policyHeaderView
+        $0.separatorStyle = .none
+        $0.layer.cornerRadius = 8
+        $0.showsVerticalScrollIndicator = false
+        $0.register(CalendarPolicyCell.self, forCellReuseIdentifier: CalendarPolicyCell.identifier)
+    }
+    
+    
     init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -58,6 +77,8 @@ final class ScheduleViewController: BaseViewController {
         calendarView.delegate = self
         calendarView.dataSource = self
         calendarHeaderView.delegate = self
+        policyTableView.delegate = self
+        policyTableView.dataSource = self
     }
     
     override func configureUI() {
@@ -79,8 +100,15 @@ final class ScheduleViewController: BaseViewController {
         navigationItem.rightBarButtonItem = .init(customView: notiButton)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        policyTableView.reloadData()
+    }
+    
     override func addSubView() {
-        [calendarFrameView].forEach {
+        policyHeaderView.addSubview(calendarFrameView)
+        
+        [policyTableView].forEach {
             view.addSubview($0)
         }
         
@@ -90,7 +118,17 @@ final class ScheduleViewController: BaseViewController {
     }
     
     override func layout() {
+        policyHeaderView.snp.makeConstraints {
+            $0.top.centerX.equalToSuperview()
+        }
+        
         calendarFrameView.snp.makeConstraints {
+            $0.horizontalEdges.top.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-16)
+        }
+        
+        policyTableView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide)
         }
@@ -98,6 +136,7 @@ final class ScheduleViewController: BaseViewController {
         calendarHeaderView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.top.equalToSuperview().offset(20)
+            $0.width.equalTo(UIScreen.main.bounds.width-64)
         }
         
         calendarView.snp.makeConstraints {
@@ -122,7 +161,40 @@ final class ScheduleViewController: BaseViewController {
     override func setupBinding() {
         
     }
+}
+
+extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        4
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CalendarPolicyCell.identifier, for: indexPath) as! CalendarPolicyCell
+        
+        cell.configureCell(policy: .init(policyID: 0,
+                                         policyName: "d",
+                                         policyApplyStatus: nil,
+                                         policyAgencyLogo: "",
+                                         policySttDateOrEndDate: ""))
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableViewSectionHeaderView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let bottomFrameView = UIView()
+        bottomFrameView.backgroundColor = .white
+        bottomFrameView.layer.cornerRadius = 8
+        bottomFrameView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        return bottomFrameView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        20
+    }
 }
 
 extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {

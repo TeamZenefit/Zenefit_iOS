@@ -297,4 +297,26 @@ class PolicyService {
             }
         }.asyncThrows
     }
+    
+    func getPolicyWithDate(year: Int, month: Int) async throws -> Bool {
+        var path: String = "/policy/calendar?searchDate=\(year)-\(month)-01"
+        
+        let endpoint = Endpoint(method: .GET,
+                                paths: path)
+            .setAccessToken()
+    
+        return try await session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<CalendarPolicyDTO?>.self) { res in
+        }
+        .tryMap { response -> Bool in
+            switch response.code {
+            case 200:
+                return true
+            case 4002:
+                return false
+            default:
+                throw CommonError.otherError
+            }
+        }.asyncThrows
+    }
 }
