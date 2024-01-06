@@ -1,0 +1,166 @@
+//
+//  ScheduleViewController.swift
+//  ZeneFit
+//
+//  Created by iOS신상우 on 2023/10/22.
+//
+
+import UIKit
+import FSCalendar
+
+final class ScheduleViewController: BaseViewController {
+    private let viewModel: ScheduleViewModel
+    
+    private let calendarFrameView = UIView().then {
+        $0.layer.cornerRadius = 8
+        $0.backgroundColor = .white
+    }
+    
+    private lazy var calendarHeaderView = CalendarHeaderView().then {
+        let month = Calendar.current.component(.month, from: self.calendarView.currentPage)
+        $0.yearMonthLabel.text = "\(month)월"
+    }
+    
+    private lazy var calendarView = FSCalendar().then {
+        $0.layer.cornerRadius = 16
+        $0.backgroundColor = .white
+        $0.appearance.titleFont = .pretendard(.body1)
+        $0.appearance.selectionColor = .clear
+        $0.appearance.titleSelectionColor = .textNormal
+        $0.appearance.weekdayTextColor = .textAlternative
+        $0.appearance.eventSelectionColor = .primaryNormal
+        $0.appearance.titleTodayColor = .primaryNormal
+        $0.appearance.todayColor = .primaryAssistive
+        $0.headerHeight = .zero
+        $0.locale = .current
+    }
+    
+    private let separatorView = UIView().then {
+        $0.backgroundColor = .lineAlternative
+    }
+    
+    private let eventGuideView = EventGuideView()
+    
+    private let notiButton = UIButton(type: .system).then {
+        $0.setImage(.init(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    init(viewModel: ScheduleViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setDelegate() {
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        calendarHeaderView.delegate = self
+    }
+    
+    override func configureUI() {
+        view.backgroundColor = .backgroundPrimary
+    }
+    
+    override func configureNavigation() {
+        super.configureNavigation()
+        self.navigationController?.navigationBar.isHidden = false
+        let titleLabel = UILabel().then {
+            $0.text = "달력"
+            $0.textColor = .textStrong
+            $0.font = .pretendard(.label1)
+        }
+        
+        navigationItem.standardAppearance?.backgroundColor = .backgroundPrimary
+        navigationItem.scrollEdgeAppearance?.backgroundColor = .backgroundPrimary
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.rightBarButtonItem = .init(customView: notiButton)
+    }
+    
+    override func addSubView() {
+        [calendarFrameView].forEach {
+            view.addSubview($0)
+        }
+        
+        [calendarHeaderView, calendarView, separatorView, eventGuideView].forEach {
+            calendarFrameView.addSubview($0)
+        }
+    }
+    
+    override func layout() {
+        calendarFrameView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        calendarHeaderView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().offset(20)
+        }
+        
+        calendarView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(calendarHeaderView.snp.bottom).offset(24)
+            $0.height.equalTo(300)
+        }
+        
+        separatorView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.top.equalTo(calendarView.snp.bottom).offset(12)
+        }
+        
+        eventGuideView.snp.makeConstraints {
+            $0.top.equalTo(separatorView.snp.bottom).offset(12)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-16)
+        }
+    }
+    
+    override func setupBinding() {
+        
+    }
+    
+}
+
+extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let thisYear = Calendar.current.component(.year, from: Date.now)
+        let year = Calendar.current.component(.year, from: calendar.currentPage)
+        let month = Calendar.current.component(.month, from: calendar.currentPage)
+        
+        if thisYear == year {
+            calendarHeaderView.yearMonthLabel.text = "\(month)월"
+        } else {
+            calendarHeaderView.yearMonthLabel.text = "\(year)년 \(month)월"
+        }
+    }
+}
+
+extension ScheduleViewController: CalendarHeaderDelegate {
+    func tapPreviousMonth() {
+        let currentPage = calendarView.currentPage
+        guard let previousMonth = Calendar.current.date(
+            byAdding: .month,
+            value: -1,
+            to: currentPage
+        ) else {
+            return
+        }
+        calendarView.setCurrentPage(previousMonth, animated: true)
+    }
+    
+    func tapNextMonth() {
+        let currentPage = calendarView.currentPage
+        guard let nextMonth = Calendar.current.date(
+            byAdding: .month,
+            value: 1,
+            to: currentPage
+        ) else {
+            return
+        }
+        calendarView.setCurrentPage(nextMonth, animated: true)
+    }
+}

@@ -152,10 +152,7 @@ final class WelfareCell: UITableViewCell {
                                        .foregroundColor : UIColor.primaryNormal])
                 )
             }
-            title = self.isSelected ? "이미 신청한 정책입니다." : title
             
-            self.applyButton.configuration?.attributedTitle = .init(title,
-                                                                    attributes: .init([.font : UIFont.pretendard(.label4)]))
             self.addScheduleButton.isEnabled = !isSelected
             self.applyButton.isEnabled = !isSelected
             self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
@@ -192,7 +189,7 @@ final class WelfareCell: UITableViewCell {
         self.policyImageView.kf.setImage(with: URL(string: item.policyLogo),
                                          placeholder: UIImage(named: "DefaultPolicy"))
     
-        self.isSelected = item.applyFlag
+        self.setSelected(item.applyFlag, animated: false)
         
         self.configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
         self.configureMethodType(type: PolicyMethodType(rawValue: item.policyMethodType) ?? .blank)
@@ -316,7 +313,7 @@ final class WelfareCell: UITableViewCell {
                       let policy else { return }
                 
                 self.delegate?.tapApplyWelfareFlag(policy: policy) {
-                    self.isSelected.toggle()
+                    self.isSelected = policy.applyFlag
                 }
             }.store(in: &cancellable)
     }

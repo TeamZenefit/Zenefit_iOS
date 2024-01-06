@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50F359E2B48638F0047CEC3 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F359D2B48638F0047CEC3 /* CalendarHeaderView.swift */; };
+		B50F35A02B4922400047CEC3 /* EventGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F359F2B4922400047CEC3 /* EventGuideView.swift */; };
 		B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */; };
 		B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */; };
 		B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B82AFBE406006DF4D2 /* WelfareCell.swift */; };
@@ -38,6 +40,9 @@
 		B54AB1B02AF7758200429C52 /* WelfareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */; };
 		B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */; };
 		B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */; };
+		B54C706B2B47C6F40041C99D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = B54C706A2B47C6F40041C99D /* FSCalendar */; };
+		B54C706D2B47C7440041C99D /* ScheduleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C706C2B47C7440041C99D /* ScheduleCoordinator.swift */; };
+		B54C70702B47C7F70041C99D /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C706F2B47C7F70041C99D /* ScheduleViewModel.swift */; };
 		B54E92882AF3B96600F47A6B /* ZFTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E92872AF3B96600F47A6B /* ZFTableViewFooterView.swift */; };
 		B54E928B2AF3BE2700F47A6B /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */; };
 		B54E928D2AF3BE5300F47A6B /* BenefitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */; };
@@ -224,6 +229,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B50F359D2B48638F0047CEC3 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
+		B50F359F2B4922400047CEC3 /* EventGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGuideView.swift; sourceTree = "<group>"; };
 		B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDateType.swift; sourceTree = "<group>"; };
 		B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B52437B82AFBE406006DF4D2 /* WelfareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCell.swift; sourceTree = "<group>"; };
@@ -255,6 +262,8 @@
 		B54AB1AF2AF7758200429C52 /* WelfareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareViewModel.swift; sourceTree = "<group>"; };
 		B54AB1B22AF7E23600429C52 /* WelfareListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewController.swift; sourceTree = "<group>"; };
 		B54AB1B42AF7E24600429C52 /* WelfareListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareListViewModel.swift; sourceTree = "<group>"; };
+		B54C706C2B47C7440041C99D /* ScheduleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCoordinator.swift; sourceTree = "<group>"; };
+		B54C706F2B47C7F70041C99D /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		B54E92872AF3B96600F47A6B /* ZFTableViewFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFTableViewFooterView.swift; sourceTree = "<group>"; };
 		B54E928A2AF3BE2700F47A6B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
 		B54E928C2AF3BE5300F47A6B /* BenefitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitViewController.swift; sourceTree = "<group>"; };
@@ -414,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B55E424D2B4127F000E4B893 /* SkeletonView in Frameworks */,
+				B54C706B2B47C6F40041C99D /* FSCalendar in Frameworks */,
 				B5F624BB2AC33CF8002A1896 /* FirebaseMessaging in Frameworks */,
 				B5F624B22AC33B8A002A1896 /* KakaoSDKCommon in Frameworks */,
 				B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */,
@@ -554,6 +564,18 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		B54C706E2B47C7DB0041C99D /* main */ = {
+			isa = PBXGroup;
+			children = (
+				B54C706C2B47C7440041C99D /* ScheduleCoordinator.swift */,
+				B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */,
+				B54C706F2B47C7F70041C99D /* ScheduleViewModel.swift */,
+				B50F359D2B48638F0047CEC3 /* CalendarHeaderView.swift */,
+				B50F359F2B4922400047CEC3 /* EventGuideView.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
 		B54E92892AF3BE0B00F47A6B /* Benefit */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,7 +615,7 @@
 		B552F9D02AE5449500AA5F40 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */,
+				B54C706E2B47C7DB0041C99D /* main */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -793,8 +815,8 @@
 				B56452362AEE45B5000A45FA /* Cooridnator */,
 				B56452372AEE45BE000A45FA /* TabBar */,
 				B552F9D12AE544B900AA5F40 /* Setting */,
-				B552F9D02AE5449500AA5F40 /* Schedule */,
 				B552F9CB2AE5444F00AA5F40 /* Welfare */,
+				B552F9D02AE5449500AA5F40 /* Schedule */,
 				B552F9C82AE5443000AA5F40 /* Home */,
 			);
 			path = TabBar;
@@ -1308,6 +1330,7 @@
 				B57242AD2AE187CC007D6BC2 /* Lottie */,
 				B5ED7BB12B00B50900138FE8 /* Kingfisher */,
 				B55E424C2B4127F000E4B893 /* SkeletonView */,
+				B54C706A2B47C6F40041C99D /* FSCalendar */,
 			);
 			productName = ZeneFit;
 			productReference = B5F6245C2AC2F6A0002A1896 /* ZeneFit.app */;
@@ -1389,6 +1412,7 @@
 				B57242AC2AE187CC007D6BC2 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				B5ED7BB02B00B50900138FE8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				B55E424B2B4127F000E4B893 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				B54C70692B47C6F40041C99D /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = B5F6245D2AC2F6A0002A1896 /* Products */;
 			projectDirPath = "";
@@ -1448,6 +1472,7 @@
 				B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */,
 				B531CC322B42A2AD00EF5095 /* WelfareEmptyView.swift in Sources */,
 				B5F624EB2AC87818002A1896 /* RegistInfoInputViewController.swift in Sources */,
+				B50F35A02B4922400047CEC3 /* EventGuideView.swift in Sources */,
 				B55827012B1C6EEB00A360E9 /* NotiSettingViewModel.swift in Sources */,
 				B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */,
 				B5F624A12AC3144A002A1896 /* UIFont+.swift in Sources */,
@@ -1455,6 +1480,7 @@
 				B56452542AEEB229000A45FA /* GestureType.swift in Sources */,
 				B5F625212ACC5A8C002A1896 /* String+.swift in Sources */,
 				B5F624D22AC5B9F7002A1896 /* AuthCoordinator.swift in Sources */,
+				B54C706D2B47C7440041C99D /* ScheduleCoordinator.swift in Sources */,
 				B55826E72B1BA12200A360E9 /* AppInfoViewController.swift in Sources */,
 				B5F624D02AC5B70A002A1896 /* MainCoordinator.swift in Sources */,
 				B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */,
@@ -1478,6 +1504,7 @@
 				B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */,
 				B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */,
 				B55826FC2B1C609C00A360E9 /* LoginInfoViewModel.swift in Sources */,
+				B54C70702B47C7F70041C99D /* ScheduleViewModel.swift in Sources */,
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B55826FE2B1C60C000A360E9 /* LoginInfoViewController.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
@@ -1543,6 +1570,7 @@
 				B5F624FF2AC93E0D002A1896 /* MultiSelectionBottomSheet.swift in Sources */,
 				B596BA372B25F51200236C2F /* GetSocialInfoUseCase.swift in Sources */,
 				B552F9D32AE544C800AA5F40 /* SettingViewController.swift in Sources */,
+				B50F359E2B48638F0047CEC3 /* CalendarHeaderView.swift in Sources */,
 				B55826E22B1B9AB000A360E9 /* SettingHeaderView.swift in Sources */,
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
 				B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */,
@@ -1970,6 +1998,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B54C70692B47C6F40041C99D /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 		B55E424B2B4127F000E4B893 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
@@ -2029,6 +2065,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B54C706A2B47C6F40041C99D /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B54C70692B47C6F40041C99D /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		B55E424C2B4127F000E4B893 /* SkeletonView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B55E424B2B4127F000E4B893 /* XCRemoteSwiftPackageReference "SkeletonView" */;
