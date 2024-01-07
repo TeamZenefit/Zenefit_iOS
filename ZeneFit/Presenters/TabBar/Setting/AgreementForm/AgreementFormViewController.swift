@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 final class AgreementFormViewController: BaseViewController {
     private let viewModel: AgreementFormViewModel
@@ -31,6 +32,7 @@ final class AgreementFormViewController: BaseViewController {
     init(viewModel: AgreementFormViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.getAgreement()
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +42,43 @@ final class AgreementFormViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         setTitle = "약관 및 개인정보 처리 동의"
+    }
+    
+    override func setupBinding() {
+        viewModel.$agreementInfo
+            .receive(on: RunLoop.main)
+            .sink { [weak self] info in
+                guard let self else { return }
+                termOfServiceItemView.setContent(content: info.termsOfServiceDate.hipenToDot())
+                privacyPolicyItemView.setContent(content: info.privacyDate.hipenToDot())
+                marketingInfoItemView.setContent(content: info.marketingDate?.hipenToDot() ?? "미동의")
+                
+                termOfServiceItemView.gesturePublisher(for: .tap)
+                    .receive(on: RunLoop.main)
+                    .sink { [weak self] _ in
+                        self?.openTermOfUseContentWithSafari(urlString: info.termsOfServiceUrl)
+                    }.store(in: &cancellable)
+                
+                privacyPolicyItemView.gesturePublisher(for: .tap)
+                    .receive(on: RunLoop.main)
+                    .sink { [weak self] _ in
+                        self?.openTermOfUseContentWithSafari(urlString: info.privacyUrl)
+                    }.store(in: &cancellable)
+                
+                marketingInfoItemView.gesturePublisher(for: .tap)
+                    .receive(on: RunLoop.main)
+                    .sink { [weak self] _ in
+                        self?.openTermOfUseContentWithSafari(urlString: info.marketingUrl)
+                    }.store(in: &cancellable)
+            }.store(in: &cancellable)
+    }
+    
+    private func openTermOfUseContentWithSafari(urlString: String) {
+        guard let termURL = URL(string: urlString) else { return }
+
+        let safariViewController = SFSafariViewController(url: termURL)
+        safariViewController.modalPresentationStyle = .automatic
+        self.present(safariViewController, animated: true, completion: nil)
     }
     
     override func addSubView() {
@@ -64,5 +103,4 @@ final class AgreementFormViewController: BaseViewController {
             $0.horizontalEdges.equalToSuperview()
         }
     }
-    
 }

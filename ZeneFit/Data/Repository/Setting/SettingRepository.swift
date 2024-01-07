@@ -34,4 +34,8 @@ final class SettingRepository: SettingRepositoryProtocol {
     func getNotificationStatus() -> AnyPublisher<NotificationStatusDTO, Error> {
         service.getNotificationStatus()
     }
+    
+    func getAgreementInfo() -> AnyPublisher<AgreementInfoDTO, Error> {
+        service.getAgreementInfo()
+    }
 }

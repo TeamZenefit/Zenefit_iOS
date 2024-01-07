@@ -44,4 +44,8 @@ extension String {
         
         return formattedString.isEmpty ? "" : formattedString
     }
+    
+    func hipenToDot() -> String {
+        return self.replacingOccurrences(of: "-", with: ".")
+    }
 }

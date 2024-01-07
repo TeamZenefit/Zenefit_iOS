@@ -180,4 +180,23 @@ final class UserService {
         }
         .eraseToAnyPublisher()
     }
+    
+    func getAgreementInfo() -> AnyPublisher<AgreementInfoDTO, Error> {
+        let endpoint = Endpoint(method: .GET,
+                                paths: "/user/privacy")
+            .setAccessToken()
+        
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<AgreementInfoDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> AgreementInfoDTO in
+            switch response.code {
+            case 200:
+                response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

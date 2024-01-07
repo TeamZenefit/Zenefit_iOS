@@ -24,6 +24,8 @@
 		B50F35BE2B4A8C9B0047CEC3 /* InfoEditTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35BD2B4A8C9B0047CEC3 /* InfoEditTextField.swift */; };
 		B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */; };
 		B52263B82B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52263B72B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift */; };
+		B52263BA2B4ABAF90008DDF1 /* AgreementInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52263B92B4ABAF90008DDF1 /* AgreementInfoDTO.swift */; };
+		B52263BC2B4ABB860008DDF1 /* GetAgreementInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52263BB2B4ABB860008DDF1 /* GetAgreementInfoUseCase.swift */; };
 		B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */; };
 		B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B82AFBE406006DF4D2 /* WelfareCell.swift */; };
 		B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */; };
@@ -260,6 +262,8 @@
 		B50F35BD2B4A8C9B0047CEC3 /* InfoEditTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEditTextField.swift; sourceTree = "<group>"; };
 		B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDateType.swift; sourceTree = "<group>"; };
 		B52263B72B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPolicyWithDateUseCase.swift; sourceTree = "<group>"; };
+		B52263B92B4ABAF90008DDF1 /* AgreementInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementInfoDTO.swift; sourceTree = "<group>"; };
+		B52263BB2B4ABB860008DDF1 /* GetAgreementInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAgreementInfoUseCase.swift; sourceTree = "<group>"; };
 		B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B52437B82AFBE406006DF4D2 /* WelfareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCell.swift; sourceTree = "<group>"; };
 		B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSearchBar.swift; sourceTree = "<group>"; };
@@ -965,6 +969,7 @@
 				B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */,
 				B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */,
 				B50F35AB2B499F610047CEC3 /* NotificationStatusDTO.swift */,
+				B52263B92B4ABAF90008DDF1 /* AgreementInfoDTO.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -985,6 +990,7 @@
 				B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */,
 				B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */,
 				B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */,
+				B52263BB2B4ABB860008DDF1 /* GetAgreementInfoUseCase.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1685,6 +1691,7 @@
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
 				B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */,
 				B55827132B1CA31100A360E9 /* NotificationItem.swift in Sources */,
+				B52263BC2B4ABB860008DDF1 /* GetAgreementInfoUseCase.swift in Sources */,
 				B55826F42B1C4D7C00A360E9 /* StandardAlertController.swift in Sources */,
 				B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,
@@ -1706,6 +1713,7 @@
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
+				B52263BA2B4ABAF90008DDF1 /* AgreementInfoDTO.swift in Sources */,
 				B5A870942B0B79110052D5A1 /* SupportPolicyType.swift in Sources */,
 				B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */,
 				B56452DA2AEFE5A0000A45FA /* BookmarkViewController.swift in Sources */,

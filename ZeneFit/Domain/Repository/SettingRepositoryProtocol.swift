@@ -14,4 +14,5 @@ protocol SettingRepositoryProtocol {
     func unregistUser() async throws
     func updateNotificationStatus(isAllow: Bool) -> AnyPublisher<Void, Error>
     func getNotificationStatus() -> AnyPublisher<NotificationStatusDTO, Error>
+    func getAgreementInfo() -> AnyPublisher<AgreementInfoDTO, Error>
 }
