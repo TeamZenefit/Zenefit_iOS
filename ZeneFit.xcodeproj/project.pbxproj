@@ -18,7 +18,12 @@
 		B50F35AE2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */; };
 		B50F35B02B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */; };
 		B50F35B22B49B0D20047CEC3 /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35B12B49B0D20047CEC3 /* NotificationCoordinator.swift */; };
+		B50F35B42B4A7ACD0047CEC3 /* PersonalInfoEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35B32B4A7ACD0047CEC3 /* PersonalInfoEditCell.swift */; };
+		B50F35BA2B4A89150047CEC3 /* PersonalInfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35B92B4A89150047CEC3 /* PersonalInfoEditViewController.swift */; };
+		B50F35BC2B4A89460047CEC3 /* PersonalInfoEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35BB2B4A89460047CEC3 /* PersonalInfoEditViewModel.swift */; };
+		B50F35BE2B4A8C9B0047CEC3 /* InfoEditTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F35BD2B4A8C9B0047CEC3 /* InfoEditTextField.swift */; };
 		B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */; };
+		B52263B82B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52263B72B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift */; };
 		B52437B72AFBABEE006DF4D2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */; };
 		B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437B82AFBE406006DF4D2 /* WelfareCell.swift */; };
 		B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */; };
@@ -249,7 +254,12 @@
 		B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNotificationStateUseCase.swift; sourceTree = "<group>"; };
 		B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNotificationStateUseCase.swift; sourceTree = "<group>"; };
 		B50F35B12B49B0D20047CEC3 /* NotificationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
+		B50F35B32B4A7ACD0047CEC3 /* PersonalInfoEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoEditCell.swift; sourceTree = "<group>"; };
+		B50F35B92B4A89150047CEC3 /* PersonalInfoEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoEditViewController.swift; sourceTree = "<group>"; };
+		B50F35BB2B4A89460047CEC3 /* PersonalInfoEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoEditViewModel.swift; sourceTree = "<group>"; };
+		B50F35BD2B4A8C9B0047CEC3 /* InfoEditTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEditTextField.swift; sourceTree = "<group>"; };
 		B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDateType.swift; sourceTree = "<group>"; };
+		B52263B72B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPolicyWithDateUseCase.swift; sourceTree = "<group>"; };
 		B52437B62AFBABEE006DF4D2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		B52437B82AFBE406006DF4D2 /* WelfareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareCell.swift; sourceTree = "<group>"; };
 		B52437BA2AFD19BC006DF4D2 /* WelfareSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareSearchBar.swift; sourceTree = "<group>"; };
@@ -472,6 +482,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B50F35B72B4A88E70047CEC3 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		B50F35B82B4A88F10047CEC3 /* InfoEdit */ = {
+			isa = PBXGroup;
+			children = (
+				B50F35B32B4A7ACD0047CEC3 /* PersonalInfoEditCell.swift */,
+				B50F35B92B4A89150047CEC3 /* PersonalInfoEditViewController.swift */,
+				B50F35BB2B4A89460047CEC3 /* PersonalInfoEditViewModel.swift */,
+				B50F35BD2B4A8C9B0047CEC3 /* InfoEditTextField.swift */,
+			);
+			path = InfoEdit;
+			sourceTree = "<group>";
+		};
 		B54A674B2ADBE42500971467 /* RegistComplete */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,8 +672,8 @@
 		B552F9D12AE544B900AA5F40 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				B55827142B1CD32100A360E9 /* PersonalInfo */,
 				B564523F2AEE742E000A45FA /* Coordinator */,
+				B55827142B1CD32100A360E9 /* PersonalInfo */,
 				B55827082B1C966000A360E9 /* Notifiaction */,
 				B55826FF2B1C6ED200A360E9 /* NotiSetting */,
 				B55826FA2B1C607500A360E9 /* LoginInfo */,
@@ -712,6 +740,7 @@
 				B531CC352B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift */,
 				B531CC372B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift */,
 				B531CC392B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift */,
+				B52263B72B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -810,6 +839,8 @@
 		B55827142B1CD32100A360E9 /* PersonalInfo */ = {
 			isa = PBXGroup;
 			children = (
+				B50F35B82B4A88F10047CEC3 /* InfoEdit */,
+				B50F35B72B4A88E70047CEC3 /* Info */,
 				B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */,
 				B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */,
 				B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */,
@@ -1515,6 +1546,7 @@
 				B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */,
 				B55827052B1C70E700A360E9 /* NotiSettingItemView.swift in Sources */,
 				B55826F92B1C4ECA00A360E9 /* NotificationName+.swift in Sources */,
+				B50F35BA2B4A89150047CEC3 /* PersonalInfoEditViewController.swift in Sources */,
 				B5ED7BA52B00AD3600138FE8 /* PolicyRepositoryProtocol.swift in Sources */,
 				B552F9E72AE55E7500AA5F40 /* FindWelfareViewModel.swift in Sources */,
 				B50F35AC2B499F610047CEC3 /* NotificationStatusDTO.swift in Sources */,
@@ -1537,6 +1569,7 @@
 				B5F624DA2AC5FF9C002A1896 /* UIControl+.swift in Sources */,
 				B55826FE2B1C60C000A360E9 /* LoginInfoViewController.swift in Sources */,
 				B54A67622ADC3BC600971467 /* AuthService.swift in Sources */,
+				B50F35B42B4A7ACD0047CEC3 /* PersonalInfoEditCell.swift in Sources */,
 				B5F624C62AC54338002A1896 /* UIViewController+.swift in Sources */,
 				B5F625102ACAE111002A1896 /* EndPoint.swift in Sources */,
 				B531CC342B42BF5A00EF5095 /* AddInterestPolicyUseCase.swift in Sources */,
@@ -1608,6 +1641,7 @@
 				B54A675B2ADC38E800971467 /* URLSession+.swift in Sources */,
 				B54A67912ADD8F4000971467 /* FetchCityUseCase.swift in Sources */,
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,
+				B50F35BE2B4A8C9B0047CEC3 /* InfoEditTextField.swift in Sources */,
 				B55E42462B3F021200E4B893 /* WelfareListHeaderView.swift in Sources */,
 				B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */,
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
@@ -1623,7 +1657,9 @@
 				B50F35B22B49B0D20047CEC3 /* NotificationCoordinator.swift in Sources */,
 				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,
 				B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */,
+				B50F35BC2B4A89460047CEC3 /* PersonalInfoEditViewModel.swift in Sources */,
 				B552F9EC2AE56B6400AA5F40 /* FindWelfareResultViewController.swift in Sources */,
+				B52263B82B4AAC7E0008DDF1 /* GetPolicyWithDateUseCase.swift in Sources */,
 				B531CC3A2B42EB7B00EF5095 /* AddApplyingPolicyUseCase.swift in Sources */,
 				B5ED7BB52B00E3A000138FE8 /* WelfareDetailViewModel.swift in Sources */,
 				B50F35A22B4941760047CEC3 /* NotificationDTO.swift in Sources */,

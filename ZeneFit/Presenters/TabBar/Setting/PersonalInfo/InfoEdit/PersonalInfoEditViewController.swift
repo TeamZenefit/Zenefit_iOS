@@ -1,18 +1,17 @@
 //
-//  PersonalInfoViewController.swift
+//  PersonalInfoEditViewController.swift
 //  ZeneFit
 //
-//  Created by iOS신상우 on 12/4/23.
+//  Created by iOS신상우 on 1/7/24.
 //
 
 import UIKit
-import SwiftUI
 
-final class PersonalInfoViewController: BaseViewController {
-    private let viewModel: PersonalInfoViewModel
+final class PersonalInfoEditViewController: BaseViewController {
+    private let viewModel: PersonalInfoEditViewModel
     
     private let editButton = UIButton().then {
-        $0.setImage(.init(resource: .iWr28).withRenderingMode(.alwaysOriginal),
+        $0.setImage(.init(resource: .iWr28Edit).withRenderingMode(.alwaysOriginal),
                     for: .normal)
     }
     
@@ -20,10 +19,10 @@ final class PersonalInfoViewController: BaseViewController {
                                         style: .grouped).then {
         $0.backgroundColor = .white
         $0.separatorStyle = .none
-        $0.register(PersonalInfoCell.self, forCellReuseIdentifier: PersonalInfoCell.identifier)
+        $0.register(PersonalInfoEditCell.self, forCellReuseIdentifier: PersonalInfoEditCell.identifier)
     }
     
-    init(viewModel: PersonalInfoViewModel) {
+    init(viewModel: PersonalInfoEditViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,14 +47,11 @@ final class PersonalInfoViewController: BaseViewController {
         editButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                guard let userInfo = self?.viewModel.userInfo.value else {
-                    self?.viewModel.errorPublisher.send(CommonError.otherError)
-                    return
-                }
-                self?.viewModel.cooridnator?.setAction(.personalInfoEdit(userInfo: userInfo))
+                self?.editButton.isSelected.toggle()
+                self?.tableView.reloadData()
             }.store(in: &cancellable)
         
-        viewModel.userInfo
+        viewModel.newUserInfo
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
@@ -75,7 +71,7 @@ final class PersonalInfoViewController: BaseViewController {
     }
 }
 
-extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource {
+extension PersonalInfoEditViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -102,16 +98,16 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
         return section == 0 ? dividerView : nil
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 
+        return section == 0 ?
         viewModel.personalInfoItems.count :
         viewModel.otherInfoItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInfoCell.identifier,
-                                                 for: indexPath) as! PersonalInfoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PersonalInfoEditCell.identifier,
+                                                 for: indexPath) as! PersonalInfoEditCell
+        guard let userInfo = viewModel.newUserInfo.value else { return cell }
         
-        guard let userInfo = viewModel.userInfo.value else { return cell }
         switch indexPath.section {
         case 0:
             let item = viewModel.personalInfoItems[indexPath.row]
@@ -161,15 +157,9 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
             default:
                 cell.configureCell(title: item.title,
                                    isOn: userInfo.farmer)
-                
             }
         }
         
         return cell
     }
 }
-
-//#Preview(body: {
-//    let vc = PersonalInfoViewController(viewModel: PersonalInfoViewModel(cooridnator: nil))
-//    return UINavigationController(rootViewController: vc).preview
-//})

@@ -64,4 +64,8 @@ final class PolicyRepository: PolicyRepositoryProtocol {
     func removeApplyingPolicy(policyId: Int?) async throws -> Bool {
         try await policyService.removeApplyingPolicy(policyId: policyId)
     }
+    
+    func getPolicyWithDate(year: String, month: String) async throws -> [CalendarPolicyDTO] {
+        try await policyService.getPolicyWithDate(year: year, month: month)
+    }
 }

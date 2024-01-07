@@ -31,7 +31,7 @@ class ScheduleCoordinator: Coordinator {
         case .main:
             let scheduleVM = ScheduleViewModel(coordinator: self)
             let scheduleVC = ScheduleViewController(viewModel: scheduleVM)
-            navigationController.viewControllers = [scheduleVC]
+            navigationController.setViewControllers([scheduleVC], animated: false)
         case .notiList:
             let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
             notiCoordinator.delegate = self

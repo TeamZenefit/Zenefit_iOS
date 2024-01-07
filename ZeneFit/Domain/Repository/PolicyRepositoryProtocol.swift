@@ -25,4 +25,5 @@ protocol PolicyRepositoryProtocol {
     
     func addApplyingPolicy(policyId: Int) async throws -> Bool
     func removeApplyingPolicy(policyId: Int?) async throws -> Bool
+    func getPolicyWithDate(year: String, month: String) async throws -> [CalendarPolicyDTO]
 }

@@ -14,6 +14,7 @@ final class SettingCoordinator: Coordinator {
              agreementForm,
              loginInfo,
              personalInfo,
+             personalInfoEdit(userInfo: UserInfoDTO),
              notiSetting,
              notiList
     }
@@ -54,6 +55,11 @@ final class SettingCoordinator: Coordinator {
             let personalInfoVM = PersonalInfoViewModel(cooridnator: self)
             let personalInfoVC = PersonalInfoViewController(viewModel: personalInfoVM)
             navigationController.pushViewController(personalInfoVC, animated: true)
+        case .personalInfoEdit(let userInfo):
+            let personalInfoEditVM = PersonalInfoEditViewModel(cooridnator: self,
+                                                               currentUserInfo: userInfo)
+            let personalInfoEditVC = PersonalInfoEditViewController(viewModel: personalInfoEditVM)
+            navigationController.pushViewController(personalInfoEditVC, animated: true)
         case .notiSetting:
             let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
             notiCoordinator.delegate = self

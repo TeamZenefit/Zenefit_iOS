@@ -15,10 +15,7 @@ final class ScheduleViewController: BaseViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private let tableViewSectionHeaderView = CalendarSectionHedaer().then {
-        $0.month = "6"
-        $0.count = "4"
-    }
+    private let tableViewSectionHeaderView = CalendarSectionHedaer()
     
     private let calendarFrameView = UIView().then {
         $0.backgroundColor = .backgroundPrimary
@@ -106,9 +103,12 @@ final class ScheduleViewController: BaseViewController {
         }), for: .touchUpInside)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        policyTableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let year = Calendar.current.component(.year, from: self.calendarView.currentPage)
+        let month = Calendar.current.component(.month, from: self.calendarView.currentPage)
+        viewModel.getPolicy(year: year, month: month)
+        tableViewSectionHeaderView.month = "\(month)"
     }
     
     override func addSubView() {
@@ -165,22 +165,25 @@ final class ScheduleViewController: BaseViewController {
     }
     
     override func setupBinding() {
+        viewModel.policyList
+            .receive(on: RunLoop.main)
+            .sink { [weak self] info in
+                self?.tableViewSectionHeaderView.count = "\(info.count)"
+                self?.policyTableView.reloadData()
+            }.store(in: &cancellable)
     }
 }
 
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        viewModel.policyList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarPolicyCell.identifier, for: indexPath) as! CalendarPolicyCell
+        let item = viewModel.policyList.value[indexPath.row]
+        cell.configureCell(policy: item)
         
-        cell.configureCell(policy: .init(policyID: 0,
-                                         policyName: "d",
-                                         policyApplyStatus: nil,
-                                         policyAgencyLogo: "",
-                                         policySttDateOrEndDate: ""))
         return cell
     }
     
@@ -213,6 +216,15 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
         } else {
             calendarHeaderView.yearMonthLabel.text = "\(year)년 \(month)월"
         }
+        tableViewSectionHeaderView.month = "\(month)"
+        viewModel.getPolicy(year: year, month: month)
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "YYYY-MM-dd"
+        // TODO: Dot찍어야함
+        return 0
     }
 }
 

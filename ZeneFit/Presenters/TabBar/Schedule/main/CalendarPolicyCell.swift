@@ -63,8 +63,8 @@ final class CalendarPolicyCell: UITableViewCell {
     func configureCell(policy: CalendarPolicyDTO) {
         policyImageView.kf.setImage(with: URL(string: policy.policyAgencyLogo ?? ""),
                                     placeholder: UIImage(resource: .defaultPolicy))
-        titleLabel.text = "임시"
-        dateLabel.text = "임시날짜"
+        titleLabel.text = policy.policyName
+        dateLabel.text = "\(policy.applySttDate) - \(policy.applyEndDate)"
     }
     
     private func setUI() {

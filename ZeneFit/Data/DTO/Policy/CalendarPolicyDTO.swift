@@ -8,14 +8,11 @@
 import Foundation
 
 struct CalendarPolicyDTO: Codable {
-    let policyID: Int
+    let policyId: Int
     let policyName: String
-    let policyApplyStatus: Bool?
+    let applyStatus: Bool
     let policyAgencyLogo: String?
-    let policySttDateOrEndDate: String
-
-    enum CodingKeys: String, CodingKey {
-        case policyID = "policyId"
-        case policyName, policyApplyStatus, policyAgencyLogo, policySttDateOrEndDate
-    }
+    let applySttDate: String
+    let applyEndDate: String
+    let applyProcedure: String
 }
