@@ -12,6 +12,8 @@ class BaseViewController: UIViewController {
     private var keyboardCancellable: AnyCancellable?
     var cancellable = Set<AnyCancellable>()
     
+    var backButtonHandler: (()->Void)?
+    
     private let titleLabel = UILabel().then {
         $0.font = .pretendard(.label1)
         $0.textColor = .textStrong
@@ -88,6 +90,7 @@ class BaseViewController: UIViewController {
     
     @objc func didClickBackButton() {
         self.navigationController?.popViewController(animated: true)
+        backButtonHandler?()
     }
     
     func responseToKeyboardHegiht(_ view: UIView) {

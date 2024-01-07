@@ -26,6 +26,10 @@ final class NotiSettingViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         setTitle = "알림 설정"
+        
+        backButtonHandler = { [weak self] in
+            self?.viewModel.coordinator?.finish()
+        }
     }
     
     override func setupBinding() {

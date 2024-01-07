@@ -87,8 +87,8 @@ final class WelfareListViewController: BaseViewController {
                 self?.viewModel.keyword.send(keyword)
             }.store(in: &cancellable)
         
-        headerView.searchBar.searchButton.tapPublisher
-            .sink { [weak self] in
+        headerView.searchBar.searchTextField.controlPublisher(for: .editingDidEnd)
+            .sink { [weak self] _ in
                 self?.viewModel.getPolicyInfo()
                 self?.view.endEditing(false)
             }.store(in: &cancellable)

@@ -77,6 +77,10 @@ final class NotiViewController: BaseViewController {
         super.configureNavigation()
         setTitle = "알림 내역"
         navigationItem.rightBarButtonItem = .init(customView: notiSetting)
+        
+        backButtonHandler = { [weak self] in
+            self?.viewModel.coordinator?.finish()
+        }
     }
     
     override func setDelegate() {

@@ -50,6 +50,7 @@ final class HomeCoordinator: Coordinator {
             let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
             notiCoordinator.delegate = self
             notiCoordinator.setAction(.notiList)
+            childCoordinators.append(notiCoordinator)
         }
     }
 }
@@ -57,10 +58,11 @@ final class HomeCoordinator: Coordinator {
 extension HomeCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: any Coordinator) {
         if childCoordinator is NotificationCoordinator {
-            let newVC = navigationController.viewControllers.filter {
-                !($0 is NotiViewController || $0 is NotiSettingViewController)
+            if !navigationController.viewControllers.contains(where: {
+                ($0 is NotiViewController || $0 is NotiSettingViewController)
+            }) {
+                childCoordinators.removeAll(where: { $0 is NotificationCoordinator })
             }
-            navigationController.setViewControllers(newVC, animated: true)
         } else if let index = childCoordinators.firstIndex(where: { $0 === childCoordinator }) {
             childCoordinators.remove(at: index)
         }

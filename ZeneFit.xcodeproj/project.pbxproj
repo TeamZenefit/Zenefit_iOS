@@ -586,7 +586,6 @@
 		B54C706E2B47C7DB0041C99D /* main */ = {
 			isa = PBXGroup;
 			children = (
-				B54C706C2B47C7440041C99D /* ScheduleCoordinator.swift */,
 				B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */,
 				B54C706F2B47C7F70041C99D /* ScheduleViewModel.swift */,
 				B50F359D2B48638F0047CEC3 /* CalendarHeaderView.swift */,
@@ -636,6 +635,7 @@
 		B552F9D02AE5449500AA5F40 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				B54C706C2B47C7440041C99D /* ScheduleCoordinator.swift */,
 				B54C706E2B47C7DB0041C99D /* main */,
 			);
 			path = Schedule;

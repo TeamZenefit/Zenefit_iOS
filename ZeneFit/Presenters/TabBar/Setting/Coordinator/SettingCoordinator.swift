@@ -68,10 +68,11 @@ final class SettingCoordinator: Coordinator {
 extension SettingCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: any Coordinator) {
         if childCoordinator is NotificationCoordinator {
-            let newVC = navigationController.viewControllers.filter {
-                !($0 is NotiViewController || $0 is NotiSettingViewController)
+            if !navigationController.viewControllers.contains(where: {
+                ($0 is NotiViewController || $0 is NotiSettingViewController)
+            }) {
+                childCoordinators.removeAll(where: { $0 is NotificationCoordinator })
             }
-            navigationController.setViewControllers(newVC, animated: true)
         }
     }
 }

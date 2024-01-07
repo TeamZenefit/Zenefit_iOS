@@ -28,14 +28,27 @@ final class WelfareSearchBar: UISearchBar {
         self.searchTextField.textColor = .textNormal
         addSubview(searchButton)
         
+        searchTextField.delegate = self
+        
         searchButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(24)
         }
+        
+        searchButton.addAction(.init(handler: { [weak self] _ in
+            self?.endEditing(false)
+        }), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension WelfareSearchBar: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(false)
+        return true
     }
 }
