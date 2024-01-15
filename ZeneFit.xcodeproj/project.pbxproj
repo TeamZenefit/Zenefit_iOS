@@ -118,8 +118,6 @@
 		B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452492AEE8842000A45FA /* ProgressView.swift */; };
 		B564524C2AEE8A61000A45FA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524B2AEE8A61000A45FA /* UIImage+.swift */; };
 		B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */; };
-		B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564524F2AEE9AA8000A45FA /* BigBoxView.swift */; };
-		B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */; };
 		B56452542AEEB229000A45FA /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452532AEEB229000A45FA /* GestureType.swift */; };
 		B56452D82AEFE55D000A45FA /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452D72AEFE55D000A45FA /* BookmarkViewModel.swift */; };
 		B56452DA2AEFE5A0000A45FA /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56452D92AEFE5A0000A45FA /* BookmarkViewController.swift */; };
@@ -133,6 +131,9 @@
 		B583E8CE2B45A2E900C4A1A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */; };
 		B583E8D02B45A5A700C4A1A7 /* ZFKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */; };
 		B583E8D22B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B583E8D12B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift */; };
+		B5893B152B55855800BE95B3 /* HomeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B142B55855800BE95B3 /* HomeSectionHeaderView.swift */; };
+		B5893B172B55877C00BE95B3 /* HomePolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */; };
+		B5893B192B5597A200BE95B3 /* HomeSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */; };
 		B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */; };
 		B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */; };
 		B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2E2B25E24F00236C2F /* UserService.swift */; };
@@ -354,8 +355,6 @@
 		B56452492AEE8842000A45FA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		B564524B2AEE8A61000A45FA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBoxView.swift; sourceTree = "<group>"; };
-		B564524F2AEE9AA8000A45FA /* BigBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoxView.swift; sourceTree = "<group>"; };
-		B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePolicyInfoView.swift; sourceTree = "<group>"; };
 		B56452532AEEB229000A45FA /* GestureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
 		B56452D72AEFE55D000A45FA /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		B56452D92AEFE5A0000A45FA /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
@@ -368,6 +367,9 @@
 		B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFKeyType.swift; sourceTree = "<group>"; };
 		B583E8D12B45A93600C4A1A7 /* UpdateFCMTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFCMTokenUseCase.swift; sourceTree = "<group>"; };
+		B5893B142B55855800BE95B3 /* HomeSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionHeaderView.swift; sourceTree = "<group>"; };
+		B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePolicyCell.swift; sourceTree = "<group>"; };
+		B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionFooterView.swift; sourceTree = "<group>"; };
 		B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2E2B25E24F00236C2F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -938,8 +940,9 @@
 			children = (
 				B56452492AEE8842000A45FA /* ProgressView.swift */,
 				B564524D2AEE8F8B000A45FA /* SmallBoxView.swift */,
-				B564524F2AEE9AA8000A45FA /* BigBoxView.swift */,
-				B56452512AEE9D3F000A45FA /* HomePolicyInfoView.swift */,
+				B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */,
+				B5893B142B55855800BE95B3 /* HomeSectionHeaderView.swift */,
+				B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1586,7 +1589,6 @@
 				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
 				B55826DE2B1B953500A360E9 /* SettingMainCell.swift in Sources */,
-				B56452522AEE9D3F000A45FA /* HomePolicyInfoView.swift in Sources */,
 				B552F9E22AE55D5E00AA5F40 /* FindWelfareUseCase.swift in Sources */,
 				B55E424A2B411C2700E4B893 /* WelfareSortType.swift in Sources */,
 				B54AB1AB2AF7675D00429C52 /* WelfareMainItemCell.swift in Sources */,
@@ -1620,7 +1622,6 @@
 				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
 				B5A8706E2B0A636A0052D5A1 /* WelfareMainInfoDTO.swift in Sources */,
-				B56452502AEE9AA8000A45FA /* BigBoxView.swift in Sources */,
 				B50F35AA2B4994860047CEC3 /* GetNotificationUseCase.swift in Sources */,
 				B55827162B1CD33600A360E9 /* PersonalInfoViewModel.swift in Sources */,
 				B54A674D2ADBE44D00971467 /* RegistCompleteViewController.swift in Sources */,
@@ -1680,12 +1681,14 @@
 				B5E4B5AF2B45B19A00F63486 /* UnregistUserUseCase.swift in Sources */,
 				B5ED7BAC2B00AF8400138FE8 /* HomeInfoDTO.swift in Sources */,
 				B552F9DC2AE5588E00AA5F40 /* PolicyService.swift in Sources */,
+				B5893B192B5597A200BE95B3 /* HomeSectionFooterView.swift in Sources */,
 				B5ED7BA92B00AE6500138FE8 /* HomeService.swift in Sources */,
 				B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */,
 				B54A67512ADC11E900971467 /* AuthRepository.swift in Sources */,
 				B583E8D02B45A5A700C4A1A7 /* ZFKeyType.swift in Sources */,
 				B54AB1B32AF7E23600429C52 /* WelfareListViewController.swift in Sources */,
 				B552F9EF2AE56E5100AA5F40 /* RecommendWelFareEntity.swift in Sources */,
+				B5893B152B55855800BE95B3 /* HomeSectionHeaderView.swift in Sources */,
 				B5F624F42AC88DA9002A1896 /* BottomButton.swift in Sources */,
 				B5F624C82AC54876002A1896 /* UIView+.swift in Sources */,
 				B5F624C32AC53B79002A1896 /* BaseViewController.swift in Sources */,
@@ -1696,6 +1699,7 @@
 				B56452DC2AF005A1000A45FA /* BookmarkCell.swift in Sources */,
 				B552F9E52AE55DA000AA5F40 /* PolicyRepository.swift in Sources */,
 				B55826ED2B1C482C00A360E9 /* AgreementFormViewModel.swift in Sources */,
+				B5893B172B55877C00BE95B3 /* HomePolicyCell.swift in Sources */,
 				B564524E2AEE8F8B000A45FA /* SmallBoxView.swift in Sources */,
 				B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */,
 				B5F624A52AC32919002A1896 /* UIColor+.swift in Sources */,

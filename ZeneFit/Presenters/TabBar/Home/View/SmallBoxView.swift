@@ -25,7 +25,7 @@ final class SmallBoxView: UIView {
         iconImageView.image = icon
         super.init(frame: .zero)
         backgroundColor = .white
-        layer.cornerRadius = 8
+        layer.cornerRadius = 16
         setLayout()
     }
     

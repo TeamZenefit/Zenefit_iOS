@@ -20,6 +20,7 @@ final class WelfareViewController: BaseViewController {
         $0.separatorStyle = .none
         $0.register(WelfareMainItemCell.self, forCellReuseIdentifier: WelfareMainItemCell.identifier)
         $0.backgroundColor = .backgroundPrimary
+        $0.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 10, height: 8))
     }
     
     init(viewModel: WelfareViewModel) {
@@ -42,7 +43,7 @@ final class WelfareViewController: BaseViewController {
         let titleLabel = UILabel().then {
             $0.text = "정책"
             $0.textColor = .textStrong
-            $0.font = .pretendard(.label1)
+            $0.font = .pretendard(.title1)
         }
         
         navigationItem.standardAppearance?.backgroundColor = .backgroundPrimary
@@ -87,13 +88,6 @@ final class WelfareViewController: BaseViewController {
 }
 
 extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return " "
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.policyItems.value.count

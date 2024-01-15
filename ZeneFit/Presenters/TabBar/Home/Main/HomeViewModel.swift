@@ -15,7 +15,7 @@ final class HomeViewModel {
     private let usecase: HomeUseCase
    
     // output
-    var info = PassthroughSubject<HomeInfoDTO, Never>()
+    var info = CurrentValueSubject<HomeInfoDTO?, Never>.init(.none)
     var error = PassthroughSubject<Error, Never>()
     
     init(coordinator: HomeCoordinator? = nil,

@@ -17,7 +17,13 @@ final class HomeViewController: BaseViewController {
     
     private let scollView = UIScrollView()
     
-    private let topBGView = UIImageView(image: .init(named: "img_bg"))
+    private let homeHeaderView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private let topBGView = UIImageView(image: .init(named: "img_bg")).then {
+        $0.contentMode = .scaleAspectFit
+    }
     
     private let progressView = ProgressView()
     
@@ -25,7 +31,6 @@ final class HomeViewController: BaseViewController {
         $0.numberOfLines = 2
         $0.textColor = .textNormal
         $0.font = .pretendard(.title1)
-        $0.text = "상우님은\n부자되세요"
     }
     
     private let imageView = UIImageView(image: .init(named: "m-smart"))
@@ -40,9 +45,14 @@ final class HomeViewController: BaseViewController {
         $0.distribution = .fillEqually
         $0.spacing = 8
     }
-    
-    private lazy var policyInfoView = BigBoxView(title: "정책 추천", coordinator: viewModel.coordinator)
-    private lazy var deadLineInfoView = BigBoxView(title: "신청 마감일", coordinator: nil)
+
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+        $0.showsVerticalScrollIndicator = false
+        $0.tableHeaderView = homeHeaderView
+        $0.separatorStyle = .none
+        $0.backgroundColor = .backgroundPrimary
+        $0.register(HomePolicyCell.self, forCellReuseIdentifier: HomePolicyCell.identifier)
+    }
     
     private lazy var errorView = DefaultErrorView().then {
         $0.retryHandler = { [weak self] in
@@ -65,6 +75,11 @@ final class HomeViewController: BaseViewController {
         print(KeychainManager.read("accessToken"))
     }
     
+    override func setDelegate() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchMainInfo()
@@ -74,6 +89,7 @@ final class HomeViewController: BaseViewController {
         viewModel.info
             .receive(on: RunLoop.main)
             .sink { [weak self] info in
+                guard let info else { return }
                 self?.errorView.isHidden = true
                 self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"
                 self?.nameLabel.setPointTextAttribute(info.characterNickname, color: .primaryNormal)
@@ -81,11 +97,11 @@ final class HomeViewController: BaseViewController {
                                                  value: CGFloat(info.characterPercent)/100.0)
                 self?.bookmarkInfoView.configureInfo(count: info.interestPolicyCnt)
                 self?.benefitInfoView.configureInfo(count: info.applyPolicyCnt)
-                self?.imageView.kf.setImage(with: URL(string: info.characterImage))
+                self?.imageView.kf.setImage(with: URL(string: info.characterImage),
+                                            placeholder: UIImage(resource: .mSmart))
                 
-                self?.policyInfoView.setItems(items: info.recommendPolicy)
-                self?.deadLineInfoView.setItems(items: info.endDatePolicy,
-                                                hasDday: true)
+                self?.view.layoutIfNeeded()
+                self?.tableView.reloadData()
             }.store(in: &cancellable)
         
         viewModel.error
@@ -146,33 +162,44 @@ final class HomeViewController: BaseViewController {
                 self?.viewModel.coordinator?.setAction(.benefit)
             }.store(in: &cancellable)
         
-        policyInfoView.tapEventHandler = { [weak self] in
-            self?.tabBarController?.selectedIndex = 1
-        }
-        
-        deadLineInfoView.tapEventHandler = { [weak self] in
-            self?.tabBarController?.selectedIndex = 2
-        }
+//        policyInfoView.tapEventHandler = { [weak self] in
+//            self?.tabBarController?.selectedIndex = 1
+//        }
+//        
+//        deadLineInfoView.tapEventHandler = { [weak self] in
+//            self?.tabBarController?.selectedIndex = 2
+//        }
     }
     
     override func addSubView() {
-        view.addSubview(scollView)
         view.addSubview(errorView)
-        [topBGView, nameLabel, imageView, progressView, smallBoxStackView, policyInfoView, deadLineInfoView].forEach {
-            scollView.addSubview($0)
+        view.addSubview(homeHeaderView)
+        
+        [topBGView, nameLabel, imageView, progressView, smallBoxStackView].forEach {
+            homeHeaderView.addSubview($0)
+        }
+        
+        [tableView].forEach {
+            view.addSubview($0)
         }
     }
     
     override func layout() {
-        scollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        tableView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.verticalEdges.equalToSuperview()
+        }
+        
+        homeHeaderView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview()
         }
         
         topBGView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.width.equalTo(view.frame.width)
+            $0.height.equalTo(80)
             $0.top.equalToSuperview()
-            $0.height.equalTo(view.snp.height).multipliedBy(0.1)
         }
         
         nameLabel.snp.makeConstraints {
@@ -194,21 +221,80 @@ final class HomeViewController: BaseViewController {
         smallBoxStackView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.top.equalTo(progressView.snp.bottom).offset(16)
-        }
-        
-        policyInfoView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.top.equalTo(smallBoxStackView.snp.bottom).offset(24)
-        }
-        
-        deadLineInfoView.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.top.equalTo(policyInfoView.snp.bottom).offset(24)
             $0.bottom.equalToSuperview().offset(-16)
         }
         
         errorView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            viewModel.info.value?.recommendPolicy.count ?? 0
+        default:
+            viewModel.info.value?.endDatePolicy.count ?? 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView: HomeSectionHeaderView
+        switch section {
+        case 0:
+            headerView = HomeSectionHeaderView(title: "정책 추천", action: { [weak self] in
+                self?.tabBarController?.selectedIndex = 1
+            })
+        default:
+            headerView = HomeSectionHeaderView(title: "신청 마감일", action: { [weak self] in
+                self?.tabBarController?.selectedIndex = 2
+            })
+        }
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomePolicyCell.identifier, for: indexPath) as! HomePolicyCell
+        
+        guard let info = viewModel.info.value else {
+            return cell
+        }
+        
+        switch indexPath.section {
+        case 0:
+            let item = info.recommendPolicy[indexPath.row]
+            cell.configureCell(item: item, showDate: false)
+        default:
+            let item = info.endDatePolicy[indexPath.row]
+            cell.configureCell(item: item, showDate: true)
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return HomeSectionFooterView()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let info = viewModel.info.value else {
+            return
+        }
+        
+        switch indexPath.section {
+        case 0:
+            let policyId = info.recommendPolicy[indexPath.row].policyID
+            viewModel.coordinator?.setAction(.welfareDetail(welfareId: policyId))
+        default:
+            let policyId = info.endDatePolicy[indexPath.row].policyID
+            viewModel.coordinator?.setAction(.welfareDetail(welfareId: policyId))
         }
     }
 }

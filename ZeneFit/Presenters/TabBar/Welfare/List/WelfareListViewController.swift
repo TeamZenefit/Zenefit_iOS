@@ -121,7 +121,7 @@ final class WelfareListViewController: BaseViewController {
     
     override func layout() {
         tableView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.bottom.horizontalEdges.equalToSuperview()
         }
         

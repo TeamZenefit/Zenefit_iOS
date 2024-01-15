@@ -30,7 +30,7 @@ final class SettingViewController: BaseViewController {
         let titleLabel = UILabel().then {
             $0.text = "설정"
             $0.textColor = .textStrong
-            $0.font = .pretendard(.label1)
+            $0.font = .pretendard(.title1)
         }
         
         navigationItem.standardAppearance?.backgroundColor = .white
@@ -49,7 +49,8 @@ final class SettingViewController: BaseViewController {
     
     override func layout() {
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(8)
+            $0.bottom.horizontalEdges.equalToSuperview()
         }
     }
 }

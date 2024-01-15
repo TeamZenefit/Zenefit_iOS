@@ -90,7 +90,7 @@ final class ScheduleViewController: BaseViewController {
         let titleLabel = UILabel().then {
             $0.text = "달력"
             $0.textColor = .textStrong
-            $0.font = .pretendard(.label1)
+            $0.font = .pretendard(.title1)
         }
 
         navigationItem.standardAppearance?.backgroundColor = .backgroundPrimary
@@ -136,7 +136,7 @@ final class ScheduleViewController: BaseViewController {
         policyTableView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(8)
         }
         
         calendarHeaderView.snp.makeConstraints {
