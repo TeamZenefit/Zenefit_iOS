@@ -40,7 +40,7 @@ final class CalendarSectionHedaer: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
-        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = 16
         self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         setUI()

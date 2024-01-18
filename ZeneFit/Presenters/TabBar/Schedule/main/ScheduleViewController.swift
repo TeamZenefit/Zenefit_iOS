@@ -19,7 +19,7 @@ final class ScheduleViewController: BaseViewController {
     
     private let calendarFrameView = UIView().then {
         $0.backgroundColor = .backgroundPrimary
-        $0.layer.cornerRadius = 8
+        $0.layer.cornerRadius = 16
         $0.backgroundColor = .white
     }
     
@@ -39,7 +39,7 @@ final class ScheduleViewController: BaseViewController {
         $0.appearance.titleTodayColor = .primaryNormal
         $0.appearance.todayColor = .primaryAssistive
         $0.headerHeight = .zero
-        $0.locale = .current
+        $0.locale = .init(identifier: "ko")
     }
     
     private let separatorView = UIView().then {
@@ -194,7 +194,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let bottomFrameView = UIView()
         bottomFrameView.backgroundColor = .white
-        bottomFrameView.layer.cornerRadius = 8
+        bottomFrameView.layer.cornerRadius = 16
         bottomFrameView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         return bottomFrameView

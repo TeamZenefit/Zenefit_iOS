@@ -48,4 +48,15 @@ extension String {
     func hipenToDot() -> String {
         return self.replacingOccurrences(of: "-", with: ".")
     }
+    
+    var hasLastConsonant: Bool {
+        guard let lastChar = self.last else {
+            return false
+        }
+        
+        let decimal = UnicodeScalar("\(lastChar)")?.value ?? 0
+        let index = (decimal - 0xac00) % 28 // 0으로 나누어 떨어지지 않으면 종성 있음
+        
+        return index != 0
+    }
 }

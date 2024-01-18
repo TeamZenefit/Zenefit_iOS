@@ -33,7 +33,7 @@ final class HomeViewController: BaseViewController {
         $0.font = .pretendard(.title1)
     }
     
-    private let imageView = UIImageView(image: .init(named: "m-smart"))
+    private let imageView = UIImageView()
     
     private let bookmarkInfoView = SmallBoxView(title: "관심 등록",
                                                 icon: .init(resource: .search28))
@@ -45,7 +45,7 @@ final class HomeViewController: BaseViewController {
         $0.distribution = .fillEqually
         $0.spacing = 8
     }
-
+    
     private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.showsVerticalScrollIndicator = false
         $0.tableHeaderView = homeHeaderView
@@ -91,7 +91,11 @@ final class HomeViewController: BaseViewController {
             .sink { [weak self] info in
                 guard let info else { return }
                 self?.errorView.isHidden = true
-                self?.nameLabel.text = "\(info.nickname)님은\n\(info.characterNickname)(이)에요"
+                let name: String = info.characterNickname.hasLastConsonant ?
+                "\(info.nickname)님은\n\(info.characterNickname)이에요" :
+                "\(info.nickname)님은\n\(info.characterNickname)예요"
+                
+                self?.nameLabel.text = name
                 self?.nameLabel.setPointTextAttribute(info.characterNickname, color: .primaryNormal)
                 self?.progressView.configureView(content: info.description,
                                                  value: CGFloat(info.characterPercent)/100.0)
@@ -142,10 +146,10 @@ final class HomeViewController: BaseViewController {
             .sink { [weak self] in
                 self?.viewModel.coordinator?.setAction(.menual)
             }.store(in: &cancellable)
-
+        
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = 8
-
+        
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: notiItem),
                                                    spacer,
                                                    UIBarButtonItem(customView: manualItem)]
@@ -161,14 +165,6 @@ final class HomeViewController: BaseViewController {
             .sink { [weak self] _ in
                 self?.viewModel.coordinator?.setAction(.benefit)
             }.store(in: &cancellable)
-        
-//        policyInfoView.tapEventHandler = { [weak self] in
-//            self?.tabBarController?.selectedIndex = 1
-//        }
-//        
-//        deadLineInfoView.tapEventHandler = { [weak self] in
-//            self?.tabBarController?.selectedIndex = 2
-//        }
     }
     
     override func addSubView() {
