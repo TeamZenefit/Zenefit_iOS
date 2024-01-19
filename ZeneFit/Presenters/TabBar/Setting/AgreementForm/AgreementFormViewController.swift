@@ -33,6 +33,8 @@ final class AgreementFormViewController: BaseViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         viewModel.getAgreement()
+        
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {

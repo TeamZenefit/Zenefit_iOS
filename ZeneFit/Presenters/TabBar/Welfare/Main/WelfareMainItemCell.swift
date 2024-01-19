@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 protocol WelfareMainItemCellDelegate: AnyObject {
-    func tapTitle(type: SupportPolicyType) -> Void
     func tapApply(policyId: Int) -> Void
     func tapInterest(policy: PolicyMainInfo, completion: (()->Void)?) -> Void
 }
@@ -126,7 +125,6 @@ final class WelfareMainItemCell: UITableViewCell {
         addSubViews()
         setLayout()
         setupBinding()
-        setGesture()
     }
     
     required init(coder: NSCoder) {
@@ -280,13 +278,4 @@ final class WelfareMainItemCell: UITableViewCell {
                 }
             }.store(in: &cancellable)
     }
-    
-    private func setGesture() {
-        topFrameView.gesture(for: .tap)
-            .sink { [weak self] _ in
-                guard let typeRawValue = self?.policy?.supportType else { return }
-                self?.delegate?.tapTitle(type: .init(rawValue: typeRawValue) ?? .loans)
-            }.store(in: &cancellable)
-    }
-    
 }

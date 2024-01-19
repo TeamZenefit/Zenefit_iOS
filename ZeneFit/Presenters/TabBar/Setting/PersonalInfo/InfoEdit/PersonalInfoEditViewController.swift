@@ -25,6 +25,8 @@ final class PersonalInfoEditViewController: BaseViewController {
     init(viewModel: PersonalInfoEditViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {

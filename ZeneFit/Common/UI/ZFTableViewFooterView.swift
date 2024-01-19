@@ -7,7 +7,14 @@
 
 import UIKit
 
-final class ZFTableViewFooterView: UIView {
+enum FooterType {
+    case plain
+    case fill
+}
+
+final class ZFTableViewFooterView: BaseView {
+    private let type: FooterType
+    
     private let frameView = UIView().then {
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
@@ -30,17 +37,39 @@ final class ZFTableViewFooterView: UIView {
         $0.textColor = .textAlternative
     }
     
-    init(title: String) {
-        guideLabel.text = title
+    init(title: String, type: FooterType = .plain) {
+        self.guideLabel.text = title
+        self.type = type
         super.init(frame: .zero)
+    }
+    
+    override func configureUI() {
+        super.configureUI()
         
+        backgroundColor = .clear
+     
+        if type == .fill {
+            frameView.layer.cornerRadius = 0
+        } else {
+            frameView.layer.cornerRadius = 8
+        }
+    }
+    
+    override func addSubView() {
         addSubview(frameView)
         frameView.addSubview(stackView)
-        
+    }
+    
+    override func setLayout() {
         frameView.snp.makeConstraints {
             $0.height.equalTo(34)
-            $0.width.equalTo(UIScreen.main.bounds.width-32)
             $0.center.equalToSuperview()
+            
+            if type == .fill {
+                $0.width.equalTo(UIScreen.main.bounds.width)
+            } else {
+                $0.width.equalTo(UIScreen.main.bounds.width-32)
+            }
         }
         
         stackView.snp.makeConstraints {

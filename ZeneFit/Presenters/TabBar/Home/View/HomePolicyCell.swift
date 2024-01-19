@@ -79,6 +79,7 @@ final class HomePolicyCell: UITableViewCell {
             $0.bottom.equalTo(policyImageView.snp.bottom)
         }
         
+        dateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         dateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         dateLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)

@@ -103,14 +103,13 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        let item = viewModel.policyItems.value[indexPath.row]
+        let type = SupportPolicyType(rawValue: item.supportType) ?? .money
+        self.viewModel.coordinator?.setAction(.list(type: type))
     }
 }
 
 extension WelfareViewController: WelfareMainItemCellDelegate {
-    func tapTitle(type: SupportPolicyType) {
-        self.viewModel.coordinator?.setAction(.list(type: type))
-    }
     
     func tapApply(policyId: Int) {
         self.viewModel.coordinator?.setAction(.detail(id: policyId))

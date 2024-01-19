@@ -17,6 +17,8 @@ final class NotiSettingViewController: BaseViewController {
     init(viewModel: NotiSettingViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder: NSCoder) {

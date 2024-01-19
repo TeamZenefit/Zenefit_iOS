@@ -52,7 +52,9 @@ final class WelfareListHeaderView: BaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateHeightHandler?()
+        DispatchQueue.main.async {
+            self.updateHeightHandler?()
+        }
     }
     
     override func addSubView() {

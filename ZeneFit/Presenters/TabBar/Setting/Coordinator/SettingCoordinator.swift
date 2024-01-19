@@ -62,10 +62,12 @@ final class SettingCoordinator: Coordinator {
             navigationController.pushViewController(personalInfoEditVC, animated: true)
         case .notiSetting:
             let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            childCoordinators.append(notiCoordinator)
             notiCoordinator.delegate = self
             notiCoordinator.setAction(.notiSetting)
         case .notiList:
             let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
+            childCoordinators.append(notiCoordinator)
             notiCoordinator.delegate = self
             notiCoordinator.setAction(.notiList)
         }

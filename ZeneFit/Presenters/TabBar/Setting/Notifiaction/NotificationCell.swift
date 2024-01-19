@@ -28,6 +28,7 @@ final class NotificationCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
         backgroundColor = .white
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

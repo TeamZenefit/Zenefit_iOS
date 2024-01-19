@@ -26,8 +26,10 @@ final class WelfareSearchBar: UISearchBar {
         self.searchTextField.rightViewMode = .never
         self.searchTextField.clearButtonMode = .never
         self.searchTextField.textColor = .textNormal
+        self.searchTextField.autocorrectionType = .no
+        self.searchTextField.spellCheckingType = .no
         addSubview(searchButton)
-        
+
         searchTextField.delegate = self
         
         searchButton.snp.makeConstraints {

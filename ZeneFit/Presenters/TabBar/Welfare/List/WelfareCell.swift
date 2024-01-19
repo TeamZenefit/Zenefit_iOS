@@ -182,6 +182,11 @@ final class WelfareCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        delegate = nil
+    }
+    
     // selectButton에 따라 분기해줘야함
     func configureCell(item: PolicyInfoDTO) {
         self.isHidden = false

@@ -50,6 +50,8 @@ final class BookmarkViewController: BaseViewController {
     init(viewModel: BookmarkViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {

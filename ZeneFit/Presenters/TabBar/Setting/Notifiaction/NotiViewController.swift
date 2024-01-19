@@ -31,15 +31,18 @@ final class NotiViewController: BaseViewController {
     
     private lazy var tableView = UITableView().then {
         $0.backgroundColor = .white
+        $0.separatorStyle = .none
         $0.refreshControl = refreshControl
         $0.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.identifier)
     }
     
-    private let footerView = ZFTableViewFooterView(title: "2주간 지난 알림은 사라져요")
+    private let footerView = ZFTableViewFooterView(title: "2주간 지난 알림은 사라져요", type: .fill)
     
     init(viewModel: NotiViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {
@@ -77,7 +80,7 @@ final class NotiViewController: BaseViewController {
         super.configureNavigation()
         setTitle = "알림 내역"
         navigationItem.rightBarButtonItem = .init(customView: notiSetting)
-        
+    
         backButtonHandler = { [weak self] in
             self?.viewModel.coordinator?.finish()
         }
@@ -99,7 +102,7 @@ final class NotiViewController: BaseViewController {
     override func configureUI() {
         super.configureUI()
         footerView.frame = .init(origin: .init(x: 0, y: 0),
-                                 size: .init(width: view.frame.width, height: 34))
+                                 size: .init(width: view.frame.width, height: 42))
         tableView.tableFooterView = footerView
     }
     
@@ -172,10 +175,6 @@ extension NotiViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(item: item)
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
