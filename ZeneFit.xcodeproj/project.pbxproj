@@ -134,6 +134,7 @@
 		B5893B152B55855800BE95B3 /* HomeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B142B55855800BE95B3 /* HomeSectionHeaderView.swift */; };
 		B5893B172B55877C00BE95B3 /* HomePolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */; };
 		B5893B192B5597A200BE95B3 /* HomeSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */; };
+		B593811C2B5AD18700E68347 /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593811B2B5AD18700E68347 /* BaseLabel.swift */; };
 		B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */; };
 		B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */; };
 		B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2E2B25E24F00236C2F /* UserService.swift */; };
@@ -370,6 +371,7 @@
 		B5893B142B55855800BE95B3 /* HomeSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionHeaderView.swift; sourceTree = "<group>"; };
 		B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePolicyCell.swift; sourceTree = "<group>"; };
 		B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionFooterView.swift; sourceTree = "<group>"; };
+		B593811B2B5AD18700E68347 /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
 		B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2E2B25E24F00236C2F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 			children = (
 				B5F624C22AC53B79002A1896 /* BaseViewController.swift */,
 				B54AB1AD2AF76AA400429C52 /* BaseView.swift */,
+				B593811B2B5AD18700E68347 /* BaseLabel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1660,6 +1663,7 @@
 				B5F624CE2AC5B68F002A1896 /* Coordinator.swift in Sources */,
 				B52437B92AFBE406006DF4D2 /* WelfareCell.swift in Sources */,
 				B56452412AEE744B000A45FA /* SettingCoordinator.swift in Sources */,
+				B593811C2B5AD18700E68347 /* BaseLabel.swift in Sources */,
 				B552F9CA2AE5444100AA5F40 /* HomeViewController.swift in Sources */,
 				B50F35B22B49B0D20047CEC3 /* NotificationCoordinator.swift in Sources */,
 				B52437BB2AFD19BC006DF4D2 /* WelfareSearchBar.swift in Sources */,

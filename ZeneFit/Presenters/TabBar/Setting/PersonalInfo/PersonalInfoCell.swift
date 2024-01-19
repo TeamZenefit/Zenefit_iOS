@@ -8,12 +8,12 @@
 import UIKit
 
 final class PersonalInfoCell: UITableViewCell {
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.body1)
         $0.textColor = .textNormal
     }
     
-    private let contentLabel = UILabel().then {
+    private let contentLabel = BaseLabel().then {
         $0.font = .pretendard(.label3)
         $0.textAlignment = .right
         $0.textColor = .textNormal

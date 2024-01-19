@@ -13,12 +13,12 @@ final class CalendarPolicyCell: UITableViewCell {
         $0.layer.cornerRadius = 21
     }
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
     }
     
-    private let dateLabel = UILabel().then {
+    private let dateLabel = BaseLabel().then {
         $0.textColor = .textAlternative
         $0.font = .pretendard(.chips)
     }

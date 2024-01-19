@@ -14,7 +14,7 @@ class BaseViewController: UIViewController {
     
     var backButtonHandler: (()->Void)?
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.label1)
         $0.textColor = .textStrong
     }

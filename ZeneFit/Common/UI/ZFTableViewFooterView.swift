@@ -24,7 +24,7 @@ final class ZFTableViewFooterView: UIView {
         $0.image = UIImage(named: "InfoIcon")?.withRenderingMode(.alwaysOriginal)
     }
     
-    private let guideLabel = UILabel().then {
+    private let guideLabel = BaseLabel().then {
         $0.text = "관심 정책은 달력에도 추가됩니다."
         $0.font = .pretendard(.chips)
         $0.textColor = .textAlternative

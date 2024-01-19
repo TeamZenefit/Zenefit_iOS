@@ -17,13 +17,13 @@ final class DefaultErrorView: BaseView {
         $0.contentMode = .scaleAspectFit
     }
     
-    let titleLabel = UILabel().then {
+    let titleLabel = BaseLabel().then {
         $0.text = "인터넷 연결이 불안정합니다."
         $0.textColor = .textAlternative
         $0.font = .pretendard(.label1)
     }
     
-    let contentLabel = UILabel().then {
+    let contentLabel = BaseLabel().then {
         $0.text = "인터넷 연결이 불안정합니다. 다시 시도해주세요."
         $0.textColor = .textAlternative
         $0.font = .pretendard(.body1)

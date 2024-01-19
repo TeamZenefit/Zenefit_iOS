@@ -14,13 +14,13 @@ final class AppInfoViewController: BaseViewController {
         $0.image = .init(resource: .diamond)
     }
     
-    private let subGuideLabel = UILabel().then {
+    private let subGuideLabel = BaseLabel().then {
         $0.text = "이 앱을 만든 사람들"
         $0.textColor = .textAlternative
         $0.font = .pretendard(.chips)
     }
     
-    private let mainLabel = UILabel().then {
+    private let mainLabel = BaseLabel().then {
         $0.text = "저희는 IT 연합 동아리 CMC의\n보물찾기 팀입니다"
         $0.font = .pretendard(.label3)
         $0.textAlignment = .center

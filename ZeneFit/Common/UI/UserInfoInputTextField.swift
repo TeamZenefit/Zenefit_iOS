@@ -16,7 +16,7 @@ final class UserInfoInputTextField: UIStackView {
     
     private var placeHolder = ""
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textAlternative
         $0.font = .pretendard(.label5)
     }
@@ -26,7 +26,7 @@ final class UserInfoInputTextField: UIStackView {
         $0.font = .pretendard(.label1)
     }
     
-    let rightLabel = UILabel().then {
+    let rightLabel = BaseLabel().then {
         $0.textColor = .textAlternative
         $0.font = .pretendard(.label1)
     }
@@ -37,7 +37,7 @@ final class UserInfoInputTextField: UIStackView {
         $0.backgroundColor = .textAlternative
     }
     
-    private let guideLabel = UILabel().then {
+    private let guideLabel = BaseLabel().then {
         $0.isHidden = true
         $0.textColor = .primaryNormal
         $0.font = .pretendard(.caption)

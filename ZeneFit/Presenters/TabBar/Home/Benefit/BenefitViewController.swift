@@ -21,13 +21,13 @@ final class BenefitViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
-    private let subTitleLabel = UILabel().then {
+    private let subTitleLabel = BaseLabel().then {
         $0.text = "수혜중인 정책"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal
     }
     
-    private let benefitCountLabel = UILabel().then {
+    private let benefitCountLabel = BaseLabel().then {
         $0.text = "n개"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal

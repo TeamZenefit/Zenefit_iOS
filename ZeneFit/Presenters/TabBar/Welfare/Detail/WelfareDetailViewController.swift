@@ -21,14 +21,14 @@ final class WelfareDetailViewController: BaseViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.text = "정책 이름을 신청하면\n월 n만원 정도를 받을 수 있어요"
         $0.textColor = .textStrong
         $0.font = .pretendard(.label1)
         $0.numberOfLines = 2
     }
     
-    private let subTitleLabel = UILabel().then {
+    private let subTitleLabel = BaseLabel().then {
         $0.textColor = .textAlternative
         $0.font = .pretendard(.body1)
         $0.isHidden = true

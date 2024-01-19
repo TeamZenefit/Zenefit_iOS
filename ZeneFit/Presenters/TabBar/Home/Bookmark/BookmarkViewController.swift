@@ -22,13 +22,13 @@ final class BookmarkViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
-    private let subTitleLabel = UILabel().then {
+    private let subTitleLabel = BaseLabel().then {
         $0.text = "관심 등록 중인 정책"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal
     }
     
-    private let bookmarkCountLabel = UILabel().then {
+    private let bookmarkCountLabel = BaseLabel().then {
         $0.text = "n개"
         $0.font = .pretendard(.body2)
         $0.textColor = .textNormal

@@ -37,7 +37,7 @@ public enum FontSystemType {
     case chips
     case caption
     
-    var lineSpacing: CGFloat {
+    var lineHeight: CGFloat {
         switch self {
         case .headline: return 48
         case .title1: return 32

@@ -9,7 +9,7 @@ import UIKit
 
 final class NotificationCategoryCell: UICollectionViewCell {
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.body2)
         $0.textColor = .textAssistive
     }

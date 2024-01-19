@@ -16,19 +16,19 @@ final class RegistCompleteViewController: BaseViewController {
         $0.loopMode = .loop
     }
     
-    private let subTitleLabel = UILabel().then {
+    private let subTitleLabel = BaseLabel().then {
         $0.text = "회원가입 완료!"
         $0.textColor = .textAlternative
         $0.font = .pretendard(.chips)
     }
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.text = "회원가입을 환영합니다"
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
     }
     
-    private let userNameLabel = UILabel().then {
+    private let userNameLabel = BaseLabel().then {
         $0.text = "닉네임님!"
         $0.textColor = .textNormal
         $0.font = .pretendard(.title2)

@@ -13,7 +13,7 @@ final class HomeSectionHeaderView: BaseView {
     
     var tapEventHandler: (()->Void)?
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label2)
     }

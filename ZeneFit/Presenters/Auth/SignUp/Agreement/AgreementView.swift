@@ -17,7 +17,7 @@ final class AgreementView: UIView {
         $0.setImage(UIImage(named: "che-box-off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
 
-    private let contentLabel = UILabel().then {
+    private let contentLabel = BaseLabel().then {
         $0.font = .pretendard(.body1)
         $0.textColor = .textNormal
     }

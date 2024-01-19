@@ -9,7 +9,7 @@ import UIKit
 
 final class CategoryCell: UICollectionViewCell {
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.label3)
         $0.textColor = .textAssistive
     }

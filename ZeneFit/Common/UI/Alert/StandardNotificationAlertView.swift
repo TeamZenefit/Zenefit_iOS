@@ -9,7 +9,7 @@ import UIKit
 
 final class StandardNotificationAlertView: UIStackView {
     
-    private let contentLabel = UILabel().then {
+    private let contentLabel = BaseLabel().then {
         $0.font = .pretendard(.label3)
         $0.textColor = .white
         $0.numberOfLines = 0

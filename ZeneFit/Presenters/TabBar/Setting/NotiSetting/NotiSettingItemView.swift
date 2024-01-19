@@ -8,12 +8,12 @@
 import UIKit
 
 final class NotiSettingItemView: BaseView {
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.body1)
         $0.textColor = .textNormal
     }
     
-    private let subTitleLabel = UILabel().then {
+    private let subTitleLabel = BaseLabel().then {
         $0.font = .pretendard(.chips)
         $0.textColor = .textAlternative
     }

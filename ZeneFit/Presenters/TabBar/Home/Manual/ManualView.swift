@@ -8,12 +8,12 @@
 import UIKit
 
 final class ManualView: UIView {
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.label1)
         $0.textColor = .textNormal
     }
     
-    private let subTitleLabel = UILabel().then {
+    private let subTitleLabel = BaseLabel().then {
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.font = .pretendard(.body1)

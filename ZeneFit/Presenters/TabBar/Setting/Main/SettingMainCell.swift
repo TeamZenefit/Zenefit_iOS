@@ -8,7 +8,7 @@
 import UIKit
 
 final class SettingMainCell: UITableViewCell {
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.body1)
     }

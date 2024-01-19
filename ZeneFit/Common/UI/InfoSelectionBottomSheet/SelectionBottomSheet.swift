@@ -25,7 +25,7 @@ final class SelectionBottomSheet: UIView {
         $0.layer.cornerRadius = 16
     }
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label1)
     }
@@ -34,7 +34,7 @@ final class SelectionBottomSheet: UIView {
         $0.setImage(UIImage(named: "Close"), for: .normal)
     }
     
-    private let duplicateInfoLabel = UILabel().then {
+    private let duplicateInfoLabel = BaseLabel().then {
         $0.textColor = .alert
         $0.text = "중복선택 할 수 없습니다"
         $0.font = .pretendard(.chips)

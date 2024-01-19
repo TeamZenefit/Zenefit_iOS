@@ -9,13 +9,13 @@ import UIKit
 
 final class WelfareDetailCell: UITableViewCell {
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.text = "제목"
         $0.font = .pretendard(.label3)
         $0.textColor = .textStrong
     }
     
-    private let contentLabel = UILabel().then {
+    private let contentLabel = BaseLabel().then {
         $0.text = "내용"
         $0.numberOfLines = 0
         $0.font = .pretendard(.body1)

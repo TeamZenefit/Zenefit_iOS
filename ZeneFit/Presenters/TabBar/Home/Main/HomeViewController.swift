@@ -27,7 +27,7 @@ final class HomeViewController: BaseViewController {
     
     private let progressView = ProgressView()
     
-    private let nameLabel = UILabel().then {
+    private let nameLabel = BaseLabel().then {
         $0.numberOfLines = 2
         $0.textColor = .textNormal
         $0.font = .pretendard(.title1)

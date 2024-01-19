@@ -27,7 +27,7 @@ final class SettingViewController: BaseViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        let titleLabel = UILabel().then {
+        let titleLabel = BaseLabel().then {
             $0.text = "설정"
             $0.textColor = .textStrong
             $0.font = .pretendard(.title1)

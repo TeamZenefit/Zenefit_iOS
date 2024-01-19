@@ -11,7 +11,7 @@ import Combine
 final class AgreementViewController: BaseViewController {
     private let viewModel: AgreementViewModel
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.label1)
         $0.textColor = .textStrong
         $0.text = "회원님의 약관동의가 필요해요"

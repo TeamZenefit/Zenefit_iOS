@@ -12,12 +12,12 @@ final class HomePolicyCell: UITableViewCell {
         $0.image = .init(named: "DefaultPolicy")
     }
     
-    private let policyTypeLabel = UILabel().then {
+    private let policyTypeLabel = BaseLabel().then {
         $0.textColor = .textAlternative
         $0.font = .pretendard(.chips)
     }
     
-    private let policyNameLabel = UILabel().then {
+    private let policyNameLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
     }

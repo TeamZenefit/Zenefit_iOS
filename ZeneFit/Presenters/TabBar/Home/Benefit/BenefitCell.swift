@@ -21,13 +21,13 @@ final class BenefitCell: UITableViewCell {
         $0.layer.cornerRadius = 13
     }
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.text = "정책 이름"
         $0.font = .pretendard(.label2)
         $0.textColor = .textNormal
     }
     
-    private let contentLabel = UILabel().then {
+    private let contentLabel = BaseLabel().then {
         $0.numberOfLines = 2
         $0.text = "정책 정보입니다. 정책 정보는 대략 2줄로 구성할 예정입니다. 정책 정보입니다. 정책 정보는 대략 2줄로 구성"
         $0.font = .pretendard(.body2)

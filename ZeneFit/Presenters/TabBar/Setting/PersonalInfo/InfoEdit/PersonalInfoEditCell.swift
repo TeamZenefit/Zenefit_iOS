@@ -8,7 +8,7 @@
 import UIKit
 
 final class PersonalInfoEditCell: UITableViewCell {
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.body1)
         $0.textColor = .textNormal
     }

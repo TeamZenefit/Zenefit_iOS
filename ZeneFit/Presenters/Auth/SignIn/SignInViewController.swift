@@ -26,7 +26,7 @@ final class SignInViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
-    private let oauthGuideLabel = UILabel().then {
+    private let oauthGuideLabel = BaseLabel().then {
         $0.text = "SNS 계정으로 간단하게 시작하기"
         $0.textColor = .white
         $0.font = .pretendard(.body2)

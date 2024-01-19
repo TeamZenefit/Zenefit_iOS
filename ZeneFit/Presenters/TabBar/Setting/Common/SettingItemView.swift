@@ -8,12 +8,12 @@
 import UIKit
 
 final class SettingItemView: BaseView {
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.body1)
     }
     
-    private let contentLabel = UILabel().then {
+    private let contentLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
     }
@@ -45,6 +45,7 @@ final class SettingItemView: BaseView {
     var contentTextFont: UIFont = .pretendard(.label3) {
         didSet {
             contentLabel.font = contentTextFont
+            contentLabel.setLineHeight(contentTextFont)
         }
     }
     

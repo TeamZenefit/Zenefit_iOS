@@ -10,12 +10,12 @@ import UIKit
 final class SmallBoxView: UIView {
     private let iconImageView = UIImageView()
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
     }
     
-    private let countLabel = UILabel().then {
+    private let countLabel = BaseLabel().then {
         $0.textColor = .textStrong
         $0.font = .pretendard(.label2)
     }

@@ -10,7 +10,7 @@ import UIKit
 final class SettingHeaderView: UIView {
     private let imageView = UIImageView()
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textStrong
         $0.font = .pretendard(.label2)
     }

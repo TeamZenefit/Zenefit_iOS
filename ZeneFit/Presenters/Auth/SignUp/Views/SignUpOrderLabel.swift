@@ -8,7 +8,7 @@
 import UIKit
 
 final class SignUpOrderLabel: UIStackView {
-    private let numLabel = UILabel().then {
+    private let numLabel = BaseLabel().then {
         $0.textAlignment = .center
         $0.clipsToBounds = true
         $0.backgroundColor = .primaryNormal
@@ -17,7 +17,7 @@ final class SignUpOrderLabel: UIStackView {
         $0.layer.cornerRadius = 10
     }
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .primaryNormal
         $0.font = .pretendard(.caption)
     }

@@ -24,4 +24,40 @@ extension UILabel {
         
         self.attributedText = attributedStr
     }
+    
+    public func setLineHeight(_ lineHeight: CGFloat) {
+        let text = self.text ?? ""
+        let style = NSMutableParagraphStyle()
+        style.maximumLineHeight = lineHeight
+        style.minimumLineHeight = lineHeight
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: style,
+            .baselineOffset: (lineHeight - self.font.lineHeight) / 4,
+            .font: self.font!,
+            .foregroundColor : self.textColor!
+        ]
+        
+        let attrString = NSAttributedString(string: text,
+                                            attributes: attributes)
+        self.attributedText = attrString
+    }
+    
+    public func setLineHeight(_ font: UIFont) {
+        let text = self.text ?? ""
+        let style = NSMutableParagraphStyle()
+        style.maximumLineHeight = font.lineHeight
+        style.minimumLineHeight = font.lineHeight
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .paragraphStyle: style,
+            .baselineOffset: (font.lineHeight - self.font.lineHeight) / 4,
+            .font: self.font!,
+            .foregroundColor : self.textColor!
+        ]
+        
+        let attrString = NSAttributedString(string: text,
+                                            attributes: attributes)
+        self.attributedText = attrString
+    }
 }

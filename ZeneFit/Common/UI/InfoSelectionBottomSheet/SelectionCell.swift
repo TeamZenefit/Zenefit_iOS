@@ -9,7 +9,7 @@ import UIKit
 
 final class SelectionCell: UITableViewCell {
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
     }

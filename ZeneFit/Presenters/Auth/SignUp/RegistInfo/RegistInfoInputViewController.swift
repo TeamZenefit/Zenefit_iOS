@@ -12,7 +12,7 @@ final class RegistInfoInputViewController: BaseViewController {
     weak var coordinator: AuthCoordinator?
     private let viewModel: RegistInfoInputViewModel
     
-    private let titleLabel = UILabel().then {
+    private let titleLabel = BaseLabel().then {
         $0.font = .pretendard(.label1)
         $0.textColor = .textStrong
         $0.text = "나이와 사는 곳을 알려주세요!"
