@@ -223,8 +223,13 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY-MM-dd"
-        // TODO: Dot찍어야함
-        return 0
+        
+        let isContain = viewModel.policyList.value.contains(where: {
+            $0.applyEndDate == dateFormat.string(from: date) ||
+            $0.applySttDate == dateFormat.string(from: date)
+        })
+        
+        return isContain ? 1 : 0
     }
 }
 
