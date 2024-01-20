@@ -16,11 +16,14 @@ class ScheduleViewModel {
     
     // usecase
     private let getPolicy: GetPolicyWithDateUseCase
+    private let deleteBookmark: RemoveInterestPolicyUseCase
     
     init(coordinator: ScheduleCoordinator? = nil,
-         getPolicyWithDateUseCase: GetPolicyWithDateUseCase = .init()) {
+         getPolicyWithDateUseCase: GetPolicyWithDateUseCase = .init(),
+         deleteBookmark: RemoveInterestPolicyUseCase = .init()) {
         self.coordinator = coordinator
         self.getPolicy = getPolicyWithDateUseCase
+        self.deleteBookmark = deleteBookmark
     }
     
     func getPolicy(year: Int, month: Int) {
@@ -31,6 +34,17 @@ class ScheduleViewModel {
             } catch {
                 self.error.send(error)
             }     
+        }
+    }
+    
+    func deleteBookmark(policyId: Int?) {
+        Task {
+            do {
+                try await deleteBookmark.execute(policyId: policyId)
+                policyList.value.removeAll(where: { $0.policyId == policyId })
+            } catch {
+                self.error.send(error)
+            }
         }
     }
 }

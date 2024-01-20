@@ -9,6 +9,8 @@ import UIKit
 import FSCalendar
 
 final class ScheduleViewController: BaseViewController {
+    var isEditMode: Bool = false
+    
     private let viewModel: ScheduleViewModel
     
     private let policyHeaderView = UIView().then {
@@ -111,6 +113,11 @@ final class ScheduleViewController: BaseViewController {
         tableViewSectionHeaderView.month = "\(month)"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        endEditingMode()
+    }
+    
     override func addSubView() {
         policyHeaderView.addSubview(calendarFrameView)
         
@@ -171,6 +178,34 @@ final class ScheduleViewController: BaseViewController {
                 self?.tableViewSectionHeaderView.count = "\(info.count)"
                 self?.policyTableView.reloadData()
             }.store(in: &cancellable)
+        
+        tableViewSectionHeaderView.editButton.tapPublisher
+            .sink { [weak self] in
+                guard let self else { return }
+                isEditMode.toggle()
+                tableViewSectionHeaderView.editButton.isSelected = isEditMode
+                policyTableView.reloadData()
+            }.store(in: &cancellable)
+    }
+    
+    private func endEditingMode() {
+        isEditMode = false
+        tableViewSectionHeaderView.editButton.isSelected = false
+        policyTableView.reloadData()
+    }
+    
+    private func deleteNotification(policyId: Int) {
+        let alert = StandardAlertController(title: "정책 일정을 삭제할까요?",
+                                            message: "삭제한 정책은 관심 등록에서도 제거돼요!")
+        let cancel = StandardAlertAction(title: "아니오", style: .cancel)
+        let delete = StandardAlertAction(title: "삭제하기", style: .basic) { [weak self] _ in
+            self?.viewModel.deleteBookmark(policyId: policyId)
+            self?.endEditingMode()
+        }
+        
+        alert.addAction(cancel, delete)
+        
+        self.present(alert, animated: false)
     }
 }
 
@@ -182,22 +217,31 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarPolicyCell.identifier, for: indexPath) as! CalendarPolicyCell
         let item = viewModel.policyList.value[indexPath.row]
-        cell.configureCell(policy: item)
+        cell.delegate = self
+        cell.configureCell(policy: item, isEditMode: isEditMode)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableViewSectionHeaderView
+        if viewModel.policyList.value.count > 0 {
+            return tableViewSectionHeaderView
+        } else {
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let bottomFrameView = UIView()
-        bottomFrameView.backgroundColor = .white
-        bottomFrameView.layer.cornerRadius = 16
-        bottomFrameView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        
-        return bottomFrameView
+        if viewModel.policyList.value.count > 0 {
+            let bottomFrameView = UIView()
+            bottomFrameView.backgroundColor = .white
+            bottomFrameView.layer.cornerRadius = 16
+            bottomFrameView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            
+            return bottomFrameView
+        } else {
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -207,6 +251,8 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        endEditingMode()
+        
         let thisYear = Calendar.current.component(.year, from: Date.now)
         let year = Calendar.current.component(.year, from: calendar.currentPage)
         let month = Calendar.current.component(.month, from: calendar.currentPage)
@@ -256,5 +302,15 @@ extension ScheduleViewController: CalendarHeaderDelegate {
             return
         }
         calendarView.setCurrentPage(nextMonth, animated: true)
+    }
+}
+
+extension ScheduleViewController: CalendarPolicyCellDelegate {
+    func tapApply(policyId: Int) {
+        viewModel.coordinator?.setAction(.welfareDetail(policyId: policyId))
+    }
+    
+    func tapDelete(policyId: Int) {
+        deleteNotification(policyId: policyId)
     }
 }

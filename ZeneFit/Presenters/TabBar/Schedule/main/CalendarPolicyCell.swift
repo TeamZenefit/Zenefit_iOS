@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import Combine
+
+protocol CalendarPolicyCellDelegate: AnyObject {
+    func tapApply(policyId: Int)
+    func tapDelete(policyId: Int)
+}
 
 final class CalendarPolicyCell: UITableViewCell {
+    private var cancellable = Set<AnyCancellable>()
+    private var policy: CalendarPolicyDTO?
+    weak var delegate: CalendarPolicyCellDelegate?
+    
     private let policyImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
         $0.layer.cornerRadius = 21
@@ -54,17 +64,49 @@ final class CalendarPolicyCell: UITableViewCell {
         selectionStyle = .none
         
         setUI()
+        setupBinding()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(policy: CalendarPolicyDTO) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        delegate = nil
+        cancellable.removeAll()
+        setupBinding()
+    }
+    
+    private func setupBinding() {
+        applyButton.tapPublisher
+            .sink { [weak self] in
+                guard let self,
+                      let policyId = policy?.policyId else {
+                    return
+                }
+                delegate?.tapApply(policyId: policyId)
+            }.store(in: &cancellable)
+        
+        deleteButton.tapPublisher
+            .sink { [weak self] in
+                guard let self,
+                      let policyId = policy?.policyId else {
+                    return
+                }
+                delegate?.tapDelete(policyId: policyId)
+            }.store(in: &cancellable)
+    }
+    
+    func configureCell(policy: CalendarPolicyDTO, isEditMode: Bool) {
+        self.policy = policy
         policyImageView.kf.setImage(with: URL(string: policy.policyAgencyLogo ?? ""),
                                     placeholder: UIImage(resource: .defaultPolicy))
         titleLabel.text = policy.policyName
         dateLabel.text = "\(policy.applySttDate) - \(policy.applyEndDate)"
+        
+        deleteButton.isHidden = !isEditMode
+        applyButton.isHidden = isEditMode
     }
     
     private func setUI() {

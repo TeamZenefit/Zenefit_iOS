@@ -185,6 +185,7 @@ final class WelfareCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         delegate = nil
+        cancellable.removeAll()
     }
     
     // selectButton에 따라 분기해줘야함

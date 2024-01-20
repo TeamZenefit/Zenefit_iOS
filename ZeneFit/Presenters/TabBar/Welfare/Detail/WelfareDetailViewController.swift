@@ -25,7 +25,7 @@ final class WelfareDetailViewController: BaseViewController {
         $0.text = "정책 이름을 신청하면\n월 n만원 정도를 받을 수 있어요"
         $0.textColor = .textStrong
         $0.font = .pretendard(.label1)
-        $0.numberOfLines = 2
+        $0.numberOfLines = 0
     }
     
     private let subTitleLabel = BaseLabel().then {
@@ -172,6 +172,7 @@ final class WelfareDetailViewController: BaseViewController {
     override func layout() {
         titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
+            $0.width.equalTo(self.view.frame.width-32)
             $0.top.equalToSuperview().offset(8)
         }
         

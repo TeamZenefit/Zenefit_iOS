@@ -9,7 +9,7 @@ import UIKit
 
 class ScheduleCoordinator: Coordinator {
     enum CoordinatorAction {
-        case main, notiList
+        case main, notiList, welfareDetail(policyId: Int)
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -37,6 +37,11 @@ class ScheduleCoordinator: Coordinator {
             notiCoordinator.delegate = self
             notiCoordinator.setAction(.notiList)
             childCoordinators.append(notiCoordinator)
+        case .welfareDetail(let welfareId):
+            let welfareCoordinator = WelfareCoordinator(navigationController: navigationController)
+            childCoordinators.append(welfareCoordinator)
+            welfareCoordinator.delegate = self
+            welfareCoordinator.setAction(.detail(id: welfareId))
         }
     }
 }
@@ -49,6 +54,8 @@ extension ScheduleCoordinator: CoordinatorDelegate {
             }) {
                 childCoordinators.removeAll(where: { $0 is NotificationCoordinator })
             }
+        } else {
+            childCoordinators = childCoordinators.filter { $0 !== childCoordinator }
         }
     }
 }

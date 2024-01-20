@@ -17,14 +17,14 @@ final class StandardAlertController: UIViewController{
         $0.layer.cornerRadius = 16
     }
     
-    private let titleLabel = BaseLabel().then {
+    private let titleLabel = UILabel().then {
         $0.textAlignment = .center
         $0.font = .pretendard(.label3)
         $0.numberOfLines = 0
         $0.textColor = .textStrong
     }
     
-    private let messageLabel = BaseLabel().then {
+    private let messageLabel = UILabel().then {
         $0.textAlignment = .center
         $0.font = .pretendard(.label5)
         $0.numberOfLines = 0

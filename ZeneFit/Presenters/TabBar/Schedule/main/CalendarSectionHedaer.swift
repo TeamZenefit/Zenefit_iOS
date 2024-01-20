@@ -13,7 +13,7 @@ final class CalendarSectionHedaer: UIView {
         $0.font = .pretendard(.label2)
     }
     
-    private let editButton = UIButton().then {
+    let editButton = UIButton().then {
         $0.setImage(.init(resource: .iWr28), for: .normal)
         $0.setImage(.init(resource: .iWr28Del), for: .selected)
     }
