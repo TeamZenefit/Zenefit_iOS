@@ -177,6 +177,7 @@ final class ScheduleViewController: BaseViewController {
             .sink { [weak self] info in
                 self?.tableViewSectionHeaderView.count = "\(info.count)"
                 self?.policyTableView.reloadData()
+                self?.calendarView.reloadData()
             }.store(in: &cancellable)
         
         tableViewSectionHeaderView.editButton.tapPublisher
@@ -185,6 +186,7 @@ final class ScheduleViewController: BaseViewController {
                 isEditMode.toggle()
                 tableViewSectionHeaderView.editButton.isSelected = isEditMode
                 policyTableView.reloadData()
+                calendarView.reloadData()
             }.store(in: &cancellable)
     }
     
@@ -267,15 +269,28 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "YYYY-MM-dd"
         
         let isContain = viewModel.policyList.value.contains(where: {
-            $0.applyEndDate == dateFormat.string(from: date) ||
-            $0.applySttDate == dateFormat.string(from: date)
+            $0.applyEndDate == date.formattedString ||
+            $0.applySttDate == date.formattedString
         })
         
         return isContain ? 1 : 0
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        endEditingMode()
+        
+        let strDatePolicy = viewModel.policyList.value.filter { $0.applySttDate == date.formattedString }
+        let endDatePolicy = viewModel.policyList.value.filter { $0.applyEndDate == date.formattedString }
+        
+        if (strDatePolicy + endDatePolicy).isNotEmpty {
+            viewModel.coordinator?.setAction(.policyOfDay(date: date,
+                                                          strDatePolicy: strDatePolicy,
+                                                          endDatePolicy: endDatePolicy))
+        } else {
+            notiAlert("해당 날짜에 신청 가능한 정책이 없어요.")
+        }   
     }
 }
 

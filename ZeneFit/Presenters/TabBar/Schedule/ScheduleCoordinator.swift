@@ -10,6 +10,9 @@ import UIKit
 class ScheduleCoordinator: Coordinator {
     enum CoordinatorAction {
         case main, notiList, welfareDetail(policyId: Int)
+        case policyOfDay(date: Date,
+                         strDatePolicy: [CalendarPolicyDTO],
+                         endDatePolicy: [CalendarPolicyDTO])
     }
     
     var childCoordinators: [any Coordinator] = []
@@ -42,6 +45,13 @@ class ScheduleCoordinator: Coordinator {
             childCoordinators.append(welfareCoordinator)
             welfareCoordinator.delegate = self
             welfareCoordinator.setAction(.detail(id: welfareId))
+        case .policyOfDay(let date, let strDatePolicy, let endDatePolicy):
+            let bottomSheetVC = ScheduleBottomSheetViewController(coordinator: self,
+                                                                  date: date,
+                                                                  endDatePolicyList: endDatePolicy,
+                                                                  strDatePolicyList: strDatePolicy)
+            
+            navigationController.present(bottomSheetVC, animated: false)
         }
     }
 }

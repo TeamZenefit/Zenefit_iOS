@@ -135,6 +135,9 @@
 		B5893B172B55877C00BE95B3 /* HomePolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */; };
 		B5893B192B5597A200BE95B3 /* HomeSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */; };
 		B593811C2B5AD18700E68347 /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593811B2B5AD18700E68347 /* BaseLabel.swift */; };
+		B59381202B5BCEDB00E68347 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593811F2B5BCEDB00E68347 /* Date+.swift */; };
+		B59381222B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59381212B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift */; };
+		B59381262B5BE49D00E68347 /* DateTypeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59381252B5BE49D00E68347 /* DateTypeHeaderView.swift */; };
 		B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */; };
 		B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */; };
 		B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2E2B25E24F00236C2F /* UserService.swift */; };
@@ -372,6 +375,9 @@
 		B5893B162B55877C00BE95B3 /* HomePolicyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePolicyCell.swift; sourceTree = "<group>"; };
 		B5893B182B5597A200BE95B3 /* HomeSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionFooterView.swift; sourceTree = "<group>"; };
 		B593811B2B5AD18700E68347 /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
+		B593811F2B5BCEDB00E68347 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		B59381212B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBottomSheetViewController.swift; sourceTree = "<group>"; };
+		B59381252B5BE49D00E68347 /* DateTypeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTypeHeaderView.swift; sourceTree = "<group>"; };
 		B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2E2B25E24F00236C2F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -623,12 +629,10 @@
 		B54C706E2B47C7DB0041C99D /* main */ = {
 			isa = PBXGroup;
 			children = (
+				B59381232B5BE2B400E68347 /* View */,
 				B552F9CE2AE5449000AA5F40 /* ScheduleViewController.swift */,
+				B59381212B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift */,
 				B54C706F2B47C7F70041C99D /* ScheduleViewModel.swift */,
-				B50F359D2B48638F0047CEC3 /* CalendarHeaderView.swift */,
-				B50F359F2B4922400047CEC3 /* EventGuideView.swift */,
-				B50F35A52B4945CB0047CEC3 /* CalendarPolicyCell.swift */,
-				B50F35A72B49544E0047CEC3 /* CalendarSectionHedaer.swift */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -969,6 +973,18 @@
 			path = Manual;
 			sourceTree = "<group>";
 		};
+		B59381232B5BE2B400E68347 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B50F359D2B48638F0047CEC3 /* CalendarHeaderView.swift */,
+				B50F359F2B4922400047CEC3 /* EventGuideView.swift */,
+				B50F35A52B4945CB0047CEC3 /* CalendarPolicyCell.swift */,
+				B50F35A72B49544E0047CEC3 /* CalendarSectionHedaer.swift */,
+				B59381252B5BE49D00E68347 /* DateTypeHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B596BA292B25E03000236C2F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,6 +1180,7 @@
 				B55826DF2B1B95CC00A360E9 /* UITableViewCell+.swift */,
 				B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */,
 				B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */,
+				B593811F2B5BCEDB00E68347 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1588,6 +1605,7 @@
 				B55827072B1C963B00A360E9 /* NotiViewModel.swift in Sources */,
 				B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */,
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
+				B59381222B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift in Sources */,
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
 				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
 				B5F624C02AC53B4D002A1896 /* SignInViewController.swift in Sources */,
@@ -1634,6 +1652,7 @@
 				B55826EA2B1BA50400A360E9 /* SettingItemView.swift in Sources */,
 				B5A8706C2B0A0F3D0052D5A1 /* BenefitPolicyUseCase.swift in Sources */,
 				B5F624F62AC89953002A1896 /* SelectionBottomSheet.swift in Sources */,
+				B59381202B5BCEDB00E68347 /* Date+.swift in Sources */,
 				B55E42482B3F3F0F00E4B893 /* WelfareSortContentView.swift in Sources */,
 				B5ED7BB92B0103FA00138FE8 /* WelfareDetailCell.swift in Sources */,
 				B558270E2B1C98D500A360E9 /* UICollectionViewCell+.swift in Sources */,
@@ -1653,6 +1672,7 @@
 				B5F624D52AC5F95B002A1896 /* SignInViewModel.swift in Sources */,
 				B50F35BE2B4A8C9B0047CEC3 /* InfoEditTextField.swift in Sources */,
 				B55E42462B3F021200E4B893 /* WelfareListHeaderView.swift in Sources */,
+				B59381262B5BE49D00E68347 /* DateTypeHeaderView.swift in Sources */,
 				B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */,
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
 				B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */,
