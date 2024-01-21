@@ -27,6 +27,10 @@ final class PersonalInfoEditViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         
         hidesBottomBarWhenPushed = true
+        navigationItem.backBarButtonItem = .init(title: "뒤",
+                                                 style: .done,
+                                                 target: self,
+                                                 action: #selector(didClickBackButton))
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +44,17 @@ final class PersonalInfoEditViewController: BaseViewController {
         navigationItem.rightBarButtonItem = .init(customView: editButton)
     }
     
+    @objc override func didClickBackButton() {
+        let alert = StandardAlertController(title: "개인정보 수정을 취소할까요??", message: "네를 누르면\n수정 전의 내용으로 저장됩니다.")
+        let cancel = StandardAlertAction(title: "아니오", style: .cancel)
+        let back = StandardAlertAction(title: "  네  ", style: .blue, handler: { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        })
+        
+        alert.addAction(cancel, back)
+        self.present(alert, animated: false)
+    }
+    
     override func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -49,14 +64,33 @@ final class PersonalInfoEditViewController: BaseViewController {
         editButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                self?.editButton.isSelected.toggle()
-                self?.tableView.reloadData()
+                self?.view.endEditing(false)
+                self?.viewModel.updateUserInfo()
             }.store(in: &cancellable)
         
         viewModel.newUserInfo
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        viewModel.updateSuccess
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }.store(in: &cancellable)
+        
+        viewModel.errorPublisher
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                switch error {
+                case CommonError.invalidAge:
+                    self?.notiAlert("유효하지않은 나이입니다. 다시 입력해주세요.")
+                case CommonError.invalidIncome:
+                    self?.notiAlert("유효하지않은 수입입니다. 다시 입력해주세요.")
+                default:
+                    self?.notiAlert("알 수 없는에러가 발생했습니다.")
+                }
             }.store(in: &cancellable)
     }
     
@@ -112,56 +146,139 @@ extension PersonalInfoEditViewController: UITableViewDelegate, UITableViewDataSo
         
         switch indexPath.section {
         case 0:
-            let item = viewModel.personalInfoItems[indexPath.row]
-            switch indexPath.row {
-            case 0:
-                cell.configureCell(title: item.title,
+            let type = PersonalInfoItem(rawValue: indexPath.row) ?? .age
+            switch type {
+            case .nickName:
+                cell.configureCell(title: type.title,
                                    content: userInfo.nickname)
-            case 1:
-                cell.configureCell(title: item.title,
+                cell.editTextHandler = { [weak self] text in
+                    self?.viewModel.newUserInfo.value?.nickname = text
+                }
+            case .age:
+                cell.configureCell(title: type.title,
                                    content: "\(userInfo.age)")
-            case 2:
-                cell.configureCell(title: item.title,
-                                   content: userInfo.area + " " + userInfo.city)
-            case 3:
+                cell.contentTextField.textField.keyboardType = .numberPad
+                cell.editTextHandler = { [weak self] text in
+                    self?.viewModel.newUserInfo.value?.age = Int(text) ?? 0
+                }
+            case .area:
+                cell.configureCell(title: type.title,
+                                   content: userInfo.area)
+                cell.contentTextField.textField.isEnabled = false
+            case .city:
+                cell.configureCell(title: type.title,
+                                   content: userInfo.city)
+                cell.contentTextField.textField.isEnabled = false
+            case .income:
                 let income = Int(userInfo.lastYearIncome) / 10000
-                cell.configureCell(title: item.title,
+                cell.configureCell(title: type.title,
                                    content: "\(income) 만원")
-            case 4:
-                cell.configureCell(title: item.title,
+                cell.contentTextField.textField.keyboardType = .numberPad
+                cell.editTextHandler = { [weak self] text in
+                    guard let self,
+                          let income = Double(text.appending("0000")) else { return }
+                    viewModel.newUserInfo.value?.lastYearIncome = income
+                }
+            case .education:
+                cell.configureCell(title: type.title,
                                    content: userInfo.educationType)
-            default:
-                cell.configureCell(title: item.title,
+                cell.contentTextField.textField.isEnabled = false
+            case .jobs:
+                cell.configureCell(title: type.title,
                                    content: userInfo.jobs.joined(separator: ", "))
+                cell.contentTextField.textField.isEnabled = false
             }
         default:
-            let item = viewModel.otherInfoItems[indexPath.row]
-            switch indexPath.row {
-            case 0:
-                cell.configureCell(title: item.title,
-                                   content: userInfo.gender)
-                break
-            case 1:
-                cell.configureCell(title: item.title,
+            let type = OtherInfoItem(rawValue: indexPath.row) ?? .gender
+            switch type {
+            case .gender:
+                cell.configureCell(title: type.title,
+                                   gender: GenderType(rawValue: userInfo.gender) ?? .male)
+                cell.selectedHandler = { [weak self] gender in
+                    self?.viewModel.newUserInfo.value?.gender = gender
+                }
+            case .isSmallCompany:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.smallBusiness)
-            case 2:
-                cell.configureCell(title: item.title,
+                cell.switchHandler = { [weak self] isOn in
+                    self?.viewModel.newUserInfo.value?.smallBusiness = isOn
+                }
+            case .isSoldier:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.soldier)
-            case 3:
-                cell.configureCell(title: item.title,
+                cell.switchHandler = { [weak self] isOn in
+                    self?.viewModel.newUserInfo.value?.soldier = isOn
+                }
+            case .isLowIncomeFamilies:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.lowIncome)
-            case 4:
-                cell.configureCell(title: item.title,
+                cell.switchHandler = { [weak self] isOn in
+                    self?.viewModel.newUserInfo.value?.lowIncome = isOn
+                }
+            case .isDisabledPerson:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.disabled)
-            case 5:
-                cell.configureCell(title: item.title,
+                cell.switchHandler = { [weak self] isOn in
+                    self?.viewModel.newUserInfo.value?.disabled = isOn
+                }
+            case .isLocalTalent:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.localTalent)
-            default:
-                cell.configureCell(title: item.title,
+                cell.switchHandler = { [weak self] isOn in
+                    self?.viewModel.newUserInfo.value?.localTalent = isOn
+                }
+            case .isFarmer:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.farmer)
+                cell.switchHandler = { [weak self] isOn in
+                    self?.viewModel.newUserInfo.value?.farmer = isOn
+                }
             }
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        view.endEditing(false)
+        if indexPath.section == 0 {
+            let type = PersonalInfoItem(rawValue: indexPath.row) ?? .age
+            switch type {
+            case .area:
+                viewModel.coordinator?.showSelectionBottomSheet(title: "지역",
+                                                                list: viewModel.areas,
+                                                                selectedItem: viewModel.newUserInfo.value?.area,
+                                                                completion: { [weak self] newArea in
+                    guard let newArea else { return }
+                    self?.viewModel.newUserInfo.value?.area = newArea
+                })
+            case .city:
+                guard let area = viewModel.newUserInfo.value?.area else { return }
+                viewModel.coordinator?.showSelectionBottomSheet(title: "소속지역 - \(area)",
+                                                                list: viewModel.cities,
+                                                                selectedItem: viewModel.newUserInfo.value?.city,
+                                                                completion: { [weak self] newCity in
+                    guard let newCity else { return }
+                    self?.viewModel.newUserInfo.value?.city = newCity
+                })
+            case .education:
+                viewModel.coordinator?.showSelectionBottomSheet(title: "학력",
+                                                                list: ["고졸 미만","고교 재학","고졸 예정","고교 졸업","대학 재학","대졸 예정","대학 졸업","석박사"],
+                                                                selectedItem: viewModel.newUserInfo.value?.educationType) { [weak self] education in
+                    guard let education else { return }
+                    self?.viewModel.newUserInfo.value?.educationType = education
+                }
+            case .jobs:
+                viewModel.coordinator?.showMultiSelectionBottomSheet(title: "직업",
+                                                                     list: ["재직자","자영업자","미취업자","프리랜서","일용 근로자","(예비) 창업자","단기근로자","영농종사자"],
+                                                                     selectedItems: viewModel.newUserInfo.value?.jobs) { [weak self] newJobs in
+                    
+                    guard let newJobs else { return }
+                    self?.viewModel.newUserInfo.value?.jobs = newJobs
+                }
+            default:
+                    break
+            }
+        }
     }
 }

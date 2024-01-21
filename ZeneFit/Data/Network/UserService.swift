@@ -199,4 +199,25 @@ final class UserService {
         }
         .eraseToAnyPublisher()
     }
+    
+    func updateUserInfo(newUserInfo: UserInfoDTO) -> AnyPublisher<UserInfoUpdateDTO, Error> {
+        let parameter = newUserInfo.toEncodable
+        let endpoint = Endpoint(method: .PATCH,
+                                paths: "/user/modify",
+                                bodyWithEncodable: parameter)
+            .setAccessToken()
+        
+        return session.dataTaskPublisher(urlRequest: endpoint.request,
+                                         expect: BaseResponse<UserInfoUpdateDTO>.self,
+                                         responseHandler: nil)
+        .tryMap { response -> UserInfoUpdateDTO in
+            switch response.code {
+            case 200:
+                response.result
+            default:
+                throw CommonError.otherError
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

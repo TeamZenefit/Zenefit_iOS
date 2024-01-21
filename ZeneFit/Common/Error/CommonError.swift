@@ -18,4 +18,6 @@ enum CommonError: Error {
     
     // user
     case unregist
+    case invalidAge
+    case invalidIncome
 }

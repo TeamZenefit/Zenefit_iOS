@@ -15,4 +15,5 @@ protocol SettingRepositoryProtocol {
     func updateNotificationStatus(isAllow: Bool) -> AnyPublisher<Void, Error>
     func getNotificationStatus() -> AnyPublisher<NotificationStatusDTO, Error>
     func getAgreementInfo() -> AnyPublisher<AgreementInfoDTO, Error>
+    func updateUserInfo(newUserInfo: UserInfoDTO) -> AnyPublisher<UserInfoUpdateDTO, Error>
 }

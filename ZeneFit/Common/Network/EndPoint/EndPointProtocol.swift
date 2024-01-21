@@ -20,6 +20,7 @@ protocol Endpointable {
     var paths: String? { get }
     var queries: [String : String]? { get }
     var body: [String : Any]? { get }
+    var bodyWithEncodable: Encodable? { get }
     
     var request: URLRequest { get }
 }
@@ -30,6 +31,7 @@ extension Endpointable {
         .setMethod(method)
         .setPaths(paths)
         .setBody(at: body)
+        .setBody(at: bodyWithEncodable)
         .setQueries(queries)
         .setHeaders(headers)
     }

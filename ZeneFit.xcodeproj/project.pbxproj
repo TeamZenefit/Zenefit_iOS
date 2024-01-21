@@ -138,6 +138,11 @@
 		B59381202B5BCEDB00E68347 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593811F2B5BCEDB00E68347 /* Date+.swift */; };
 		B59381222B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59381212B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift */; };
 		B59381262B5BE49D00E68347 /* DateTypeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59381252B5BE49D00E68347 /* DateTypeHeaderView.swift */; };
+		B59381292B5C22E100E68347 /* PersonalInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59381282B5C22E100E68347 /* PersonalInfoItem.swift */; };
+		B593812B2B5C22F000E68347 /* OtherInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593812A2B5C22F000E68347 /* OtherInfoItem.swift */; };
+		B593812D2B5D1B5000E68347 /* UserInfoUpdateDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593812C2B5D1B5000E68347 /* UserInfoUpdateDTO.swift */; };
+		B593812F2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593812E2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift */; };
+		B59381312B5D42D500E68347 /* GenderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59381302B5D42D500E68347 /* GenderSelectionView.swift */; };
 		B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */; };
 		B596BA2D2B25E10400236C2F /* SocialInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */; };
 		B596BA2F2B25E24F00236C2F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA2E2B25E24F00236C2F /* UserService.swift */; };
@@ -378,6 +383,11 @@
 		B593811F2B5BCEDB00E68347 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B59381212B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBottomSheetViewController.swift; sourceTree = "<group>"; };
 		B59381252B5BE49D00E68347 /* DateTypeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTypeHeaderView.swift; sourceTree = "<group>"; };
+		B59381282B5C22E100E68347 /* PersonalInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoItem.swift; sourceTree = "<group>"; };
+		B593812A2B5C22F000E68347 /* OtherInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherInfoItem.swift; sourceTree = "<group>"; };
+		B593812C2B5D1B5000E68347 /* UserInfoUpdateDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUpdateDTO.swift; sourceTree = "<group>"; };
+		B593812E2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoUseCase.swift; sourceTree = "<group>"; };
+		B59381302B5D42D500E68347 /* GenderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSelectionView.swift; sourceTree = "<group>"; };
 		B596BA2A2B25E04600236C2F /* UserInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialInfoDTO.swift; sourceTree = "<group>"; };
 		B596BA2E2B25E24F00236C2F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -499,6 +509,9 @@
 		B50F35B72B4A88E70047CEC3 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */,
+				B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */,
+				B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -510,6 +523,7 @@
 				B50F35B92B4A89150047CEC3 /* PersonalInfoEditViewController.swift */,
 				B50F35BB2B4A89460047CEC3 /* PersonalInfoEditViewModel.swift */,
 				B50F35BD2B4A8C9B0047CEC3 /* InfoEditTextField.swift */,
+				B59381302B5D42D500E68347 /* GenderSelectionView.swift */,
 			);
 			path = InfoEdit;
 			sourceTree = "<group>";
@@ -852,11 +866,9 @@
 		B55827142B1CD32100A360E9 /* PersonalInfo */ = {
 			isa = PBXGroup;
 			children = (
+				B59381272B5C22CB00E68347 /* Type */,
 				B50F35B82B4A88F10047CEC3 /* InfoEdit */,
 				B50F35B72B4A88E70047CEC3 /* Info */,
-				B55827152B1CD33600A360E9 /* PersonalInfoViewModel.swift */,
-				B55827172B1CD35300A360E9 /* PersonalInfoViewController.swift */,
-				B55827192B1CD47F00A360E9 /* PersonalInfoCell.swift */,
 			);
 			path = PersonalInfo;
 			sourceTree = "<group>";
@@ -985,6 +997,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B59381272B5C22CB00E68347 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				B59381282B5C22E100E68347 /* PersonalInfoItem.swift */,
+				B593812A2B5C22F000E68347 /* OtherInfoItem.swift */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
 		B596BA292B25E03000236C2F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +1013,7 @@
 				B596BA2C2B25E10400236C2F /* SocialInfoDTO.swift */,
 				B50F35AB2B499F610047CEC3 /* NotificationStatusDTO.swift */,
 				B52263B92B4ABAF90008DDF1 /* AgreementInfoDTO.swift */,
+				B593812C2B5D1B5000E68347 /* UserInfoUpdateDTO.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1013,6 +1035,7 @@
 				B50F35AD2B49A0B50047CEC3 /* GetNotificationStateUseCase.swift */,
 				B50F35AF2B49A12F0047CEC3 /* UpdateNotificationStateUseCase.swift */,
 				B52263BB2B4ABB860008DDF1 /* GetAgreementInfoUseCase.swift */,
+				B593812E2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1582,6 +1605,7 @@
 				B5F624DC2AC60090002A1896 /* UIButton+.swift in Sources */,
 				B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */,
 				B596BA2B2B25E04600236C2F /* UserInfoDTO.swift in Sources */,
+				B593812B2B5C22F000E68347 /* OtherInfoItem.swift in Sources */,
 				B54E92882AF3B96600F47A6B /* ZFTableViewFooterView.swift in Sources */,
 				B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */,
 				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
@@ -1589,6 +1613,7 @@
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
+				B593812F2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift in Sources */,
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
 				B558270C2B1C98AE00A360E9 /* NotificationCategoryCell.swift in Sources */,
 				B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */,
@@ -1628,6 +1653,7 @@
 				B55826EF2B1C484800A360E9 /* AgreementFormViewController.swift in Sources */,
 				B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */,
 				B564523C2AEE4CA5000A45FA /* HomeCoordinator.swift in Sources */,
+				B59381312B5D42D500E68347 /* GenderSelectionView.swift in Sources */,
 				B596BA392B25F6DB00236C2F /* GetUserInfoUseCase.swift in Sources */,
 				B531CC382B42EB7500EF5095 /* RemoveApplyingPolicyUseCase.swift in Sources */,
 				B55826F62B1C4D7C00A360E9 /* StandardAlertAction.swift in Sources */,
@@ -1641,6 +1667,7 @@
 				B531CC362B42D41D00EF5095 /* RemoveInterestPolicyUseCase.swift in Sources */,
 				B5F625162ACAE3E9002A1896 /* SignInUseCase.swift in Sources */,
 				B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */,
+				B593812D2B5D1B5000E68347 /* UserInfoUpdateDTO.swift in Sources */,
 				B54A678F2ADD8EDB00971467 /* FetchAreaUseCase.swift in Sources */,
 				B5A8706E2B0A636A0052D5A1 /* WelfareMainInfoDTO.swift in Sources */,
 				B50F35AA2B4994860047CEC3 /* GetNotificationUseCase.swift in Sources */,
@@ -1734,6 +1761,7 @@
 				B5A8709A2B0B9BD40052D5A1 /* PolicyListUseCase.swift in Sources */,
 				B54E928F2AF3BE9600F47A6B /* BenefitCell.swift in Sources */,
 				B50F35A42B49436A0047CEC3 /* CalendarPolicyDTO.swift in Sources */,
+				B59381292B5C22E100E68347 /* PersonalInfoItem.swift in Sources */,
 				B552F9C72AE5353300AA5F40 /* MainTabbarController.swift in Sources */,
 				B552F9D92AE551F100AA5F40 /* FindWelfareViewController.swift in Sources */,
 				B564524A2AEE8842000A45FA /* ProgressView.swift in Sources */,

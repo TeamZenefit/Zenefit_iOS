@@ -38,4 +38,8 @@ final class SettingRepository: SettingRepositoryProtocol {
     func getAgreementInfo() -> AnyPublisher<AgreementInfoDTO, Error> {
         service.getAgreementInfo()
     }
+    
+    func updateUserInfo(newUserInfo: UserInfoDTO) -> AnyPublisher<UserInfoUpdateDTO, Error> {
+        service.updateUserInfo(newUserInfo: newUserInfo)
+    }
 }

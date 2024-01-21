@@ -13,18 +13,21 @@ struct Endpoint: Endpointable {
     var paths: String?
     var queries: [String : String]?
     var body: [String : Any]?
+    var bodyWithEncodable: Encodable?
     var headers: HTTPHeaders
     
     init(baseURL: String? = nil,
          method: HTTPMethod = .GET,
          paths: String?,
          queries: [String : String]? = nil,
-         body: [String : Any]? = nil) {
+         body: [String : Any]? = nil,
+         bodyWithEncodable: Encodable? = nil) {
         let defaultUrl = Bundle.main.object(forInfoDictionaryKey: "BaseURL") as? String ?? ""
         self.baseURL = URL(string: baseURL ?? defaultUrl)!
         self.method = method
         self.paths = paths
         self.queries = queries
+        self.bodyWithEncodable = bodyWithEncodable
         self.body = body
         self.headers = ["Content-Type": "application/json",
                         "Accept" : "*/*"]

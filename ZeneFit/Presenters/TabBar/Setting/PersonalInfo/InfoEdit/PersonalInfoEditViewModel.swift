@@ -10,7 +10,7 @@ import Combine
 
 class PersonalInfoEditViewModel {
     private var cancellable = Set<AnyCancellable>()
-    weak var cooridnator: SettingCoordinator?
+    weak var coordinator: SettingCoordinator?
     
     var personalInfoItems = PersonalInfoItem.allCases
     var otherInfoItems = OtherInfoItem.allCases
@@ -18,71 +18,66 @@ class PersonalInfoEditViewModel {
     var errorPublisher = PassthroughSubject<Error, Never>()
     var newUserInfo = CurrentValueSubject<UserInfoDTO?, Never>(nil)
     var currentUserInfo: UserInfoDTO
+    var updateSuccess = PassthroughSubject<Void, Never>()
+    
+    @Published var cities: [String] = []
+    @Published var areas: [String] = []
     
     // usecase
-//    private let getUserInfoUseCase: GetUserInfoUseCase
+    private let fetchCity: FetchCityUseCase
+    private let fetchArea: FetchAreaUseCase
+    private let updateUserInfoUseCase: UpdateUserInfoUseCase
     
     init(cooridnator: SettingCoordinator? = nil,
-         currentUserInfo: UserInfoDTO) {
-        self.cooridnator = cooridnator
+         currentUserInfo: UserInfoDTO,
+         fetchCity: FetchCityUseCase = .init(),
+         fetchArea: FetchAreaUseCase = .init(),
+         updateUserInfoUseCase: UpdateUserInfoUseCase = .init()) {
+        self.coordinator = cooridnator
         self.currentUserInfo = currentUserInfo
-        newUserInfo.send(currentUserInfo)
-    }
-}
-
-extension PersonalInfoEditViewModel {
-    enum PersonalInfoItem: Int, CaseIterable {
-        case nickName,
-             age,
-             address,
-             income,
-             education,
-             jobs
+        self.fetchCity = fetchCity
+        self.fetchArea = fetchArea
+        self.updateUserInfoUseCase = updateUserInfoUseCase
         
-        var title: String {
-            switch self {
-            case .nickName:
-                "닉네임"
-            case .age:
-                "나이"
-            case .address:
-                "거주지"
-            case .income:
-                "작년 소득"
-            case .education:
-                "학력"
-            case .jobs:
-                "직업"
-            }
-        }
+        newUserInfo.send(currentUserInfo)
+        
+        fetchArea.execute()
+            .replaceError(with: [])
+            .assign(to: \.areas, on: self)
+            .store(in: &cancellable)
+        
+        $areas
+            .sink { [weak self] area in
+                self?.fetchCities()
+            }.store(in: &cancellable)
     }
     
-    enum OtherInfoItem: Int, CaseIterable {
-        case gender,
-             isSmallCompany,
-             isSoldier,
-             isLowIncomeFamilies,
-             isDisabledPerson,
-             isLocalTalent,
-             isFarmer
+    func fetchCities() {
+        guard let area = newUserInfo.value?.area else { return }
+        fetchCity.execute(area: area)
+            .replaceError(with: [String]())
+            .assign(to: \.cities, on: self)
+            .store(in: &cancellable)
+    }
+    
+    func updateUserInfo() {
+        guard let newUserInfo = newUserInfo.value else { return }
         
-        var title: String {
-            switch self {
-            case .gender:
-                "성별"
-            case .isSmallCompany:
-                "중소기업"
-            case .isSoldier:
-                "군인"
-            case .isLowIncomeFamilies:
-                "저소득층"
-            case .isDisabledPerson:
-                "장애인"
-            case .isLocalTalent:
-                "지역 인재"
-            case .isFarmer:
-                "농업인"
-            }
+        if newUserInfo.age <= 0 || newUserInfo.age > 99 {
+            errorPublisher.send(CommonError.invalidAge)
         }
+        
+        if newUserInfo.lastYearIncome <= 0 || newUserInfo.lastYearIncome > 9999990000 {
+            errorPublisher.send(CommonError.invalidIncome)
+        }
+        
+        updateUserInfoUseCase.execute(newUserInfo: newUserInfo)
+            .sink(receiveCompletion: { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.errorPublisher.send(error)
+                }
+            }, receiveValue: { [weak self] _ in
+                self?.updateSuccess.send()
+            }).store(in: &cancellable)
     }
 }

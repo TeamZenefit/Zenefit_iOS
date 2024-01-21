@@ -40,6 +40,15 @@ extension URLRequest {
         return urlRequest
     }
     
+    func setBody(at body: Encodable?) -> URLRequest {
+        var urlRequest = self
+        if let body {
+            urlRequest.httpBody = try? JSONEncoder().encode(body)
+        }
+        
+        return urlRequest
+    }
+    
     func setQueries(_ queries: [String: String]?) -> Self {
         guard let queries = queries,
               let urlString = self.url?.absoluteString,

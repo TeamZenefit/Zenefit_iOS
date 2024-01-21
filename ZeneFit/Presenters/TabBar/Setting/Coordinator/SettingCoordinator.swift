@@ -84,3 +84,22 @@ extension SettingCoordinator: CoordinatorDelegate {
         }
     }
 }
+
+extension SettingCoordinator {
+    func showSelectionBottomSheet(title: String, list: [String], selectedItem: String?, completion: ((String?)->Void)? = nil) {
+        SelectionBottomSheet.showBottomSheet(view: navigationController.view,
+                                             title: title,
+                                             list: list,
+                                             selectedItem: selectedItem,
+                                             completion: completion)
+    }
+    
+    func showMultiSelectionBottomSheet(title: String, list: [String], selectedItems: [String]?, completion: (([String]?)->Void)? = nil) {
+        MultiSelectionBottomSheet.showBottomSheet(view: navigationController.view,
+                                                  title: title,
+                                                  list: list,
+                                                  selectedItems: selectedItems,
+                                                  completion: completion)
+    }
+}
+

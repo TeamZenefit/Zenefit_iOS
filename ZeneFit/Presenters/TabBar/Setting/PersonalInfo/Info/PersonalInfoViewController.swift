@@ -34,6 +34,11 @@ final class PersonalInfoViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchUserInfo()
+    }
+    
     override func configureNavigation() {
         super.configureNavigation()
         setTitle = "개인 정보"
@@ -116,62 +121,58 @@ extension PersonalInfoViewController: UITableViewDelegate, UITableViewDataSource
         guard let userInfo = viewModel.userInfo.value else { return cell }
         switch indexPath.section {
         case 0:
-            let item = viewModel.personalInfoItems[indexPath.row]
-            switch indexPath.row {
-            case 0:
-                cell.configureCell(title: item.title,
+            let type = PersonalInfoItem(rawValue: indexPath.row) ?? .age
+            switch type {
+            case .nickName:
+                cell.configureCell(title: type.title,
                                    content: userInfo.nickname)
-            case 1:
-                cell.configureCell(title: item.title,
+            case .age:
+                cell.configureCell(title: type.title,
                                    content: "\(userInfo.age)")
-            case 2:
-                cell.configureCell(title: item.title,
-                                   content: userInfo.area + " " + userInfo.city)
-            case 3:
+            case .area:
+                cell.configureCell(title: type.title,
+                                   content: userInfo.area)
+            case .city:
+                cell.configureCell(title: type.title,
+                                   content: userInfo.city)
+            case .income:
                 let income = Int(userInfo.lastYearIncome) / 10000
-                cell.configureCell(title: item.title,
+                cell.configureCell(title: type.title,
                                    content: "\(income) 만원")
-            case 4:
-                cell.configureCell(title: item.title,
+            case .education:
+                cell.configureCell(title: type.title,
                                    content: userInfo.educationType)
-            default:
-                cell.configureCell(title: item.title,
+            case .jobs:
+                cell.configureCell(title: type.title,
                                    content: userInfo.jobs.joined(separator: ", "))
             }
         default:
-            let item = viewModel.otherInfoItems[indexPath.row]
-            switch indexPath.row {
-            case 0:
-                cell.configureCell(title: item.title,
+            let type = OtherInfoItem(rawValue: indexPath.row) ?? .gender
+            switch type {
+            case .gender:
+                cell.configureCell(title: type.title,
                                    content: userInfo.gender)
-                break
-            case 1:
-                cell.configureCell(title: item.title,
+            case .isSmallCompany:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.smallBusiness)
-            case 2:
-                cell.configureCell(title: item.title,
+            case .isSoldier:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.soldier)
-            case 3:
-                cell.configureCell(title: item.title,
+            case .isLowIncomeFamilies:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.lowIncome)
-            case 4:
-                cell.configureCell(title: item.title,
+            case .isDisabledPerson:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.disabled)
-            case 5:
-                cell.configureCell(title: item.title,
+            case .isLocalTalent:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.localTalent)
-            default:
-                cell.configureCell(title: item.title,
+            case .isFarmer:
+                cell.configureCell(title: type.title,
                                    isOn: userInfo.farmer)
-                
             }
         }
         
         return cell
     }
 }
-
-//#Preview(body: {
-//    let vc = PersonalInfoViewController(viewModel: PersonalInfoViewModel(cooridnator: nil))
-//    return UINavigationController(rootViewController: vc).preview
-//})
