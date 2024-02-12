@@ -36,7 +36,7 @@ class PolicyInfoDTO: Codable {
     let policyLogo: String?
     let policyIntroduction: String
     var applyStatus: Bool
-    let benefit: Int
+    let benefit: Int?
     var applyFlag, interestFlag: Bool
     let policyUrl: String?
 }

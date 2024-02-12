@@ -152,7 +152,7 @@ final class WelfareCell: UITableViewCell {
                 selectButton.isEnabled = true
             }
             
-            let title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
+            let title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit ?? 0/10000)만원 신청하기"
             
             if isSelected {
                 self.applyButton.configuration?.attributedTitle = .init(
