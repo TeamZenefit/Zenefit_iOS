@@ -13,7 +13,7 @@ enum WelfareSortType: String {
     
     var description: String {
         switch self {
-        case .benefit: "수혜금액"
+        case .benefit: "수혜금액순"
         case .applyEndDate: "마감순"
         }
     }

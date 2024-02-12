@@ -19,7 +19,7 @@ final class PolicyListUseCase {
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType,
                        sortType: WelfareSortType,
-                       keyword: String) -> AnyPublisher<PolicyListDTO, Error> {
+                       keyword: String) -> AnyPublisher<PolictListPagingDTO, Error> {
         self.policyRepo.getPolicyInfo(page: page,
                                       supportPolicyType: supportPolicyType,
                                       policyType: policyType,

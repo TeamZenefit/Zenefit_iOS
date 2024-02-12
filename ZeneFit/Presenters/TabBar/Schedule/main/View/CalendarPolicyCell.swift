@@ -103,7 +103,7 @@ final class CalendarPolicyCell: UITableViewCell {
         policyImageView.kf.setImage(with: URL(string: policy.policyAgencyLogo ?? ""),
                                     placeholder: UIImage(resource: .defaultPolicy))
         titleLabel.text = policy.policyName
-        dateLabel.text = "\(policy.applySttDate) - \(policy.applyEndDate)"
+        dateLabel.text = "\(policy.applySttDate.hipenToDot) - \(policy.applyEndDate.hipenToDot)"
         
         deleteButton.isHidden = !isEditMode
         applyButton.isHidden = isEditMode

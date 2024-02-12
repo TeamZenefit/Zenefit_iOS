@@ -15,10 +15,12 @@ extension UIFont {
     }
 
     static func pretendard(_ type: PretendardType, size: CGFloat) -> UIFont {
+        
         return UIFont(name: "Pretendard-\(type.rawValue)", size: size)!
     }
     
     static func pretendard(_ type: FontSystemType) -> UIFont {
+        
         return type.font
     }
 }
@@ -37,7 +39,7 @@ public enum FontSystemType {
     case chips
     case caption
     
-    var lineHeight: CGFloat {
+    public var lineHeight: CGFloat {
         switch self {
         case .headline: return 48
         case .title1: return 32
@@ -50,7 +52,7 @@ public enum FontSystemType {
         }
     }
     
-    var font: UIFont {
+    public  var font: UIFont {
         switch self {
         case .headline:
             return .pretendard(.bold, size: 32)

@@ -20,7 +20,7 @@ struct HomeInfoDTO: Codable {
 struct PolicyDTO: Codable {
     let policyID: Int
     let policyName: String
-    let policyLogo: String
+    let policyLogo: String?
     let supportPolicyType, supportPolicyTypeName: String
     let dueDate: Int
     

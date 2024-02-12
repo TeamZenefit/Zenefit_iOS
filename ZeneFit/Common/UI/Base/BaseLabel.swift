@@ -8,9 +8,11 @@
 import UIKit
 
 class BaseLabel: UILabel {
+    var systemType: FontSystemType = .body1
+    
     override var text: String? {
         didSet {
-            self.setLineHeight(self.font)
+//            self.setLineHeight(
         }
     }
 }

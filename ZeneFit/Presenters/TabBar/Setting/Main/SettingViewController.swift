@@ -27,7 +27,7 @@ final class SettingViewController: BaseViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        let titleLabel = BaseLabel().then {
+        let titleLabel = UILabel().then {
             $0.text = "설정"
             $0.textColor = .textStrong
             $0.font = .pretendard(.title1)
@@ -111,7 +111,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case .init(row: 1, section: 1):
             cell.configuration(title: "로그인 정보")
         case .init(row: 2, section: 1):
-            cell.configuration(title: "약관 및 개인 정보 처리 동의")
+            cell.configuration(title: "약관 및 개인정보처리 동의")
         default:
             cell.configuration(title: "앱 정보")
         }

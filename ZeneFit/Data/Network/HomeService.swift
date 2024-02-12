@@ -23,7 +23,25 @@ final class HomeService {
         
         return session.dataTaskPublisher(urlRequest: endpoint.request,
                                          expect: BaseResponse<HomeInfoDTO>.self,
-                                         responseHandler: nil)
+                                         responseHandler: { response in
+            switch response.statusCode {
+            case 401:
+                UserDefaults.standard.removeObject(forKey: ZFKeyType.accessToken.rawValue)
+                UserDefaults.standard.removeObject(forKey: ZFKeyType.refreshToken.rawValue)
+                UserDefaults.standard.removeObject(forKey: ZFKeyType.userId.rawValue)
+                
+                DispatchQueue.main.async {
+                    let tabBarCoordinator = SceneDelegate.mainCoordinator?.childCoordinators.first { $0 is TabBarCoordinator }
+                    let homeCoordinator = tabBarCoordinator?.childCoordinators.first { $0 is HomeCoordinator }
+                    homeCoordinator?.finish()   
+                }
+                
+                throw CommonError.invalidJWT
+            default: break
+            }
+        
+        })
+        
         .tryMap { response -> HomeInfoDTO in
             switch response.code {
             case 200:

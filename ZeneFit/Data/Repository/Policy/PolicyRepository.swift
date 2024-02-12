@@ -37,7 +37,7 @@ final class PolicyRepository: PolicyRepositoryProtocol {
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType,
                        sortType: WelfareSortType,
-                       keyword: String) -> AnyPublisher<PolicyListDTO, Error> {
+                       keyword: String) -> AnyPublisher<PolictListPagingDTO, Error> {
         policyService.getPolicyInfo(page: page,
                                     supportPolicyType: supportPolicyType,
                                     policyType: policyType,

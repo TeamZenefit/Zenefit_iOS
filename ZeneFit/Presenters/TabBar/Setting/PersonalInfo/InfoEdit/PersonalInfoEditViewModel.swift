@@ -46,9 +46,20 @@ class PersonalInfoEditViewModel {
             .assign(to: \.areas, on: self)
             .store(in: &cancellable)
         
-        $areas
+        fetchCity.execute(area: newUserInfo.value?.area ?? "")
+            .replaceError(with: [])
+            .assign(to: \.cities, on: self)
+            .store(in: &cancellable)
+        
+        
+        newUserInfo
+            .removeDuplicates(by: {
+                $0?.area == $1?.area
+            })
+            .dropFirst()
             .sink { [weak self] area in
                 self?.fetchCities()
+                self?.newUserInfo.value?.city = ""
             }.store(in: &cancellable)
     }
     
@@ -65,10 +76,17 @@ class PersonalInfoEditViewModel {
         
         if newUserInfo.age <= 0 || newUserInfo.age > 99 {
             errorPublisher.send(CommonError.invalidAge)
+            return
         }
         
         if newUserInfo.lastYearIncome <= 0 || newUserInfo.lastYearIncome > 9999990000 {
             errorPublisher.send(CommonError.invalidIncome)
+            return
+        }
+        
+        if newUserInfo.city.isEmpty {
+            errorPublisher.send(CommonError.emptyCity)
+            return
         }
         
         updateUserInfoUseCase.execute(newUserInfo: newUserInfo)

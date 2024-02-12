@@ -45,7 +45,7 @@ final class WelfareViewModel {
     @discardableResult
     func addInterrestPolicy(policyId: Int) async throws -> Bool {
         let isSuccess = try await addInterestPolicyUseCase.execute(policyId: policyId)
-        policyItems.value.filter { $0.policyID == policyId }.first?.interestFlag = true
+        policyItems.value.filter { $0.policyId == policyId }.first?.interestFlag = true
         
         return isSuccess
     }
@@ -53,7 +53,7 @@ final class WelfareViewModel {
     @discardableResult
     func removeInterrestPolicy(policyId: Int) async throws -> Bool {
         let isSuccess = try await removeInterestPolicyUseCase.execute(policyId: policyId)
-        policyItems.value.filter { $0.policyID == policyId }.first?.interestFlag = false
+        policyItems.value.filter { $0.policyId == policyId }.first?.interestFlag = false
         
         return isSuccess
     }

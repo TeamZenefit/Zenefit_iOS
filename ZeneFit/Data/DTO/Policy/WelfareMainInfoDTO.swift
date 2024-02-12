@@ -12,20 +12,17 @@ struct WelfareMainInfoDTO: Codable {
 }
 
 class PolicyMainInfo: Codable {
-    let supportType, supportTypeDescription: String
-    let policyID: Int
+    let supportType: String
+    let supportTypeDescription: String
+    let policyId: Int
     let policyName: String
-    let policyLogo: String
+    let policyLogo: String?
+    let applyFlag: Bool
     var interestFlag: Bool
-    let policyAreaCode, policyCityCode, policyIntroduction: String
+    let policyAreaCode, policyIntroduction: String
+    let policyCityCode: String?
     let supportTypePolicyCnt, benefit: Int
     let policyDateType: String
     let policyMethodType: String
-
-    enum CodingKeys: String, CodingKey {
-        case supportType, supportTypeDescription
-        case policyID = "policyId"
-        case policyName, policyLogo, policyAreaCode, policyCityCode, policyIntroduction, supportTypePolicyCnt, benefit, policyDateType, interestFlag, policyMethodType
-    }
 }
 

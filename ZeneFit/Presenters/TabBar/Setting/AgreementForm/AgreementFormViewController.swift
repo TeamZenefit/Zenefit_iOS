@@ -51,9 +51,9 @@ final class AgreementFormViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] info in
                 guard let self else { return }
-                termOfServiceItemView.setContent(content: info.termsOfServiceDate.hipenToDot())
-                privacyPolicyItemView.setContent(content: info.privacyDate.hipenToDot())
-                marketingInfoItemView.setContent(content: info.marketingDate?.hipenToDot() ?? "미동의")
+                termOfServiceItemView.setContent(content: info.termsOfServiceDate.hipenToDot)
+                privacyPolicyItemView.setContent(content: info.privacyDate.hipenToDot)
+                marketingInfoItemView.setContent(content: info.marketingDate?.hipenToDot ?? "미동의")
                 
                 termOfServiceItemView.gesturePublisher(for: .tap)
                     .receive(on: RunLoop.main)

@@ -68,7 +68,7 @@ final class BenefitCell: UITableViewCell {
         infoLabel.isHidden = isEditMode
         deleteButton.isHidden = !isEditMode
         
-        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo),
+        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo ?? ""),
                                        placeholder: UIImage(named: "DefaultPolicy"))
         titleLabel.text = policyItem.policyName
         contentLabel.text = policyItem.policyIntroduction

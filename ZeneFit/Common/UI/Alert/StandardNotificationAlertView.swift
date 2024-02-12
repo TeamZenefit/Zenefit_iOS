@@ -60,4 +60,12 @@ final class StandardNotificationAlertView: UIStackView {
             }
         }
     }
+    
+    static func showToast(message: String) {
+        guard let windowScene = UIApplication.shared.scene,
+              let window = windowScene.windows.last?.subviews.first else { return }
+        
+        
+        
+    }
 }

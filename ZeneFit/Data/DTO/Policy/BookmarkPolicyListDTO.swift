@@ -23,7 +23,7 @@ struct BookmarkPolicyListDTO: Codable {
 struct BookmarkPolicy: Codable {
     let policyID: Int
     let policyName, policyIntroduction: String
-    let policyLogo: String
+    let policyLogo: String?
     let applyEndDate: String?
 
     enum CodingKeys: String, CodingKey {

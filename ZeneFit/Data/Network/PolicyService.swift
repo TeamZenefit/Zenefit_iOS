@@ -103,7 +103,7 @@ class PolicyService {
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType,
                        sortType: WelfareSortType,
-                       keyword: String) -> AnyPublisher<PolicyListDTO, Error> {
+                       keyword: String) -> AnyPublisher<PolictListPagingDTO, Error> {
         let query: [String : String] = ["page" : "\(page)",
                                         "size" : "\(10)",
                                         "sortField" : sortType.rawValue,
@@ -123,9 +123,9 @@ class PolicyService {
     
             
         return session.dataTaskPublisher(urlRequest: endpoint.request,
-                                         expect: BaseResponse<PolicyListDTO>.self,
+                                         expect: BaseResponse<PolictListPagingDTO>.self,
                                          responseHandler: nil)
-        .tryMap { response -> PolicyListDTO in
+        .tryMap { response -> PolictListPagingDTO in
             switch response.code {
             case 200:
                 return response.result

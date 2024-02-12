@@ -182,6 +182,11 @@ extension WelfareListViewController: UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = viewModel.policyList.value[indexPath.row]
+        viewModel.coordinator?.setAction(.detail(id: item.policyId))
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView is UITableView {
             let offsetY = scrollView.contentOffset.y
@@ -209,10 +214,10 @@ extension WelfareListViewController: WelfareDelegate {
         Task { [weak self] in
             do {
                 if policy.interestFlag {
-                    try await self?.viewModel.removeInterestPolicy(policyId: policy.policyID)
+                    try await self?.viewModel.removeInterestPolicy(policyId: policy.policyId)
                     self?.notiAlert("달력에서 제거되었습니다.")
                 } else {
-                    try await self?.viewModel.addInterestPolicy(policyId: policy.policyID)
+                    try await self?.viewModel.addInterestPolicy(policyId: policy.policyId)
                     self?.notiAlert("달력에 추가되었습니다.")
                 }
                 
@@ -227,17 +232,35 @@ extension WelfareListViewController: WelfareDelegate {
         }
     }
     
-    func tapApplyWelfare(policyId: Int) {
-        viewModel.coordinator?.setAction(.detail(id: policyId))
+    func tapApplyWelfare(policy: PolicyInfoDTO) {
+        guard let url = policy.policyUrl else {
+            notiAlert("유효하지 않은 주소입니다.")
+            return
+        }
+        
+        if url.hasPrefix("https") {
+            openSafari(urlString: url)
+        } else if url.hasPrefix("http") {
+            let alert = StandardAlertController(title: "보안되지 않은 사이트 입니다.", message: "Safari를 통해 여시겠습니까?")
+            let open = StandardAlertAction(title: "열기", style: .blue, handler: { _ in
+                Utils.openExternalLink(urlStr: policy.policyUrl ?? "")
+            })
+            let cancel = StandardAlertAction(title: "취소", style: .cancel)
+            alert.addAction(cancel, open)
+            
+            self.present(alert, animated: false)
+        } else {
+            notiAlert("유효하지 않은 주소입니다.")
+        }
     }
     
     func tapApplyWelfareFlag(policy: PolicyInfoDTO, completion: (() -> Void)?) {
         Task { [weak self] in
             do {
                 if policy.applyFlag {
-                    try await self?.viewModel.removeApplyingPolicy(policyId: policy.policyID)
+                    try await self?.viewModel.removeApplyingPolicy(policyId: policy.policyId)
                 } else {
-                    try await self?.viewModel.addApplyingPolicy(policyId: policy.policyID)
+                    try await self?.viewModel.addApplyingPolicy(policyId: policy.policyId)
                 }
                 
                 completion?()

@@ -14,10 +14,10 @@ final class ManualView: UIView {
     }
     
     private let subTitleLabel = BaseLabel().then {
-        $0.textAlignment = .center
-        $0.numberOfLines = 0
         $0.font = .pretendard(.body1)
         $0.textColor = .textAlternative
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
     
     private let deviceImageView = UIImageView().then {
@@ -41,7 +41,7 @@ final class ManualView: UIView {
         
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(deviceImageView.snp.bottom).offset(16)
+            $0.top.equalTo(deviceImageView.snp.bottom).offset(24)
         }
         
         subTitleLabel.snp.makeConstraints {

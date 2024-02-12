@@ -15,6 +15,11 @@ final class HomeViewController: BaseViewController {
         $0.setImage(UIImage(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
+    private let manualItem = UIButton().then {
+        $0.setImage(UIImage(resource: .manualOn).withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(UIImage(resource: .manualOff).withRenderingMode(.alwaysOriginal), for: .selected)
+    }
+    
     private let scollView = UIScrollView()
     
     private let homeHeaderView = UIView().then {
@@ -35,7 +40,7 @@ final class HomeViewController: BaseViewController {
     
     private let imageView = UIImageView()
     
-    private let bookmarkInfoView = SmallBoxView(title: "관심 등록",
+    private let bookmarkInfoView = SmallBoxView(title: "관심 정책",
                                                 icon: .init(resource: .search28))
     
     private let benefitInfoView = SmallBoxView(title: "수혜 정책",
@@ -43,7 +48,7 @@ final class HomeViewController: BaseViewController {
     
     private lazy var smallBoxStackView = UIStackView(arrangedSubviews: [bookmarkInfoView, benefitInfoView]).then {
         $0.distribution = .fillEqually
-        $0.spacing = 8
+        $0.spacing = 16
     }
     
     private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
@@ -83,6 +88,10 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchMainInfo()
+        
+        let hasCheck = UserDefaults.standard.bool(forKey: ZFKeyType.hasCheckManumal.rawValue)
+
+        manualItem.isSelected = !hasCheck
     }
     
     override func setupBinding() {
@@ -130,13 +139,9 @@ final class HomeViewController: BaseViewController {
     override func configureNavigation() {
         super.configureNavigation()
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: .init(named: "logotype")))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIImageView(image: .init(resource: .logotype)))
         navigationItem.standardAppearance?.backgroundColor = .backgroundPrimary
         navigationItem.scrollEdgeAppearance?.backgroundColor = .backgroundPrimary
-        
-        let manualItem = UIButton().then {
-            $0.setImage(UIImage(named: "manual_on")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
         
         notiItem.addAction(.init(handler: { [weak self] _ in
             self?.viewModel.coordinator?.setAction(.notiList)
@@ -145,6 +150,7 @@ final class HomeViewController: BaseViewController {
         manualItem.tapPublisher
             .sink { [weak self] in
                 self?.viewModel.coordinator?.setAction(.menual)
+                UserDefaults.standard.setValue(true, forKey: ZFKeyType.hasCheckManumal.rawValue)
             }.store(in: &cancellable)
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -244,11 +250,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView: HomeSectionHeaderView
         switch section {
         case 0:
-            headerView = HomeSectionHeaderView(title: "정책 추천", action: { [weak self] in
+            headerView = HomeSectionHeaderView(title: "지금 신청할 수 있어요!", action: { [weak self] in
                 self?.tabBarController?.selectedIndex = 1
             })
         default:
-            headerView = HomeSectionHeaderView(title: "신청 마감일", action: { [weak self] in
+            headerView = HomeSectionHeaderView(title: "마감일이 얼마 안 남았어요!", action: { [weak self] in
                 self?.tabBarController?.selectedIndex = 2
             })
         }

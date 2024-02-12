@@ -31,6 +31,7 @@ extension URLSession: URLSessionable {
                 }
                 
                 if (500...599).contains(res.statusCode) {
+                    print("🔴 NetworkError: serverError")
                     throw CommonError.serverError
                 }
                 

@@ -21,7 +21,7 @@ struct BenefitPolicyListDTO: Codable {
 struct BenefitPolicy: Codable {
     let policyID: Int
     let policyName, policyIntroduction: String
-    let policyLogo: String
+    let policyLogo: String?
     let benefit: Int
     
     enum CodingKeys: String, CodingKey {

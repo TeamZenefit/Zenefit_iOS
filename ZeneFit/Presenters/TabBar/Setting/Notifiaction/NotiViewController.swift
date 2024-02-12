@@ -36,7 +36,7 @@ final class NotiViewController: BaseViewController {
         $0.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.identifier)
     }
     
-    private let footerView = ZFTableViewFooterView(title: "2주간 지난 알림은 사라져요", type: .fill)
+    private let footerView = ZFTableViewFooterView(title: "2주가 지난 알림은 사라져요", type: .fill)
     
     init(viewModel: NotiViewModel) {
         self.viewModel = viewModel

@@ -9,8 +9,7 @@ import UIKit
 import Combine
 
 protocol WelfareMainItemCellDelegate: AnyObject {
-    func tapApply(policyId: Int) -> Void
-    func tapInterest(policy: PolicyMainInfo, completion: (()->Void)?) -> Void
+    func tapTopFrame(type: SupportPolicyType) -> Void
 }
 
 final class WelfareMainItemCell: UITableViewCell {
@@ -75,7 +74,7 @@ final class WelfareMainItemCell: UITableViewCell {
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .secondaryNormal
-        $0.layer.cornerRadius = 13
+        $0.layer.cornerRadius = 12
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.secondaryAssistive.cgColor
     }
@@ -85,7 +84,7 @@ final class WelfareMainItemCell: UITableViewCell {
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .primaryNormal
-        $0.layer.cornerRadius = 13
+        $0.layer.cornerRadius = 12
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.primaryAssistive.cgColor
     }
@@ -99,22 +98,6 @@ final class WelfareMainItemCell: UITableViewCell {
     
     private let disclosureImage = UIImageView().then {
         $0.image = .init(named: "i-nex-26")
-    }
-    
-    private let addScheduleButton = UIButton().then {
-        $0.setImage(.init(named: "Add-scheduleOff")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        $0.setImage(.init(named: "Add-scheduleOn")?.withRenderingMode(.alwaysOriginal), for: .selected)
-    }
-    
-    private let applyButton = UIButton().then {
-        var configure = UIButton.Configuration.filled()
-        configure.background.cornerRadius = 8
-        configure.baseForegroundColor = .primaryNormal
-        configure.baseBackgroundColor = .primaryAssistive
-        configure.attributedTitle = .init("월 n만원 신청하기",
-                                          attributes: .init([.font : UIFont.pretendard(.label4)]))
-        
-        $0.configuration = configure
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -143,15 +126,12 @@ final class WelfareMainItemCell: UITableViewCell {
         var count = "\(item.supportTypePolicyCnt)"
         if count.count > 2 { count += "+" }
         countLabel.text = count
-        policyImageView.kf.setImage(with: URL(string: item.policyLogo),
+        policyImageView.kf.setImage(with: URL(string: item.policyLogo ?? ""),
                                     placeholder: UIImage(named: "DefaultPolicy"))
         agencyLabel.text = item.policyCityCode
         policyLabel.text = item.policyName
         contentLabel.text = item.policyIntroduction
-        addScheduleButton.isSelected = item.interestFlag
-        let title = item.benefit == 0 ? "신청하기" : "월 \(item.benefit/10000)만원 신청하기"
-        self.applyButton.configuration?.attributedTitle = .init(title,
-                                                                attributes: .init([.font : UIFont.pretendard(.label4)]))
+        
         self.configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
         self.configureMethodType(type: PolicyMethodType(rawValue: item.policyMethodType) ?? .blank)
     }
@@ -179,7 +159,7 @@ final class WelfareMainItemCell: UITableViewCell {
     private func addSubViews() {
         contentView.addSubview(totalFrameView)
         
-        [topFrameView, separatorView, policyImageView, agencyLabel, policyLabel, applyTypeStackView, contentLabel, addScheduleButton, applyButton].forEach {
+        [topFrameView, separatorView, policyImageView, agencyLabel, policyLabel, applyTypeStackView, contentLabel].forEach {
             totalFrameView.addSubview($0)
         }
         
@@ -233,6 +213,7 @@ final class WelfareMainItemCell: UITableViewCell {
         
         policyLabel.snp.makeConstraints {
             $0.leading.equalTo(agencyLabel)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.top.equalTo(agencyLabel.snp.bottom).offset(4)
         }
         
@@ -245,37 +226,18 @@ final class WelfareMainItemCell: UITableViewCell {
             $0.leading.equalTo(agencyLabel)
             $0.trailing.equalToSuperview().offset(-16)
             $0.top.equalTo(applyTypeStackView.snp.bottom).offset(8)
-        }
-        
-        applyButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.height.equalTo(36)
-            $0.top.equalTo(contentLabel.snp.bottom).offset(8)
-            $0.bottom.equalToSuperview().offset(-16)
-        }
-        
-        addScheduleButton.snp.makeConstraints {
-            $0.height.width.equalTo(36)
-            $0.centerY.equalTo(applyButton)
-            $0.trailing.equalTo(applyButton.snp.leading).offset(-8)
+            $0.bottom.equalToSuperview().offset(-24)
         }
     }
 
     private func setupBinding() {
-        applyButton.tapPublisher
+        topFrameView.gesturePublisher(for: .tap)
             .receive(on: RunLoop.main)
-            .sink { [weak self] in
-                guard let policyId = self?.policy?.policyID else { return }
-                self?.delegate?.tapApply(policyId: policyId)
-            }.store(in: &cancellable)
-        
-        addScheduleButton.tapPublisher
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in
+            .sink { [weak self] _ in
                 guard let policy = self?.policy else { return }
-                self?.delegate?.tapInterest(policy: policy) {
-                    self?.addScheduleButton.isSelected.toggle()
-                }
+                let type = SupportPolicyType(rawValue: policy.supportType) ?? .money
+                self?.delegate?.tapTopFrame(type: type)
+                
             }.store(in: &cancellable)
     }
 }

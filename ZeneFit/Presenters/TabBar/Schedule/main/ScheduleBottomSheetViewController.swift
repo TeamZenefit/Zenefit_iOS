@@ -19,6 +19,7 @@ final class ScheduleBottomSheetViewController: BaseViewController {
         $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 16
+        $0.isExclusiveTouch = true
     }
     
     private let titleLabel = BaseLabel().then {
@@ -81,6 +82,17 @@ final class ScheduleBottomSheetViewController: BaseViewController {
                 })
             }
             .store(in: &cancellable)
+        
+        view.gesturePublisher(for: .tap)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                UIView.animate(withDuration: 0.5, animations: { [weak self] in
+                    self?.view.backgroundColor = .clear
+                    self?.frameView.transform = .init(translationX: 0, y: UIScreen.main.bounds.height)
+                }, completion: { [weak self] _ in
+                    self?.dismiss(animated: false)
+                })
+            }.store(in: &cancellable)
     }
     
     override func addSubView() {

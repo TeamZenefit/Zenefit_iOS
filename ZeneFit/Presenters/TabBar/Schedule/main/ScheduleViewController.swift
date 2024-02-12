@@ -31,6 +31,7 @@ final class ScheduleViewController: BaseViewController {
     }
     
     private lazy var calendarView = FSCalendar().then {
+        $0.register(CalendarCell.self, forCellReuseIdentifier: CalendarCell.identifier)
         $0.layer.cornerRadius = 16
         $0.backgroundColor = .white
         $0.appearance.titleFont = .pretendard(.body1)
@@ -94,7 +95,7 @@ final class ScheduleViewController: BaseViewController {
             $0.textColor = .textStrong
             $0.font = .pretendard(.title1)
         }
-
+        
         navigationItem.standardAppearance?.backgroundColor = .backgroundPrimary
         navigationItem.scrollEdgeAppearance?.backgroundColor = .backgroundPrimary
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
@@ -291,6 +292,18 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
         } else {
             notiAlert("해당 날짜에 신청 가능한 정책이 없어요.")
         }   
+    }
+}
+
+extension ScheduleViewController: FSCalendarDelegateAppearance {
+    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+        if date.formattedString == Date.now.formattedString {
+            
+        } else {
+            calendar.appearance.titleFont = .pretendard(.body1)
+        }
+        
+        return nil
     }
 }
 

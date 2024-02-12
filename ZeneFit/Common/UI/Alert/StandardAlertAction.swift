@@ -31,12 +31,14 @@ final class StandardAlertAction: UIButton {
             configuration?.background.strokeColor = .textAlternative
             configuration?.background.strokeWidth = 1
         case .basic:
+            configuration?.contentInsets = .init(top: 8, leading: 16, bottom: 8, trailing: 16)
             configuration?.baseBackgroundColor = .alert
             configuration?.baseForegroundColor = .white
         case .gray:
             configuration?.baseBackgroundColor = .fillNormal
             configuration?.baseForegroundColor = .textAlternative
         case .blue:
+            configuration?.contentInsets = .init(top: 8, leading: 16, bottom: 8, trailing: 16)
             configuration?.baseBackgroundColor = .primaryNormal
             configuration?.baseForegroundColor = .white
         }

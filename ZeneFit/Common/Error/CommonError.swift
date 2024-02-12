@@ -20,4 +20,6 @@ enum CommonError: Error {
     case unregist
     case invalidAge
     case invalidIncome
+    case emptyCity
+    case invalidJWT
 }

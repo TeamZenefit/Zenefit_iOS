@@ -12,7 +12,7 @@ import SkeletonView
 
 protocol WelfareDelegate: AnyObject {
     func toggleCalendarStatus(policy: PolicyInfoDTO, completion: (()->Void)?)
-    func tapApplyWelfare(policyId: Int)
+    func tapApplyWelfare(policy: PolicyInfoDTO)
     func tapApplyWelfareFlag(policy: PolicyInfoDTO, completion: (()->Void)?)
 }
 
@@ -137,7 +137,22 @@ final class WelfareCell: UITableViewCell {
     override var isSelected: Bool {
         didSet {
             guard let policy else { return }
-            var title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
+            
+            if let _ = policy.policyApplyDenialReason {
+                applyButton.isEnabled = false
+                selectButton.isEnabled = false
+                applyButton.configuration?.attributedTitle = .init(
+                    "신청할 수 없어요",
+                    attributes: .init([.font : UIFont.pretendard(.label4),
+                                       .foregroundColor : UIColor.white])
+                )
+                return
+            } else {
+                applyButton.isEnabled = true
+                selectButton.isEnabled = true
+            }
+            
+            let title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit/10000)만원 신청하기"
             
             if isSelected {
                 self.applyButton.configuration?.attributedTitle = .init(
@@ -185,14 +200,13 @@ final class WelfareCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         delegate = nil
-        cancellable.removeAll()
     }
     
     // selectButton에 따라 분기해줘야함
     func configureCell(item: PolicyInfoDTO) {
         self.isHidden = false
         self.policy = item
-        self.policyImageView.kf.setImage(with: URL(string: item.policyLogo),
+        self.policyImageView.kf.setImage(with: URL(string: item.policyLogo ?? ""),
                                          placeholder: UIImage(named: "DefaultPolicy"))
     
         self.setSelected(item.applyFlag, animated: false)
@@ -208,7 +222,7 @@ final class WelfareCell: UITableViewCell {
     
     private func configureDateType(type: PolicyDateType) {
         let textColor: UIColor = self.isSelected ? .textDisable : .secondaryNormal
-        let borderColor: UIColor = self.isSelected ? .lineDisable : .secondaryAssistive
+        let borderColor: UIColor = self.isSelected ? .lineAlternative : .secondaryAssistive
         
         dateTypeLabel.text = type.description
         dateTypeLabel.isHidden = type == .blank || type == .undecided
@@ -218,7 +232,7 @@ final class WelfareCell: UITableViewCell {
     
     private func configureMethodType(type: PolicyMethodType) {
         let textColor: UIColor = self.isSelected ? .textDisable : .primaryNormal
-        let borderColor: UIColor = self.isSelected ? .lineDisable : .primaryAssistive
+        let borderColor: UIColor = self.isSelected ? .lineAlternative : .primaryAssistive
         
         methodTypeLabel.text = type.description
         methodTypeLabel.isHidden = type == .blank
@@ -241,7 +255,8 @@ final class WelfareCell: UITableViewCell {
         }
         
         policyImageView.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(16)
+            $0.leading.equalToSuperview()
             $0.size.equalTo(44)
         }
         
@@ -296,6 +311,8 @@ final class WelfareCell: UITableViewCell {
     private func setupBinding() {
         addScheduleButton.tapPublisher
             .receive(on: RunLoop.main)
+//            .debounce(for: .seconds(0.4), scheduler: DispatchQueue.main)
+            .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: false)
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
@@ -309,7 +326,7 @@ final class WelfareCell: UITableViewCell {
             .sink { [weak self] in
                 guard let self,
                       let policy else { return }
-                self.delegate?.tapApplyWelfare(policyId: policy.policyID)
+                self.delegate?.tapApplyWelfare(policy: policy)
             }.store(in: &cancellable)
         
         selectButton.tapPublisher

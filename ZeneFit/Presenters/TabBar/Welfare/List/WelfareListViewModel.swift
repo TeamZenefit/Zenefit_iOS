@@ -82,7 +82,7 @@ final class WelfareListViewModel {
                 self?.showSkeleton.send(false)
             }
         }, receiveValue: { [weak self] res in
-            self?.policyList.send(res.content)
+            self?.policyList.send(res.policyListInfoResponseDto.content)
             self?.isLastPage = res.last
             self?.showSkeleton.send(false)
         }).store(in: &cancellable)
@@ -97,7 +97,7 @@ final class WelfareListViewModel {
     @discardableResult
     func addInterestPolicy(policyId: Int) async throws -> Bool {
         let isSuccess = try await addInterestPolicyUseCase.execute(policyId: policyId)
-        policyList.value.filter { $0.policyID == policyId }.first?.interestFlag = true
+        policyList.value.filter { $0.policyId == policyId }.first?.interestFlag = true
         
         return isSuccess
     }
@@ -105,7 +105,7 @@ final class WelfareListViewModel {
     @discardableResult
     func removeInterestPolicy(policyId: Int) async throws -> Bool {
         let isSuccess = try await removeInterestPolicyUseCase.execute(policyId: policyId)
-        policyList.value.filter { $0.policyID == policyId }.first?.interestFlag = false
+        policyList.value.filter { $0.policyId == policyId }.first?.interestFlag = false
         
         return isSuccess
     }
@@ -113,7 +113,7 @@ final class WelfareListViewModel {
     @discardableResult
     func addApplyingPolicy(policyId: Int) async throws -> Bool {
         let isSuccess = try await addApplyingPolicyUseCase.execute(policyId: policyId)
-        policyList.value.filter { $0.policyID == policyId }.first?.applyFlag = true
+        policyList.value.filter { $0.policyId == policyId }.first?.applyFlag = true
         
         return isSuccess
     }
@@ -121,7 +121,7 @@ final class WelfareListViewModel {
     @discardableResult
     func removeApplyingPolicy(policyId: Int) async throws -> Bool {
         let isSuccess = try await removeApplyingPolicyUseCase.execute(policyId: policyId)
-        policyList.value.filter { $0.policyID == policyId }.first?.applyFlag = false
+        policyList.value.filter { $0.policyId == policyId }.first?.applyFlag = false
         
         return isSuccess
     }
@@ -147,7 +147,7 @@ private extension WelfareListViewModel {
                 }
             }, receiveValue: { [weak self] res in
                 self?.showSkeleton.send(false)
-                self?.policyList.value.append(contentsOf: res.content)
+                self?.policyList.value.append(contentsOf: res.policyListInfoResponseDto.content)
                 self?.isLastPage = res.last
                 self?.isPaging = false
             }).store(in: &cancellable)

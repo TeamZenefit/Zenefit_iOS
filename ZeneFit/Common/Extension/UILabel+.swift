@@ -13,8 +13,8 @@ extension UILabel {
     /// - Parameter Font : 강조할 폰트
     /// - Parameter pointText : 강조할 텍스트
     public func setPointTextAttribute(_ pointText: String,
-                                  color: UIColor,
-                                  font: UIFont? = nil) {
+                                      color: UIColor,
+                                      font: UIFont? = nil) {
         guard let content = self.text else { return }
         
         let attributedStr = NSMutableAttributedString(string: content)
@@ -30,6 +30,8 @@ extension UILabel {
         let style = NSMutableParagraphStyle()
         style.maximumLineHeight = lineHeight
         style.minimumLineHeight = lineHeight
+        style.alignment = self.textAlignment
+        style.lineBreakMode = self.lineBreakMode
         
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: style,
@@ -43,17 +45,19 @@ extension UILabel {
         self.attributedText = attrString
     }
     
-    public func setLineHeight(_ font: UIFont) {
+    public func setLineHeight(_ font: FontSystemType) {
         let text = self.text ?? ""
         let style = NSMutableParagraphStyle()
         style.maximumLineHeight = font.lineHeight
         style.minimumLineHeight = font.lineHeight
+        style.alignment = self.textAlignment
+        style.lineBreakMode = self.lineBreakMode
         
         let attributes: [NSAttributedString.Key: Any] = [
             .paragraphStyle: style,
             .baselineOffset: (font.lineHeight - self.font.lineHeight) / 4,
             .font: self.font!,
-            .foregroundColor : self.textColor!
+            .foregroundColor : self.textColor!,
         ]
         
         let attrString = NSAttributedString(string: text,

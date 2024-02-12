@@ -66,7 +66,7 @@ final class BookmarkCell: UITableViewCell {
         deleteButton.isHidden = !isEditMode
         dateLabel.isHidden = policyItem.applyEndDate == nil || isEditMode
         
-        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo),
+        thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo ?? ""),
                                        placeholder: UIImage(named: "DefaultPolicy"))
         titleLabel.text = policyItem.policyName
         contentLabel.text = policyItem.policyIntroduction

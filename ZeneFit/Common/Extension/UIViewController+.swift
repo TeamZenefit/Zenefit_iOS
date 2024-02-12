@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import SafariServices
 
 extension UIViewController {
     func changeRootViewController(_ rootViewController: UIViewController) {
@@ -44,6 +45,15 @@ extension UIViewController {
     
     public var preview: some View {
         return Preview(viewController: self)
+    }
+    
+    /// 사파리 열기
+    func openSafari(urlString: String) {
+        guard let termURL = URL(string: urlString) else { return }
+
+        let safariViewController = SFSafariViewController(url: termURL)
+        safariViewController.modalPresentationStyle = .automatic
+        self.present(safariViewController, animated: true, completion: nil)
     }
 }
 

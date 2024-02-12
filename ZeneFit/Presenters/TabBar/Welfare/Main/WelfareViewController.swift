@@ -11,13 +11,20 @@ final class WelfareViewController: BaseViewController {
     
     private let viewModel: WelfareViewModel
     
+    private lazy var errorView = DefaultErrorView().then {
+        $0.retryHandler = { [weak self] in
+            self?.viewModel.getWelfareMainInfo()
+        }
+    }
+    
     private let notiButton = UIButton(type: .system).then {
         $0.setImage(.init(named: "alarm_off")?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
-    private let tableView = UITableView().then {
+    private lazy var tableView = UITableView().then {
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
+        $0.backgroundView = errorView
         $0.register(WelfareMainItemCell.self, forCellReuseIdentifier: WelfareMainItemCell.identifier)
         $0.backgroundColor = .backgroundPrimary
         $0.tableHeaderView = UIView(frame: .init(x: 0, y: 0, width: 10, height: 8))
@@ -69,7 +76,16 @@ final class WelfareViewController: BaseViewController {
         viewModel.policyItems
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
+                self?.errorView.isHidden = true
                 self?.tableView.reloadData()
+            }.store(in: &cancellable)
+        
+        viewModel.error
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                if case CommonError.serverError = error {
+                    self?.errorView.isHidden = false
+                }
             }.store(in: &cancellable)
     }
 
@@ -104,36 +120,13 @@ extension WelfareViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.policyItems.value[indexPath.row]
-        let type = SupportPolicyType(rawValue: item.supportType) ?? .money
-        self.viewModel.coordinator?.setAction(.list(type: type))
+        self.viewModel.coordinator?.setAction(.detail(id: item.policyId))
     }
 }
 
 extension WelfareViewController: WelfareMainItemCellDelegate {
     
-    func tapApply(policyId: Int) {
-        self.viewModel.coordinator?.setAction(.detail(id: policyId))
-    }
-    
-    func tapInterest(policy: PolicyMainInfo, completion: (() -> Void)?) {
-        Task { [weak self] in
-            do {
-                if policy.interestFlag {
-                    try await self?.viewModel.removeInterrestPolicy(policyId: policy.policyID)
-                    self?.notiAlert("달력에서 제거되었습니다.")
-                } else {
-                    try await self?.viewModel.addInterrestPolicy(policyId: policy.policyID)
-                    self?.notiAlert("달력에 추가되었습니다.")
-                }
-                
-                completion?()
-            } catch {
-                if case CommonError.alreadyInterestingPolicy = error {
-                    self?.notiAlert("이미 등록된 관심 정책입니다")
-                } else {
-                    self?.notiAlert("알 수 없는 에러로 실패하였습니다.")
-                }
-            }
-        }
+    func tapTopFrame(type: SupportPolicyType) {
+        self.viewModel.coordinator?.setAction(.list(type: type))
     }
 }

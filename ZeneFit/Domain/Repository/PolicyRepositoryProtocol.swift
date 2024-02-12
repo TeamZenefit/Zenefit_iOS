@@ -17,7 +17,7 @@ protocol PolicyRepositoryProtocol {
                        supportPolicyType: SupportPolicyType,
                        policyType: PolicyType,
                        sortType: WelfareSortType,
-                       keyword: String) -> AnyPublisher<PolicyListDTO, Error>
+                       keyword: String) -> AnyPublisher<PolictListPagingDTO, Error>
     func getPolicyDetailInfo(policyId: Int) -> AnyPublisher<PolicyDetailDTO, Error>
     
     func addInterestPolicy(policyId: Int) async throws -> Bool

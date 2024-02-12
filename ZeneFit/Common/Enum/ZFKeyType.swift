@@ -12,4 +12,5 @@ enum ZFKeyType: String {
     case accessToken
     case refreshToken
     case userId
+    case hasCheckManumal
 }

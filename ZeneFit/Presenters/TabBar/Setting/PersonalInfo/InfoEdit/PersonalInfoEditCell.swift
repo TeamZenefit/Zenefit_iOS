@@ -22,6 +22,8 @@ final class PersonalInfoEditCell: UITableViewCell {
     
     let contentTextField = InfoEditTextField().then {
         $0.textField.font = .pretendard(.label3)
+        $0.textField.autocorrectionType = .no
+        $0.textField.spellCheckingType = .no
     }
     
     private let switchView = UISwitch().then {

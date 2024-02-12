@@ -45,7 +45,6 @@ final class SettingItemView: BaseView {
     var contentTextFont: UIFont = .pretendard(.label3) {
         didSet {
             contentLabel.font = contentTextFont
-            contentLabel.setLineHeight(contentTextFont)
         }
     }
     

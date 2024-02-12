@@ -21,8 +21,7 @@ final class AuthService {
         let endpoint = Endpoint(method: .POST,
                                 paths: "/auth/login",
                                 body: ["providerType" : oauthType.rawValue,
-                                       "token" : token,
-                                       "nickname" : nickname ?? ""])
+                                       "token" : token])
         
         return session.dataTaskPublisher(urlRequest: endpoint.request,
                                          expect: BaseResponse<SignInResponse>.self,

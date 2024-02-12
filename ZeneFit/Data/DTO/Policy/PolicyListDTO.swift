@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct PolictListPagingDTO: Codable {
+    let policyListInfoResponseDto: PolicyListDTO
+    let last: Bool
+    let pageNumber: Int
+}
+
 struct PolicyListDTO: Codable {
     let content: [PolicyInfoDTO]
     let pageable: Pageable
@@ -19,7 +25,7 @@ struct PolicyListDTO: Codable {
 
 // MARK: - Content
 class PolicyInfoDTO: Codable {
-    let policyID: Int
+    let policyId: Int
     let policyName: String
     let policyApplyDenialReason: String?
     let policyDateType: String
@@ -27,14 +33,10 @@ class PolicyInfoDTO: Codable {
     let policyMethodType: String
     let areaCode: String
     let cityCode: String?
-    let policyLogo: String
+    let policyLogo: String?
     let policyIntroduction: String
     var applyStatus: Bool
     let benefit: Int
     var applyFlag, interestFlag: Bool
-
-    enum CodingKeys: String, CodingKey {
-        case policyID = "policyId"
-        case policyName, policyApplyDenialReason, areaCode, cityCode, policyLogo, policyIntroduction, applyStatus, benefit, applyFlag, interestFlag, policyDateType, policyDateTypeDescription, policyMethodType
-    }
+    let policyUrl: String?
 }

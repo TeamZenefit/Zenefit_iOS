@@ -80,10 +80,12 @@ final class WelfareDetailViewController: BaseViewController {
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] info in
-                self?.errorView.isHidden = true
+                let hasLastConsonat = info.policyName.hasLastConsonant
+                let preposition1 = hasLastConsonat ? "을" : "를"
+                let preposition2 = hasLastConsonat ? "은" : "는"
                 
                 if let reason = info.policyApplyDenialReason {
-                    self?.titleLabel.text = "\(info.policyName)은\n신청할 수 없어요"
+                    self?.titleLabel.text = "\(info.policyName)\(preposition2) 신청할 수 없어요"
                     self?.subTitleLabel.text = reason
                     self?.subTitleLabel.isHidden = false
                     self?.interestButton.isHidden = false
@@ -92,15 +94,19 @@ final class WelfareDetailViewController: BaseViewController {
                     self?.interestButton.isSelected = info.interestFlag
                     self?.interestButton.backgroundColor = info.interestFlag ? .fillDisable : .primaryNormal
                 } else {
+                    self?.interestButton.isHidden = true
+                    self?.subTitleLabel.isHidden = true
+                    self?.applyButton.isHidden = false
+                    self?.detailFetchButton.isHidden = true
+                    
                     if let benefit = info.benefit {
-                        let title = "\(info.policyName)을 신청하면\n월 \(benefit/10000)만원 정도를 받을 수 있어요"
+                        let title = "\(info.policyName)\(preposition1) 신청하면 월 \(benefit/10000)만원 정도를 받을 수 있어요"
                         self?.titleLabel.text = title
                         self?.titleLabel.setPointTextAttribute("월 \(benefit/10000)만원", color: .primaryNormal)
                     } else {
-                        let title = "\(info.policyName)은\n지금 바로 신청 가능해요"
+                        let title = "\(info.policyName)\(preposition2) 지금 바로 신청 가능해요"
                         self?.titleLabel.text = title
                     }
-                    
                 }
 
                 self?.tableView.reloadData()
@@ -133,15 +139,49 @@ final class WelfareDetailViewController: BaseViewController {
         applyButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                guard let siteURL = self?.viewModel.detailInfo.value?.referenceSite else { return }
-                self?.openTermOfUseContentWithSafari(urlString: siteURL)
+                guard let url = self?.viewModel.detailInfo.value?.referenceSite else {
+                    self?.notiAlert("유효하지 않은 주소입니다.")
+                    return
+                }
+                
+                if url.hasPrefix("https") {
+                    self?.openSafari(urlString: url)
+                } else if url.hasPrefix("http") {
+                    let alert = StandardAlertController(title: "보안되지 않은 사이트 입니다.", message: "Safari를 통해 여시겠습니까?")
+                    let open = StandardAlertAction(title: "열기", style: .basic, handler: { _ in
+                        Utils.openExternalLink(urlStr: self?.viewModel.detailInfo.value?.referenceSite ?? "")
+                    })
+                    let cancel = StandardAlertAction(title: "취소", style: .cancel)
+                    alert.addAction(cancel, open)
+                    
+                    self?.present(alert, animated: false)
+                } else {
+                    self?.notiAlert("유효하지 않은 주소입니다.")
+                }
             }.store(in: &cancellable)
         
         detailFetchButton.tapPublisher
             .receive(on: RunLoop.main)
             .sink { [weak self] in
-                guard let siteURL = self?.viewModel.detailInfo.value?.referenceSite else { return }
-                self?.openTermOfUseContentWithSafari(urlString: siteURL)
+                guard let url = self?.viewModel.detailInfo.value?.referenceSite else {
+                    self?.notiAlert("유효하지 않은 주소입니다.")
+                    return
+                }
+                
+                if url.hasPrefix("https") {
+                    self?.openSafari(urlString: url)
+                } else if url.hasPrefix("http") {
+                    let alert = StandardAlertController(title: "보안되지 않은 사이트 입니다.", message: "Safari를 통해 여시겠습니까?")
+                    let open = StandardAlertAction(title: "열기", style: .basic, handler: { _ in
+                        Utils.openExternalLink(urlStr: self?.viewModel.detailInfo.value?.referenceSite ?? "")
+                    })
+                    let cancel = StandardAlertAction(title: "취소", style: .cancel)
+                    alert.addAction(cancel, open)
+                    
+                    self?.present(alert, animated: false)
+                } else {
+                    self?.notiAlert("유효하지 않은 주소입니다.")
+                }
             }.store(in: &cancellable)
         
         viewModel.error
@@ -218,15 +258,6 @@ final class WelfareDetailViewController: BaseViewController {
     override func setDelegate() {
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    //MARK: - 화면 이동
-    private func openTermOfUseContentWithSafari(urlString: String) {
-        guard let termURL = URL(string: urlString) else { return }
-
-        let safariViewController = SFSafariViewController(url: termURL)
-        safariViewController.modalPresentationStyle = .automatic
-        self.present(safariViewController, animated: true, completion: nil)
     }
 }
 

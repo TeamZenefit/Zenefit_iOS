@@ -45,7 +45,7 @@ final class PersonalInfoEditViewController: BaseViewController {
     }
     
     @objc override func didClickBackButton() {
-        let alert = StandardAlertController(title: "개인정보 수정을 취소할까요??", message: "네를 누르면\n수정 전의 내용으로 저장됩니다.")
+        let alert = StandardAlertController(title: "개인정보 수정을 취소할까요?", message: "수정한 내용이 저장되지 않습니다.")
         let cancel = StandardAlertAction(title: "아니오", style: .cancel)
         let back = StandardAlertAction(title: "  네  ", style: .blue, handler: { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
@@ -88,6 +88,8 @@ final class PersonalInfoEditViewController: BaseViewController {
                     self?.notiAlert("유효하지않은 나이입니다. 다시 입력해주세요.")
                 case CommonError.invalidIncome:
                     self?.notiAlert("유효하지않은 수입입니다. 다시 입력해주세요.")
+                case CommonError.emptyCity:
+                    self?.notiAlert("도시 정보가 비었습니다. 다시 입력해주세요.")
                 default:
                     self?.notiAlert("알 수 없는에러가 발생했습니다.")
                 }
@@ -254,7 +256,7 @@ extension PersonalInfoEditViewController: UITableViewDelegate, UITableViewDataSo
                 })
             case .city:
                 guard let area = viewModel.newUserInfo.value?.area else { return }
-                viewModel.coordinator?.showSelectionBottomSheet(title: "소속지역 - \(area)",
+                viewModel.coordinator?.showSelectionBottomSheet(title: "시/군/구 - \(area)",
                                                                 list: viewModel.cities,
                                                                 selectedItem: viewModel.newUserInfo.value?.city,
                                                                 completion: { [weak self] newCity in

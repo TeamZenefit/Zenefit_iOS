@@ -10,7 +10,7 @@ import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var mainCoordinator: MainCoordinator?
+    static var mainCoordinator: MainCoordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        mainCoordinator = MainCoordinator(navigationController: navigationController)
-        mainCoordinator?.start()
+        SceneDelegate.mainCoordinator = MainCoordinator(navigationController: navigationController)
+        SceneDelegate.mainCoordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

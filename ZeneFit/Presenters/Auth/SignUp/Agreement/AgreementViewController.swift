@@ -30,11 +30,17 @@ final class AgreementViewController: BaseViewController {
         $0.backgroundColor = .lineNormal
     }
     
-    private let useAgreementView = AgreementView("이용 약관", isRequired: true)
+    private lazy var useAgreementView = AgreementView("이용 약관", isRequired: true) { [weak self] in
+        self?.openSafari(urlString: "https://www.notion.so/zenefit/25528979c42847e2b6738ab7fd4edd33?pvs=4")
+    }
     
-    private let privacyAgreementView = AgreementView("개인정보 처리방침", isRequired: true)
+    private lazy var privacyAgreementView = AgreementView("개인정보 처리방침", isRequired: true) { [weak self] in
+        self?.openSafari(urlString: "https://zenefit.notion.site/db4b51829a9e4be89c8ecbf6450215ac?pvs=4")
+    }
     
-    private let marketingAgreementView = AgreementView("마케팅 정보 수신 동의", isRequired: false)
+    private lazy var marketingAgreementView = AgreementView("마케팅 정보 수신 동의", isRequired: false) { [weak self] in
+        self?.openSafari(urlString: "https://zenefit.notion.site/1fc76d68d52d43558858627b16f50c08?pvs=4")
+    }
 
     init(viewModel: AgreementViewModel) {
         self.viewModel = viewModel

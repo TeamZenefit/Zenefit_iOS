@@ -15,11 +15,13 @@ final class HomePolicyCell: UITableViewCell {
     private let policyTypeLabel = BaseLabel().then {
         $0.textColor = .textAlternative
         $0.font = .pretendard(.chips)
+        $0.setLineHeight(.chips)
     }
     
     private let policyNameLabel = BaseLabel().then {
         $0.textColor = .textNormal
         $0.font = .pretendard(.label3)
+        $0.setLineHeight(.label3)
     }
     
     private let dateLabel = PaddingLabel(padding: .init(top: 6, left: 10, bottom: 6, right: 10)).then {
@@ -45,7 +47,7 @@ final class HomePolicyCell: UITableViewCell {
     }
     
     func configureCell(item: PolicyDTO, showDate: Bool) {
-        policyImageView.kf.setImage(with: URL(string: item.policyLogo),
+        policyImageView.kf.setImage(with: URL(string: item.policyLogo ?? ""),
                                     placeholder: UIImage(resource: .defaultPolicy))
         policyTypeLabel.text = item.supportPolicyTypeName
         policyNameLabel.text = item.policyName
@@ -76,11 +78,11 @@ final class HomePolicyCell: UITableViewCell {
         policyNameLabel.snp.makeConstraints {
             $0.leading.equalTo(policyTypeLabel)
             $0.trailing.equalTo(dateLabel.snp.leading).offset(-16)
-            $0.bottom.equalTo(policyImageView.snp.bottom)
+            $0.top.equalTo(policyTypeLabel.snp.bottom)
         }
         
-        dateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        dateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        dateLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        dateLabel.setContentHuggingPriority(.required, for: .horizontal)
         dateLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.centerY.equalToSuperview()

@@ -15,7 +15,7 @@ final class WelfareSortContentView: BaseView {
     
     private let benefitOrderButton = UIButton(type: .system).then {
         var configure = UIButton.Configuration.filled()
-        configure.attributedTitle = .init("수혜금액",
+        configure.attributedTitle = .init("수혜금액순",
                                           attributes: .init([.font: UIFont.pretendard(.body2),
                                                              .foregroundColor : UIColor.white]))
         configure.baseBackgroundColor = .primaryNormal

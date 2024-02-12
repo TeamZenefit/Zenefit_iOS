@@ -115,9 +115,9 @@ final class FindWelfareResultViewController: BaseViewController {
             giftImage = UIImage(named: "SuccessGift")
             completionTitleColor = .primaryNormal
             completionBGColor = .primaryAssistive
-            completionTitle = "모든 정책 볼래요"
+            completionTitle = "모두 확인하기"
             title += "정책을 \(viewModel.findResult.value.policyCnt)가지 찾았어요!"
-            subTitle = "닉네임이 받을 수 있는 금액도\n모두 계산이 끝났어요"
+            subTitle = "\(viewModel.findResult.value.nickname)님이 받을 수 있는 금액도\n모두 계산이 끝났어요"
         case .fail:
             giftImage = UIImage(named: "FailGift")
             completionTitleColor = .white

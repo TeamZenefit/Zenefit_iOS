@@ -45,12 +45,13 @@ extension String {
         return formattedString.isEmpty ? "" : formattedString
     }
     
-    func hipenToDot() -> String {
-        return self.replacingOccurrences(of: "-", with: ".")
+    var hipenToDot: String {
+        self.replacingOccurrences(of: "-", with: ".")
     }
     
     var hasLastConsonant: Bool {
-        guard let lastChar = self.last else {
+        guard let lastChar = self.last,
+              lastChar.isLetter else {
             return false
         }
         

@@ -62,7 +62,6 @@ final class AgreementViewModel {
                 guard let self else { return }
                 KeychainManager.create(key: "accessToken", value: res.accessToken)
                 KeychainManager.create(key: "refreshToken", value: res.refreshToken)
-                
                 Task {
                     try? await self.updateFCMTokenUseCase.execute()
                 }

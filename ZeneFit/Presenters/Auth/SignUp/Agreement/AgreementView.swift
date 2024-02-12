@@ -12,6 +12,7 @@ final class AgreementView: UIView {
     //MARK: - Properties
     private var cancellable = Set<AnyCancellable>()
     private let agreementTypeString: String
+    var tapHandler: (()->Void)?
     
     let checkButton = UIButton(type: .system).then {
         $0.setImage(UIImage(named: "che-box-off")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -39,8 +40,9 @@ final class AgreementView: UIView {
     @Published var isAgree: Bool = false
     
     //MARK: - Init
-    init(_ content: String, isRequired: Bool, isHighlight: Bool = false) {
+    init(_ content: String, isRequired: Bool, isHighlight: Bool = false, tapHanlder: (()->Void)? = nil) {
         self.agreementTypeString = isRequired ? "" : " (선택)"
+        self.tapHandler = tapHanlder
         super.init(frame: .zero)
         self.contentLabel.text = content + agreementTypeString
         
@@ -64,6 +66,11 @@ final class AgreementView: UIView {
                 self?.checkButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
             }
             .store(in: &cancellable)
+        
+        disclosureButton.tapPublisher
+            .sink { [weak self] _ in
+                self?.tapHandler?()
+            }.store(in: &cancellable)
     }
     
     //MARK: - AddSubView

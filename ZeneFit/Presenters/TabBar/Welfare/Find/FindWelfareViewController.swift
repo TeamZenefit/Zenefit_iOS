@@ -11,6 +11,10 @@ import Lottie
 final class FindWelfareViewController: BaseViewController {
     weak var coordinator: WelfareCoordinator?
     private let viewModel: FindWelfareViewModel
+    private var timer: Timer?
+    var isAfterMinimumTime = false
+    var isFetchData = false
+    
     
     private let titleLabel = UILabel().then {
         $0.numberOfLines = 0
@@ -48,8 +52,12 @@ final class FindWelfareViewController: BaseViewController {
             .sink { [weak self] result in
                 guard let self else { return }
                 let resultType: FindWelfareResultType = result.policyCnt > 0 ? .success : .fail
-                coordinator?.setAction(.findResult(viewModel: viewModel,
-                                                   resultType: resultType))
+                if isAfterMinimumTime {
+                    coordinator?.setAction(.findResult(viewModel: viewModel,
+                                                       resultType: resultType))
+                } else {
+                    isFetchData = true
+                }
             }.store(in: &cancellable)
     }
     
@@ -57,6 +65,27 @@ final class FindWelfareViewController: BaseViewController {
         super.viewDidLoad()
         viewModel.findWelfareList()
         giftAnimationView.play()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) { [weak self] in
+            guard let self else { return }
+            if isFetchData {
+                let resultType: FindWelfareResultType = viewModel.findResult.value.policyCnt > 0 ? .success : .fail
+                coordinator?.setAction(.findResult(viewModel: viewModel,
+                                                   resultType: resultType))
+            } else {
+                isAfterMinimumTime = true
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer = nil
     }
     
     private let giftAnimationView = LottieAnimationView(asset: "gift").then {

@@ -49,7 +49,7 @@ final class SmallBoxView: UIView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.equalTo(iconImageView.snp.trailing).offset(2)
+            $0.leading.equalTo(iconImageView.snp.trailing).offset(8)
             $0.centerY.equalTo(iconImageView)
         }
         

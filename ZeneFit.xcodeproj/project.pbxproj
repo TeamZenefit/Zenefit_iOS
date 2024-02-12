@@ -162,6 +162,8 @@
 		B5A8709A2B0B9BD40052D5A1 /* PolicyListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */; };
 		B5A8709C2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */; };
 		B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */; };
+		B5B5FCCA2B7A3FFF00F0BF78 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */; };
+		B5B5FCCD2B7A618200F0BF78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5FCCC2B7A618200F0BF78 /* Utils.swift */; };
 		B5E4B5AF2B45B19A00F63486 /* UnregistUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
@@ -235,6 +237,7 @@
 		B5F625722ACD786D002A1896 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625712ACD786D002A1896 /* AgreementViewController.swift */; };
 		B5F625742ACD7888002A1896 /* AgreementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625732ACD7888002A1896 /* AgreementViewModel.swift */; };
 		B5F625762ACD8497002A1896 /* AgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F625752ACD8497002A1896 /* AgreementView.swift */; };
+		B5F970D22B6FC3A700E3E0F2 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F970D12B6FC3A700E3E0F2 /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,6 +410,8 @@
 		B5A870992B0B9BD40052D5A1 /* PolicyListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyListUseCase.swift; sourceTree = "<group>"; };
 		B5A8709B2B0BA4BC0052D5A1 /* PolicyDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailDTO.swift; sourceTree = "<group>"; };
 		B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailUseCase.swift; sourceTree = "<group>"; };
+		B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
+		B5B5FCCC2B7A618200F0BF78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregistUserUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -467,6 +472,7 @@
 		B5F625712ACD786D002A1896 /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		B5F625732ACD7888002A1896 /* AgreementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewModel.swift; sourceTree = "<group>"; };
 		B5F625752ACD8497002A1896 /* AgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementView.swift; sourceTree = "<group>"; };
+		B5F970D12B6FC3A700E3E0F2 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -993,6 +999,7 @@
 				B50F35A52B4945CB0047CEC3 /* CalendarPolicyCell.swift */,
 				B50F35A72B49544E0047CEC3 /* CalendarSectionHedaer.swift */,
 				B59381252B5BE49D00E68347 /* DateTypeHeaderView.swift */,
+				B5F970D12B6FC3A700E3E0F2 /* CalendarCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1038,6 +1045,14 @@
 				B593812E2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		B5B5FCCB2B7A617500F0BF78 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B5B5FCCC2B7A618200F0BF78 /* Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		B5ED7BA02B00AC4900138FE8 /* Home */ = {
@@ -1171,6 +1186,7 @@
 		B5F6249E2AC31432002A1896 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B5B5FCCB2B7A617500F0BF78 /* Utils */,
 				B55E424E2B412EA100E4B893 /* Porotocols */,
 				B552F9D42AE54F6C00AA5F40 /* Manager */,
 				B5F6250C2ACAACD0002A1896 /* Error */,
@@ -1204,6 +1220,7 @@
 				B558270D2B1C98D500A360E9 /* UICollectionViewCell+.swift */,
 				B55826F82B1C4ECA00A360E9 /* NotificationName+.swift */,
 				B593811F2B5BCEDB00E68347 /* Date+.swift */,
+				B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1612,6 +1629,7 @@
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */,
+				B5B5FCCA2B7A3FFF00F0BF78 /* UIApplication+.swift in Sources */,
 				B552F9EA2AE5648200AA5F40 /* WelfareCoordinator.swift in Sources */,
 				B593812F2B5D1C0D00E68347 /* UpdateUserInfoUseCase.swift in Sources */,
 				B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */,
@@ -1630,6 +1648,7 @@
 				B55827072B1C963B00A360E9 /* NotiViewModel.swift in Sources */,
 				B55826E52B1BA0E200A360E9 /* AppInfoViewModel.swift in Sources */,
 				B5F6250E2ACAACD9002A1896 /* CommonError.swift in Sources */,
+				B5B5FCCD2B7A618200F0BF78 /* Utils.swift in Sources */,
 				B59381222B5BD37A00E68347 /* ScheduleBottomSheetViewController.swift in Sources */,
 				B54A675E2ADC3B7400971467 /* URLSessionable.swift in Sources */,
 				B53B69C72AEAB1C800D3E092 /* ManualView.swift in Sources */,
@@ -1769,6 +1788,7 @@
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */,
 				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
+				B5F970D22B6FC3A700E3E0F2 /* CalendarCell.swift in Sources */,
 				B52263BA2B4ABAF90008DDF1 /* AgreementInfoDTO.swift in Sources */,
 				B5A870942B0B79110052D5A1 /* SupportPolicyType.swift in Sources */,
 				B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */,
@@ -1876,7 +1896,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1932,7 +1952,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1951,7 +1971,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
@@ -1964,7 +1984,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 0.8.5;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1986,7 +2006,7 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
@@ -1999,7 +2019,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 0.8.5;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
