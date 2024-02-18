@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
         
+        didReceiveInBackgroundMode(launchOptions: launchOptions)
         return true
     }
 
@@ -70,24 +71,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     // 포그라운드에서 받았을 때
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        // 로그인 여부
+        guard let _ = KeychainManager.read(ZFKeyType.accessToken.rawValue) else {
+            return
+        }
+        
         let content = notification.request.content
-
         print("title: \(content.title)")
         print("body: \(content.body)")
+        print(content.userInfo)
+
         completionHandler([.badge , .banner, .sound])
     }
     
-    // 백그라운드에서 받았을 때
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        let content = response.notification.request.content
-//        let pk = content.userInfo["targetPK"] as? String ?? ""
-//        let target = content.userInfo["targetView"] as? String ?? ""
-//        UserDefaults.standard.setValue(pk, forKey: "targetPK")
-//        UserDefaults.standard.setValue(target, forKey: "targetView")
-//        NotificationCenter.default.post(name: .didRecieveAlert, object: nil)
-//        
-//        print("title: \(content.title)")
-//        print("body: \(content.body)")
+        guard let _ = KeychainManager.read(ZFKeyType.accessToken.rawValue) else {
+            return
+        }
+        
+        let content = response.notification.request.content
+        
+        print("title: \(content.title)")
+        print("body: \(content.body)")
+        print("userInfo: \(content.userInfo)")
+        
+        if let policyIdString = content.userInfo["policyId"] as? String,
+           let policyId = Int(policyIdString) {
+            Task {
+                SceneDelegate.mainCoordinator?.tabBarCoorinator?.setAction(.welfareDetail(welfareId: policyId))
+            }
+        }
+        
+        
+        completionHandler()
+    }
+    
+    func didReceiveInBackgroundMode(launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
+        guard let _ = KeychainManager.read(ZFKeyType.accessToken.rawValue) else {
+            return
+        }
+        
+        guard let userInfo = launchOptions?[.remoteNotification] as? [AnyHashable: Any] else {
+            return
+        }
+        
+        if let policyIdString = userInfo["policyId"] as? String,
+           let policyId = Int(policyIdString) {
+            SceneDelegate.mainCoordinator?.setAction(.tabBar)
+            SceneDelegate.mainCoordinator?.tabBarCoorinator?.setAction(.welfareDetail(welfareId: policyId))
+        }
     }
 }
 

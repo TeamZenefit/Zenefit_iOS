@@ -17,6 +17,10 @@ final class MainCoordinator: Coordinator {
     var childCoordinators: [ any Coordinator] = []
     var navigationController: UINavigationController
     
+    var tabBarCoorinator: TabBarCoordinator? {
+        childCoordinators.first(where: { $0 is TabBarCoordinator }) as? TabBarCoordinator
+    }
+    
     weak var delegate: CoordinatorDelegate?
     
     init(navigationController: UINavigationController) {

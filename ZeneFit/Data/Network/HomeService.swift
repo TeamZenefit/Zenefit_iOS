@@ -26,9 +26,9 @@ final class HomeService {
                                          responseHandler: { response in
             switch response.statusCode {
             case 401:
-                UserDefaults.standard.removeObject(forKey: ZFKeyType.accessToken.rawValue)
-                UserDefaults.standard.removeObject(forKey: ZFKeyType.refreshToken.rawValue)
-                UserDefaults.standard.removeObject(forKey: ZFKeyType.userId.rawValue)
+                KeychainManager.delete(key: ZFKeyType.userId.rawValue)
+                KeychainManager.delete(key: ZFKeyType.refreshToken.rawValue)
+                KeychainManager.delete(key: ZFKeyType.accessToken.rawValue)
                 
                 DispatchQueue.main.async {
                     let tabBarCoordinator = SceneDelegate.mainCoordinator?.childCoordinators.first { $0 is TabBarCoordinator }

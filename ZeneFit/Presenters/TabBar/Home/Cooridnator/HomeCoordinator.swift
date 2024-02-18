@@ -17,6 +17,8 @@ final class HomeCoordinator: Coordinator {
     var navigationController: UINavigationController
     var delegate: CoordinatorDelegate?
     
+    var welfareCoordinator: WelfareCoordinator?
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -42,10 +44,8 @@ final class HomeCoordinator: Coordinator {
             let benefitVC = BenefitViewController(viewModel: benefitVM)
             navigationController.pushViewController(benefitVC, animated: true)
         case .welfareDetail(let welfareId):
-            let welfareCoordinator = WelfareCoordinator(navigationController: navigationController)
-            childCoordinators.append(welfareCoordinator)
-            welfareCoordinator.delegate = self
-            welfareCoordinator.setAction(.detail(id: welfareId))
+            welfareCoordinator = WelfareCoordinator(navigationController: navigationController)
+            welfareCoordinator?.setAction(.detail(id: welfareId))
         case .notiList:
             let notiCoordinator = NotificationCoordinator(navigationController: navigationController)
             notiCoordinator.delegate = self

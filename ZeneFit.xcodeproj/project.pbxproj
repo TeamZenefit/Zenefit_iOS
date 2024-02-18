@@ -150,6 +150,7 @@
 		B596BA342B25E9BB00236C2F /* SettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA332B25E9BB00236C2F /* SettingRepository.swift */; };
 		B596BA372B25F51200236C2F /* GetSocialInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */; };
 		B596BA392B25F6DB00236C2F /* GetUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */; };
+		B59E49242B7BB8DA00FBC191 /* WelfareDetailDateTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E49232B7BB8DA00FBC191 /* WelfareDetailDateTypeCell.swift */; };
 		B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */; };
 		B5A870682B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */; };
 		B5A8706A2B09F6590052D5A1 /* BenefitPolicyListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */; };
@@ -398,6 +399,7 @@
 		B596BA332B25E9BB00236C2F /* SettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRepository.swift; sourceTree = "<group>"; };
 		B596BA362B25F51200236C2F /* GetSocialInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSocialInfoUseCase.swift; sourceTree = "<group>"; };
 		B596BA382B25F6DA00236C2F /* GetUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserInfoUseCase.swift; sourceTree = "<group>"; };
+		B59E49232B7BB8DA00FBC191 /* WelfareDetailDateTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareDetailDateTypeCell.swift; sourceTree = "<group>"; };
 		B5A870652B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyListDTO.swift; sourceTree = "<group>"; };
 		B5A870672B09D4EA0052D5A1 /* BookmarkPolicyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkPolicyUseCase.swift; sourceTree = "<group>"; };
 		B5A870692B09F6590052D5A1 /* BenefitPolicyListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitPolicyListDTO.swift; sourceTree = "<group>"; };
@@ -1096,6 +1098,7 @@
 				B5ED7BB42B00E3A000138FE8 /* WelfareDetailViewModel.swift */,
 				B5ED7BB62B00E3C100138FE8 /* WelfareDetailViewController.swift */,
 				B5ED7BB82B0103FA00138FE8 /* WelfareDetailCell.swift */,
+				B59E49232B7BB8DA00FBC191 /* WelfareDetailDateTypeCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1721,6 +1724,7 @@
 				B59381262B5BE49D00E68347 /* DateTypeHeaderView.swift in Sources */,
 				B56452442AEE74B8000A45FA /* SettingViewModel.swift in Sources */,
 				B5F625182ACAF9B5002A1896 /* UITextField+.swift in Sources */,
+				B59E49242B7BB8DA00FBC191 /* WelfareDetailDateTypeCell.swift in Sources */,
 				B55827102B1C9FB500A360E9 /* NotificationCell.swift in Sources */,
 				B5F624EE2AC87907002A1896 /* UserInfoInputTextField.swift in Sources */,
 				B55E42502B412EC500E4B893 /* SkeletonTableViewDataSource+.swift in Sources */,

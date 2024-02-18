@@ -102,29 +102,13 @@ final class WelfareCell: UITableViewCell {
         $0.setImage(.init(named: "Add-schedule")?.withRenderingMode(.alwaysOriginal), for: .disabled)
     }
     
-    private let applyButton = UIButton(type: .custom).then {
+    private lazy var applyButton = UIButton(type: .custom).then {
         var configure = UIButton.Configuration.filled()
         configure.background.cornerRadius = 8
         configure.baseForegroundColor = .primaryNormal
         configure.baseBackgroundColor = .primaryAssistive
         configure.attributedTitle = .init("월 n만원 신청하기",
                                           attributes: .init([.font : UIFont.pretendard(.label4)]))
-        
-        $0.configurationUpdateHandler = {
-            switch $0.state {
-            case .disabled:
-                $0.configuration?.attributedTitle = .init(
-                    "이미 신청한 정책입니다.",
-                    attributes:.init( [.font : UIFont.pretendard(.label4),
-                                       .foregroundColor: UIColor.white])
-                )
-            default:
-                $0.configuration?.attributedTitle?.font = UIFont.pretendard(.label4)
-                $0.configuration?.attributedTitle?.foregroundColor = UIColor.primaryNormal
-                break
-            }
-        }
-        
         $0.configuration = configure
         $0.isSkeletonable = true
         $0.skeletonCornerRadius = 8
@@ -138,40 +122,11 @@ final class WelfareCell: UITableViewCell {
         didSet {
             guard let policy else { return }
             
-            if let _ = policy.policyApplyDenialReason {
-                applyButton.isEnabled = false
-                selectButton.isEnabled = false
-                applyButton.configuration?.attributedTitle = .init(
-                    "신청할 수 없어요",
-                    attributes: .init([.font : UIFont.pretendard(.label4),
-                                       .foregroundColor : UIColor.white])
-                )
-                return
-            } else {
-                applyButton.isEnabled = true
-                selectButton.isEnabled = true
-            }
-            
-            let title = policy.benefit == 0 ? "신청하기" : "월 \(policy.benefit ?? 0/10000)만원 신청하기"
-            
-            if isSelected {
-                self.applyButton.configuration?.attributedTitle = .init(
-                    "이미 신청한 정책입니다.",
-                    attributes: .init([.font : UIFont.pretendard(.label4),
-                                       .foregroundColor : UIColor.white])
-                )
-            } else {
-                self.applyButton.configuration?.attributedTitle = .init(
-                    title,
-                    attributes: .init([.font : UIFont.pretendard(.label4),
-                                       .foregroundColor : UIColor.primaryNormal])
-                )
-            }
-            
             self.addScheduleButton.isEnabled = !isSelected
-            self.applyButton.isEnabled = !isSelected
-            self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
             self.selectButton.isSelected = isSelected
+            self.applyButton.isEnabled = !isSelected && self.policy?.policyApplyDenialReason == nil
+            self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
+            
             self.policyLabel.textColor = isSelected ? .textDisable : .textNormal
             self.agencyLabel.textColor = isSelected ? .textDisable : .textAlternative
             self.contentLabel.textColor = isSelected ? .textDisable : .textNormal
@@ -208,16 +163,46 @@ final class WelfareCell: UITableViewCell {
         self.policy = item
         self.policyImageView.kf.setImage(with: URL(string: item.policyLogo ?? ""),
                                          placeholder: UIImage(named: "DefaultPolicy"))
-    
-        self.setSelected(item.applyFlag, animated: false)
-        
-        self.configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
-        self.configureMethodType(type: PolicyMethodType(rawValue: item.policyMethodType) ?? .blank)
-        
+
         self.policyLabel.text = item.policyName
         self.contentLabel.text = item.policyIntroduction
         
         self.addScheduleButton.isSelected = item.interestFlag
+        self.addScheduleButton.isEnabled = !isSelected
+        self.selectButton.isSelected = isSelected
+        self.applyButton.isEnabled = !isSelected && item.policyApplyDenialReason == nil
+        self.applyButton.configuration?.baseForegroundColor = isSelected ? .white : .primaryNormal
+        
+        self.policyLabel.textColor = isSelected ? .textDisable : .textNormal
+        self.agencyLabel.textColor = isSelected ? .textDisable : .textAlternative
+        self.contentLabel.textColor = isSelected ? .textDisable : .textNormal
+        
+        coinfigureUpdate(policy: item)
+        configureDateType(type: PolicyDateType(rawValue: item.policyDateType) ?? .blank)
+        configureMethodType(type: PolicyMethodType(rawValue: item.policyMethodType) ?? .blank)
+    }
+    
+    private func coinfigureUpdate(policy: PolicyInfoDTO) {
+        applyButton.configurationUpdateHandler = {
+            switch $0.state {
+            case .disabled:
+                let title = policy.applyFlag ? "이미 신청한 정책입니다." : "신청할 수 없어요"
+                $0.configuration?.attributedTitle = .init(
+                    title,
+                    attributes:.init( [.font : UIFont.pretendard(.label4),
+                                       .foregroundColor: UIColor.white])
+                )
+            default:
+                let benefit = policy.benefit ?? 0
+                let title = benefit == 0 ? "신청하기" : "월 \(benefit / 10000)만원 신청하기"
+                
+                $0.configuration?.attributedTitle = .init(
+                    title,
+                    attributes:.init( [.font : UIFont.pretendard(.label4),
+                                       .foregroundColor: UIColor.primaryNormal])
+                )
+            }
+        }
     }
     
     private func configureDateType(type: PolicyDateType) {
@@ -311,7 +296,6 @@ final class WelfareCell: UITableViewCell {
     private func setupBinding() {
         addScheduleButton.tapPublisher
             .receive(on: RunLoop.main)
-//            .debounce(for: .seconds(0.4), scheduler: DispatchQueue.main)
             .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: false)
             .sink { [weak self] in
                 guard let self,

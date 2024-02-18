@@ -68,5 +68,4 @@ final class WelfareDetailViewModel {
         
         return isSuccess
     }
-    
 }

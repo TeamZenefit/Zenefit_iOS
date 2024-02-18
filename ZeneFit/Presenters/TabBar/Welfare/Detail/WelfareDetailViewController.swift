@@ -39,12 +39,14 @@ final class WelfareDetailViewController: BaseViewController {
         $0.separatorStyle = .none
         $0.bounces = false
         $0.register(WelfareDetailCell.self, forCellReuseIdentifier: WelfareDetailCell.identifier)
+        $0.register(WelfareDetailDateTypeCell.self, forCellReuseIdentifier: WelfareDetailDateTypeCell.identifier)
     }
     
     private let applyButton = BottomButton().then {
         $0.setTitle("지금 신청하기", for: .normal)
         $0.layer.cornerRadius = 8
         $0.titleLabel?.font = .pretendard(.label3)
+        $0.isHidden = true
     }
     
     private let interestButton = UIButton().then {
@@ -54,6 +56,7 @@ final class WelfareDetailViewController: BaseViewController {
         $0.titleLabel?.font = .pretendard(.label3)
         $0.backgroundColor = .primaryNormal
         $0.layer.cornerRadius = 8
+        $0.isHidden = true
     }
     
     private let detailFetchButton = UIButton().then {
@@ -263,7 +266,7 @@ final class WelfareDetailViewController: BaseViewController {
 
 extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return viewModel.detailInfo.value == nil ? 0 : 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -283,10 +286,11 @@ extension WelfareDetailViewController: UITableViewDelegate, UITableViewDataSourc
             cell.configureCell(title: "신청 방법",
                                content: policyInfo.policyApplyMethod)
         default:
-            cell.configureApplyTypeCell(title: "신청 기간",
-                                        content: nil,
-                                        types: [policyInfo.policyDateTypeDescription])
+            let cell = tableView.dequeueReusableCell(withIdentifier: WelfareDetailDateTypeCell.identifier, for: indexPath) as! WelfareDetailDateTypeCell
+            cell.configureCell(title: "신청 기간",
+                               dateType: PolicyDateType(rawValue: policyInfo.policyDateType) ?? .blank)
             
+            return cell
         }
         return cell
     }

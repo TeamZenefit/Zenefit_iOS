@@ -11,15 +11,32 @@ final class TabBarCoordinator: Coordinator {
     
     enum CoordinatorAction {
         case tabBar(isRegist: Bool)
+        case welfareDetail(welfareId: Int)
     }
     
     var childCoordinators: [any Coordinator] = []
+    var welfareCoordinator: WelfareCoordinator?
     var navigationController: UINavigationController
     
     weak var delegate: CoordinatorDelegate?
+    let tabBarController = MainTabbarController()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    var currenntNavigationController: UINavigationController? {
+        let tabItem = TabBarItem.allCases[tabBarController.selectedIndex]
+        switch tabItem {
+        case .home:
+            return childCoordinators.first(where: { $0 is HomeCoordinator })?.navigationController
+        case .welfare:
+            return childCoordinators.first(where: { $0 is WelfareCoordinator })?.navigationController
+        case .setting:
+            return childCoordinators.first(where: { $0 is SettingCoordinator })?.navigationController
+        case .schedule:
+            return childCoordinators.first(where: { $0 is ScheduleCoordinator })?.navigationController
+        }
     }
     
     func start() {
@@ -33,19 +50,22 @@ final class TabBarCoordinator: Coordinator {
                 createNavigationController(item: $0)
             }
             
-            let tabBarController = MainTabbarController()
             tabBarController.viewControllers = items
             tabBarController.coordinator = self
             
             navigationController.present(tabBarController, animated: true)
-            if let welfare = tabBarController.coordinator?.childCoordinators.first(
-                where: { $0 is WelfareCoordinator }) as? WelfareCoordinator,
-               isRegist {
+            if isRegist,
+               let welfare = childCoordinators.first(where: { $0 is WelfareCoordinator }) as? WelfareCoordinator {
                 tabBarController.selectedIndex = 1
                 welfare.setAction(.find)
             }
+        case .welfareDetail(let welfareId):
+            guard let nc = currenntNavigationController else {
+                return
+            }
             
-            
+            welfareCoordinator = WelfareCoordinator(navigationController: nc)
+            welfareCoordinator?.setAction(.detail(id: welfareId))
         }
     }
 }
