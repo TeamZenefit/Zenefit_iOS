@@ -8,6 +8,8 @@
 import Foundation
 
 extension Date {
+    
+    /// "YYYY-MM-dd""
     var formattedString: String {
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY-MM-dd"

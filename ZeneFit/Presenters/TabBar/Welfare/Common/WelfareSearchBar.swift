@@ -11,9 +11,9 @@ import Combine
 final class WelfareSearchBar: UISearchBar {
     private var cancellable = Set<AnyCancellable>()
     
-    let searchButton = UIButton(type: .system).then {
-        $0.setImage(.init(named: "i-sear-24")?.withRenderingMode(.alwaysOriginal), for: .normal)
-    }
+//    let searchButton = UIButton(type: .system).then {
+//        $0.setImage(.init(named: "i-sear-24")?.withRenderingMode(.alwaysOriginal), for: .normal)
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,23 +24,24 @@ final class WelfareSearchBar: UISearchBar {
         self.backgroundImage = UIImage()
         self.searchTextField.backgroundColor = .clear
         self.searchTextField.rightViewMode = .never
-        self.searchTextField.clearButtonMode = .never
+        self.searchTextField.clearButtonMode = .whileEditing
         self.searchTextField.textColor = .textNormal
         self.searchTextField.autocorrectionType = .no
         self.searchTextField.spellCheckingType = .no
-        addSubview(searchButton)
+        self.searchTextField.enablesReturnKeyAutomatically = false
+//        addSubview(searchButton)
 
         searchTextField.delegate = self
         
-        searchButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-16)
-            $0.centerY.equalToSuperview()
-            $0.width.height.equalTo(24)
-        }
-        
-        searchButton.addAction(.init(handler: { [weak self] _ in
-            self?.endEditing(false)
-        }), for: .touchUpInside)
+//        searchButton.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().offset(-16)
+//            $0.centerY.equalToSuperview()
+//            $0.width.height.equalTo(24)
+//        }
+//        
+//        searchButton.addAction(.init(handler: { [weak self] _ in
+//            self?.endEditing(false)
+//        }), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +52,10 @@ final class WelfareSearchBar: UISearchBar {
 extension WelfareSearchBar: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditing(false)
-        return true
+        return false
     }
+//    
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        true
+//    }
 }

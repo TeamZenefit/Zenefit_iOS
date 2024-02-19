@@ -106,7 +106,7 @@ final class RegistInfoInputViewController: BaseViewController {
                 guard let jobs = info.job,
                       let job = jobs.first else { return }
                 
-                let jobContent = jobs.count > 1 ? job + " 외 \(jobs.count-1)개" : job
+                let jobContent = jobs.count > 1 ? job.title + " 외 \(jobs.count-1)개" : job.title
                 self?.jobInputView.textField.text = jobContent
             }
             .store(in: &cancellable)
@@ -271,11 +271,11 @@ final class RegistInfoInputViewController: BaseViewController {
     
     private func showJobSelectionBottomSheet() {
         coordinator?.showMultiSelectionBottomSheet(title: "직업",
-                                                   list: ["재직자","자영업자","미취업자","프리랜서","일용 근로자","(예비) 창업자","단기근로자","영농종사자"],
-                                                   selectedItems: viewModel.signUpInfo.job) { [weak self] selectedItems in
+                                                   list: JobType.allCases.map { $0.title },
+                                                   selectedItems: viewModel.signUpInfo.job?.compactMap { $0.title }) { [weak self] selectedItems in
             guard let self else { return }
             if let selectedItems = selectedItems {
-                viewModel.signUpInfo.job = selectedItems
+                viewModel.signUpInfo.job = selectedItems.compactMap { JobType(rawValue: $0) }
             }
             
             let isEmptyJob = viewModel.signUpInfo.job?.isEmpty ?? true

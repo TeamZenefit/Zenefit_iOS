@@ -121,11 +121,14 @@ class PolicyService {
                                 body: parameter) // TODO: 수정
             .setAccessToken()
     
-            
+        LoadingIndicatorView.showLoading()
         return session.dataTaskPublisher(urlRequest: endpoint.request,
                                          expect: BaseResponse<PolictListPagingDTO>.self,
-                                         responseHandler: nil)
+                                         responseHandler: { _ in
+            LoadingIndicatorView.hideLoading()
+        })
         .tryMap { response -> PolictListPagingDTO in
+            LoadingIndicatorView.hideLoading()
             switch response.code {
             case 200:
                 return response.result
@@ -180,11 +183,14 @@ class PolicyService {
                                 paths: "/policy/\(policyId)")
             .setAccessToken()
     
-            
+        LoadingIndicatorView.showLoading()
         return session.dataTaskPublisher(urlRequest: endpoint.request,
                                          expect: BaseResponse<PolicyDetailDTO>.self,
-                                         responseHandler: nil)
+                                         responseHandler: { _ in
+            LoadingIndicatorView.hideLoading()
+        })
         .tryMap { response -> PolicyDetailDTO in
+            LoadingIndicatorView.hideLoading()
             switch response.code {
             case 200:
                 return response.result

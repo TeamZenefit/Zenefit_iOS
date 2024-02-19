@@ -272,7 +272,7 @@ extension PersonalInfoEditViewController: UITableViewDelegate, UITableViewDataSo
                 }
             case .jobs:
                 viewModel.coordinator?.showMultiSelectionBottomSheet(title: "직업",
-                                                                     list: ["재직자","자영업자","미취업자","프리랜서","일용 근로자","(예비) 창업자","단기근로자","영농종사자"],
+                                                                     list: JobType.allCases.map { $0.title },
                                                                      selectedItems: viewModel.newUserInfo.value?.jobs) { [weak self] newJobs in
                     
                     guard let newJobs else { return }

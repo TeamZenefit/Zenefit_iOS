@@ -35,7 +35,7 @@ final class ScheduleViewController: BaseViewController {
         $0.layer.cornerRadius = 16
         $0.backgroundColor = .white
         $0.appearance.titleFont = .pretendard(.body1)
-        $0.appearance.selectionColor = .clear
+        $0.appearance.selectionColor = .none
         $0.appearance.titleSelectionColor = .textNormal
         $0.appearance.weekdayTextColor = .textAlternative
         $0.appearance.eventSelectionColor = .primaryNormal
@@ -234,6 +234,22 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+        if date.formattedString == Date.now.formattedString {
+            return .primaryAssistive
+        } else {
+            return .none
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleSelectionColorFor date: Date) -> UIColor? {
+        if date.formattedString == Date.now.formattedString {
+            return .primaryNormal
+        } else {
+            return .none
+        }
+    }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if viewModel.policyList.value.count > 0 {
             let bottomFrameView = UIView()
@@ -269,6 +285,10 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
         viewModel.getPolicy(year: year, month: month)
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventOffsetFor date: Date) -> CGPoint {
+        return .init(x: 0, y: -6)
+    }
+    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         
         let isContain = viewModel.policyList.value.contains(where: {
@@ -290,7 +310,7 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
                                                           strDatePolicy: strDatePolicy,
                                                           endDatePolicy: endDatePolicy))
         } else {
-            notiAlert("해당 날짜에 신청 가능한 정책이 없어요.")
+//            notiAlert("해당 날짜에 신청 가능한 정책이 없어요.")
         }   
     }
 }

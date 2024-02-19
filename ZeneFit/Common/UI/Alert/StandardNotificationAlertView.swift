@@ -8,6 +8,7 @@
 import UIKit
 
 final class StandardNotificationAlertView: UIStackView {
+    private var workItem: DispatchWorkItem?
     
     private let contentLabel = BaseLabel().then {
         $0.font = .pretendard(.label3)
@@ -47,25 +48,18 @@ final class StandardNotificationAlertView: UIStackView {
                        animations: {
             // 화면 위로 이동
             self.transform = CGAffineTransform.identity
-        }) { _ in
+        }) { [weak self] _ in
             // 0.7초 후에 사라지기
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self?.workItem = .init(block: {
                 UIView.animate(withDuration: 0.7, animations: {
                     // 화면 아래로 이동하여 사라지기
-                    self.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+                    self?.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
                 }) { _ in
                     // 토스트가 사라진 후에는 제거
-                    self.removeFromSuperview()
+                    self?.removeFromSuperview()
                 }
-            }
+            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: self?.workItem ?? .init(block: {}))
         }
-    }
-    
-    static func showToast(message: String) {
-        guard let windowScene = UIApplication.shared.scene,
-              let window = windowScene.windows.last?.subviews.first else { return }
-        
-        
-        
     }
 }

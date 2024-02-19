@@ -12,7 +12,7 @@ struct SignUpInfo {
     var area: String?
     var city: String?
     var income: String?
-    var job: [String]?
+    var job: [JobType]?
     var education: String?
     var age: String?
     var marketingAgree: Bool = false

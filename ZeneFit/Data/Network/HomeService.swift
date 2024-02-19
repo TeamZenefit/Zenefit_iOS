@@ -19,12 +19,11 @@ final class HomeService {
         let endpoint = Endpoint(method: .GET,
                                 paths: "/user/home")
             .setAccessToken()
-    
-        
         return session.dataTaskPublisher(urlRequest: endpoint.request,
                                          expect: BaseResponse<HomeInfoDTO>.self,
                                          responseHandler: { response in
             switch response.statusCode {
+                
             case 401:
                 KeychainManager.delete(key: ZFKeyType.userId.rawValue)
                 KeychainManager.delete(key: ZFKeyType.refreshToken.rawValue)
@@ -39,9 +38,7 @@ final class HomeService {
                 throw CommonError.invalidJWT
             default: break
             }
-        
         })
-        
         .tryMap { response -> HomeInfoDTO in
             switch response.code {
             case 200:

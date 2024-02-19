@@ -165,6 +165,7 @@
 		B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */; };
 		B5B5FCCA2B7A3FFF00F0BF78 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */; };
 		B5B5FCCD2B7A618200F0BF78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5FCCC2B7A618200F0BF78 /* Utils.swift */; };
+		B5D546082B8241A500710BCF /* JobType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D546072B8241A500710BCF /* JobType.swift */; };
 		B5E4B5AF2B45B19A00F63486 /* UnregistUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
 		B5ED7BA32B00AD0F00138FE8 /* HomeRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */; };
@@ -414,6 +415,7 @@
 		B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailUseCase.swift; sourceTree = "<group>"; };
 		B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		B5B5FCCC2B7A618200F0BF78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		B5D546072B8241A500710BCF /* JobType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobType.swift; sourceTree = "<group>"; };
 		B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregistUserUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		B5ED7BA22B00AD0F00138FE8 /* HomeRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -1292,6 +1294,7 @@
 				B51DF8EF2B41E8BC00E63704 /* PolicyDateType.swift */,
 				B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */,
 				B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */,
+				B5D546072B8241A500710BCF /* JobType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1667,6 +1670,7 @@
 				B5F625082ACAAB2D002A1896 /* EndPointProtocol.swift in Sources */,
 				B558270A2B1C967E00A360E9 /* NotiViewController.swift in Sources */,
 				B55827182B1CD35300A360E9 /* PersonalInfoViewController.swift in Sources */,
+				B5D546082B8241A500710BCF /* JobType.swift in Sources */,
 				B5ED7BAF2B00B18400138FE8 /* HomeUseCase.swift in Sources */,
 				B54A67592ADC33C100971467 /* URLRequest+.swift in Sources */,
 				B50F35A82B49544E0047CEC3 /* CalendarSectionHedaer.swift in Sources */,

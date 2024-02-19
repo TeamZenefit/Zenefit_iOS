@@ -10,6 +10,12 @@ import UIKit
 // TODO: order 정렬필요
 final class NotiViewController: BaseViewController {
     private let viewModel: NotiViewModel
+    private lazy var emptyView = WelfareEmptyView(image: .init(resource: .errorIcon),
+                                                  title: "아직 알람이 없어요",
+                                                  content: "관심 정책을 추가하여 일정알림을 받아보세요",
+                                                  action: { [weak self] in
+        self?.tabBarController?.selectedIndex = 1
+    })
     
     private let refreshControl = UIRefreshControl()
     
@@ -33,6 +39,7 @@ final class NotiViewController: BaseViewController {
         $0.backgroundColor = .white
         $0.separatorStyle = .none
         $0.refreshControl = refreshControl
+        $0.backgroundView = emptyView
         $0.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.identifier)
     }
     
@@ -57,7 +64,9 @@ final class NotiViewController: BaseViewController {
         
         viewModel.notificationList
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] list in
+                self?.emptyView.isHidden = list.isNotEmpty
+                self?.footerView.isHidden = list.isEmpty
                 self?.tableView.reloadData()
             }.store(in: &cancellable)
         
@@ -71,6 +80,8 @@ final class NotiViewController: BaseViewController {
         viewModel.error
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
+                self?.emptyView.isHidden = true
+                self?.footerView.isHidden = true
                 self?.refreshControl.endRefreshing()
                 self?.notiAlert("알 수 없는 에러가 발생했습니다.")
             }.store(in: &cancellable)
@@ -160,10 +171,10 @@ extension NotiViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.notificationList.value.count
     }
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        " "
-    }
-    
+//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        " "
+//    }
+//    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 8
     }
