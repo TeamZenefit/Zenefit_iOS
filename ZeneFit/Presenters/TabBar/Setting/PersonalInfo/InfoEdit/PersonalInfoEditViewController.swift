@@ -85,13 +85,13 @@ final class PersonalInfoEditViewController: BaseViewController {
             .sink { [weak self] error in
                 switch error {
                 case CommonError.invalidAge:
-                    self?.notiAlert("유효하지않은 나이입니다. 다시 입력해주세요.")
+                    ZeneFit.ToastView.showToast("유효하지않은 나이입니다. 다시 입력해주세요.")
                 case CommonError.invalidIncome:
-                    self?.notiAlert("유효하지않은 수입입니다. 다시 입력해주세요.")
+                    ToastView.showToast("유효하지않은 수입입니다. 다시 입력해주세요.")
                 case CommonError.emptyCity:
-                    self?.notiAlert("도시 정보가 비었습니다. 다시 입력해주세요.")
+                    ToastView.showToast("도시 정보가 비었습니다. 다시 입력해주세요.")
                 default:
-                    self?.notiAlert("알 수 없는에러가 발생했습니다.")
+                    ToastView.showToast("알 수 없는에러가 발생했습니다.")
                 }
             }.store(in: &cancellable)
     }

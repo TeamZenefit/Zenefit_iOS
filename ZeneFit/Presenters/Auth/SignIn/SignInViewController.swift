@@ -120,9 +120,9 @@ final class SignInViewController: BaseViewController {
                 case let CommonError.tempUser(userId):
                     self?.coordinator?.setAction(.signUp(userId: userId))
                 case CommonError.serverError:
-                    self?.notiAlert("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                    ToastView.showToast("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
                 default:
-                    self?.notiAlert("알 수 없는 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                    ToastView.showToast("알 수 없는 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
                 }
             }
             .store(in: &cancellable)

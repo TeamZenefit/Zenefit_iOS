@@ -22,7 +22,6 @@ final class WelfareDetailViewController: BaseViewController {
     }
     
     private let titleLabel = BaseLabel().then {
-        $0.text = "정책 이름을 신청하면\n월 n만원 정도를 받을 수 있어요"
         $0.textColor = .textStrong
         $0.font = .pretendard(.label1)
         $0.numberOfLines = 0
@@ -131,9 +130,9 @@ final class WelfareDetailViewController: BaseViewController {
                         }
                     } catch {
                         if case CommonError.alreadyInterestingPolicy = error {
-                            self.notiAlert("이미 등록된 관심 정책입니다")
+                            ToastView.showToast("이미 등록된 관심 정책입니다")
                         } else {
-                            self.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                            ToastView.showToast("알 수 없는 에러로 실패하였습니다.")
                         }
                     }
                 }
@@ -143,7 +142,7 @@ final class WelfareDetailViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] in
                 guard let url = self?.viewModel.detailInfo.value?.referenceSite else {
-                    self?.notiAlert("유효하지 않은 주소입니다.")
+                    ToastView.showToast("유효하지 않은 주소입니다.")
                     return
                 }
                 
@@ -159,7 +158,7 @@ final class WelfareDetailViewController: BaseViewController {
                     
                     self?.present(alert, animated: false)
                 } else {
-                    self?.notiAlert("유효하지 않은 주소입니다.")
+                    ToastView.showToast("유효하지 않은 주소입니다.")
                 }
             }.store(in: &cancellable)
         
@@ -167,7 +166,7 @@ final class WelfareDetailViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] in
                 guard let url = self?.viewModel.detailInfo.value?.referenceSite else {
-                    self?.notiAlert("유효하지 않은 주소입니다.")
+                    ToastView.showToast("유효하지 않은 주소입니다.")
                     return
                 }
                 
@@ -183,7 +182,7 @@ final class WelfareDetailViewController: BaseViewController {
                     
                     self?.present(alert, animated: false)
                 } else {
-                    self?.notiAlert("유효하지 않은 주소입니다.")
+                    ToastView.showToast("유효하지 않은 주소입니다.")
                 }
             }.store(in: &cancellable)
         

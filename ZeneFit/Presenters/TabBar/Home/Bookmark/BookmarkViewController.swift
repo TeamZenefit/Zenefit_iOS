@@ -118,7 +118,7 @@ final class BookmarkViewController: BaseViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
                 self?.refreshControl.endRefreshing()
-                self?.notiAlert("알 수 없는 에러가 발생했습니다.")
+                 ToastView.showToast("알 수 없는 에러가 발생했습니다.")
             }.store(in: &cancellable)
     }
     

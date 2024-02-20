@@ -310,7 +310,7 @@ extension ScheduleViewController: FSCalendarDelegate, FSCalendarDataSource {
                                                           strDatePolicy: strDatePolicy,
                                                           endDatePolicy: endDatePolicy))
         } else {
-//            notiAlert("해당 날짜에 신청 가능한 정책이 없어요.")
+//            ToastView.showToast("해당 날짜에 신청 가능한 정책이 없어요.")
         }   
     }
 }

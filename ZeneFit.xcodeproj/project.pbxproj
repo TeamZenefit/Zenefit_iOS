@@ -125,7 +125,7 @@
 		B57242A52AE15DC9007D6BC2 /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */; };
 		B57242A72AE15FEB007D6BC2 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */; };
 		B57242A92AE16274007D6BC2 /* LodingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */; };
-		B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */; };
+		B57242AB2AE165C0007D6BC2 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57242AA2AE165C0007D6BC2 /* ToastView.swift */; };
 		B57242AE2AE187CC007D6BC2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B57242AD2AE187CC007D6BC2 /* Lottie */; };
 		B5733D482AE7E75400905E41 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5733D472AE7E75400905E41 /* ManualViewController.swift */; };
 		B583E8CE2B45A2E900C4A1A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */; };
@@ -376,7 +376,7 @@
 		B57242A42AE15DC9007D6BC2 /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		B57242A62AE15FEB007D6BC2 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		B57242A82AE16274007D6BC2 /* LodingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingIndicatorView.swift; sourceTree = "<group>"; };
-		B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNotificationAlertView.swift; sourceTree = "<group>"; };
+		B57242AA2AE165C0007D6BC2 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		B5733D472AE7E75400905E41 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		B583E8CD2B45A2E900C4A1A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFKeyType.swift; sourceTree = "<group>"; };
@@ -829,7 +829,7 @@
 			children = (
 				B55826F12B1C4D7C00A360E9 /* StandardAlertController.swift */,
 				B55826F32B1C4D7C00A360E9 /* StandardAlertAction.swift */,
-				B57242AA2AE165C0007D6BC2 /* StandardNotificationAlertView.swift */,
+				B57242AA2AE165C0007D6BC2 /* ToastView.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -1795,7 +1795,7 @@
 				B51DF8F02B41E8BC00E63704 /* PolicyDateType.swift in Sources */,
 				B552F9DF2AE55CD900AA5F40 /* RecommendWelFareDTO.swift in Sources */,
 				B54AB1AE2AF76AA400429C52 /* BaseView.swift in Sources */,
-				B57242AB2AE165C0007D6BC2 /* StandardNotificationAlertView.swift in Sources */,
+				B57242AB2AE165C0007D6BC2 /* ToastView.swift in Sources */,
 				B5F970D22B6FC3A700E3E0F2 /* CalendarCell.swift in Sources */,
 				B52263BA2B4ABAF90008DDF1 /* AgreementInfoDTO.swift in Sources */,
 				B5A870942B0B79110052D5A1 /* SupportPolicyType.swift in Sources */,

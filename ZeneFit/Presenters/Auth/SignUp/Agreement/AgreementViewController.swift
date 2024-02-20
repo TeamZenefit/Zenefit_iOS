@@ -104,12 +104,12 @@ final class AgreementViewController: BaseViewController {
             }.store(in: &cancellable)
         
         viewModel.error
-            .sink { [weak self] error in
+            .sink { error in
                 switch error {
                 case CommonError.serverError:
-                    self?.notiAlert("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                    ToastView.showToast("서버 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
                 default:
-                    self?.notiAlert("알 수 없는 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
+                    ToastView.showToast("알 수 없는 에러가 발생했습니다.\n잠시후 다시 시도해주세요.")
                 }
             }.store(in: &cancellable)
     }

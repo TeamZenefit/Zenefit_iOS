@@ -215,18 +215,18 @@ extension WelfareListViewController: WelfareDelegate {
             do {
                 if policy.interestFlag {
                     try await self?.viewModel.removeInterestPolicy(policyId: policy.policyId)
-                    self?.notiAlert("달력에서 제거되었습니다.")
+                    ToastView.showToast("달력에서 제거되었습니다.")
                 } else {
                     try await self?.viewModel.addInterestPolicy(policyId: policy.policyId)
-                    self?.notiAlert("달력에 추가되었습니다.")
+                    ToastView.showToast("달력에 추가되었습니다.")
                 }
                 
                 completion?()
             } catch {
                 if case CommonError.alreadyInterestingPolicy = error {
-                    self?.notiAlert("이미 등록된 관심 정책입니다")
+                    ToastView.showToast("이미 등록된 관심 정책입니다")
                 } else {
-                    self?.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                    ToastView.showToast("알 수 없는 에러로 실패하였습니다.")
                 }
             }
         }
@@ -234,7 +234,7 @@ extension WelfareListViewController: WelfareDelegate {
     
     func tapApplyWelfare(policy: PolicyInfoDTO) {
         guard let url = policy.policyUrl else {
-            notiAlert("유효하지 않은 주소입니다.")
+            ToastView.showToast("유효하지 않은 주소입니다.")
             return
         }
         
@@ -250,7 +250,7 @@ extension WelfareListViewController: WelfareDelegate {
             
             self.present(alert, animated: false)
         } else {
-            notiAlert("유효하지 않은 주소입니다.")
+            ToastView.showToast("유효하지 않은 주소입니다.")
         }
     }
     
@@ -266,9 +266,9 @@ extension WelfareListViewController: WelfareDelegate {
                 completion?()
             } catch {
                 if case CommonError.alreadyInterestingPolicy = error {
-                    self?.notiAlert("이미 등록된 수혜 정책입니다")
+                    ToastView.showToast("이미 등록된 수혜 정책입니다")
                 } else {
-                    self?.notiAlert("알 수 없는 에러로 실패하였습니다.")
+                    ToastView.showToast("알 수 없는 에러로 실패하였습니다.")
                 }
             }
         }

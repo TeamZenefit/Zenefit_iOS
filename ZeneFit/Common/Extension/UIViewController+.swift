@@ -21,17 +21,6 @@ extension UIViewController {
         }
     }
     
-    func notiAlert(_ content: String) {
-        let alert = StandardNotificationAlertView(content)
-        
-        self.view.addSubview(alert)
-        
-        alert.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(16)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
-        }
-    }
-    
     @available(iOS 13.0, *)
     private struct Preview: UIViewControllerRepresentable {
         let viewController: UIViewController

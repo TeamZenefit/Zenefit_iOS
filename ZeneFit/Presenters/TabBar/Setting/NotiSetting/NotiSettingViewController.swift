@@ -49,8 +49,8 @@ final class NotiSettingViewController: BaseViewController {
         
         viewModel.error
             .receive(on: RunLoop.main)
-            .sink { [weak self] error in
-                self?.notiAlert("알 수 없는 에러가 발생했습니다.")
+            .sink { error in
+                ToastView.showToast("알 수 없는 에러가 발생했습니다.")
             }.store(in: &cancellable)
     }
     
