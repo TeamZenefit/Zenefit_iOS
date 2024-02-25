@@ -144,14 +144,14 @@ extension NotiViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationCategoryCell.identifier, for: indexPath) as! NotificationCategoryCell
-        cell.configureCell(title: viewModel.categories[indexPath.row].description,
-                           selectedCategory: viewModel.selectedCategory.description)
+        cell.configureCell(title: viewModel.categories[indexPath.row].title,
+                           selectedType: viewModel.selectedDateType)
 
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.selectedCategory = viewModel.categories[indexPath.row]
+        viewModel.selectedDateType = viewModel.categories[indexPath.row]
         collectionView.reloadSections(.init(integer: 0))
     }
 }
@@ -161,7 +161,7 @@ extension NotiViewController: UICollectionViewDelegateFlowLayout {
         let item = viewModel.categories[indexPath.row]
         let mockLabel = PaddingLabel(padding: .init(top: 8, left: 16, bottom: 8, right: 16))
         mockLabel.font = .pretendard(.body2)
-        mockLabel.text = item.description
+        mockLabel.text = item.title
         
         return .init(width: mockLabel.intrinsicContentSize.width, height: 32)
     }

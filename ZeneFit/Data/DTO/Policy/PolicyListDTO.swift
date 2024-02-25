@@ -39,4 +39,5 @@ class PolicyInfoDTO: Codable {
     let benefit: Int?
     var applyFlag, interestFlag: Bool
     let policyUrl: String?
+    let benefitPeriod: String?
 }

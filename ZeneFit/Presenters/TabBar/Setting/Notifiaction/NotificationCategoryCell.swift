@@ -41,9 +41,9 @@ final class NotificationCategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureCell(title: String, selectedCategory: String) {
+    func configureCell(title: String, selectedType: NotiDateType) {
         titleLabel.text = title
-        if selectedCategory == title {
+        if selectedType.title == title {
             layer.borderColor = UIColor.primaryNormal.cgColor
             titleLabel.textColor = .primaryNormal
             backgroundColor = .primaryNormal.withAlphaComponent(0.07)

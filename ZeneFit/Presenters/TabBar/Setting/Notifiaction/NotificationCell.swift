@@ -54,11 +54,13 @@ final class NotificationCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints {
             $0.leading.equalTo(iconImageView.snp.trailing).offset(16)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.top.equalToSuperview().offset(24)
         }
         
         contentLabel.snp.makeConstraints {
             $0.leading.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().offset(-16)
             $0.top.equalTo(titleLabel.snp.bottom).offset(4)
         }
         

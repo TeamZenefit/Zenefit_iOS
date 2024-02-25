@@ -194,7 +194,9 @@ final class WelfareCell: UITableViewCell {
                 )
             default:
                 let benefit = policy.benefit ?? 0
-                let title = benefit == 0 ? "신청하기" : "월 \(benefit / 10000)만원 신청하기"
+                let datePeriod = policy.benefitPeriod ?? ""
+                let benefitString = "\(datePeriod) \(Utils.formattedWon(benefit)) 신청하기"
+                let title = benefit == 0 ? "신청하기" : benefitString
                 
                 $0.configuration?.attributedTitle = .init(
                     title,

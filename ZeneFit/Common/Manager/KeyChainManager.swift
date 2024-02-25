@@ -31,8 +31,7 @@ final class KeychainManager {
             kSecClass : kSecClassGenericPassword,
             kSecAttrService : service,
             kSecAttrAccount : key,
-            kSecReturnData : true,
-            kSecMatchLimit : kSecMatchLimitOne]
+            kSecReturnData : true]
         
         var dataTypeRef: AnyObject?
         let status = SecItemCopyMatching(keyChainQuery, &dataTypeRef)

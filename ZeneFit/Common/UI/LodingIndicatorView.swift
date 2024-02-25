@@ -7,42 +7,45 @@
 
 import UIKit
 
-final class LoadingIndicatorView {
-    static var loadingIndicatorView: LodingView?
+enum IndicatorState {
+    case active
+    case inActive
+}
+
+final class LoadingIndicatorView: UIView {
+    static var shared = LodingView()
+    
+    var state: IndicatorState = .inActive
+    
+    private let indicatorImageView = UIImageView(image: .init(resource: .indicator))
     
     static func showLoading() {
         DispatchQueue.main.async {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                   let window = windowScene.windows.last,
-                  let view = window.subviews.first else { return }
+                  let view = window.subviews.last else { return }
 
-            
-            if let existedView = window.subviews.first(where: { $0 is LodingView } ) as? LodingView {
-                loadingIndicatorView = existedView
-            } else {
-                loadingIndicatorView = LodingView()
-                loadingIndicatorView?.frame = view.frame
-                view.addSubview(loadingIndicatorView!)
+           
+            if shared.state == .inActive {
+                shared = LodingView()
+                shared.frame = view.frame
+                view.addSubview(shared)
                 
-                loadingIndicatorView?.startAnimation()
+                shared.startAnimation()
             }
         }
     }
 
     static func hideLoading() {
         DispatchQueue.main.async {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let window = windowScene.windows.last else { return }
-            window.subviews.filter({ $0 is UIActivityIndicatorView }).forEach { $0.removeFromSuperview() }
-            
-            loadingIndicatorView?.stopAnimation()
-            loadingIndicatorView = nil
+            shared.stopAnimation()
+            shared.removeFromSuperview()
         }
     }
 }
 
 class LodingView: UIView {
-    
+    var state: IndicatorState = .inActive
     private let indicatorImageView = UIImageView(image: .init(resource: .indicator))
     
     //MARK: - Init
@@ -62,10 +65,13 @@ class LodingView: UIView {
     }
     
     deinit {
+        state = .inActive
         stopAnimation()
     }
     
     func startAnimation() {
+        state = .active
+        
         let rotation = CABasicAnimation(keyPath: "transform.rotation")
         rotation.fromValue = 0
         rotation.toValue = 2 * Double.pi
@@ -75,6 +81,7 @@ class LodingView: UIView {
     }
 
     func stopAnimation() {
+        state = .inActive
         indicatorImageView.layer.removeAllAnimations()
     }
 }

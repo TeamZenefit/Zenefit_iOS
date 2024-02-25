@@ -40,7 +40,7 @@ final class AuthRepository: AuthRepositoryProtocol {
         try await userService.updateFCMToken(fcmToken: fcmToken)
     }
     
-    func getNotification(page: Int) -> AnyPublisher<NotificationDTO, Error> {
-        userService.getNotification(page: page)
+    func getNotification(page: Int, dateType: NotiDateType) -> AnyPublisher<NotificationDTO, Error> {
+        userService.getNotification(page: page, dateType: dateType)
     }
 }

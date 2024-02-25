@@ -15,4 +15,5 @@ struct CalendarPolicyDTO: Codable {
     let applySttDate: String
     let applyEndDate: String
     let applyProcedure: String
+    let policyApplyDenialReason: String?
 }

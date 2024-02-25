@@ -165,6 +165,7 @@
 		B5A8709E2B0BA5650052D5A1 /* PolicyDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */; };
 		B5B5FCCA2B7A3FFF00F0BF78 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */; };
 		B5B5FCCD2B7A618200F0BF78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5FCCC2B7A618200F0BF78 /* Utils.swift */; };
+		B5C884DD2B8B7B0B00A9C4E3 /* NotiDateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C884DC2B8B7B0B00A9C4E3 /* NotiDateType.swift */; };
 		B5D546082B8241A500710BCF /* JobType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D546072B8241A500710BCF /* JobType.swift */; };
 		B5E4B5AF2B45B19A00F63486 /* UnregistUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */; };
 		B5ED7B9F2B00AC3900138FE8 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */; };
@@ -415,6 +416,7 @@
 		B5A8709D2B0BA5650052D5A1 /* PolicyDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyDetailUseCase.swift; sourceTree = "<group>"; };
 		B5B5FCC92B7A3FFF00F0BF78 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		B5B5FCCC2B7A618200F0BF78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		B5C884DC2B8B7B0B00A9C4E3 /* NotiDateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiDateType.swift; sourceTree = "<group>"; };
 		B5D546072B8241A500710BCF /* JobType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobType.swift; sourceTree = "<group>"; };
 		B5E4B5AE2B45B19A00F63486 /* UnregistUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnregistUserUseCase.swift; sourceTree = "<group>"; };
 		B5ED7B9E2B00AC3900138FE8 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
@@ -1295,6 +1297,7 @@
 				B531CC2F2B4295DE00EF5095 /* PolicyMethodType.swift */,
 				B583E8CF2B45A5A700C4A1A7 /* ZFKeyType.swift */,
 				B5D546072B8241A500710BCF /* JobType.swift */,
+				B5C884DC2B8B7B0B00A9C4E3 /* NotiDateType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1633,6 +1636,7 @@
 				B5A870662B09D2FC0052D5A1 /* BookmarkPolicyListDTO.swift in Sources */,
 				B54AB1B52AF7E24600429C52 /* WelfareListViewModel.swift in Sources */,
 				B5F624642AC2F6A0002A1896 /* SplashViewController.swift in Sources */,
+				B5C884DD2B8B7B0B00A9C4E3 /* NotiDateType.swift in Sources */,
 				B54A674A2ADBD18700971467 /* UIGestureRecognizer+.swift in Sources */,
 				B55826E02B1B95CC00A360E9 /* UITableViewCell+.swift in Sources */,
 				B5B5FCCA2B7A3FFF00F0BF78 /* UIApplication+.swift in Sources */,
@@ -1979,20 +1983,23 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "제네핏";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.5;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2014,20 +2021,23 @@
 				CODE_SIGN_ENTITLEMENTS = ZeneFit/ZeneFit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = V2YNV9QV27;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ZeneFit/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "제네핏";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.5;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = iosdev.sw.ZeneFitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

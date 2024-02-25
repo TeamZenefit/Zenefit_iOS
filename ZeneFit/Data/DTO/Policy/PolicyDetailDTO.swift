@@ -20,4 +20,5 @@ class PolicyDetailDTO: Codable {
     let policyMethodTypeDescription: String
     var applyFlag: Bool
     var interestFlag: Bool
+    let benefitPeriod: String?
 }

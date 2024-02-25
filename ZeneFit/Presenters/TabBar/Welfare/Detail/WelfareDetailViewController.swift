@@ -101,10 +101,13 @@ final class WelfareDetailViewController: BaseViewController {
                     self?.applyButton.isHidden = false
                     self?.detailFetchButton.isHidden = true
                     
-                    if let benefit = info.benefit {
-                        let title = "\(info.policyName)\(preposition1) 신청하면 월 \(benefit/10000)만원 정도를 받을 수 있어요"
+                    if let benefit = info.benefit,
+                       benefit > 0 {
+                        let datePeriod = info.benefitPeriod ?? ""
+                        let benefitString = "\(datePeriod) \(Utils.formattedWon(benefit))"
+                        let title = "\(info.policyName)\(preposition1) 신청하면\(info.benefitPeriod ?? "") \(benefitString) 정도를 받을 수 있어요"
                         self?.titleLabel.text = title
-                        self?.titleLabel.setPointTextAttribute("월 \(benefit/10000)만원", color: .primaryNormal)
+                        self?.titleLabel.setPointTextAttribute(benefitString, color: .primaryNormal)
                     } else {
                         let title = "\(info.policyName)\(preposition2) 지금 바로 신청 가능해요"
                         self?.titleLabel.text = title

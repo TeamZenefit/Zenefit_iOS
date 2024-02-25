@@ -35,9 +35,7 @@ final class CalendarPolicyCell: UITableViewCell {
     
     private let applyButton = UIButton().then {
         var configure = UIButton.Configuration.filled()
-        configure.attributedTitle = .init("신청하기",
-                                          attributes: .init([.font : UIFont.pretendard(.label4),
-                                                             .foregroundColor : UIColor.primaryNormal]))
+        
         configure.baseBackgroundColor = .primaryAssistive
         configure.background.cornerRadius = 8
         configure.contentInsets = .init(top: 8, leading: 12, bottom: 8, trailing: 12)
@@ -107,6 +105,23 @@ final class CalendarPolicyCell: UITableViewCell {
         
         deleteButton.isHidden = !isEditMode
         applyButton.isHidden = isEditMode
+        let methodType = PolicyMethodType(rawValue: policy.applyProcedure)
+        
+        applyButton.isEnabled = policy.policyApplyDenialReason == nil && (methodType == .blank || methodType == .online)
+        
+        if policy.policyApplyDenialReason != nil {
+            applyButton.configuration?.attributedTitle = .init("신청불가",
+                                                               attributes: .init([.font : UIFont.pretendard(.label4),
+                                                                                  .foregroundColor : UIColor.white]))
+        } else if methodType == .blank || methodType == .online {
+            applyButton.configuration?.attributedTitle = .init(methodType?.applyTitle ?? "",
+                                                               attributes: .init([.font : UIFont.pretendard(.label4),
+                                                                                  .foregroundColor : UIColor.primaryNormal]))
+        } else {
+            applyButton.configuration?.attributedTitle = .init(methodType?.applyTitle ?? "",
+                                                               attributes: .init([.font : UIFont.pretendard(.label4),
+                                                                                  .foregroundColor : UIColor.white]))
+        }
     }
     
     private func setUI() {
@@ -143,6 +158,17 @@ final class CalendarPolicyCell: UITableViewCell {
         deleteButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-16)
             $0.centerY.equalTo(policyImageView)
+        }
+    }
+}
+
+extension PolicyMethodType {
+    var applyTitle: String {
+        switch self {
+        case .blank: "신청하기" // TODO: 말도안되는데 이렇게 내려오는게 많음
+        case .online: "신청하기"
+        case .visit: "방문접수"
+        case .letter: "우편접수"
         }
     }
 }

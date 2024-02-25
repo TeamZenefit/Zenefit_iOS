@@ -91,7 +91,7 @@ final class HomeViewController: BaseViewController {
         
         let hasCheck = UserDefaults.standard.bool(forKey: ZFKeyType.hasCheckManumal.rawValue)
 
-        manualItem.isSelected = !hasCheck
+        manualItem.isSelected = hasCheck
     }
     
     override func setupBinding() {

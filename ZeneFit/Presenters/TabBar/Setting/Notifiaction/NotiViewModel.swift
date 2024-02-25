@@ -12,11 +12,11 @@ final class NotiViewModel {
     weak var coordinator: NotificationCoordinator?
     private var cancellable = Set<AnyCancellable>()
     
-    @Published var categories = NotiCategory.allCases
+    @Published var categories = NotiDateType.allCases
     
     var error = PassthroughSubject<Error, Never>()
     
-    var selectedCategory = NotiCategory.none
+    @Published var selectedDateType = NotiDateType.none
     
     var notificationList = CurrentValueSubject<[NotificationInfo], Never>([])
     
@@ -33,13 +33,21 @@ final class NotiViewModel {
         self.coordinator = coordinator
         self.getNotificationUseCase = getNotificationUseCase
         
-        getNotificationInfo()
+        bind()
+    }
+    
+    func bind() {
+        $selectedDateType
+            .sink { [weak self] type in
+                guard let self else { return }
+                getNotificationInfo()
+            
+            }.store(in: &cancellable)
     }
     
     func getNotificationInfo() {
-        isLastPage = false
-        currentPage = 0
-        self.getNotificationUseCase.execute(page: currentPage)
+        resetData()
+        self.getNotificationUseCase.execute(page: currentPage, dateType: selectedDateType)
         .sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished: break
@@ -52,6 +60,11 @@ final class NotiViewModel {
         }).store(in: &cancellable)
     }
     
+    func resetData() {
+        isPaging = false
+        isLastPage = false
+        currentPage = 0
+    }
     
     func didScroll(offsetY: CGFloat, contentHeight: CGFloat, frameHeight: CGFloat) {
         if offsetY > 0 && offsetY > (contentHeight - frameHeight) {
@@ -60,33 +73,13 @@ final class NotiViewModel {
     }
 }
 
-extension NotiViewModel {
-    enum NotiCategory: String, CaseIterable {
-        case none = "NONE"
-        case startDay = "STARTDAY"
-        case endDay = "ENDDAY"
-        case activity = "ACTIVITY"
-        
-        var description: String {
-            switch self {
-            case .none:
-                "전체"
-            case .startDay:
-                "시작일"
-            case .endDay:
-                "마감일"
-            case .activity:
-                "활동"
-            }
-        }
-    }
-}
-
 private extension NotiViewModel {
     func paging() {
         isPaging = true
         currentPage += 1
-        getNotificationUseCase.execute(page: currentPage)
+        
+        getNotificationUseCase.execute(page: currentPage, dateType: selectedDateType)
+            .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):

@@ -82,10 +82,10 @@ final class PersonalInfoEditViewController: BaseViewController {
         
         viewModel.errorPublisher
             .receive(on: RunLoop.main)
-            .sink { [weak self] error in
+            .sink { error in
                 switch error {
                 case CommonError.invalidAge:
-                    ZeneFit.ToastView.showToast("유효하지않은 나이입니다. 다시 입력해주세요.")
+                    ToastView.showToast("유효하지않은 나이입니다. 다시 입력해주세요.")
                 case CommonError.invalidIncome:
                     ToastView.showToast("유효하지않은 수입입니다. 다시 입력해주세요.")
                 case CommonError.emptyCity:

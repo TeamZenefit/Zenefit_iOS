@@ -36,6 +36,7 @@ final class ManualView: UIView {
         
         deviceImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(440)
             $0.top.equalToSuperview().offset(24)
         }
         

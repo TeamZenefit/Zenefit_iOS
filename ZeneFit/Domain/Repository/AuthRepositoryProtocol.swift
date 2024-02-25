@@ -16,5 +16,5 @@ protocol AuthRepositoryProtocol {
                 nickname: String?) -> AnyPublisher<SignInResponse, Error>
     func signUp(signUpInfo: SignUpInfo)-> AnyPublisher<SignUpResponse, Error>
     func updateFCMToken(fcmToken: String) async throws
-    func getNotification(page: Int) -> AnyPublisher<NotificationDTO, Error> 
+    func getNotification(page: Int, dateType: NotiDateType) -> AnyPublisher<NotificationDTO, Error> 
 }

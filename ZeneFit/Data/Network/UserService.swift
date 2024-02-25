@@ -109,10 +109,11 @@ final class UserService {
         }.asyncThrows
     }
     
-    func getNotification(page: Int) -> AnyPublisher<NotificationDTO, Error> {
+    func getNotification(page: Int, dateType: NotiDateType) -> AnyPublisher<NotificationDTO, Error> {
         let parameter: [String : String] = [
             "size" : "10",
-            "page" : "\(page)"
+            "page" : "\(page)",
+            "searchDateType" : dateType.rawValue
         ]
         
         let endpoint = Endpoint(method: .GET,
@@ -120,15 +121,18 @@ final class UserService {
                                 queries: parameter)
             .setAccessToken()
         
+        LoadingIndicatorView.showLoading()
         return session.dataTaskPublisher(urlRequest: endpoint.request,
                                          expect: BaseResponse<NotificationDTO>.self,
                                          responseHandler: { res in
+            LoadingIndicatorView.hideLoading()
             guard (200...299).contains(res.statusCode) ||
                     res.statusCode == 401 else {
                 throw CommonError.serverError
             }
         })
         .tryMap { response -> NotificationDTO in
+            LoadingIndicatorView.hideLoading()
             switch response.code {
             case 200:
                 return response.result

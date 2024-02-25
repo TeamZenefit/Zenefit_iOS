@@ -15,7 +15,7 @@ struct GetNotificationUseCase {
         self.authRepo = authRepo
     }
     
-    func execute(page: Int) -> AnyPublisher<NotificationDTO, Error> {
-        authRepo.getNotification(page: page)
+    func execute(page: Int, dateType: NotiDateType) -> AnyPublisher<NotificationDTO, Error> {
+        authRepo.getNotification(page: page, dateType: dateType)
     }
 }

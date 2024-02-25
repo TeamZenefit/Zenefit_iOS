@@ -64,15 +64,28 @@ final class BenefitCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        infoLabel.text = ""
+    }
+    
     func configureCell(policyItem: BenefitPolicy, isEditMode: Bool) {
-        infoLabel.isHidden = isEditMode
-        deleteButton.isHidden = !isEditMode
-        
         thumbnailImageView.kf.setImage(with: URL(string: policyItem.policyLogo ?? ""),
                                        placeholder: UIImage(named: "DefaultPolicy"))
         titleLabel.text = policyItem.policyName
         contentLabel.text = policyItem.policyIntroduction
-        infoLabel.text = "\(policyItem.benefit/10000)만원"
+        
+        let datePeriod = policyItem.benefitPeriod ?? ""
+        let benefit = policyItem.benefit ?? 0
+        if benefit == 0 {
+            // TODO: API변경 요청: policy Type 필요
+        } else {
+            let benefitString = "\(datePeriod) \(Utils.formattedWon(benefit))"
+            infoLabel.text = benefitString
+        }
+        
+        infoLabel.isHidden = isEditMode || benefit == 0
+        deleteButton.isHidden = !isEditMode
         
         deleteButton.addAction(
             .init(handler: { [weak self] _ in
