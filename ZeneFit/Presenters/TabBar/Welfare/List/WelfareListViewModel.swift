@@ -74,6 +74,7 @@ final class WelfareListViewModel {
                                         policyType: selectedCategory.value,
                                         sortType: sortType.value,
                                         keyword: keyword.value)
+        .receive(on: RunLoop.main)
         .sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished: break
@@ -137,19 +138,20 @@ private extension WelfareListViewModel {
                                         policyType: selectedCategory.value,
                                         sortType: sortType.value,
                                         keyword: keyword.value)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.isPaging = false
-                    self?.error.send(error)
-                    self?.showSkeleton.send(false)
-                case .finished: break
-                }
-            }, receiveValue: { [weak self] res in
-                self?.showSkeleton.send(false)
-                self?.policyList.value.append(contentsOf: res.policyListInfoResponseDto.content)
-                self?.isLastPage = res.last
+        .receive(on: RunLoop.main)
+        .sink(receiveCompletion: { [weak self] completion in
+            switch completion {
+            case .failure(let error):
                 self?.isPaging = false
-            }).store(in: &cancellable)
+                self?.error.send(error)
+                self?.showSkeleton.send(false)
+            case .finished: break
+            }
+        }, receiveValue: { [weak self] res in
+            self?.showSkeleton.send(false)
+            self?.policyList.value.append(contentsOf: res.policyListInfoResponseDto.content)
+            self?.isLastPage = res.last
+            self?.isPaging = false
+        }).store(in: &cancellable)
     }
 }

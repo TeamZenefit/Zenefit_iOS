@@ -26,18 +26,15 @@ final class WelfareCell: UITableViewCell {
     
     private let frameView = UIView().then {
         $0.backgroundColor = .white
-        $0.isSkeletonable = true
     }
     
     private let policyImageView = UIImageView().then {
-        $0.isSkeletonable = true
         $0.layer.cornerRadius = 22
         $0.clipsToBounds = true
         $0.image = .init(named: "DefaultPolicy")
     }
     
     private let agencyLabel = UILabel().then {
-        $0.isSkeletonable = true
         $0.linesCornerRadius = 4
         $0.text = "기관"
         $0.textColor = .textAlternative
@@ -45,7 +42,6 @@ final class WelfareCell: UITableViewCell {
     }
     
     private let policyLabel = UILabel().then {
-        $0.isSkeletonable = true
         $0.linesCornerRadius = 4
         $0.text = "정책 이름"
         $0.font = .pretendard(.label2)
@@ -53,20 +49,16 @@ final class WelfareCell: UITableViewCell {
     }
     
     private let selectButton = UIButton().then {
-        $0.isSkeletonable = true
-        $0.skeletonCornerRadius = 8
         $0.setImage(.init(named: "Check-Off_welfare")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.setImage(.init(named: "Check-On_welfare")?.withRenderingMode(.alwaysOriginal), for: .selected)
     }
     
     private lazy var applyTypeStackView = UIStackView(arrangedSubviews: [dateTypeLabel, methodTypeLabel]).then {
-        $0.isSkeletonable = true
         $0.distribution = . fill
         $0.spacing = 4
     }
     
     private let dateTypeLabel =  PaddingLabel(vPadding: 4, hPadding: 8).then {
-        $0.isSkeletonable = true
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .secondaryNormal
@@ -76,7 +68,6 @@ final class WelfareCell: UITableViewCell {
     }
     
     private let methodTypeLabel = PaddingLabel(vPadding: 4, hPadding: 8).then {
-        $0.isSkeletonable = true
         $0.clipsToBounds = true
         $0.font = .pretendard(.chips)
         $0.textColor = .primaryNormal
@@ -86,7 +77,6 @@ final class WelfareCell: UITableViewCell {
     }
     
     private let contentLabel = UILabel().then {
-        $0.isSkeletonable = true
         $0.linesCornerRadius = 4
         $0.text = "정책 정보입니다. 정책 정보는 대략 2-3줄로 구성할 예정입니다. 정책 정보입니다. 정책 정보는 대략 2-3줄로 구성할 예정입니다. 정책 정보는 대략 2-3줄로 구성할 예정입니다."
         $0.textColor = .textNormal
@@ -95,8 +85,6 @@ final class WelfareCell: UITableViewCell {
     }
     
     private let addScheduleButton = UIButton().then {
-        $0.isSkeletonable = true
-        $0.skeletonCornerRadius = 8
         $0.setImage(.init(named: "Add-scheduleOff")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.setImage(.init(named: "Add-scheduleOn")?.withRenderingMode(.alwaysOriginal), for: .selected)
         $0.setImage(.init(named: "Add-schedule")?.withRenderingMode(.alwaysOriginal), for: .disabled)
@@ -110,8 +98,6 @@ final class WelfareCell: UITableViewCell {
         configure.attributedTitle = .init("월 n만원 신청하기",
                                           attributes: .init([.font : UIFont.pretendard(.label4)]))
         $0.configuration = configure
-        $0.isSkeletonable = true
-        $0.skeletonCornerRadius = 8
     }
     
     private let separatorView = UIView().then {
@@ -140,8 +126,8 @@ final class WelfareCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         backgroundColor = .white
-        isSkeletonable = true
         
+//        setUpSkeleton()
         addSubViews()
         setLayout()
         setupBinding()
@@ -159,7 +145,7 @@ final class WelfareCell: UITableViewCell {
     
     // selectButton에 따라 분기해줘야함
     func configureCell(item: PolicyInfoDTO) {
-        self.isHidden = false
+        
         self.policy = item
         self.policyImageView.kf.setImage(with: URL(string: item.policyLogo ?? ""),
                                          placeholder: UIImage(named: "DefaultPolicy"))
@@ -226,6 +212,22 @@ final class WelfareCell: UITableViewCell {
         methodTypeLabel.textColor = textColor
         methodTypeLabel.layer.borderColor = borderColor.cgColor
     }
+    
+//    private func setUpSkeleton() {
+//        isSkeletonable = true
+//        contentView.isSkeletonable = true
+//        frameView.isSkeletonable = true
+//        agencyLabel.isSkeletonable = true
+//        policyLabel.isSkeletonable = true
+//        policyImageView.isSkeletonable = true
+//        contentLabel.isSkeletonable = true
+//        methodTypeLabel.isSkeletonable = true
+//        dateTypeLabel.isSkeletonable = true
+//        applyButton.isSkeletonable = true
+//        selectButton.isSkeletonable = true
+//        addScheduleButton.isSkeletonable = true
+//        applyTypeStackView.isSkeletonable = true
+//    }
 
     private func addSubViews() {
         contentView.addSubview(frameView)

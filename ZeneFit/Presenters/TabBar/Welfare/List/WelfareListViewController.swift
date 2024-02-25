@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SkeletonView
+//import SkeletonView
 
 // TODO: Compositional로 변경
 final class WelfareListViewController: BaseViewController {
@@ -35,8 +35,8 @@ final class WelfareListViewController: BaseViewController {
         $0.sectionHeaderTopPadding = 0
         $0.register(WelfareCell.self, forCellReuseIdentifier: WelfareCell.identifier)
         $0.backgroundColor = .white
-        $0.isSkeletonable = true
-        $0.isUserInteractionDisabledWhenSkeletonIsActive = false
+//        $0.isSkeletonable = true
+//        $0.isUserInteractionDisabledWhenSkeletonIsActive = false
         $0.tableHeaderView = headerView
         $0.backgroundView = emptyView
     }
@@ -78,6 +78,7 @@ final class WelfareListViewController: BaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] list in
                 self?.emptyView.isHidden = list.isNotEmpty
+//                self?.viewModel.showSkeleton.send(false)
                 self?.tableView.reloadData()
                 self?.errorView.isHidden = true
             }.store(in: &cancellable)
@@ -98,15 +99,24 @@ final class WelfareListViewController: BaseViewController {
                 self?.viewModel.sortType.send(type)
             }.store(in: &cancellable)
         
-        viewModel.showSkeleton
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isShow in
-                isShow ? self?.tableView.showSkeleton(usingColor: .fillAlternative) : self?.tableView.hideSkeleton()
-            }.store(in: &cancellable)
+//        viewModel.showSkeleton
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] isShow in
+//                if isShow {
+//                    self?.tableView.showSkeleton(usingColor: .fillAlternative)
+//                } else {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                        self?.tableView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.5))
+//                    }
+//                }
+//                isShow ? self?.tableView.showSkeleton(usingColor: .fillAlternative) : self?.tableView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.5))
+//            }.store(in: &cancellable)
         
         viewModel.error
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
+//                self?.viewModel.showSkeleton.send(false)
+                
                 if case CommonError.serverError = error {
                     self?.errorView.isHidden = false
                     self?.errorView.titleLabel.text = "복지 정책을 불러올 수 없어요."
@@ -168,7 +178,7 @@ extension WelfareListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension WelfareListViewController: UITableViewDelegate {
+extension WelfareListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.policyList.value.count
@@ -275,12 +285,14 @@ extension WelfareListViewController: WelfareDelegate {
     }
 }
 
-extension WelfareListViewController: SkeletonTableViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.policyList.value.count + 10
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return WelfareCell.identifier
-    }
-}
+//extension WelfareListViewController: SkeletonTableViewDataSource {
+//    
+//    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.viewModel.policyList.value.count
+//    }
+//    
+//    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+//
+//        return WelfareCell.identifier
+//    }
+//}
