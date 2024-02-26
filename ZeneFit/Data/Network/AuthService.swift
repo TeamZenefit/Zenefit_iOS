@@ -91,6 +91,7 @@ final class AuthService {
 
     func signUp(signUpInfo: SignUpInfo)-> AnyPublisher<SignUpResponse, Error> {
         let income = signUpInfo.income?.appending("0000")
+        let jobs = signUpInfo.job?.map { $0.rawValue } ?? []
         let endpoint = Endpoint(method: .PATCH,
                                 paths: "/user/signup",
                                 body: ["userId" : signUpInfo.userId ?? "",
@@ -99,7 +100,7 @@ final class AuthService {
                                        "cityCode" : signUpInfo.city ?? "",
                                        "lastYearIncome" : Double(income ?? "") ?? 0.0,
                                        "educationType" : signUpInfo.education ?? "",
-                                       "jobs" : signUpInfo.job ?? [],
+                                       "jobs" : jobs,
                                        "marketingStatus" : signUpInfo.marketingAgree])
         
         return session.dataTaskPublisher(urlRequest: endpoint.request,
